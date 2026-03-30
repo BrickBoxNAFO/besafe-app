@@ -1,29 +1,100 @@
-export const metadata = { title: 'Terms & Conditions — The Be Safe Group' }
-
 export default function TermsPage() {
   return (
-    <div className="page-enter max-w-3xl mx-auto px-6 py-16">
-      <h1 className="font-serif text-4xl text-navy mb-2">Terms & Conditions</h1>
-      <p className="text-navy/40 text-sm mb-10">Last updated: {new Date().getFullYear()}</p>
+    <div className="page-enter min-h-screen bg-slate">
+      <div className="hero-bg noise relative py-16 overflow-hidden">
+        <div className="max-w-3xl mx-auto px-6 relative z-10">
+          <h1 className="font-serif text-5xl text-white mb-3">Terms and Conditions</h1>
+          <p className="text-white/60">Last updated: March 2026</p>
+        </div>
+      </div>
+      <div className="max-w-3xl mx-auto px-6 py-14">
+        <div className="bg-white rounded-2xl border border-gray-100 p-10 space-y-8">
 
-      <div className="prose text-navy/70 leading-relaxed space-y-8">
-        {[
-          { h: '1. Acceptance of Terms', p: 'By creating an account or purchasing a package from The Be Safe Group, you agree to be bound by these Terms & Conditions. If you do not agree, please do not use our services.' },
-          { h: '2. Products and Access', p: 'Each package purchase grants you lifetime access to the course content within that package for personal use only. Access is tied to your individual account and may not be shared, transferred, or resold.' },
-          { h: '3. Payment', p: 'All payments are processed securely through Stripe. Prices are displayed in US Dollars (USD). By completing a purchase, you authorise the charge to your payment method.' },
-          { h: '4. Refund Policy', p: 'We offer a full refund within 7 days of purchase, provided that less than 20% of any course within the package has been completed. Once you have progressed beyond 20% of any course, the purchase is considered fulfilled and a refund is no longer available. To request a refund within the eligibility window, contact us at support@thebesafegroup.com.' },
-          { h: '5. Intellectual Property', p: 'All course content, materials, and resources provided by The Be Safe Group are protected by copyright. You may not copy, reproduce, distribute, or create derivative works from our content without prior written permission.' },
-          { h: '6. Acceptable Use', p: 'You agree to use our services for lawful personal purposes only. You must not attempt to gain unauthorised access to any part of our systems, share your account credentials, or use our content for commercial purposes without a licence.' },
-          { h: '7. Disclaimer', p: 'Our courses provide general safety education and awareness. The content is not a substitute for professional legal, medical, or emergency advice. In any emergency, contact the relevant emergency services in your country immediately.' },
-          { h: '8. Limitation of Liability', p: 'To the maximum extent permitted by law, The Be Safe Group shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services or reliance on our content.' },
-          { h: '9. Changes to Terms', p: 'We reserve the right to update these Terms & Conditions at any time. Continued use of our services following notification of changes constitutes your acceptance of the updated terms.' },
-          { h: '10. Contact', p: 'For any questions regarding these terms, contact us at support@thebesafegroup.com.' },
-        ].map(s => (
-          <div key={s.h}>
-            <h2 className="font-semibold text-navy text-lg mb-2">{s.h}</h2>
-            <p>{s.p}</p>
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">1. Agreement to Terms</h2>
+            <p className="text-navy/70 leading-relaxed text-sm">By accessing or purchasing courses on TheBeSafeGroup.com, operated by The Be Safe Group, you agree to these Terms and Conditions. If you do not agree, do not purchase or access any courses.</p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">2. Our Services</h2>
+            <p className="text-navy/70 leading-relaxed text-sm">The Be Safe Group sells online safety courses as digital products. The courses are for informational and educational purposes only. They do not constitute professional safety advice, official certification, or a substitute for legal or regulatory requirements in your jurisdiction.</p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">3. User Accounts</h2>
+            <p className="text-navy/70 leading-relaxed text-sm">You need to create an account to access purchased courses. You are responsible for keeping your login credentials secure. We may suspend or terminate accounts for violations of our Terms.</p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">4. Payments and Refunds</h2>
+            <p className="text-navy/70 leading-relaxed text-sm mb-3">Payments are processed securely through Stripe. All prices are in USD and include applicable taxes unless stated otherwise. For full details, please see our <a href="/refunds" className="text-teal hover:underline font-medium">Refund Policy</a>. In summary:</p>
+            <ul className="text-navy/70 space-y-1 list-disc list-inside text-sm">
+              <li>A full refund is available if requested within 7 days of purchase.</li>
+              <li>No refund will be issued if more than 20% of a purchased course has been completed.</li>
+              <li>Approved refunds will be processed back to the original payment method within 10 business days.</li>
+            </ul>
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-4 text-xs text-amber-800"><strong>EU/EEA/UK customers:</strong> You may have additional statutory rights including a 14-day cooling-off period. However, for digital content, the right of withdrawal can be lost once you give express consent to immediate delivery and start accessing the course. Where statutory rights provide stronger protection, they take precedence.</div>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">5. Intellectual Property</h2>
+            <p className="text-navy/70 leading-relaxed text-sm">All course materials are the property of The Be Safe Group. Upon purchase, you receive a limited, non-exclusive, non-transferable, revocable licence to access and use the courses for personal or internal business training only. You may not share, resell, copy, modify, distribute, or publicly display any materials without prior written permission.</p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">6. User Conduct</h2>
+            <p className="text-navy/70 leading-relaxed text-sm mb-2">You agree not to:</p>
+            <ul className="text-navy/70 space-y-1 list-disc list-inside text-sm">
+              <li>Use the courses for any unlawful purpose or to encourage unsafe practices.</li>
+              <li>Share login details or course access with third parties.</li>
+              <li>Attempt to bypass technical protections or security features.</li>
+              <li>Reverse-engineer, decompile, or extract source materials.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">7. Disclaimers and Limitation of Liability</h2>
+            <p className="text-navy/70 leading-relaxed text-sm mb-2">Courses are provided "as is" without warranties. To the maximum extent permitted by law:</p>
+            <ul className="text-navy/70 space-y-1 list-disc list-inside text-sm">
+              <li>We disclaim all liability for any loss, injury, damage, or expense arising from your use of the courses.</li>
+              <li>Our total liability shall not exceed the amount you paid for the specific course in question.</li>
+              <li>We are not liable for indirect, consequential, incidental, or punitive damages.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">8. Children's Privacy and Data Protection</h2>
+            <p className="text-navy/70 leading-relaxed text-sm mb-2">We comply with GDPR Article 8. For children below the age of digital consent in your Member State (typically 13-16), we require verifiable consent from a parent or legal guardian. Privacy notices aimed at children are written in clear, age-appropriate language.</p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">9. Termination</h2>
+            <p className="text-navy/70 leading-relaxed text-sm">We may terminate or suspend your access at any time for breach of these Terms or other reasonable cause. Refunds, if any, will follow the Refund Policy.</p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">10. Governing Law</h2>
+            <p className="text-navy/70 leading-relaxed text-sm">These Terms are governed by the laws of the United States, the laws of England and Wales, and the laws of the European Union. Mandatory consumer protections under EU law continue to apply where relevant.</p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">11. Changes to Terms</h2>
+            <p className="text-navy/70 leading-relaxed text-sm">We may update these Terms from time to time. Continued use of the Site after changes constitutes your acceptance. We will post the new version with an updated date.</p>
+          </section>
+
+          <section>
+            <h2 className="font-serif text-xl text-navy mb-3">12. Contact Us</h2>
+            <div className="bg-slate rounded-xl p-5">
+              <p className="text-navy font-medium">Email: <a href="mailto:Support@TheBeSafeGroup.com" className="text-teal hover:underline">Support@TheBeSafeGroup.com</a></p>
+              <p className="text-navy/60 text-sm mt-1">The Be Safe Group &mdash; TheBeSafeGroup.com</p>
+            </div>
+          </section>
+
+          <div className="pt-8 border-t border-gray-100 text-center">
+            <p className="text-navy font-semibold">The Be Safe Group</p>
+            <a href="https://thebesafegroup.com" className="text-teal text-sm hover:underline">TheBeSafeGroup.com</a>
           </div>
-        ))}
+        </div>
       </div>
     </div>
   )
