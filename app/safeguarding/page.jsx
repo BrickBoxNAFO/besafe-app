@@ -10,7 +10,7 @@ export default function SafeguardingPage() {
       <div className="max-w-3xl mx-auto px-6 py-14 space-y-6">
         <div className="bg-white rounded-2xl border border-gray-100 p-10 space-y-5">
           <h2 className="font-serif text-2xl text-navy">Safeguarding Statement</h2>
-          <p className="text-navy/70 leading-relaxed">At The Be Safe Group, we are deeply committed to safeguarding the welfare of all children, young people, and adults at risk who access our online safety courses.</p>
+          <p className="text-navy/70 leading-relaxed">At HomeSafeEducation, we are deeply committed to safeguarding the welfare of all children, young people, and adults at risk who access our online safety courses.</p>
           <p className="text-navy/70 leading-relaxed">Our courses cover sensitive topics including grooming awareness, sexual assault prevention, child protection, online safety, and abuse prevention. We recognise that these subjects can be emotionally challenging and take our safeguarding responsibilities extremely seriously.</p>
           <h3 className="font-serif text-xl text-navy">Our Commitment</h3>
           <ul className="text-navy/70 space-y-2 list-disc list-inside text-sm">
@@ -22,7 +22,7 @@ export default function SafeguardingPage() {
           </ul>
           <div className="bg-red-50 border border-red-200 rounded-xl p-5 mt-2">
             <h3 className="font-semibold text-red-800 mb-2">If You Have a Concern</h3>
-            <p className="text-red-700 text-sm leading-relaxed">If you have a safeguarding concern relating to our courses or content, please contact us immediately at: <a href="mailto:Support@TheBeSafeGroup.com" className="underline font-medium">Support@TheBeSafeGroup.com</a></p>
+            <p className="text-red-700 text-sm leading-relaxed">If you have a safeguarding concern relating to our courses or content, please contact us immediately at: <a href="mailto:Support@HomeSafeEducation.com" className="underline font-medium">Support@HomeSafeEducation.com</a></p>
             <p className="text-red-700 text-sm mt-2">All concerns will be treated seriously, confidentially, and in accordance with our Safeguarding Policy below.</p>
           </div>
         </div>
@@ -31,7 +31,7 @@ export default function SafeguardingPage() {
           <h2 className="font-serif text-2xl text-navy">Safeguarding Policy</h2>
           <section>
             <h3 className="font-serif text-lg text-navy mb-2">1. Introduction and Purpose</h3>
-            <p className="text-navy/70 text-sm leading-relaxed">The Be Safe Group provides online safety courses including content on grooming, sexual assault prevention, abuse awareness, and child protection. This policy applies to all staff, contractors, directors, and anyone involved in the creation, delivery, or support of our courses.</p>
+            <p className="text-navy/70 text-sm leading-relaxed">HomeSafeEducation provides online safety courses including content on grooming, sexual assault prevention, abuse awareness, and child protection. This policy applies to all staff, contractors, directors, and anyone involved in the creation, delivery, or support of our courses.</p>
           </section>
           <section>
             <h3 className="font-serif text-lg text-navy mb-2">2. Legal and Regulatory Framework</h3>
@@ -101,8 +101,8 @@ export default function SafeguardingPage() {
           <section>
             <h3 className="font-serif text-lg text-navy mb-2">11. Contact</h3>
             <div className="bg-slate rounded-xl p-5">
-              <p className="text-navy font-medium">Email: <a href="mailto:Support@TheBeSafeGroup.com" className="text-teal hover:underline">Support@TheBeSafeGroup.com</a></p>
-              <p className="text-navy/60 text-sm mt-1">The Be Safe Group — TheBeSafeGroup.com</p>
+              <p className="text-navy font-medium">Email: <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a></p>
+              <p className="text-navy/60 text-sm mt-1">HomeSafeEducation — homesafeeducation.com</p>
             </div>
           </section>
         </div>
