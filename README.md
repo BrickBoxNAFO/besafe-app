@@ -1,4 +1,4 @@
-# The Be Safe Group — Next.js App
+# HomeSafeEducation — Next.js App
 
 Full-stack safety education platform built with Next.js 14, Supabase, Stripe, and Resend.
 
@@ -24,7 +24,7 @@ Full-stack safety education platform built with Next.js 14, Supabase, Stripe, an
 2. In the SQL Editor, paste and run the contents of `supabase-schema.sql`
 3. Go to **Authentication → Settings**:
    - Enable Email provider
-   - Set **Site URL** to your Vercel domain (e.g. `https://thebesafegroup.com`)
+   - Set **Site URL** to your Vercel domain (e.g. `https://homesafeeducation.com`)
    - Add `http://localhost:3000` to Additional Redirect URLs for local dev
 4. Copy from **Project Settings → API**:
    - Project URL → `NEXT_PUBLIC_SUPABASE_URL`
@@ -56,7 +56,7 @@ Full-stack safety education platform built with Next.js 14, Supabase, Stripe, an
 1. Go to [resend.com](https://resend.com) and create an account
 2. Add and verify your domain (follow their DNS instructions)
 3. Create an API key → `RESEND_API_KEY`
-4. Set `RESEND_FROM_EMAIL` to your verified sender address (e.g. `hello@thebesafegroup.com`)
+4. Set `RESEND_FROM_EMAIL` to your verified sender address (e.g. `hello@homesafeeducation.com`)
 
 ### 4. Local Development
 
@@ -135,7 +135,7 @@ RESEND_API_KEY=                     # re_...
 RESEND_FROM_EMAIL=                  # hello@yourdomain.com (must be verified in Resend)
 
 # App
-NEXT_PUBLIC_SITE_URL=               # https://thebesafegroup.com (no trailing slash)
+NEXT_PUBLIC_SITE_URL=               # https://homesafeeducation.com (no trailing slash)
 ```
 
 ---
@@ -207,4 +207,4 @@ User visits /library
 
 ## Support
 
-For questions about this codebase, contact: support@thebesafegroup.com
+For questions about this codebase, contact: Support@HomeSafeEducation.com
