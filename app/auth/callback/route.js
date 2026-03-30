@@ -6,7 +6,9 @@ export async function GET(request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
   const next = searchParams.get('next') ?? '/dashboard'
+  const type = searchParams.get('type')
 
+  // Handle PKCE flow (code param)
   if (code) {
     const cookieStore = cookies()
     const supabase = createServerClient(
@@ -27,5 +29,6 @@ export async function GET(request) {
       return NextResponse.redirect(`${origin}${next}`)
     }
   }
+
   return NextResponse.redirect(`${origin}/login?error=auth_callback_failed`)
 }
