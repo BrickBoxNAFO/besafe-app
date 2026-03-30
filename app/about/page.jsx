@@ -11,7 +11,7 @@ export default function AboutPage() {
             <span className="italic text-teal">Done Properly.</span>
           </h1>
           <p className="text-white/70 text-lg max-w-2xl leading-relaxed">
-            The Be Safe Group was founded on a simple belief: that practical safety education should be accessible to everyone, regardless of age, background, or technical ability.
+            HomeSafeEducation was founded on a simple belief: that practical safety education should be accessible to everyone, regardless of age, background, or technical ability.
           </p>
         </div>
       </section>
