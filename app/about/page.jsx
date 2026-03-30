@@ -3,80 +3,73 @@ import Link from 'next/link'
 export default function AboutPage() {
   return (
     <div className="page-enter">
-      <div className="hero-bg noise relative py-24 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <div className="chip bg-teal/15 text-teal border border-teal/25 mb-5">Who We Are</div>
-          <h1 className="font-serif text-5xl lg:text-6xl text-white mb-6">
-            The world is more dangerous<br />
-            <span className="italic text-teal">than it looks.</span>
+      <section className="hero-bg noise relative py-24 overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <div className="chip bg-teal/15 text-teal border border-teal/25 mb-5">About Us</div>
+          <h1 className="font-serif text-5xl lg:text-6xl text-white mb-5">
+            Safety Education<br />
+            <span className="italic text-teal">Done Properly.</span>
           </h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            The Be Safe Group was built on a simple belief: that practical safety knowledge, delivered clearly and respectfully, changes outcomes.
+          <p className="text-white/70 text-lg max-w-2xl leading-relaxed">
+            The Be Safe Group was founded on a simple belief: that practical safety education should be accessible to everyone, regardless of age, background, or technical ability.
           </p>
         </div>
-      </div>
-
-      <section className="section-light py-20">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="prose prose-lg text-navy/70 leading-relaxed space-y-6">
-            <p>
-              The Be Safe Group exists because safety knowledge should be accessible to every family — not locked behind expensive consultants or buried in confusing guidance. We build practical, honest courses that give real people the awareness and confidence to protect themselves and the people they love.
-            </p>
-            <p>
-              Every package is built around a specific life stage, because the threats facing a 7-year-old are entirely different from those facing a 72-year-old. Our courses are written by safety professionals and education specialists, and reviewed to ensure they are accurate, current, and genuinely useful.
-            </p>
-            <p>
-              We believe that knowing what to do — before something happens — is one of the most powerful things a person can have. Our mission is to put that knowledge within reach of every family, at a price that reflects its value without being a barrier to access.
-            </p>
-          </div>
-        </div>
       </section>
 
-      {/* Stats */}
-      <section className="section-slate py-16">
+      <section className="section-light py-20">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              ['5', 'Specialist Packages'],
-              ['25', 'Safety Subjects'],
-              ['250', 'In-depth Lessons'],
-              ['1,250', 'Quiz Questions'],
-            ].map(([n, l]) => (
-              <div key={l} className="text-center bg-white rounded-2xl p-6 border border-gray-100">
-                <div className="font-serif text-4xl text-navy mb-1">{n}</div>
-                <div className="text-navy/50 text-sm">{l}</div>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="chip bg-teal/10 text-teal border border-teal/20 mb-5">Our Approach</div>
+              <h2 className="font-serif text-4xl text-navy mb-5">Built Around Real Life Stages</h2>
+              <p className="text-navy/60 leading-relaxed mb-4">
+                Every package is built around a specific life stage, because the threats facing a 7-year-old are entirely different from those facing a 67 year old. Our courses are written by safety professionals and education specialists, and reviewed to ensure they are accurate, current, and genuinely useful.
+              </p>
+              <p className="text-navy/60 leading-relaxed">
+                We focus on practical knowledge you can use immediately — not abstract theory. Every lesson is designed to change how you think and behave in real situations.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[['🎯', 'Practical', 'Real skills for real situations'],['📋', 'Expert-Written', 'By safety professionals'],['✅', 'Evidence-Based', 'Grounded in current research'],['🔒', 'Private', 'Learn at your own pace']].map(([icon, title, body]) => (
+                <div key={title} className="bg-slate rounded-2xl p-5">
+                  <div className="text-2xl mb-2">{icon}</div>
+                  <p className="font-semibold text-navy text-sm mb-1">{title}</p>
+                  <p className="text-navy/50 text-xs leading-relaxed">{body}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Values */}
+      <section className="section-slate py-20">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="chip bg-teal/10 text-teal border border-teal/20 mb-5">The Packages</div>
+          <h2 className="font-serif text-4xl text-navy mb-5">Five Packages. Every Stage of Life.</h2>
+          <p className="text-navy/60 text-lg max-w-2xl mx-auto mb-12">From primary school children learning about trusted adults to seniors protecting themselves from digital fraud — we have a package built specifically for every stage.</p>
+          <div className="grid md:grid-cols-5 gap-4">
+            {[['🧒','Growing Minds','Children'],['🎓','Nest Breaking','Young Adults'],['✈️','Roaming Free','Travellers'],['👴','Aging Wisdom','Seniors'],['👨‍👩‍👧','Family Anchor','Parents']].map(([emoji, name, who]) => (
+              <div key={name} className="bg-white rounded-2xl p-5 text-center border border-gray-100">
+                <div className="text-3xl mb-2">{emoji}</div>
+                <p className="font-semibold text-navy text-sm">{name}</p>
+                <p className="text-navy/40 text-xs mt-1">{who}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10">
+            <Link href="/packages" className="btn-primary">View All Packages</Link>
+          </div>
+        </div>
+      </section>
+
       <section className="section-light py-20">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="font-serif text-4xl text-navy text-center mb-12">Our Principles</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: '🎯', title: 'Practical above all', body: 'Every lesson is grounded in real situations. We focus on what you can actually do, not abstract theory.' },
-              { icon: '🔍', title: 'Evidence-based', body: 'Our content is built on current research and reviewed by specialists. No scare tactics, no misinformation.' },
-              { icon: '🤝', title: 'Respectful and honest', body: 'We talk to our learners like intelligent adults. We don\'t sensationalise risk or talk down to anyone.' },
-            ].map(v => (
-              <div key={v.title} className="text-center">
-                <div className="text-4xl mb-4">{v.icon}</div>
-                <h3 className="font-serif text-xl text-navy mb-3">{v.title}</h3>
-                <p className="text-navy/60 text-sm leading-relaxed">{v.body}</p>
-              </div>
-            ))}
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-serif text-4xl text-navy mb-5">Ready to Start?</h2>
+          <p className="text-navy/60 text-lg max-w-xl mx-auto mb-8">One-time payment. No subscription. Safety knowledge that stays with you.</p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link href="/packages" className="btn-primary">View Packages</Link>
+            <Link href="/register" className="btn-ghost">Create Free Account</Link>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="hero-bg noise relative py-20 overflow-hidden">
-        <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
-          <h2 className="font-serif text-4xl text-white mb-5">Ready to get started?</h2>
-          <p className="text-white/60 mb-8">Choose the package that fits your family and start today.</p>
-          <Link href="/packages" className="btn-primary text-base px-8 py-4">View All Packages →</Link>
         </div>
       </section>
     </div>
