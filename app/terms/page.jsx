@@ -12,12 +12,12 @@ export default function TermsPage() {
 
           <section>
             <h2 className="font-serif text-xl text-navy mb-3">1. Agreement to Terms</h2>
-            <p className="text-navy/70 text-sm leading-relaxed">By accessing or purchasing courses on TheBeSafeGroup.com, operated by The Be Safe Group, you agree to these Terms and Conditions. If you do not agree, do not purchase or access any courses.</p>
+            <p className="text-navy/70 text-sm leading-relaxed">By accessing or purchasing courses on homesafeeducation.com, operated by HomeSafeEducation, you agree to these Terms and Conditions. If you do not agree, do not purchase or access any courses.</p>
           </section>
 
           <section>
             <h2 className="font-serif text-xl text-navy mb-3">2. Our Services</h2>
-            <p className="text-navy/70 text-sm leading-relaxed">The Be Safe Group sells online safety courses as digital products. The courses are for informational and educational purposes only. They do not constitute professional safety advice, official certification, or a substitute for legal or regulatory requirements in your jurisdiction.</p>
+            <p className="text-navy/70 text-sm leading-relaxed">HomeSafeEducation sells online safety courses as digital products. The courses are for informational and educational purposes only. They do not constitute professional safety advice, official certification, or a substitute for legal or regulatory requirements in your jurisdiction.</p>
           </section>
 
           <section>
@@ -38,7 +38,7 @@ export default function TermsPage() {
 
           <section>
             <h2 className="font-serif text-xl text-navy mb-3">5. Intellectual Property</h2>
-            <p className="text-navy/70 text-sm leading-relaxed">All course materials are the property of The Be Safe Group. Upon purchase, you receive a limited, non-exclusive, non-transferable, revocable licence to access and use the courses for personal or internal business training only. You may not share, resell, copy, modify, distribute, or publicly display any materials without prior written permission.</p>
+            <p className="text-navy/70 text-sm leading-relaxed">All course materials are the property of HomeSafeEducation. Upon purchase, you receive a limited, non-exclusive, non-transferable, revocable licence to access and use the courses for personal or internal business training only. You may not share, resell, copy, modify, distribute, or publicly display any materials without prior written permission.</p>
           </section>
 
           <section>
@@ -85,14 +85,14 @@ export default function TermsPage() {
           <section>
             <h2 className="font-serif text-xl text-navy mb-3">12. Contact Us</h2>
             <div className="bg-slate rounded-xl p-5">
-              <p className="text-navy font-medium">Email: <a href="mailto:Support@TheBeSafeGroup.com" className="text-teal hover:underline">Support@TheBeSafeGroup.com</a></p>
-              <p className="text-navy/60 text-sm mt-1">The Be Safe Group — TheBeSafeGroup.com</p>
+              <p className="text-navy font-medium">Email: <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a></p>
+              <p className="text-navy/60 text-sm mt-1">HomeSafeEducation — homesafeeducation.com</p>
             </div>
           </section>
 
           <div className="pt-8 border-t border-gray-100 text-center">
-            <p className="text-navy font-semibold">The Be Safe Group</p>
-            <a href="https://thebesafegroup.com" className="text-teal text-sm hover:underline">TheBeSafeGroup.com</a>
+            <p className="text-navy font-semibold">HomeSafeEducation</p>
+            <a href="https://homesafeeducation.com" className="text-teal text-sm hover:underline">homesafeeducation.com</a>
           </div>
         </div>
       </div>
