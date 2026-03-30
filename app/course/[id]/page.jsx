@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { redirect, notFound } from 'next/navigation'
-import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { COURSES, PACKAGES } from '@/lib/data'
 
@@ -13,8 +12,7 @@ export default async function CoursePage({ params }) {
   if (!course) notFound()
 
   const pkg = PACKAGES.find(p => p.id === course.pkg)
-  const cookieStore = await cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) redirect(`/login?redirect=/course/${params.id}`)
