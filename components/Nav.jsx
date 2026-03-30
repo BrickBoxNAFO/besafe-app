@@ -69,7 +69,7 @@ export default function Nav() {
       </div>
       <nav className={"sticky top-0 z-50 nav-glass border-b border-gray-100 transition-shadow duration-200 " + (scrolled ? 'shadow-sm' : '')}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/"><img src={LOGO_SRC} alt="The Be Safe Group" className="h-9 w-auto object-contain rounded" /></Link>
+          <Link href="/"><img src={LOGO_SRC} alt="HomeSafeEducation" className="h-9 w-auto object-contain rounded" /></Link>
           <div className="hidden md:flex items-center gap-8">
             {links.map(l => (<Link key={l.href} href={l.href} className={"text-sm font-medium transition-colors " + (pathname === l.href ? 'text-teal' : 'text-navy/70 hover:text-navy')}>{l.label}</Link>))}
           </div>
