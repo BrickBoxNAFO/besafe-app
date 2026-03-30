@@ -53,6 +53,7 @@ export default function RefundsPage() {
           <p className="text-navy/70 leading-relaxed">Refunds are not available in the following cases:</p>
           <ul className="text-navy/70 space-y-2 list-disc list-inside">
             <li>Requests made after the 7-day window.</li>
+            <li>Requests where more than 20% of any purchased course has been completed within the 7-day period.</li>
             <li>Any breach of our Terms and Conditions.</li>
           </ul>
 
