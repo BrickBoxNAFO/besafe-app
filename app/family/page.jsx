@@ -1,4 +1,3 @@
-import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { createClient as createAdminClient } from '@supabase/supabase-js'
@@ -8,8 +7,7 @@ import FamilyDashboardClient from './FamilyDashboardClient'
 const BUNDLE_SEAT_LIMIT = 5
 
 export default async function FamilyDashboardPage() {
-  const cookieStore = await cookies()
-  const supabase = createClient(cookieStore)
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login?redirect=/family')
 
