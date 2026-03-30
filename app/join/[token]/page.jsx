@@ -35,7 +35,7 @@ export default function JoinPage({ params }) {
   return (
     <div className="min-h-screen bg-slate flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8"><img src={LOGO_SRC} alt="The Be Safe Group" className="h-12 mx-auto mb-6 object-contain rounded-lg" /></div>
+        <div className="text-center mb-8"><img src={LOGO_SRC} alt="HomeSafeEducation" className="h-12 mx-auto mb-6 object-contain rounded-lg" /></div>
         <div className="bg-white rounded-2xl border border-gray-100 p-8 text-center">
           {status === 'loading' && <div className="text-navy/50">Checking your invite...</div>}
           {status === 'login_required' && (<><div className="text-4xl mb-4">🔐</div><h1 className="font-serif text-2xl text-navy mb-3">Sign in to accept your invite</h1><p className="text-navy/60 text-sm mb-6">You need an account to accept this invitation.</p><div className="flex flex-col gap-3"><Link href={"/register?redirect=/join/" + token} className="btn-primary justify-center">Create Free Account →</Link><Link href={"/login?redirect=/join/" + token} className="btn-ghost justify-center">Sign In</Link></div></>)}
