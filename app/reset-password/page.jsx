@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/utils/supabase/client'
-import { LOGO_SRC } from '@/lib/data'
 
 export default function ResetPasswordPage() {
   const [email, setEmail] = useState('')
@@ -26,7 +25,7 @@ export default function ResetPasswordPage() {
     <div className="min-h-screen bg-slate flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <img src={LOGO_SRC} alt="HomeSafeEducation" className="h-12 mx-auto mb-6 object-contain rounded-lg" />
+          <span style={{fontFamily:'Georgia,"Times New Roman",serif',fontWeight:'bold',fontSize:'1.55rem',letterSpacing:'-0.01em',lineHeight:1,display:'inline-block'}}><span style={{color:'#2B3480'}}>HomeSafe</span><span style={{color:'#E8703A'}}>Education</span></span>
           <h1 className="font-serif text-3xl text-navy mb-2">Reset your password</h1>
           <p className="text-navy/50 text-sm">We'll send a reset link to your email address.</p>
         </div>
