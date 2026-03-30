@@ -15,7 +15,7 @@ export default function ResetPasswordPage() {
     setError('')
     setLoading(true)
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback?next=/update-password`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/update-password`,
     })
     if (error) { setError(error.message); setLoading(false) }
     else setSent(true)
@@ -26,16 +26,15 @@ export default function ResetPasswordPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <span style={{fontFamily:'Georgia,"Times New Roman",serif',fontWeight:'bold',fontSize:'1.55rem',letterSpacing:'-0.01em',lineHeight:1,display:'inline-block'}}><span style={{color:'#2B3480'}}>HomeSafe</span><span style={{color:'#E8703A'}}>Education</span></span>
-          <h1 className="font-serif text-3xl text-navy mb-2">Reset your password</h1>
+          <h1 className="font-serif text-3xl text-navy mb-2 mt-2">Reset your password</h1>
           <p className="text-navy/50 text-sm">We'll send a reset link to your email address.</p>
         </div>
-
         <div className="bg-white rounded-2xl border border-gray-100 p-8">
           {sent ? (
             <div className="text-center">
               <div className="text-4xl mb-4">📧</div>
               <p className="text-navy font-medium mb-2">Check your inbox</p>
-              <p className="text-navy/60 text-sm mb-6">A password reset link has been sent to {email}.</p>
+              <p className="text-navy/60 text-sm mb-6">A password reset link has been sent to {email}. Click the link in the email to set your new password.</p>
               <Link href="/login" className="btn-ghost text-sm inline-flex">Back to Sign In</Link>
             </div>
           ) : (
