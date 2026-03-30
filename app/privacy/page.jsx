@@ -9,7 +9,7 @@ export default function PrivacyPage() {
       </div>
       <div className="max-w-3xl mx-auto px-6 py-14">
         <div className="bg-white rounded-2xl border border-gray-100 p-10 space-y-8">
-          <p className="text-navy/70 leading-relaxed">The Be Safe Group is committed to protecting your privacy and complying with the General Data Protection Regulation (GDPR) and other applicable data protection laws. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal data when you visit or make purchases on TheBeSafeGroup.com.</p>
+          <p className="text-navy/70 leading-relaxed">HomeSafeEducation is committed to protecting your privacy and complying with the General Data Protection Regulation (GDPR) and other applicable data protection laws. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal data when you visit or make purchases on homesafeeducation.com.</p>
 
           <section>
             <h2 className="font-serif text-xl text-navy mb-3">1. Information We Collect</h2>
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
                 <div key={r} className="bg-slate rounded-lg px-3 py-2 text-xs text-navy/70">{r}</div>
               ))}
             </div>
-            <p className="text-navy/70 text-sm mt-4">To exercise any of these rights, contact us at <a href="mailto:Support@TheBeSafeGroup.com" className="text-teal hover:underline">Support@TheBeSafeGroup.com</a>. We will respond within one month.</p>
+            <p className="text-navy/70 text-sm mt-4">To exercise any of these rights, contact us at <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a>. We will respond within one month.</p>
           </section>
 
           <section>
@@ -70,7 +70,7 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="font-serif text-xl text-navy mb-3">9. Children's Privacy</h2>
-            <p className="text-navy/70 leading-relaxed text-sm">If you believe we have collected data from a child without proper parental consent, please contact us immediately at <a href="mailto:Support@TheBeSafeGroup.com" className="text-teal hover:underline">Support@TheBeSafeGroup.com</a>.</p>
+            <p className="text-navy/70 leading-relaxed text-sm">If you believe we have collected data from a child without proper parental consent, please contact us immediately at <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a>.</p>
           </section>
 
           <section>
@@ -81,15 +81,15 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-serif text-xl text-navy mb-3">11. Contact Us</h2>
             <div className="bg-slate rounded-xl p-5">
-              <p className="text-navy font-medium">Email: <a href="mailto:Support@TheBeSafeGroup.com" className="text-teal hover:underline">Support@TheBeSafeGroup.com</a></p>
-              <p className="text-navy/60 text-sm mt-1">The Be Safe Group &mdash; TheBeSafeGroup.com</p>
+              <p className="text-navy font-medium">Email: <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a></p>
+              <p className="text-navy/60 text-sm mt-1">HomeSafeEducation &mdash; homesafeeducation.com</p>
             </div>
             <p className="text-navy/70 text-xs mt-3">If you are unhappy with how we have handled your data, you have the right to lodge a complaint with your national data protection supervisory authority.</p>
           </section>
 
           <div className="pt-8 border-t border-gray-100 text-center">
-            <p className="text-navy font-semibold">The Be Safe Group</p>
-            <a href="https://thebesafegroup.com" className="text-teal text-sm hover:underline">TheBeSafeGroup.com</a>
+            <p className="text-navy font-semibold">HomeSafeEducation</p>
+            <a href="https://homesafeeducation.com" className="text-teal text-sm hover:underline">homesafeeducation.com</a>
           </div>
         </div>
       </div>
