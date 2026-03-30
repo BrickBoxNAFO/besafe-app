@@ -9,7 +9,7 @@ export default function CoppaPage() {
       </div>
       <div className="max-w-3xl mx-auto px-6 py-14">
         <div className="bg-white rounded-2xl border border-gray-100 p-10 space-y-8">
-          <p className="text-navy/70 leading-relaxed text-sm">The Be Safe Group is committed to complying with the Children's Online Privacy Protection Act (COPPA), a U.S. federal law protecting the personal information of children under 13. This Notice supplements our general <a href="/privacy" className="text-teal hover:underline">Privacy Policy</a>.</p>
+          <p className="text-navy/70 leading-relaxed text-sm">HomeSafeEducation is committed to complying with the Children's Online Privacy Protection Act (COPPA), a U.S. federal law protecting the personal information of children under 13. This Notice supplements our general <a href="/privacy" className="text-teal hover:underline">Privacy Policy</a>.</p>
 
           <section>
             <h2 className="font-serif text-xl text-navy mb-3">1. Our Practices Regarding Children Under 13</h2>
@@ -64,7 +64,7 @@ export default function CoppaPage() {
               <li>Refuse to allow further collection or use of your child's information</li>
               <li>Opt out of any future collection</li>
             </ul>
-            <p className="text-navy/70 text-sm mt-3">To exercise these rights, contact us at <a href="mailto:Support@TheBeSafeGroup.com" className="text-teal hover:underline">Support@TheBeSafeGroup.com</a>.</p>
+            <p className="text-navy/70 text-sm mt-3">To exercise these rights, contact us at <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a>.</p>
           </section>
 
           <section>
@@ -75,8 +75,8 @@ export default function CoppaPage() {
           <section>
             <h2 className="font-serif text-xl text-navy mb-3">8. Contact Us</h2>
             <div className="bg-slate rounded-xl p-5">
-              <p className="text-navy font-medium">Email: <a href="mailto:Support@TheBeSafeGroup.com" className="text-teal hover:underline">Support@TheBeSafeGroup.com</a></p>
-              <p className="text-navy/60 text-sm mt-1">The Be Safe Group — TheBeSafeGroup.com</p>
+              <p className="text-navy font-medium">Email: <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a></p>
+              <p className="text-navy/60 text-sm mt-1">HomeSafeEducation — homesafeeducation.com</p>
             </div>
             <p className="text-navy/70 text-xs mt-3">We handle all COPPA-related inquiries with priority and confidentiality.</p>
           </section>
@@ -87,8 +87,8 @@ export default function CoppaPage() {
           </section>
 
           <div className="pt-8 border-t border-gray-100 text-center">
-            <p className="text-navy font-semibold">The Be Safe Group</p>
-            <a href="https://thebesafegroup.com" className="text-teal text-sm hover:underline">TheBeSafeGroup.com</a>
+            <p className="text-navy font-semibold">HomeSafeEducation</p>
+            <a href="https://homesafeeducation.com" className="text-teal text-sm hover:underline">homesafeeducation.com</a>
           </div>
         </div>
       </div>
