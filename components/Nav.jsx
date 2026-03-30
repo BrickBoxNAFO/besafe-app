@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
-import { LOGO_SRC } from '@/lib/data'
 
 const BUNDLE_ID = 'bundle'
 
@@ -69,7 +68,7 @@ export default function Nav() {
       </div>
       <nav className={"sticky top-0 z-50 nav-glass border-b border-gray-100 transition-shadow duration-200 " + (scrolled ? 'shadow-sm' : '')}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/"><img src={LOGO_SRC} alt="HomeSafeEducation" className="h-9 w-auto object-contain rounded" /></Link>
+          <Link href="/"><span style={{fontFamily:'Georgia,"Times New Roman",serif',fontWeight:'bold',fontSize:'1.55rem',letterSpacing:'-0.01em',lineHeight:1}}><span style={{color:'#2B3480'}}>HomeSafe</span><span style={{color:'#E8703A'}}>Education</span></span></Link>
           <div className="hidden md:flex items-center gap-8">
             {links.map(l => (<Link key={l.href} href={l.href} className={"text-sm font-medium transition-colors " + (pathname === l.href ? 'text-teal' : 'text-navy/70 hover:text-navy')}>{l.label}</Link>))}
           </div>
