@@ -6,7 +6,7 @@ import { Resend } from 'resend'
 import { PACKAGES } from '@/lib/data'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
-const FROM = process.env.RESEND_FROM_EMAIL || 'hello@thebesafegroup.com'
+const FROM = process.env.RESEND_FROM_EMAIL || 'hello@homesafeeducation.com'
 const SEAT_LIMIT = 5
 
 export async function POST(request) {
@@ -21,7 +21,7 @@ export async function POST(request) {
 
     const admin = createAdminClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
     const token = crypto.randomUUID().replace(/-/g, '')
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thebesafegroup.com'
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://homesafeeducation.com'
     const inviteUrl = siteUrl + '/join/' + token
     let finalPackageId = packageId
 
@@ -46,8 +46,8 @@ export async function POST(request) {
     await resend.emails.send({
       from: FROM,
       to: inviteEmail,
-      subject: ownerName + ' has given you access to ' + (pkg?.name || 'a safety course') + ' — The Be Safe Group',
-      html: '<div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;padding:32px 24px;"><h1 style="color:#0B1F3A;font-size:26px;margin-bottom:8px;">' + (pkg?.emoji || '') + ' You have been invited!</h1><p style="color:#4B5563;font-size:16px;line-height:1.7;margin-bottom:16px;">Hi' + (memberName ? ' ' + memberName : '') + ',</p><p style="color:#4B5563;font-size:16px;line-height:1.7;margin-bottom:24px;"><strong>' + ownerName + '</strong> has purchased the <strong>' + (pkg?.name || 'Safety Course') + '</strong> package for you through The Be Safe Group.</p><div style="background:#F0F4F8;border-radius:12px;padding:20px;margin-bottom:28px;"><p style="color:#0B1F3A;font-size:15px;font-weight:600;margin:0 0 12px 0;">How to get started — 3 simple steps:</p><p style="color:#374151;font-size:14px;margin:0 0 8px 0;"><strong>1.</strong> Click the button below to accept your invitation</p><p style="color:#374151;font-size:14px;margin:0 0 8px 0;"><strong>2.</strong> Create your free account (takes under a minute)</p><p style="color:#374151;font-size:14px;margin:0;"><strong>3.</strong> Your course unlocks immediately</p></div><div style="text-align:center;margin-bottom:28px;"><a href="' + inviteUrl + '" style="display:inline-block;background:#0EA5A0;color:white;padding:16px 36px;border-radius:10px;text-decoration:none;font-weight:700;font-size:16px;">Accept Your Invitation &rarr;</a></div><div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:16px;margin-bottom:24px;"><p style="color:#92400E;font-size:13px;margin:0;line-height:1.6;"><strong>Important:</strong> This invite link is personal to you and can only be used once. If you did not expect this email, you can safely ignore it.</p></div><hr style="border:none;border-top:1px solid #E5E7EB;margin:28px 0;"/><p style="color:#9CA3AF;font-size:12px;margin:0;">The Be Safe Group &middot; <a href="' + siteUrl + '" style="color:#9CA3AF;">' + siteUrl + '</a><br/>Your data is handled per our <a href="' + siteUrl + '/privacy" style="color:#9CA3AF;">Privacy Policy</a>.</p></div>'
+      subject: ownerName + ' has given you access to ' + (pkg?.name || 'a safety course') + ' — HomeSafeEducation',
+      html: '<div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;padding:32px 24px;"><h1 style="color:#0B1F3A;font-size:26px;margin-bottom:8px;">' + (pkg?.emoji || '') + ' You have been invited!</h1><p style="color:#4B5563;font-size:16px;line-height:1.7;margin-bottom:16px;">Hi' + (memberName ? ' ' + memberName : '') + ',</p><p style="color:#4B5563;font-size:16px;line-height:1.7;margin-bottom:24px;"><strong>' + ownerName + '</strong> has purchased the <strong>' + (pkg?.name || 'Safety Course') + '</strong> package for you through HomeSafeEducation.</p><div style="background:#F0F4F8;border-radius:12px;padding:20px;margin-bottom:28px;"><p style="color:#0B1F3A;font-size:15px;font-weight:600;margin:0 0 12px 0;">How to get started — 3 simple steps:</p><p style="color:#374151;font-size:14px;margin:0 0 8px 0;"><strong>1.</strong> Click the button below to accept your invitation</p><p style="color:#374151;font-size:14px;margin:0 0 8px 0;"><strong>2.</strong> Create your free account (takes under a minute)</p><p style="color:#374151;font-size:14px;margin:0;"><strong>3.</strong> Your course unlocks immediately</p></div><div style="text-align:center;margin-bottom:28px;"><a href="' + inviteUrl + '" style="display:inline-block;background:#0EA5A0;color:white;padding:16px 36px;border-radius:10px;text-decoration:none;font-weight:700;font-size:16px;">Accept Your Invitation &rarr;</a></div><div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:16px;margin-bottom:24px;"><p style="color:#92400E;font-size:13px;margin:0;line-height:1.6;"><strong>Important:</strong> This invite link is personal to you and can only be used once. If you did not expect this email, you can safely ignore it.</p></div><hr style="border:none;border-top:1px solid #E5E7EB;margin:28px 0;"/><p style="color:#9CA3AF;font-size:12px;margin:0;">HomeSafeEducation &middot; <a href="' + siteUrl + '" style="color:#9CA3AF;">' + siteUrl + '</a><br/>Your data is handled per our <a href="' + siteUrl + '/privacy" style="color:#9CA3AF;">Privacy Policy</a>.</p></div>'
     })
 
     return NextResponse.json({ success: true })
