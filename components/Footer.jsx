@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { LOGO_SRC, PACKAGES } from '@/lib/data'
+import { PACKAGES } from '@/lib/data'
 
 export default function Footer() {
   return (
@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-1">
-            <img src={LOGO_SRC} alt="HomeSafeEducation" className="h-10 object-contain mb-4 rounded-lg" />
+            <Link href="/"><span style={{fontFamily:'Georgia,"Times New Roman",serif',fontWeight:'bold',fontSize:'1.45rem',letterSpacing:'-0.01em',lineHeight:1,display:'inline-block',marginBottom:'1rem'}}><span style={{color:'#ffffff'}}>HomeSafe</span><span style={{color:'#E8703A'}}>Education</span></span></Link>
             <p className="text-white/50 text-sm leading-relaxed">Practical safety education for every member of your family.</p>
           </div>
           <div>
