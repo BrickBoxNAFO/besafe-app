@@ -52,7 +52,6 @@ export default function RefundsPage() {
           <h2 className="font-serif text-2xl text-navy pt-4">Non-Refundable Situations</h2>
           <p className="text-navy/70 leading-relaxed">Refunds are not available in the following cases:</p>
           <ul className="text-navy/70 space-y-2 list-disc list-inside">
-            <li>Courses purchased during promotional or discounted periods (unless otherwise stated).</li>
             <li>Requests made after the 7-day window.</li>
             <li>Any breach of our Terms and Conditions.</li>
           </ul>
