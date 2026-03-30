@@ -40,7 +40,7 @@ export default async function DashboardPage() {
 
       <div className="max-w-5xl mx-auto px-6 py-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-          {[['Packages Owned', ownedPackages.length],['Lessons Completed', passedLessons],['Total Lessons', totalLessons],['Overall Progress', totalLessons > 0 ? overallPct + '%' : '—']].map(([l, v]) => (
+          {[['Packages Owned', ownedPackages.length], ['Lessons Completed', passedLessons], ['Total Lessons', totalLessons], ['Overall Progress', totalLessons > 0 ? overallPct + '%' : '0%']].map(([l, v]) => (
             <div key={l} className="bg-white rounded-2xl border border-gray-100 p-5 text-center">
               <div className="font-serif text-3xl text-navy mb-1">{v}</div>
               <div className="text-navy/50 text-xs font-medium">{l}</div>
@@ -91,18 +91,18 @@ export default async function DashboardPage() {
                         const cp = progressByCourse[course.id] || { passed: 0, total: course.lessons.length }
                         const coursePct = cp.total > 0 ? Math.round((cp.passed / cp.total) * 100) : 0
                         return (
-                          <Link key={course.id} href={"/course/" + course.id} className="group text-center p-3 rounded-xl border border-gray-100 hover:border-teal/30 hover:bg-teal/5 transition-all">
+                          <Link key={course.id} href={"/course/" + course.id} className="text-center p-3 rounded-xl border border-gray-100 hover:border-teal/30 hover:bg-teal/5 transition-all">
                             <div className="text-lg mb-1">{course.emoji}</div>
                             <div className="text-xs font-medium text-navy/70 leading-snug mb-2">{course.title}</div>
                             <div className="w-full bg-gray-100 rounded-full h-1 overflow-hidden">
-                              <div className="h-1 rounded-full transition-all" style={{ width: coursePct + '%', background: pkg.color }} />
+                              <div className="h-1 rounded-full" style={{ width: coursePct + '%', background: pkg.color }} />
                             </div>
                             <div className="text-xs text-navy/40 mt-1">{coursePct}%</div>
                           </Link>
                         )
                       })}
                     </div>
-                    <Link href="/library" className="btn-primary text-sm py-2 px-5">Continue Learning →</Link>
+                    <Link href="/library" className="btn-primary text-sm py-2 px-5">Continue Learning</Link>
                   </div>
                 )
               })}
@@ -113,7 +113,7 @@ export default async function DashboardPage() {
             <div className="text-5xl mb-4">📦</div>
             <h2 className="font-serif text-2xl text-navy mb-3">No packages yet</h2>
             <p className="text-navy/50 mb-6">Purchase a package to unlock your courses and start tracking your progress.</p>
-            <Link href="/packages" className="btn-primary">Browse Packages →</Link>
+            <Link href="/packages" className="btn-primary">Browse Packages</Link>
           </div>
         )}
       </div>
