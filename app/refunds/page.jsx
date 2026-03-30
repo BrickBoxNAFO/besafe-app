@@ -9,7 +9,7 @@ export default function RefundsPage() {
       </div>
       <div className="max-w-3xl mx-auto px-6 py-14">
         <div className="bg-white rounded-2xl border border-gray-100 p-10 space-y-6">
-          <p className="text-navy/70 leading-relaxed">At The Be Safe Group, we are committed to providing high-quality safety courses that deliver real value to our customers. We understand that sometimes circumstances change, and we aim to make our refund process as fair and transparent as possible.</p>
+          <p className="text-navy/70 leading-relaxed">At HomeSafeEducation, we are committed to providing high-quality safety courses that deliver real value to our customers. We understand that sometimes circumstances change, and we aim to make our refund process as fair and transparent as possible.</p>
 
           <h2 className="font-serif text-2xl text-navy pt-4">Our Refund Policy</h2>
           <p className="text-navy/70 leading-relaxed">We offer a straightforward refund window to ensure you can purchase with confidence.</p>
@@ -38,7 +38,7 @@ export default function RefundsPage() {
           <h2 className="font-serif text-2xl text-navy pt-4">How to Request a Refund</h2>
           <p className="text-navy/70 leading-relaxed">To request a refund, please contact our support team within the eligible timeframe:</p>
           <div className="bg-slate rounded-xl p-5">
-            <p className="text-navy font-medium">Email: <a href="mailto:Support@TheBeSafeGroup.com" className="text-teal hover:underline">Support@TheBeSafeGroup.com</a></p>
+            <p className="text-navy font-medium">Email: <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a></p>
             <p className="text-navy/60 text-sm mt-1">Subject line: <em>Refund Request &ndash; [Your Order Number or Course Name]</em></p>
           </div>
           <p className="text-navy/70 leading-relaxed">Please include your order details and a brief reason for the request (optional). Our team will review your request, verify the course progress, and process eligible refunds promptly.</p>
@@ -59,11 +59,11 @@ export default function RefundsPage() {
 
           <h2 className="font-serif text-2xl text-navy pt-4">Our Commitment to You</h2>
           <p className="text-navy/70 leading-relaxed">We take pride in the quality and practicality of our safety courses. Our goal is to equip you with essential knowledge that helps create safer environments. If you have any questions about this policy, our support team is always here to help.</p>
-          <p className="text-navy/70 leading-relaxed">For any refund-related inquiries, feel free to reach out to us at <a href="mailto:Support@TheBeSafeGroup.com" className="text-teal hover:underline">Support@TheBeSafeGroup.com</a>.</p>
+          <p className="text-navy/70 leading-relaxed">For any refund-related inquiries, feel free to reach out to us at <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a>.</p>
 
           <div className="pt-8 border-t border-gray-100 text-center">
-            <p className="text-navy font-semibold">The Be Safe Group</p>
-            <a href="https://thebesafegroup.com" className="text-teal text-sm hover:underline">TheBeSafeGroup.com</a>
+            <p className="text-navy font-semibold">HomeSafeEducation</p>
+            <a href="https://homesafeeducation.com" className="text-teal text-sm hover:underline">homesafeeducation.com</a>
           </div>
         </div>
       </div>
