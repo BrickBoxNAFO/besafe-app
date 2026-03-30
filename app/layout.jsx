@@ -3,13 +3,13 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
 export const metadata = {
-  title: 'The Be Safe Group — Online Safety Education',
+  title: 'HomeSafeEducation — Online Safety Education',
   description: 'Practical safety education for every member of your family. Five specialist packages covering every age group.',
   openGraph: {
-    title: 'The Be Safe Group',
+    title: 'HomeSafeEducation',
     description: 'Practical safety education for every member of your family.',
     url: process.env.NEXT_PUBLIC_SITE_URL,
-    siteName: 'The Be Safe Group',
+    siteName: 'HomeSafeEducation',
     type: 'website',
   },
 }
