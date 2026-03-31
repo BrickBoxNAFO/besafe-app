@@ -45,7 +45,7 @@ export default function AboutPage() {
       <section className="section-slate py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="chip bg-teal/10 text-teal border border-teal/20 mb-5">The Packages</div>
-          <h2 className="font-serif text-4xl text-navy mb-5">Five Packages. Every Stage of Life.</h2>
+          <h2 className="font-serif text-4xl text-navy mb-5">Seven Packages. Every Stage of Life.</h2>
           <p className="text-navy/60 text-lg max-w-2xl mx-auto mb-12">From primary school children learning about trusted adults to seniors protecting themselves from digital fraud we have a package built specifically for every stage.</p>
           <div className="grid md:grid-cols-5 gap-4">
             {[['🧒','Growing Minds','Children'],['🎓','Nest Breaking','Young Adults'],['✈️','Roaming Free','Travellers'],['👴','Aging Wisdom','Seniors'],['👨‍👩‍👧','Family Anchor','Parents']].map(([emoji, name, who]) => (
