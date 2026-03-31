@@ -18,7 +18,7 @@ export default async function LibraryPage() {
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
           <div className="chip bg-teal/15 text-teal border border-teal/25 mb-4">Course Library</div>
           <h1 className="font-serif text-5xl text-white mb-4">All 25 Subjects</h1>
-          <p className="text-white/60 text-lg">Browse all 25 Subjects across our 5 Safety Packages — 250 Lessons in total.</p>
+          <p className="text-white/60 text-lg">Browse all 25 Subjects across our 5 Safety Packages 250 Lessons in total.</p>
         </div>
       </div>
 
