@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { redirect, notFound } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { COURSES, PACKAGES } from '@/lib/data'
+import RestartCourseButton from '@/components/RestartCourseButton'
 
 export async function generateStaticParams() {
   return COURSES.map(c => ({ id: c.id }))
@@ -11,20 +12,23 @@ export default async function CoursePage({ params }) {
   const course = COURSES.find(c => c.id === params.id)
   if (!course) notFound()
 
-  const pkg = PACKAGES.find(p => p.id === course.pkg)
+  // Find parent package — for Growing Minds sub-packages, purchasePkg is 'growing'
+  const purchasePkgId = course.pkg  // 'growing' covers both early and junior
+  const pkg = PACKAGES.find(p => p.id === purchasePkgId) ||
+              PACKAGES.flatMap(p => p.subPackages || []).find(sp => sp.id === course.subPkg)
+
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-
-  if (!user) redirect(`/login?redirect=/course/${params.id}`)
+  if (!user) redirect('/login?redirect=/course/' + params.id)
 
   const { data: purchase } = await supabase
     .from('purchases')
     .select('id')
     .eq('user_id', user.id)
-    .eq('package_id', course.pkg)
+    .eq('package_id', purchasePkgId)
     .maybeSingle()
 
-  if (!purchase) redirect(`/packages#${course.pkg}`)
+  if (!purchase) redirect('/packages#' + purchasePkgId)
 
   const { data: progressRows } = await supabase
     .from('progress')
@@ -37,6 +41,7 @@ export default async function CoursePage({ params }) {
 
   const completed = Object.values(progressMap).filter(r => r.passed).length
   const pct = Math.round((completed / course.lessons.length) * 100)
+  const courseColor = course.color || pkg?.color || '#0EA5A0'
 
   return (
     <div className="page-enter">
@@ -47,8 +52,8 @@ export default async function CoursePage({ params }) {
           </Link>
           <div className="flex items-center gap-3 mb-4">
             <span className="text-3xl">{course.emoji}</span>
-            <div className="chip text-xs px-2 py-1 rounded-full text-white" style={{ background: pkg?.color }}>
-              {pkg?.name}
+            <div className="chip text-xs px-2 py-1 rounded-full text-white" style={{ background: courseColor }}>
+              {course.ageGroup ? `Ages ${course.ageGroup.replace('-','–')}` : pkg?.name}
             </div>
           </div>
           <h1 className="font-serif text-4xl text-white mb-3">{course.title}</h1>
@@ -74,7 +79,6 @@ export default async function CoursePage({ params }) {
               const attempted = prog !== undefined
               const prevPassed = idx === 0 || progressMap[idx - 1]?.passed
               const locked = !prevPassed && idx > 0
-
               return (
                 <div key={idx} className={`bg-white rounded-xl border ${passed ? 'border-teal/30' : 'border-gray-100'} overflow-hidden`}>
                   <div className="flex items-center gap-4 p-5">
@@ -95,7 +99,7 @@ export default async function CoursePage({ params }) {
                       <Link
                         href={`/lesson/${course.id}/${idx}`}
                         className="text-xs font-semibold px-4 py-2 rounded-lg text-white flex-shrink-0 transition-opacity hover:opacity-80"
-                        style={{ background: pkg?.color || '#0EA5A0' }}
+                        style={{ background: courseColor }}
                       >
                         {passed ? 'Review' : attempted ? 'Retry' : 'Start'}
                       </Link>
@@ -109,9 +113,12 @@ export default async function CoursePage({ params }) {
           {completed === course.lessons.length && (
             <div className="mt-8 bg-teal/10 border border-teal/20 rounded-2xl p-6 text-center">
               <div className="text-3xl mb-2">🎉</div>
-              <h3 className="font-serif text-xl text-navy mb-1">Subject Complete!</h3>
-              <p className="text-navy/60 text-sm">You have completed all {course.lessons.length} lessons in {course.title}.</p>
-              <Link href="/library" className="btn-ghost mt-4 inline-flex">Back to Library</Link>
+              <h3 className="font-serif text-xl text-navy mb-1">Course Complete!</h3>
+              <p className="text-navy/60 text-sm mb-5">You have completed all {course.lessons.length} lessons in {course.title}. You can review any lesson above, or restart the course from the beginning.</p>
+              <div className="flex items-center justify-center gap-4 flex-wrap">
+                <Link href="/library" className="btn-ghost">Back to Library</Link>
+                <RestartCourseButton courseId={course.id} />
+              </div>
             </div>
           )}
         </div>
