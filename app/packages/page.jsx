@@ -81,7 +81,7 @@ export default function PackagesPage() {
               </div>
             </div>
             <div className="px-6 pb-6">
-              <Link href="/checkout/growing" className="btn-primary w-full justify-center py-3 text-center block">Get Growing Minds $29.99 →</Link>
+              <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
               <p className="text-center text-xs text-navy/40 mt-2">One payment · 10 courses · Both age groups · Access forever</p>
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function PackagesPage() {
                       </div>
                     ))}
                   </div>
-                  <Link href={"/checkout/"+pkg.id} className="btn-primary w-full justify-center py-3 text-center block">Get {pkg.name} $29.99 →</Link>
+                  <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
                 </div>
               </div>
             )
@@ -133,7 +133,7 @@ export default function PackagesPage() {
                   <div className="text-teal text-xs font-semibold">Save $49.96</div>
                 </div>
               </div>
-              <Link href="/checkout/bundle" className="btn-secondary w-full justify-center py-3 text-center block">Get the Family Bundle $99.99 →</Link>
+              <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
             </div>
           </div>
         </div>
