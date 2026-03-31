@@ -26,7 +26,7 @@ export default function AboutPage() {
                 Every package is built around a specific life stage, because the threats facing a 7-year-old are entirely different from those facing a 67 year old. Our courses are written by safety professionals and education specialists, and reviewed to ensure they are accurate, current, and genuinely useful.
               </p>
               <p className="text-navy/60 leading-relaxed">
-                We focus on practical knowledge you can use immediately — not abstract theory. Every lesson is designed to change how you think and behave in real situations.
+                We focus on practical knowledge you can use immediately not abstract theory. Every lesson is designed to change how you think and behave in real situations.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -46,7 +46,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="chip bg-teal/10 text-teal border border-teal/20 mb-5">The Packages</div>
           <h2 className="font-serif text-4xl text-navy mb-5">Five Packages. Every Stage of Life.</h2>
-          <p className="text-navy/60 text-lg max-w-2xl mx-auto mb-12">From primary school children learning about trusted adults to seniors protecting themselves from digital fraud — we have a package built specifically for every stage.</p>
+          <p className="text-navy/60 text-lg max-w-2xl mx-auto mb-12">From primary school children learning about trusted adults to seniors protecting themselves from digital fraud we have a package built specifically for every stage.</p>
           <div className="grid md:grid-cols-5 gap-4">
             {[['🧒','Growing Minds','Children'],['🎓','Nest Breaking','Young Adults'],['✈️','Roaming Free','Travellers'],['👴','Aging Wisdom','Seniors'],['👨‍👩‍👧','Family Anchor','Parents']].map(([emoji, name, who]) => (
               <div key={name} className="bg-white rounded-2xl p-5 text-center border border-gray-100">
