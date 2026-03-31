@@ -18,7 +18,7 @@ export default function PrivacyPage() {
               <li><strong>Payment Data:</strong> Processed securely by our payment service providers.</li>
               <li><strong>Course-Related Data:</strong> Course progress, completion status, quiz results, watch time, and downloaded materials.</li>
               <li><strong>Technical and Usage Data:</strong> IP address, browser type, device information, pages visited, cookies, and interaction logs.</li>
-              <li><strong>Children's Data:</strong> For courses intended for children under 18 — child's name, age or age group, and parental/guardian contact details.</li>
+              <li><strong>Children's Data:</strong> For courses intended for children under 18 child's name, age or age group, and parental/guardian contact details.</li>
             </ul>
           </section>
 
