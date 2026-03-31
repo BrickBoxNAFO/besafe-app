@@ -86,7 +86,7 @@ export default function TermsPage() {
             <h2 className="font-serif text-xl text-navy mb-3">12. Contact Us</h2>
             <div className="bg-slate rounded-xl p-5">
               <p className="text-navy font-medium">Email: <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a></p>
-              <p className="text-navy/60 text-sm mt-1">HomeSafeEducation — homesafeeducation.com</p>
+              <p className="text-navy/60 text-sm mt-1">HomeSafeEducation homesafeeducation.com</p>
             </div>
           </section>
 
