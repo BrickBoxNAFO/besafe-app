@@ -23,14 +23,14 @@ export default function HomePage() {
             <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
               In a world full of uncertainties, keeping your family truly safe shouldn&apos;t be complicated or expensive. Whether you&apos;re preparing your daughter for university and the challenges of independent living, teaching your young children about personal boundaries and consent, or protecting your elderly parents from sophisticated scams, HomeSafeEducation has you covered. We deliver practical, evidence-based online safety education designed for real life empowering children, young adults, travellers, older adults, and the whole family with the knowledge and confidence they need to stay protected at every stage. With expert-curated courses, interactive lessons, and no ongoing subscriptions, we&apos;re making essential safety skills accessible to every home.
               <br /><br />
-              Six specialist packages covering every age group children, teenagers, young adults, travellers, older adults, and parents. Practical, evidence-based, and genuinely life-changing.
+              Seven packages covering every age group from children aged 4 right through to older adults and the whole family. Practical, evidence-based, and genuinely life-changing.
             </p>
             <div className="flex flex-wrap gap-4 mb-10">
               <Link href="/packages" className="btn-primary">View All Packages →</Link>
               <Link href="/about" className="btn-secondary">Learn More</Link>
             </div>
             <div className="flex flex-wrap gap-6 text-sm text-white/50">
-              {['✓ One-time payment', '✓ 34 Subjects, 289 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
+              {['✓ One-time payment', '✓ 7 Packages, 289 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
                 <span key={t}>{t}</span>
               ))}
             </div>
@@ -57,7 +57,7 @@ export default function HomePage() {
             <div className="chip bg-teal/10 text-teal border border-teal/20 mb-4">Our Packages</div>
             <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Built for Every Age</h2>
             <p className="text-navy/60 text-lg max-w-2xl mx-auto">
-              Six purchasable packages plus a family bundle covering every age group from 4 to 60+.
+              Seven packages covering every age group from 4 to 60+, plus a family bundle for the best value.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
