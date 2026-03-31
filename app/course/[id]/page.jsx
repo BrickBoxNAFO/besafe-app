@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { redirect, notFound } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { COURSES, PACKAGES } from '@/lib/data'
+import RestartCourseButton from '@/components/RestartCourseButton'
 
 export async function generateStaticParams() {
   return COURSES.map(c => ({ id: c.id }))
@@ -10,30 +11,51 @@ export async function generateStaticParams() {
 export default async function CoursePage({ params }) {
   const course = COURSES.find(c => c.id === params.id)
   if (!course) notFound()
-  const pkg = PACKAGES.find(p => p.id === course.pkg)
+
+  const purchasePkgId = course.pkg
+  const pkg = PACKAGES.find(p => p.id === purchasePkgId)
+
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect(`/login?redirect=/course/${params.id}`)
+  if (!user) redirect('/login?redirect=/course/' + params.id)
 
-  const { data: purchase } = await supabase.from('purchases').select('id').eq('user_id', user.id).eq('package_id', course.pkg).maybeSingle()
-  if (!purchase) redirect(`/packages#${course.pkg}`)
+  const { data: purchase } = await supabase
+    .from('purchases')
+    .select('id')
+    .eq('user_id', user.id)
+    .eq('package_id', purchasePkgId)
+    .maybeSingle()
 
-  const { data: progressRows } = await supabase.from('progress').select('lesson_index, passed, score').eq('user_id', user.id).eq('course_id', course.id)
+  if (!purchase) redirect('/packages#' + purchasePkgId)
+
+  const { data: progressRows } = await supabase
+    .from('progress')
+    .select('lesson_index, passed, score')
+    .eq('user_id', user.id)
+    .eq('course_id', course.id)
+
   const progressMap = {}
   progressRows?.forEach(r => { progressMap[r.lesson_index] = r })
+
   const completed = Object.values(progressMap).filter(r => r.passed).length
   const pct = Math.round((completed / course.lessons.length) * 100)
-  const subLabel = course.subPkgName ? ` · ${course.subPkgName}` : ''
-  const ageLabel = course.ageGroup ? ` (Ages ${course.ageGroup.replace('-','–')})` : ''
+  const courseColor = course.color || (pkg && pkg.color) || '#0EA5A0'
+  const ageLabel = course.ageGroup
+    ? 'Ages ' + course.ageGroup.replace('-', String.fromCharCode(8211))
+    : (pkg && pkg.name) || ''
 
   return (
     <div className="page-enter">
       <div className="hero-bg noise relative py-16 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <Link href="/library" className="flex items-center gap-2 text-white/50 hover:text-white text-sm mb-6 transition-colors">← Back to Library</Link>
+          <Link href="/library" className="flex items-center gap-2 text-white/50 hover:text-white text-sm mb-6 transition-colors">
+            Back to Library
+          </Link>
           <div className="flex items-center gap-3 mb-4">
             <span className="text-3xl">{course.emoji}</span>
-            <div className="chip text-xs px-2 py-1 rounded-full text-white" style={{background:course.color}}>{course.pkgName}{subLabel}{ageLabel}</div>
+            <div className="chip text-xs px-2 py-1 rounded-full text-white" style={{ background: courseColor }}>
+              {ageLabel}
+            </div>
           </div>
           <h1 className="font-serif text-4xl text-white mb-3">{course.title}</h1>
           <p className="text-white/60 mb-6">{course.lessons.length} Lessons</p>
@@ -42,35 +64,42 @@ export default async function CoursePage({ params }) {
               <span className="text-white/70 text-sm">Your progress</span>
               <span className="text-white font-semibold text-sm">{completed}/{course.lessons.length}</span>
             </div>
-            <div className="progress-track" style={{height:'6px'}}>
-              <div className="h-full rounded-full bg-teal transition-all duration-500" style={{width:`${pct}%`}} />
+            <div className="progress-track" style={{ height: '6px' }}>
+              <div className="h-full rounded-full bg-teal transition-all duration-500" style={{ width: pct + '%' }} />
             </div>
           </div>
         </div>
       </div>
+
       <section className="section-slate py-12">
         <div className="max-w-4xl mx-auto px-6">
           <div className="space-y-3">
             {course.lessons.map((lesson, idx) => {
               const prog = progressMap[idx]
-              const passed = prog?.passed
+              const passed = prog && prog.passed
               const attempted = prog !== undefined
-              const prevPassed = idx === 0 || progressMap[idx-1]?.passed
+              const prevPassed = idx === 0 || (progressMap[idx - 1] && progressMap[idx - 1].passed)
               const locked = !prevPassed && idx > 0
               return (
-                <div key={idx} className={`bg-white rounded-xl border ${passed ? 'border-teal/30' : 'border-gray-100'} overflow-hidden`}>
+                <div key={idx} className={'bg-white rounded-xl border overflow-hidden ' + (passed ? 'border-teal/30' : 'border-gray-100')}>
                   <div className="flex items-center gap-4 p-5">
-                    <div className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${passed ? 'bg-teal text-white' : locked ? 'bg-gray-100 text-gray-300' : 'bg-navy/10 text-navy'}`}>
-                      {passed ? '✓' : locked ? '🔒' : idx+1}
+                    <div className={'w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ' + (passed ? 'bg-teal text-white' : locked ? 'bg-gray-100 text-gray-300' : 'bg-navy/10 text-navy')}>
+                      {passed ? String.fromCharCode(10003) : locked ? String.fromCharCode(128274) : idx + 1}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className={`font-medium text-sm ${locked ? 'text-navy/30' : 'text-navy'}`}>{lesson}</p>
+                      <p className={'font-medium text-sm ' + (locked ? 'text-navy/30' : 'text-navy')}>{lesson}</p>
                       {attempted && !locked && (
-                        <p className="text-xs mt-0.5" style={{color:passed?'#0EA5A0':'#EF4444'}}>{passed?`Passed · ${prog.score}/5`:`Score: ${prog.score}/5 try again`}</p>
+                        <p className="text-xs mt-0.5" style={{ color: passed ? '#0EA5A0' : '#EF4444' }}>
+                          {passed ? 'Passed - ' + prog.score + '/5' : 'Score: ' + prog.score + '/5 - try again'}
+                        </p>
                       )}
                     </div>
                     {!locked && (
-                      <Link href={`/lesson/${course.id}/${idx}`} className="text-xs font-semibold px-4 py-2 rounded-lg text-white flex-shrink-0 transition-opacity hover:opacity-80" style={{background:course.color||'#0EA5A0'}}>
+                      <Link
+                        href={'/lesson/' + course.id + '/' + idx}
+                        className="text-xs font-semibold px-4 py-2 rounded-lg text-white flex-shrink-0 transition-opacity hover:opacity-80"
+                        style={{ background: courseColor }}
+                      >
                         {passed ? 'Review' : attempted ? 'Retry' : 'Start'}
                       </Link>
                     )}
@@ -79,17 +108,18 @@ export default async function CoursePage({ params }) {
               )
             })}
           </div>
+
           {completed === course.lessons.length && (
             <div className="mt-8 bg-teal/10 border border-teal/20 rounded-2xl p-6 text-center">
               <div className="text-3xl mb-2">🎉</div>
               <h3 className="font-serif text-xl text-navy mb-1">Course Complete!</h3>
-              <p className="text-navy/60 text-sm mb-5">You have completed all {course.lessons.length} lessons. You can review any lesson above, or restart from scratch.</p>
-              <div className="flex items-center justify-center gap-3 flex-wrap">
-                <Link href="/library" className="btn-ghost text-sm">Back to Library</Link>
-                <form action="/api/restart-course" method="POST">
-                  <input type="hidden" name="courseId" value={course.id} />
-                  <button type="submit" className="text-sm font-semibold px-5 py-2.5 rounded-xl border border-navy/20 text-navy/60 hover:bg-navy/5 transition-colors">🔄 Restart Course</button>
-                </form>
+              <p className="text-navy/60 text-sm mb-5">
+                You have completed all {course.lessons.length} lessons in {course.title}.
+                You can review any lesson above, or restart the course from the beginning.
+              </p>
+              <div className="flex items-center justify-center gap-4 flex-wrap">
+                <Link href="/library" className="btn-ghost">Back to Library</Link>
+                <RestartCourseButton courseId={course.id} />
               </div>
             </div>
           )}
