@@ -26,7 +26,7 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  // Refresh session — required so Server Components can read the session
+  // Refresh session required so Server Components can read the session
   await supabase.auth.getUser()
 
   return response
