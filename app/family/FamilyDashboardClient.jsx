@@ -42,7 +42,7 @@ function EmptySeatCard({ slotNumber, packageOptions, onInviteSent }) {
   if (step === 'idle') return (
     <div className="bg-white border-2 border-dashed border-gray-200 rounded-2xl p-6 flex flex-col items-center justify-center text-center min-h-44 hover:border-teal/40 transition-colors group cursor-pointer" onClick={() => setStep('picking')}>
       <div className="w-12 h-12 rounded-full bg-gray-100 group-hover:bg-teal/10 flex items-center justify-center text-xl mb-3 transition-colors font-bold text-gray-400">+</div>
-      <p className="font-semibold text-navy text-sm">Seat {slotNumber} — Available</p>
+      <p className="font-semibold text-navy text-sm">Seat {slotNumber} Available</p>
       <p className="text-navy/50 text-xs mt-1 mb-4">Invite a family member to any package</p>
       <span className="btn-primary text-sm py-2 px-5">Send Invite</span>
     </div>
@@ -51,7 +51,7 @@ function EmptySeatCard({ slotNumber, packageOptions, onInviteSent }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 p-6">
       <div className="flex items-center justify-between mb-5">
-        <p className="font-semibold text-navy">Seat {slotNumber} — New Invite</p>
+        <p className="font-semibold text-navy">Seat {slotNumber} New Invite</p>
         <button onClick={() => { setStep('idle'); setSelectedPkg(null); setEmail(''); setName(''); setError(''); }} className="text-xs text-navy/40 hover:text-navy">Cancel</button>
       </div>
       <div className="mb-5">
@@ -120,7 +120,7 @@ export default function FamilyDashboardClient({ slots, seatLimit, usedSeats, acc
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <div className="chip bg-teal/15 text-teal border border-teal/25 mb-4">Family Dashboard</div>
           <h1 className="font-serif text-4xl text-white mb-2">{userName ? userName + "'s Family" : 'Family Overview'}</h1>
-          <p className="text-white/60">5 flexible seats — assign any package to any family member, including duplicates</p>
+          <p className="text-white/60">5 flexible seats assign any package to any family member, including duplicates</p>
         </div>
       </div>
       <div className="bg-white border-b border-gray-100">
@@ -135,7 +135,7 @@ export default function FamilyDashboardClient({ slots, seatLimit, usedSeats, acc
           <p className="font-semibold text-navy mb-3 text-sm">How to invite a family member</p>
           <div className="grid md:grid-cols-4 gap-3 text-xs text-navy/70">
             <div className="flex gap-2"><span className="text-teal font-bold flex-shrink-0">1.</span><span>Click an available seat</span></div>
-            <div className="flex gap-2"><span className="text-teal font-bold flex-shrink-0">2.</span><span>Choose which package to give them — any of the 5, including duplicates</span></div>
+            <div className="flex gap-2"><span className="text-teal font-bold flex-shrink-0">2.</span><span>Choose which package to give them any of the 5, including duplicates</span></div>
             <div className="flex gap-2"><span className="text-teal font-bold flex-shrink-0">3.</span><span>Enter their name and email, click Send</span></div>
             <div className="flex gap-2"><span className="text-teal font-bold flex-shrink-0">4.</span><span>They click their personal link, create a free account, and their course unlocks instantly</span></div>
           </div>
