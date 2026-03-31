@@ -102,7 +102,7 @@ export default function SafeguardingPage() {
             <h3 className="font-serif text-lg text-navy mb-2">11. Contact</h3>
             <div className="bg-slate rounded-xl p-5">
               <p className="text-navy font-medium">Email: <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a></p>
-              <p className="text-navy/60 text-sm mt-1">HomeSafeEducation — homesafeeducation.com</p>
+              <p className="text-navy/60 text-sm mt-1">HomeSafeEducation homesafeeducation.com</p>
             </div>
           </section>
         </div>
