@@ -46,9 +46,9 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="chip bg-teal/10 text-teal border border-teal/20 mb-5">The Packages</div>
           <h2 className="font-serif text-4xl text-navy mb-5">Seven Packages. Every Stage of Life.</h2>
-          <p className="text-navy/60 text-lg max-w-2xl mx-auto mb-12">From primary school children learning about trusted adults to seniors protecting themselves from digital fraud we have a package built specifically for every stage.</p>
-          <div className="grid md:grid-cols-5 gap-4">
-            {[['🧒','Growing Minds','Children'],['🎓','Nest Breaking','Young Adults'],['✈️','Roaming Free','Travellers'],['👴','Aging Wisdom','Seniors'],['👨‍👩‍👧','Family Anchor','Parents']].map(([emoji, name, who]) => (
+          <p className="text-navy/60 text-lg max-w-2xl mx-auto mb-12">From young children learning about body safety to teenagers navigating social media, young adults living independently, travellers staying safe abroad, older adults avoiding scams, and parents having difficult conversations - we have a package for every stage of life.</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            {[['🌱','Growing Minds','Children 4-11'],['🛡️','Street Smart','Teenagers'],['🚀','Nest Breaking','Young Adults'],['🌍','Roaming Free','Travellers'],['🧠','Aging Wisdom','Seniors'],['❤️','Family Anchor','Parents'],['🛡️','Family Bundle','Best Value']].map(([emoji, name, who]) => (
               <div key={name} className="bg-white rounded-2xl p-5 text-center border border-gray-100">
                 <div className="text-3xl mb-2">{emoji}</div>
                 <p className="font-semibold text-navy text-sm">{name}</p>
