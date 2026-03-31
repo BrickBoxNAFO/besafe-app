@@ -212,7 +212,7 @@ export default function LessonPage() {
                   <div key={qi} className={`rounded-xl p-4 border text-sm ${correct ? 'bg-teal/5 border-teal/20' : 'bg-red-50 border-red-100'}`}>
                     <p className="font-medium text-navy mb-1">{q.q}</p>
                     <p className={`text-xs ${correct ? 'text-teal' : 'text-red-500'}`}>
-                      {correct ? '✓ Correct' : `✗ Incorrect — correct answer: ${q.opts[q.correct]}`}
+                      {correct ? '✓ Correct' : `✗ Incorrect correct answer: ${q.opts[q.correct]}`}
                     </p>
                     <p className="text-navy/50 text-xs mt-1 italic">{q.expl}</p>
                   </div>
