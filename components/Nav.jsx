@@ -58,7 +58,7 @@ export default function Nav() {
     <>
       <div className="bg-navy text-white text-xs py-2 overflow-hidden whitespace-nowrap">
         <div className="flex gap-10 animate-marquee px-4">
-          {['✓ One-time payment no subscription','5 Packages · 25 Subjects · 250 Lessons','Evidence-based safety education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
+          {['✓ One-time payment no subscription','7 Packages · 34 Subjects · 289 Lessons','Evidence-based safety education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
             <span key={i} className="flex-shrink-0 text-white/70">{t}</span>
           ))}
           {['✓ One-time payment no subscription','5 Packages · 25 Subjects · 250 Lessons','Evidence-based safety education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
