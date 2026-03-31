@@ -76,7 +76,7 @@ export default function CoppaPage() {
             <h2 className="font-serif text-xl text-navy mb-3">8. Contact Us</h2>
             <div className="bg-slate rounded-xl p-5">
               <p className="text-navy font-medium">Email: <a href="mailto:Support@HomeSafeEducation.com" className="text-teal hover:underline">Support@HomeSafeEducation.com</a></p>
-              <p className="text-navy/60 text-sm mt-1">HomeSafeEducation — homesafeeducation.com</p>
+              <p className="text-navy/60 text-sm mt-1">HomeSafeEducation homesafeeducation.com</p>
             </div>
             <p className="text-navy/70 text-xs mt-3">We handle all COPPA-related inquiries with priority and confidentiality.</p>
           </section>
