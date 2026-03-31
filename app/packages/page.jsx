@@ -13,7 +13,7 @@ export default function PackagesPage() {
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <div className="chip bg-teal/15 text-teal border border-teal/25 mb-5">Our Packages</div>
           <h1 className="font-serif text-5xl lg:text-6xl text-white mb-5">Safety Education<br /><span className="italic text-teal">for Every Stage of Life.</span></h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">Five specialist packages — one for each major life stage. Pay once, access forever.</p>
+          <p className="text-white/60 text-lg max-w-2xl mx-auto">Five specialist packages one for each major life stage. Pay once, access forever.</p>
         </div>
       </div>
       <section className="section-slate py-16">
@@ -30,7 +30,7 @@ export default function PackagesPage() {
                       <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white" style={{background:'#16A34A'}}>Bundle</span>
                     </div>
                     <p className="text-sm font-semibold text-green-700">Children 4–11 · Both age ranges included</p>
-                    <p className="text-navy/60 text-sm mt-0.5">Ten courses across two age groups — pay once, unlock everything.</p>
+                    <p className="text-navy/60 text-sm mt-0.5">Ten courses across two age groups pay once, unlock everything.</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -68,7 +68,7 @@ export default function PackagesPage() {
                     <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white inline-block" style={{background:'#15803D'}}>Ages 8–11</span>
                   </div>
                 </div>
-                <p className="text-navy/60 text-xs leading-relaxed mb-4">Deeper, more independent learning for school-age children — covering road safety, online risks, recognising grooming, body autonomy, and standing up to bullying.</p>
+                <p className="text-navy/60 text-xs leading-relaxed mb-4">Deeper, more independent learning for school-age children covering road safety, online risks, recognising grooming, body autonomy, and standing up to bullying.</p>
                 <div className="space-y-1.5">
                   {juniorCourses.map(c => (
                     <div key={c.id} className="flex items-center gap-2 text-xs text-navy/70">
@@ -81,7 +81,7 @@ export default function PackagesPage() {
               </div>
             </div>
             <div className="px-6 pb-6">
-              <Link href="/checkout/growing" className="btn-primary w-full justify-center py-3 text-center block">Get Growing Minds — $29.99 →</Link>
+              <Link href="/checkout/growing" className="btn-primary w-full justify-center py-3 text-center block">Get Growing Minds $29.99 →</Link>
               <p className="text-center text-xs text-navy/40 mt-2">One payment · 10 courses · Both age groups · Access forever</p>
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function PackagesPage() {
                       </div>
                     ))}
                   </div>
-                  <Link href={"/checkout/"+pkg.id} className="btn-primary w-full justify-center py-3 text-center block">Get {pkg.name} — $29.99 →</Link>
+                  <Link href={"/checkout/"+pkg.id} className="btn-primary w-full justify-center py-3 text-center block">Get {pkg.name} $29.99 →</Link>
                 </div>
               </div>
             )
@@ -133,7 +133,7 @@ export default function PackagesPage() {
                   <div className="text-teal text-xs font-semibold">Save $49.96</div>
                 </div>
               </div>
-              <Link href="/checkout/bundle" className="btn-secondary w-full justify-center py-3 text-center block">Get the Family Bundle — $99.99 →</Link>
+              <Link href="/checkout/bundle" className="btn-secondary w-full justify-center py-3 text-center block">Get the Family Bundle $99.99 →</Link>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default function PackagesPage() {
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="font-serif text-3xl text-navy mb-10">What you get</h2>
           <div className="grid md:grid-cols-4 gap-6">
-            {[['📖','Age-Appropriate Content','Every course written for its specific audience'],['✅','Quiz Questions','Reinforce knowledge after every lesson'],['📊','Progress Tracking','Dashboard tracks every lesson you complete'],['💳','One-Time Payment','No subscription — pay once, keep forever']].map(([icon,title,body]) => (
+            {[['📖','Age-Appropriate Content','Every course written for its specific audience'],['✅','Quiz Questions','Reinforce knowledge after every lesson'],['📊','Progress Tracking','Dashboard tracks every lesson you complete'],['💳','One-Time Payment','No subscription pay once, keep forever']].map(([icon,title,body]) => (
               <div key={title} className="bg-slate rounded-2xl p-6">
                 <div className="text-3xl mb-3">{icon}</div>
                 <h3 className="font-semibold text-navy mb-1">{title}</h3>
