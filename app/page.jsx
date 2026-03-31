@@ -23,7 +23,7 @@ export default function HomePage() {
             <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
               In a world full of uncertainties, keeping your family truly safe shouldn&apos;t be complicated or expensive. Whether you&apos;re preparing your daughter for university and the challenges of independent living, teaching your young children about personal boundaries and consent, or protecting your elderly parents from sophisticated scams, HomeSafeEducation has you covered. We deliver practical, evidence-based online safety education designed for real life empowering children, young adults, travellers, older adults, and the whole family with the knowledge and confidence they need to stay protected at every stage. With expert-curated courses, interactive lessons, and no ongoing subscriptions, we&apos;re making essential safety skills accessible to every home.
               <br /><br />
-              Five specialist packages covering every age group children, young adults, travellers, older adults, and parents. Practical, evidence-based, and genuinely life-changing.
+              Six specialist packages covering every age group children, teenagers, young adults, travellers, older adults, and parents. Practical, evidence-based, and genuinely life-changing.
             </p>
             <div className="flex flex-wrap gap-4 mb-10">
               <Link href="/packages" className="btn-primary">View All Packages →</Link>
@@ -41,7 +41,7 @@ export default function HomePage() {
       {/* Stats */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[['5', 'Packages'], ['25', 'Subjects'], ['250', 'Lessons'], ['1,250', 'Quiz Questions']].map(([n, l]) => (
+          {[['6', 'Packages'], ['34', 'Subjects'], ['289', 'Lessons'], ['1,000+', 'Quiz Questions']].map(([n, l]) => (
             <div key={l} className="text-center">
               <div className="stat-num text-navy mb-1">{n}</div>
               <div className="text-sm text-navy/50 font-medium">{l}</div>
@@ -57,7 +57,7 @@ export default function HomePage() {
             <div className="chip bg-teal/10 text-teal border border-teal/20 mb-4">Our Packages</div>
             <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Built for Every Age</h2>
             <p className="text-navy/60 text-lg max-w-2xl mx-auto">
-              Every package contains 5 Subjects with 50 Lessons and 250 quiz questions for one payment of $29.99.
+              Packages from $29.99 each with lessons, quizzes, and progress tracking for every member of your family.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
