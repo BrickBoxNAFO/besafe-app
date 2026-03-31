@@ -30,7 +30,7 @@ export default function HomePage() {
               <Link href="/about" className="btn-secondary">Learn More</Link>
             </div>
             <div className="flex flex-wrap gap-6 text-sm text-white/50">
-              {['✓ One-time payment', '✓ 25 Subjects, 250 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
+              {['✓ One-time payment', '✓ 34 Subjects, 289 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
                 <span key={t}>{t}</span>
               ))}
             </div>
@@ -41,7 +41,7 @@ export default function HomePage() {
       {/* Stats */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[['6', 'Packages'], ['34', 'Subjects'], ['289', 'Lessons'], ['1,000+', 'Quiz Questions']].map(([n, l]) => (
+          {[['7', 'Packages'], ['34', 'Subjects'], ['289', 'Lessons'], ['1,445', 'Quiz Questions']].map(([n, l]) => (
             <div key={l} className="text-center">
               <div className="stat-num text-navy mb-1">{n}</div>
               <div className="text-sm text-navy/50 font-medium">{l}</div>
@@ -57,7 +57,7 @@ export default function HomePage() {
             <div className="chip bg-teal/10 text-teal border border-teal/20 mb-4">Our Packages</div>
             <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Built for Every Age</h2>
             <p className="text-navy/60 text-lg max-w-2xl mx-auto">
-              Packages from $29.99 each with lessons, quizzes, and progress tracking for every member of your family.
+              Six purchasable packages plus a family bundle covering every age group from 4 to 60+.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
