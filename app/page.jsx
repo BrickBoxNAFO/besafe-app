@@ -15,7 +15,7 @@ export default function HomePage() {
       <section className="hero-bg noise relative overflow-hidden min-h-screen flex items-center">
         <div className="max-w-6xl mx-auto px-6 py-24 w-full">
           <div className="max-w-2xl">
-            <div className="chip bg-teal/15 text-teal border border-teal/25 mb-6">Online Safety Education</div>
+            <div className="chip bg-teal/15 text-teal border border-teal/25 mb-6">Real World And Online Safety Education</div>
             <h1 className="font-serif text-5xl lg:text-7xl leading-tight mb-6 text-white">
               Keep Your Family Safe
               <span className="block italic text-teal mt-1">at Every Stage of Life.</span>
