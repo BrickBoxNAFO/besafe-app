@@ -4,7 +4,7 @@ import { createClient } from '@/utils/supabase/middleware'
 export async function middleware(request) {
   const { supabase, supabaseResponse } = createClient(request)
 
-  // Refresh session — keeps the user logged in
+  // Refresh session keeps the user logged in
   const { data: { user } } = await supabase.auth.getUser()
 
   // Protect routes
