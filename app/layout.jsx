@@ -3,7 +3,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 
 export const metadata = {
-  title: 'HomeSafeEducation — Online Safety Education',
+  title: 'HomeSafeEducation Online Safety Education',
   description: 'Practical safety education for every member of your family. Five specialist packages covering every age group.',
   openGraph: {
     title: 'HomeSafeEducation',
