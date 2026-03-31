@@ -13,7 +13,7 @@ export default function PackagesPage() {
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <div className="chip bg-teal/15 text-teal border border-teal/25 mb-5">Our Packages</div>
           <h1 className="font-serif text-5xl lg:text-6xl text-white mb-5">Safety Education<br /><span className="italic text-teal">for Every Stage of Life.</span></h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">Five specialist packages one for each major life stage. Pay once, access forever.</p>
+          <p className="text-white/60 text-lg max-w-2xl mx-auto">Seven packages covering every age group from children to older adults. Pay once, access forever.</p>
         </div>
       </div>
       <section className="section-slate py-16">
@@ -126,7 +126,7 @@ export default function PackagesPage() {
                 <div className="flex-1">
                   <div className="chip bg-teal/20 text-teal border border-teal/30 mb-2 text-xs">Best Value</div>
                   <h2 className="font-serif text-2xl text-white mb-1">Family Safety Bundle</h2>
-                  <p className="text-white/60 text-sm">All 5 packages for your whole family. Every age group covered.</p>
+                  <p className="text-white/60 text-sm">Any 5 packages for your whole family. Every age group covered.</p>
                 </div>
                 <div className="text-right flex-shrink-0">
                   <div className="font-serif text-3xl text-white font-bold mb-1">$99.99</div>
