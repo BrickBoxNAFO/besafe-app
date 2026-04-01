@@ -20,7 +20,9 @@ export default function Nav() {
       const { data: purchases } = await supabase.from('purchases').select('package_id').eq('user_id', userId)
       const ids = (purchases || []).map(p => p.package_id)
       setDashboardHref(ids.includes(BUNDLE_ID) ? '/family' : '/dashboard')
-    } catch (e) { setDashboardHref('/dashboard') }
+    } catch (e) {
+      setDashboardHref('/dashboard')
+    }
   }
 
   useEffect(() => {
@@ -52,7 +54,6 @@ export default function Nav() {
     { href: '/packages', label: 'Packages' },
     { href: '/library', label: 'Course Library' },
     { href: '/about', label: 'About' },
-    { href: '/blog', label: 'Blog' },
   ]
 
   return (
@@ -109,7 +110,10 @@ export default function Nav() {
           </div>
         )}
       </nav>
-      <style jsx>{"\n        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }\n        .animate-marquee { display: inline-flex; animation: marquee 30s linear infinite; }\n      "}</style>
+      <style jsx>{`
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { display: inline-flex; animation: marquee 30s linear infinite; }
+      `}</style>
     </>
   )
 }
