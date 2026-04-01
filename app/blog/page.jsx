@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
 export const metadata = {
-  title: 'Online Safety Blog | HomeSafeEducation',
-  description: 'Expert advice on keeping your family safe online. Tips on cyberbullying, screen time, social media safety and more.',
+  title: 'Family Safety Blog | HomeSafeEducation',
+  description: 'Practical safety guidance for every stage of family life — from protecting children online and offline, to supporting teenagers, caring for elderly parents, and keeping every generation safe.',
 }
 export default function BlogPage() {
   const posts = getAllPosts()
@@ -10,8 +10,8 @@ export default function BlogPage() {
     <main className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-16">
         <div className="mb-12">
-          <h1 className="text-4xl font-bold text-[#0B1F3A] mb-4">Online Safety Blog</h1>
-          <p className="text-gray-600 text-lg">Practical advice for keeping your family safe in the digital world.</p>
+          <h1 className="text-4xl font-bold text-[#0B1F3A] mb-4">Family Safety Blog</h1>
+          <p className="text-gray-600 text-lg">Real guidance for keeping every generation of your family safe — online, offline, and everything in between.</p>
         </div>
         <div className="grid gap-8">
           {posts.map(post => (
