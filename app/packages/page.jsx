@@ -7,16 +7,16 @@ const EMOTIONAL_DESCRIPTIONS = {
   nest: "They're leaving the nest. First apartment, first nights out, first time truly on their own. Nest Breaking prepares young adults for the independence they crave and the realities that come with it. From personal safety to digital awareness, these courses turn vulnerability into confidence.",
   roaming: "Whether it's a gap year, a family holiday, or a retirement adventure, the world is full of incredible experiences and hidden risks. Roaming Free equips travellers of all ages with the awareness and know-how to explore safely, so the only surprises are the good ones.",
   aging: "They've given us everything. Now the world is changing faster than ever, and the people we love most can become the easiest targets. Aging Wisdom helps older adults stay safe, informed, and independent in a world that doesn't always look out for them.",
-  family: "The hardest conversations are often the most important ones. Family Anchor gives parents and guardians the language, the tools, and the confidence to talk to their families about safety, boundaries, and the things that really matter. Because keeping your family safe starts with being prepared.",
+  parents: "The hardest conversations are often the most important ones. Family Anchor gives parents and guardians the language, the tools, and the confidence to talk to their families about safety, boundaries, and the things that really matter. Because keeping your family safe starts with being prepared.",
   growing: "Every child deserves to feel safe, and every parent deserves peace of mind. Growing Minds brings together two carefully tailored packages, one for younger children and one for older children, each designed to teach essential safety lessons in a way that's age-appropriate, engaging, and empowering. Because when children understand the world around them, they grow up stronger."
 }
 
 const PKG_GRADIENTS = {
-  street: { from: 'from-purple-50', to: 'to-violet-50', border: 'border-purple-100', accent: '#7C3AED', accentBg: 'rgba(124,58,237,0.12)', tag: 'text-purple-700' },
-  nest: { from: 'from-blue-50', to: 'to-cyan-50', border: 'border-blue-100', accent: '#2563EB', accentBg: 'rgba(37,99,235,0.12)', tag: 'text-blue-700' },
-  roaming: { from: 'from-orange-50', to: 'to-amber-50', border: 'border-orange-100', accent: '#EA580C', accentBg: 'rgba(234,88,12,0.12)', tag: 'text-orange-700' },
-  aging: { from: 'from-rose-50', to: 'to-pink-50', border: 'border-rose-100', accent: '#E11D48', accentBg: 'rgba(225,29,72,0.12)', tag: 'text-rose-700' },
-  family: { from: 'from-teal-50', to: 'to-emerald-50', border: 'border-teal-100', accent: '#0EA5A0', accentBg: 'rgba(14,165,160,0.12)', tag: 'text-teal-700' }
+  street: { from: 'from-purple-100', to: 'to-violet-100', border: 'border-purple-200', accent: '#7C3AED', accentBg: 'rgba(124,58,237,0.12)', tag: 'text-purple-700' },
+  nest: { from: 'from-blue-100', to: 'to-cyan-100', border: 'border-blue-200', accent: '#2563EB', accentBg: 'rgba(37,99,235,0.12)', tag: 'text-blue-700' },
+  roaming: { from: 'from-orange-100', to: 'to-amber-100', border: 'border-orange-200', accent: '#EA580C', accentBg: 'rgba(234,88,12,0.12)', tag: 'text-orange-700' },
+  aging: { from: 'from-rose-100', to: 'to-pink-100', border: 'border-rose-200', accent: '#E11D48', accentBg: 'rgba(225,29,72,0.12)', tag: 'text-rose-700' },
+  parents: { from: 'from-teal-100', to: 'to-emerald-100', border: 'border-teal-200', accent: '#0EA5A0', accentBg: 'rgba(14,165,160,0.12)', tag: 'text-teal-700' }
 }
 
 export default function PackagesPage() {
@@ -37,8 +37,8 @@ export default function PackagesPage() {
       <div className="max-w-5xl mx-auto px-6 -mt-10 relative z-10 space-y-8 pb-20">
 
           {/* Growing Minds Bundle */}
-          <div id="growing" className="bg-white rounded-2xl border border-green-100 overflow-hidden">
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-b border-green-100 px-8 py-5">
+          <div id="growing" className="bg-white rounded-2xl border-2 border-green-200 overflow-hidden">
+            <div className="bg-gradient-to-r from-green-100 to-emerald-100 border-b border-green-200 px-8 py-5">
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style={{background:'rgba(22,163,74,0.12)'}}>🌱</div>
@@ -99,9 +99,9 @@ export default function PackagesPage() {
           {/* Other packages */}
           {otherPackages.map(pkg => {
             const pkgCourses = COURSES.filter(c => c.pkg === pkg.id)
-            const gradient = PKG_GRADIENTS[pkg.id] || PKG_GRADIENTS.family
+            const gradient = PKG_GRADIENTS[pkg.id] || PKG_GRADIENTS.parents
             return (
-              <div key={pkg.id} id={pkg.id} className={"bg-white rounded-2xl border overflow-hidden " + gradient.border}>
+              <div key={pkg.id} id={pkg.id} className={"bg-white rounded-2xl border-2 overflow-hidden " + gradient.border}>
                 <div className={"bg-gradient-to-r border-b px-8 py-5 " + gradient.from + " " + gradient.to + " " + gradient.border}>
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div className="flex items-center gap-4">
