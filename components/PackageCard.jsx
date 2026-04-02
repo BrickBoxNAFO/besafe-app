@@ -14,7 +14,7 @@ export default function PackageCard({ pkg, owned }) {
       <div className="flex items-start justify-between mb-4">
         <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl" style={{ background: pkg.pale }}>{pkg.emoji}</div>
         <div className="flex items-center gap-2">
-          {pkg.isGrowingBundle && <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white" style={{background:pkg.color}}>Bundle</span>}
+          {pkg.isGrowingBundle && <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white" style={{background:pkg.color}}>2-in-1 Bundle</span>}
           {owned && <span className="chip bg-teal/10 text-teal border border-teal/20 text-xs">Owned</span>}
         </div>
       </div>
