@@ -1,10 +1,13 @@
 'use client'
 import Link from 'next/link'
+import { COURSES } from '@/lib/data'
 
 export default function PackageCard({ pkg, owned }) {
-  const subjects = pkg.subjects || (pkg.isGrowingBundle ? 10 : 5)
-  const lessons = pkg.lessons || (pkg.isGrowingBundle ? 77 : 50)
-  const quizQs = pkg.quizQs || (pkg.isGrowingBundle ? 385 : 250)
+  // Calculate real counts from actual course data
+  const pkgCourses = COURSES.filter(c => c.pkg === pkg.id)
+  const subjects = pkgCourses.length
+  const lessons = pkgCourses.reduce((sum, c) => sum + (c.lessons ? c.lessons.length : 0), 0)
+  const quizQs = lessons * 5
 
   return (
     <div className={`bg-white rounded-2xl p-6 border card-lift cursor-pointer ${owned ? 'border-teal/30 ring-1 ring-teal/20' : 'border-gray-100'}`}>
@@ -18,7 +21,6 @@ export default function PackageCard({ pkg, owned }) {
       <h3 className="font-serif text-xl text-navy mb-1">{pkg.name}</h3>
       <p className="text-xs font-medium mb-2" style={{ color: pkg.color }}>{pkg.tag}</p>
       <p className="text-navy/60 text-sm leading-relaxed mb-3">{pkg.tagline}</p>
-
       {pkg.isGrowingBundle && pkg.subPackages && (
         <div className="flex gap-2 mb-3">
           {pkg.subPackages.map(sub => (
@@ -32,9 +34,8 @@ export default function PackageCard({ pkg, owned }) {
           ))}
         </div>
       )}
-
       <div className="flex flex-wrap gap-2 mb-5">
-        <span className="chip text-xs px-2 py-0.5 rounded-full" style={{ background: pkg.pale, color: pkg.color }}>{subjects} Subjects</span>
+        <span className="chip text-xs px-2 py-0.5 rounded-full" style={{ background: pkg.pale, color: pkg.color }}>{subjects} Courses</span>
         <span className="chip bg-navy/5 text-navy/50 text-xs px-2 py-0.5 rounded-full">{lessons} Lessons</span>
         <span className="chip bg-navy/5 text-navy/50 text-xs px-2 py-0.5 rounded-full">{quizQs} quiz Qs</span>
       </div>
