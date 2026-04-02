@@ -20,9 +20,7 @@ export default function Nav() {
       const { data: purchases } = await supabase.from('purchases').select('package_id').eq('user_id', userId)
       const ids = (purchases || []).map(p => p.package_id)
       setDashboardHref(ids.includes(BUNDLE_ID) ? '/family' : '/dashboard')
-    } catch (e) {
-      setDashboardHref('/dashboard')
-    }
+    } catch (e) { setDashboardHref('/dashboard') }
   }
 
   useEffect(() => {
@@ -60,10 +58,10 @@ export default function Nav() {
     <>
       <div className="bg-navy text-white text-xs py-2 overflow-hidden whitespace-nowrap">
         <div className="flex gap-10 animate-marquee px-4">
-          {['✓ One-time payment no subscription','7 Packages · 34 Subjects · 289 Lessons','Evidence-based safety education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
+          {['✓ One-time payment no subscription','7 Packages · 33 Courses · 115 Lessons','Real-world and online safety education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
             <span key={i} className="flex-shrink-0 text-white/70">{t}</span>
           ))}
-          {['✓ One-time payment no subscription','5 Packages · 25 Subjects · 250 Lessons','Evidence-based safety education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
+          {['✓ One-time payment no subscription','7 Packages · 33 Courses · 115 Lessons','Real-world and online safety education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
             <span key={"b"+i} className="flex-shrink-0 text-white/70">{t}</span>
           ))}
         </div>
