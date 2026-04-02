@@ -30,7 +30,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {[['🎯', 'Practical', 'Real skills for real situations'],['📋', 'Expert-Written', 'By safety professionals'],['✅', 'Evidence-Based', 'Grounded in current research'],['🔒', 'Private', 'Learn on your own schedule, wherever you are']].map(([icon, title, body]) => (
+              {[['🎯', 'Practical', 'Real skills for real situations'],['📋', 'Expert-Written', 'By safety professionals'],['✅', 'Evidence-Based', 'Grounded in current research'],['⏱️', 'Self-Paced', 'Learn on your own schedule, wherever you are']].map(([icon, title, body]) => (
                 <div key={title} className="bg-slate rounded-2xl p-5">
                   <div className="text-2xl mb-2">{icon}</div>
                   <p className="font-semibold text-navy text-sm mb-1">{title}</p>
