@@ -47,7 +47,7 @@ export default function PackagesPage() {
                       <h2 className="font-serif text-2xl text-navy">Growing Minds</h2>
                       <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white" style={{background:'#16A34A'}}>2-in-1 Bundle</span>
                     </div>
-                    <p className="text-sm font-semibold text-green-700">Children 4-11 - Both age ranges included</p>
+                    <p className="text-sm font-semibold text-green-700">Children aged 4-7 and 8-11 - Both age ranges included</p>
                   </div>
                 </div>
                 <div className="text-right">
