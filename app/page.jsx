@@ -22,7 +22,7 @@ export default function HomePage() {
               <span className="block italic text-teal mt-1">at Every Stage of Life.</span>
             </h1>
             <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-              In a world full of uncertainties, keeping your family truly safe shouldn&apos;t be complicated or expensive. Whether you&apos;re preparing your daughter for university and the challenges of independent living, teaching your young children about personal boundaries and consent, or protecting your elderly parents from sophisticated scams, HomeSafeEducation has you covered. We deliver practical, evidence-based safety education designed for real life &mdash; empowering children, young adults, travellers, older adults, and the whole family with the knowledge and confidence they need to stay protected at every stage. With expert-curated courses, interactive lessons, and no ongoing subscriptions, we&apos;re making essential safety skills accessible to every home.
+              In a world full of uncertainties, keeping your family truly safe shouldn&apos;t be complicated or expensive. Whether you&apos;re preparing your daughter for university and the challenges of independent living, teaching your young children about personal boundaries and consent, or protecting your elderly parents from sophisticated scams, HomeSafeEducation has you covered. We deliver practical, evidence-based safety education designed for real life, empowering children, young adults, travellers, older adults, and the whole family with the knowledge and confidence they need to stay protected at every stage. With expert-curated courses, interactive lessons, and no ongoing subscriptions, we&apos;re making essential safety skills accessible to every home.
               <br /><br />
               Seven packages covering every age group from children aged 4 right through to older adults and the whole family. Practical, evidence-based, and genuinely life-changing.
             </p>
@@ -114,7 +114,7 @@ export default function HomePage() {
           <span className="text-4xl mb-4 block">🎁</span>
           <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-4">The Gift of Safety</h2>
           <p className="text-navy/60 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-            Most of our customers purchase for someone they love &mdash; a child heading to university, an elderly parent living alone, a friend travelling abroad. One payment, lifetime access, real peace of mind.
+            Most of our customers purchase for someone they love. A child heading to university, an elderly parent living alone, a friend travelling abroad. One payment, lifetime access, real peace of mind.
           </p>
           <Link href="/packages" className="btn-primary text-base px-8 py-3">Buy as a Gift &rarr;</Link>
         </div>
@@ -149,7 +149,7 @@ export default function HomePage() {
       <section className="hero-bg noise relative py-24 overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
           <h2 className="font-serif text-4xl lg:text-5xl text-white mb-5">Start Protecting Your Family Today</h2>
-          <p className="text-white/60 text-lg max-w-xl mx-auto mb-8">One-time payment. No subscription. Real knowledge that makes a real difference. Buy for yourself or gift to someone you love.</p>
+          <p className="text-white/60 text-lg max-w-xl mx-auto mb-8">In a world of uncertainty, knowledge is power. One-time payment. No subscription. Buy for yourself or gift to someone you love.</p>
           <Link href="/packages" className="btn-primary text-base px-8 py-4">View All Packages &rarr;</Link>
         </div>
       </section>
