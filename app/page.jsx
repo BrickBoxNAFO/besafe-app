@@ -2,12 +2,6 @@ import Link from 'next/link'
 import PackageCard from '@/components/PackageCard'
 import { PACKAGES } from '@/lib/data'
 
-const REVIEWS = [
-  { q: '"Got the Family Safety Bundle for the whole family, my son before university, my mum, my wife, and myself. All four of us have now completed our packages. I still have one slot left that I\'m planning to pass to a close friend. It\'s been great value."', name: 'James M.', role: 'Parent, age 48', stars: 5 },
-  { q: '"My mum completed Aging Wisdom and now she knows exactly what to do when she gets those scam calls. She feels so much more confident."', name: 'Sarah T.', role: 'Daughter, age 42', stars: 5 },
-  { q: '"The Night Out Safety course should be compulsory for every young person. My daughter did it before going to university and I feel so much better about it."', name: 'Mark R.', role: 'Father, age 51', stars: 5 },
-]
-
 export default function HomePage() {
   return (
     <div className="page-enter">
@@ -114,34 +108,9 @@ export default function HomePage() {
           <span className="text-4xl mb-4 block">🎁</span>
           <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-4">The Gift of Safety</h2>
           <p className="text-navy/60 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-            Most of our customers purchase for someone they love. A child heading to university, an elderly parent living alone, a friend travelling abroad. One payment, lifetime access, real peace of mind.
+            A young adult heading to university, an elderly parent living alone, a friend travelling abroad. One payment, lifetime access, real peace of mind.
           </p>
           <Link href="/packages" className="btn-primary text-base px-8 py-3">Buy as a Gift &rarr;</Link>
-        </div>
-      </section>
-
-      {/* Reviews */}
-      <section className="section-slate py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <div className="chip bg-teal/10 text-teal border border-teal/20 mb-4">What Families Say</div>
-            <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Real Families. Real Results.</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {REVIEWS.map((r, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 border border-gray-100">
-                <div className="flex gap-0.5 mb-4">{Array(r.stars).fill(0).map((_, j) => <span key={j} className="text-amber-400">&#9733;</span>)}</div>
-                <p className="text-navy/80 text-sm leading-relaxed mb-5 italic">{r.q}</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-navy flex items-center justify-center text-white text-sm font-bold">{r.name[0]}</div>
-                  <div>
-                    <p className="font-semibold text-navy text-sm">{r.name}</p>
-                    <p className="text-navy/40 text-xs">{r.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
