@@ -12,13 +12,16 @@ export default async function LibraryPage() {
     purchases = data?.map(p => p.package_id) || []
   }
 
+  const totalCourses = COURSES.length
+  const totalLessons = COURSES.reduce((sum, c) => sum + (c.lessons ? c.lessons.length : 0), 0)
+
   return (
     <div className="page-enter">
       <div className="hero-bg noise relative py-20 overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
           <div className="chip bg-teal/15 text-teal border border-teal/25 mb-4">Course Library</div>
-          <h1 className="font-serif text-5xl text-white mb-4">All 34 Subjects</h1>
-          <p className="text-white/60 text-lg">Browse all 34 Subjects across our 7 Packages, 289 Lessons in total.</p>
+          <h1 className="font-serif text-5xl text-white mb-4">All {totalCourses} Courses</h1>
+          <p className="text-white/60 text-lg">Browse all {totalCourses} courses across our 7 packages, {totalLessons} lessons in total.</p>
         </div>
       </div>
 
@@ -48,14 +51,11 @@ export default async function LibraryPage() {
                       </div>
                       <div className="text-xs text-navy/40 mb-4">📖 {c.lessons.length} Lessons · ✅ {c.lessons.length * 5} quiz questions</div>
                       {owned ? (
-                        <Link href={`/course/${c.id}`}
-                          className="text-xs font-semibold px-3 py-1.5 rounded-lg text-white transition-opacity hover:opacity-80"
-                          style={{ background: pkg.color }}>
-                          Start Subject →
+                        <Link href={`/course/${c.id}`} className="text-xs font-semibold px-3 py-1.5 rounded-lg text-white transition-opacity hover:opacity-80" style={{ background: pkg.color }}>
+                          Start Course &rarr;
                         </Link>
                       ) : (
-                        <Link href={`/packages#${pkg.id}`}
-                          className="text-xs font-semibold px-3 py-1.5 rounded-lg border text-navy/50 border-navy/20 hover:bg-navy/5 transition-colors">
+                        <Link href={`/packages#${pkg.id}`} className="text-xs font-semibold px-3 py-1.5 rounded-lg border text-navy/50 border-navy/20 hover:bg-navy/5 transition-colors">
                           Unlock for $29.99
                         </Link>
                       )}
