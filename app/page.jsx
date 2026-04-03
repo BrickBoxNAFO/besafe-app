@@ -16,9 +16,7 @@ export default function HomePage() {
               <span className="block italic text-teal mt-1">at Every Stage of Life.</span>
             </h1>
             <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-              In a world full of uncertainties, keeping your family truly safe shouldn&apos;t be complicated or expensive. Whether you&apos;re preparing your daughter for university and the challenges of independent living, teaching your young children about personal boundaries and consent, or protecting your elderly parents from sophisticated scams, HomeSafeEducation has you covered. We deliver practical, evidence-based safety education designed for real life, empowering children, young adults, travellers, older adults, and the whole family with the knowledge and confidence they need to stay protected at every stage. With expert-curated courses, interactive lessons, and no ongoing subscriptions, we&apos;re making essential safety skills accessible to every home.
-              <br /><br />
-              Seven packages covering every age group from children aged 4 right through to older adults and the whole family. Practical, evidence-based, and genuinely life-changing.
+              In a world full of uncertainties, keeping your family safe shouldn&apos;t be complicated or expensive. Whether you&apos;re giving your daughter the tools to stay safe on nights out and navigate university life, teaching your children about personal boundaries, or protecting your elderly parents from sophisticated scams, HomeSafeEducation has you covered. <br /><br /> Practical, evidence-based safety courses designed for real life. Seven packages covering every age group from children aged 4 right through to older adults. Buy for yourself or gift to someone you love. One payment, no subscription, real peace of mind.
             </p>
             <div className="flex flex-wrap gap-4 mb-10">
               <Link href="/packages" className="btn-primary">View All Packages &rarr;</Link>
