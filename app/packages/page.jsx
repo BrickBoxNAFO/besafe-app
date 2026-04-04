@@ -123,7 +123,7 @@ export default function PackagesPage() {
               </div>
               <div className="p-8">
                 <p className="text-navy/60 text-sm leading-relaxed mb-6">{EMOTIONAL_DESCRIPTIONS[pkg.id]}</p>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-2 mb-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-6">
                   {pkgCourses.map(c => (
                     <div key={c.id} className="text-center p-3 rounded-xl border border-gray-100 bg-slate">
                       <div className="text-lg mb-1">{c.emoji}</div>
@@ -142,14 +142,14 @@ export default function PackagesPage() {
         <div id="bundle" className="bg-navy rounded-2xl overflow-hidden relative">
           <div className="noise absolute inset-0" />
           <div className="relative z-10 p-8">
-            <div className="flex items-start gap-5 mb-6">
+            <div className="flex flex-col sm:flex-row items-start gap-5 mb-6">
               <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-teal/20">👨‍👩‍👧‍👦</div>
               <div className="flex-1">
                 <div className="chip bg-teal/20 text-teal border border-teal/30 mb-2 text-xs">Best Value</div>
                 <h2 className="font-serif text-2xl text-white mb-1">Family Safety Bundle</h2>
                 <p className="text-white/60 text-sm">Choose any 5 packages. Buy for yourself and gift courses to the people you love.</p>
               </div>
-              <div className="text-right flex-shrink-0">
+              <div className="sm:text-right flex-shrink-0">
                 <div className="font-serif text-3xl text-white font-bold mb-1">$99.99</div>
                 <div className="text-teal text-xs font-semibold">Save $49.96</div>
                 <div className="text-white/40 text-xs">one-time payment</div>
