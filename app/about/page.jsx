@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import NewsletterBanner from '@/components/NewsletterBanner'
 
 export default function AboutPage() {
   return (
@@ -30,7 +31,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {[['🎯', 'Practical', 'Real skills for real situations'],['📋', 'Expert-Written', 'By safety professionals'],['✅', 'Evidence-Based', 'Grounded in current research'],['⏱️', 'Self-Paced', 'Learn on your own schedule, wherever you are']].map(([icon, title, body]) => (
+              {[['ð¯', 'Practical', 'Real skills for real situations'],['ð', 'Expert-Written', 'By safety professionals'],['â', 'Evidence-Based', 'Grounded in current research'],['â±ï¸', 'Self-Paced', 'Learn on your own schedule, wherever you are']].map(([icon, title, body]) => (
                 <div key={title} className="bg-slate rounded-2xl p-5">
                   <div className="text-2xl mb-2">{icon}</div>
                   <p className="font-semibold text-navy text-sm mb-1">{title}</p>
@@ -48,7 +49,7 @@ export default function AboutPage() {
           <h2 className="font-serif text-4xl text-navy mb-5">Seven Packages. Every Stage of Life.</h2>
           <p className="text-navy/60 text-lg max-w-2xl mx-auto mb-12">From young children learning about body safety to teenagers navigating social media, young adults living independently, travellers staying safe abroad, older adults avoiding scams, and parents having difficult conversations - we have a package for every stage of life.</p>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-            {[['🌱','Growing Minds','Children 4-11'],['🥷','Street Smart','Teenagers'],['🚀','Nest Breaking','Young Adults'],['🌍','Roaming Free','Travellers'],['💐','Aging Wisdom','Seniors'],['❤️','Family Anchor','Parents'],['👨‍👩‍👧‍👦','Family Bundle','Best Value']].map(([emoji, name, who]) => (
+            {[['ð±','Growing Minds','Children 4-11'],['ð¥·','Street Smart','Teenagers'],['ð','Nest Breaking','Young Adults'],['ð','Roaming Free','Travellers'],['ð','Aging Wisdom','Seniors'],['â¤ï¸','Family Anchor','Parents'],['ð¨âð©âð§âð¦','Family Bundle','Best Value']].map(([emoji, name, who]) => (
               <div key={name} className="bg-white rounded-2xl p-5 text-center border border-gray-100">
                 <div className="text-3xl mb-2">{emoji}</div>
                 <p className="font-semibold text-navy text-sm">{name}</p>
@@ -61,6 +62,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Banner */}
+      <NewsletterBanner />
 
       <section className="section-light py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
