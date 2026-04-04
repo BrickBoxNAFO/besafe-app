@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { PACKAGES } from '@/lib/data'
+import NewsletterSignup from '@/components/NewsletterSignup'
 
 export default function Footer() {
   return (
@@ -8,8 +9,10 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-1">
             <Link href="/"><span style={{fontFamily:'Georgia,"Times New Roman",serif',fontWeight:'bold',fontSize:'1.45rem',letterSpacing:'-0.01em',lineHeight:1,display:'inline-block',marginBottom:'1rem'}}><span style={{color:'#ffffff'}}>HomeSafe</span><span style={{color:'#E8703A'}}>Education</span></span></Link>
-            <p className="text-white/50 text-sm leading-relaxed">Practical safety education for every member of your family.</p>
+            <p className="text-white/50 text-sm leading-relaxed mb-6">Practical safety education for every member of your family.</p>
+            <NewsletterSignup />
           </div>
+
           <div>
             <p className="text-white/30 text-xs font-semibold uppercase tracking-wider mb-4">Packages</p>
             <ul className="space-y-2">
@@ -18,14 +21,16 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+
           <div>
             <p className="text-white/30 text-xs font-semibold uppercase tracking-wider mb-4">Company</p>
             <ul className="space-y-2">
-              {[['/', 'Home'],['/about','About Us'],['/packages','Packages'],].map(([href,label]) => (
+              {[['/', 'Home'],['/about','About Us'],['/packages','Packages'],['/contact','Contact Us'],].map(([href,label]) => (
                 <li key={href}><Link href={href} className="text-white/60 text-sm hover:text-white transition-colors">{label}</Link></li>
               ))}
             </ul>
           </div>
+
           <div>
             <p className="text-white/30 text-xs font-semibold uppercase tracking-wider mb-4">Legal</p>
             <ul className="space-y-2">
@@ -35,10 +40,11 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/20 text-xs">© {new Date().getFullYear()} HomeSafeEducation. All rights reserved.</p>
+          <p className="text-white/20 text-xs">&copy; {new Date().getFullYear()} HomeSafeEducation. All rights reserved.</p>
           <div className="flex items-center gap-4 text-white/30 text-xs">
-            <span>🔒 SSL Secured</span><span>·</span><span>💳 Stripe</span><span>·</span><span>🛡️ GDPR</span>
+            <span>🔒 SSL Secured</span><span>&middot;</span><span>💳 Stripe</span><span>&middot;</span><span>🛡️ GDPR</span>
           </div>
         </div>
       </div>
