@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import NewsletterBanner from '@/components/NewsletterBanner'
 
 export const metadata = {
   title: 'Contact Us | HomeSafeEducation',
@@ -45,22 +46,22 @@ export default function ContactPage() {
             </div>
             <div className="space-y-6">
               <div className="bg-slate rounded-2xl p-6">
-                <div className="text-2xl mb-3">📧</div>
+                <div className="text-2xl mb-3">ð§</div>
                 <p className="font-semibold text-navy text-sm mb-1">Email Support</p>
                 <p className="text-navy/50 text-xs leading-relaxed">For all enquiries including account issues, course access, refund requests, and general questions. We aim to respond within 1 to 2 business days.</p>
               </div>
               <div className="bg-slate rounded-2xl p-6">
-                <div className="text-2xl mb-3">💳</div>
+                <div className="text-2xl mb-3">ð³</div>
                 <p className="font-semibold text-navy text-sm mb-1">Billing and Refunds</p>
                 <p className="text-navy/50 text-xs leading-relaxed">If you need help with a payment or would like to request a refund, email us with your order number.</p>
               </div>
               <div className="bg-slate rounded-2xl p-6">
-                <div className="text-2xl mb-3">👨‍👩‍👧‍👦</div>
+                <div className="text-2xl mb-3">ð¨âð©âð§âð¦</div>
                 <p className="font-semibold text-navy text-sm mb-1">Family Bundle Help</p>
                 <p className="text-navy/50 text-xs leading-relaxed">Need help inviting family members, managing seats, or understanding how the bundle works? We are happy to walk you through it.</p>
               </div>
               <div className="bg-slate rounded-2xl p-6">
-                <div className="text-2xl mb-3">🔒</div>
+                <div className="text-2xl mb-3">ð</div>
                 <p className="font-semibold text-navy text-sm mb-1">Privacy and Data Requests</p>
                 <p className="text-navy/50 text-xs leading-relaxed">To exercise your rights under GDPR, including data access, correction, or deletion, please email us. We will respond within 30 days.</p>
               </div>
@@ -90,6 +91,9 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Banner */}
+      <NewsletterBanner />
 
       <section className="section-light py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
