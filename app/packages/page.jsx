@@ -6,11 +6,11 @@ import NewsletterBanner from '@/components/NewsletterBanner'
 
 const EMOTIONAL_DESCRIPTIONS = {
   street: "The teenage years move fast. New friendships, first freedoms, social media, peer pressure - the world opens up and so do the risks. Street Smart gives young people the tools to navigate it all with confidence, not fear. Because the best protection you can give a teenager is the knowledge to protect themselves.",
-  nest: "Theyâre leaving the nest. First apartment, first nights out, first time truly on their own. Nest Breaking prepares young adults for the independence they crave and the realities that come with it. From personal safety to digital awareness, these courses turn vulnerability into confidence.",
-  roaming: "Whether itâs a gap year, a family holiday, or a retirement adventure, the world is full of incredible experiences and hidden risks. Roaming Free equips travellers of all ages with the awareness and know-how to explore safely, so the only surprises are the good ones.",
-  aging: "Theyâve given us everything. Now the world is changing faster than ever, and the people we love most can become the easiest targets. Aging Wisdom helps older adults stay safe, informed, and independent in a world that doesnât always look out for them.",
+  nest: "They’re leaving the nest. First apartment, first nights out, first time truly on their own. Nest Breaking prepares young adults for the independence they crave and the realities that come with it. From personal safety to digital awareness, these courses turn vulnerability into confidence.",
+  roaming: "Whether it’s a gap year, a family holiday, or a retirement adventure, the world is full of incredible experiences and hidden risks. Roaming Free equips travellers of all ages with the awareness and know-how to explore safely, so the only surprises are the good ones.",
+  aging: "They’ve given us everything. Now the world is changing faster than ever, and the people we love most can become the easiest targets. Aging Wisdom helps older adults stay safe, informed, and independent in a world that doesn’t always look out for them.",
   parents: "The hardest conversations are often the most important ones. Family Anchor gives parents and guardians the language, the tools, and the confidence to talk to their families about safety, boundaries, and the things that really matter. Because keeping your family safe starts with being prepared.",
-  growing: "Every child deserves to feel safe, and every parent deserves peace of mind. Growing Minds brings together two carefully tailored packages, one for younger children and one for older children, each designed to teach essential safety lessons in a way thatâs age-appropriate, engaging, and empowering. Because when children understand the world around them, they grow up stronger."
+  growing: "Every child deserves to feel safe, and every parent deserves peace of mind. Growing Minds brings together two carefully tailored packages, one for younger children and one for older children, each designed to teach essential safety lessons in a way that’s age-appropriate, engaging, and empowering. Because when children understand the world around them, they grow up stronger."
 }
 
 const PKG_GRADIENTS = {
@@ -43,7 +43,7 @@ export default function PackagesPage() {
           <div className="bg-gradient-to-r from-green-100 to-emerald-100 border-b border-green-200 px-8 py-5">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style={{background:'rgba(22,163,74,0.12)'}}>ð±</div>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style={{background:'rgba(22,163,74,0.12)'}}>🌱</div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <h2 className="font-serif text-2xl text-navy">Growing Minds</h2>
@@ -67,7 +67,7 @@ export default function PackagesPage() {
           <div className="p-6 grid md:grid-cols-2 gap-4">
             <div className="rounded-xl border border-green-100 bg-green-50/40 p-5">
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl">ð±</span>
+                <span className="text-2xl">🌱</span>
                 <div>
                   <h3 className="font-semibold text-navy text-base">Early Years</h3>
                   <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white inline-block" style={{background:'#16A34A'}}>Ages 4-7</span>
@@ -81,7 +81,7 @@ export default function PackagesPage() {
             </div>
             <div className="rounded-xl border border-green-100 bg-green-50/40 p-5">
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl">ð¿</span>
+                <span className="text-2xl">🌿</span>
                 <div>
                   <h3 className="font-semibold text-navy text-base">Junior</h3>
                   <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white inline-block" style={{background:'#16A34A'}}>Ages 8-11</span>
@@ -95,7 +95,7 @@ export default function PackagesPage() {
             </div>
           </div>
           <div className="px-6 pb-6">
-            <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">ð Purchases opening soon</span></div>
+            <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
             <p className="text-center text-xs text-navy/40 mt-2">One payment - 10 courses - Both age groups - Perfect for growing children</p>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function PackagesPage() {
                     </div>
                   ))}
                 </div>
-                <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">ð Purchases opening soon</span></div>
+                <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
               </div>
             </div>
           )
@@ -143,7 +143,7 @@ export default function PackagesPage() {
           <div className="noise absolute inset-0" />
           <div className="relative z-10 p-8">
             <div className="flex items-start gap-5 mb-6">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-teal/20">ð¨âð©âð§âð¦</div>
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-teal/20">👨‍👩‍👧‍👦</div>
               <div className="flex-1">
                 <div className="chip bg-teal/20 text-teal border border-teal/30 mb-2 text-xs">Best Value</div>
                 <h2 className="font-serif text-2xl text-white mb-1">Family Safety Bundle</h2>
@@ -155,7 +155,7 @@ export default function PackagesPage() {
                 <div className="text-white/40 text-xs">one-time payment</div>
               </div>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed mb-6">Safety isnât just personal, itâs something we give to the people we care about most. The Family Safety Bundle lets you choose any five packages and share them across your family. Assign courses to your children, your parents, your partner, or anyone you want to protect. Each person gets their own dashboard, their own progress tracking, and their own learning journey. One purchase, five lives made safer.</p>
+            <p className="text-white/50 text-sm leading-relaxed mb-6">Safety isn’t just personal, it’s something we give to the people we care about most. The Family Safety Bundle lets you choose any five packages and share them across your family. Assign courses to your children, your parents, your partner, or anyone you want to protect. Each person gets their own dashboard, their own progress tracking, and their own learning journey. One purchase, five lives made safer.</p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
               {PACKAGES.filter(p => p.id !== 'growing').map(pkg => (
                 <div key={pkg.id} className="text-center p-3 rounded-xl bg-white/5 border border-white/10">
@@ -164,11 +164,11 @@ export default function PackagesPage() {
                 </div>
               ))}
               <div className="text-center p-3 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-lg mb-1">ð±</div>
+                <div className="text-lg mb-1">🌱</div>
                 <div className="text-xs font-medium text-white/70">Growing Minds</div>
               </div>
             </div>
-            <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">ð Purchases opening soon</span></div>
+            <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
           </div>
         </div>
 
@@ -176,7 +176,7 @@ export default function PackagesPage() {
         <div className="bg-slate rounded-2xl p-8">
           <h2 className="font-serif text-2xl text-navy text-center mb-6">What Every Package Includes</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[['ð','Age-Appropriate Content','Every course written for its specific audience'],['â','Quiz Questions','Reinforce knowledge after every lesson'],['ð','Progress Tracking','Dashboard tracks every lesson you complete'],['ð³','One-Time Payment','No subscription, no hidden fees, no recurring charges']].map(([icon,title,body]) => (
+            {[['📖','Age-Appropriate Content','Every course written for its specific audience'],['✅','Quiz Questions','Reinforce knowledge after every lesson'],['📊','Progress Tracking','Dashboard tracks every lesson you complete'],['💳','One-Time Payment','No subscription, no hidden fees, no recurring charges']].map(([icon,title,body]) => (
               <div key={title} className="bg-white rounded-xl p-5 border border-gray-100 text-center">
                 <div className="text-2xl mb-2">{icon}</div>
                 <div className="font-semibold text-navy text-sm mb-1">{title}</div>
