@@ -1,5 +1,5 @@
 import { resend } from '@/lib/resend'
-import { sendNewsletterWelcome } from '@/lib/resend'
+import { sendNewsletterWelcome } from '@/lib/newsletter'
 
 export async function POST(req) {
   try {
@@ -23,7 +23,6 @@ export async function POST(req) {
     })
 
     if (error) {
-      // If the contact already exists, Resend returns an error
       if (error.message && error.message.toLowerCase().includes('already exists')) {
         return Response.json({ error: 'This email is already subscribed.' }, { status: 409 })
       }
