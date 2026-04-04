@@ -77,6 +77,18 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Gift Banner */}
+      <section className="py-16 bg-gradient-to-r from-teal/10 to-orange/10">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <span className="text-4xl mb-4 block">🎁</span>
+          <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-4">The Gift of Safety</h2>
+          <p className="text-navy/60 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
+            A young adult heading to university, an elderly parent living alone, a friend travelling abroad. One payment, lifetime access, real peace of mind.
+          </p>
+          <Link href="/packages" className="btn-primary text-base px-8 py-3">Buy as a Gift &rarr;</Link>
+        </div>
+      </section>
+
       {/* How it works */}
       <section className="section-light py-24">
         <div className="max-w-6xl mx-auto px-6">
@@ -104,18 +116,6 @@ export default function HomePage() {
 
       {/* Newsletter Banner */}
       <NewsletterBanner />
-
-      {/* Gift Banner */}
-      <section className="py-16 bg-gradient-to-r from-teal/10 to-orange/10">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <span className="text-4xl mb-4 block">🎁</span>
-          <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-4">The Gift of Safety</h2>
-          <p className="text-navy/60 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-            A young adult heading to university, an elderly parent living alone, a friend travelling abroad. One payment, lifetime access, real peace of mind.
-          </p>
-          <Link href="/packages" className="btn-primary text-base px-8 py-3">Buy as a Gift &rarr;</Link>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="hero-bg noise relative py-24 overflow-hidden">
