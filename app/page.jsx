@@ -3,6 +3,7 @@ import PackageCard from '@/components/PackageCard'
 import { PACKAGES } from '@/lib/data'
 
 import NewsletterBanner from '@/components/NewsletterBanner'
+
 export default function HomePage() {
   return (
     <div className="page-enter">
@@ -24,7 +25,7 @@ export default function HomePage() {
               <Link href="/about" className="btn-secondary">Learn More</Link>
             </div>
             <div className="flex flex-wrap gap-6 text-sm text-white/50">
-              {['â One-time payment', 'â 7 Packages, 115 Lessons', 'â Family progress tracking', 'â No subscription'].map(t => (
+              {['✓ One-time payment', '✓ 7 Packages, 115 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
                 <span key={t}>{t}</span>
               ))}
             </div>
@@ -85,10 +86,10 @@ export default function HomePage() {
           </div>
           <div className="grid md:grid-cols-4 gap-8">
             {[
-              { n: '01', icon: 'ð', title: 'Choose a Package', body: 'Pick the right package for you, your child, your parent, or anyone you care about. Each one is tailored to a specific age group and life stage.' },
-              { n: '02', icon: 'ð³', title: 'One-Time Payment', body: 'Pay $29.99 per package or $99.99 for any 5. No subscription, no hidden fees. A small price for safety.' },
-              { n: '03', icon: 'ð§', title: 'Gift or Keep', body: 'Enter the recipient\'s email and they get instant access. Or keep it for yourself. Either way, access is forever.' },
-              { n: '04', icon: 'ð', title: 'Start Learning', body: 'Work through real-world and online safety lessons at your own pace. Every lesson has a quiz to reinforce what you\'ve learned.' },
+              { n: '01', icon: '🎁', title: 'Choose a Package', body: 'Pick the right package for you, your child, your parent, or anyone you care about. Each one is tailored to a specific age group and life stage.' },
+              { n: '02', icon: '💳', title: 'One-Time Payment', body: 'Pay $29.99 per package or $99.99 for any 5. No subscription, no hidden fees. A small price for safety.' },
+              { n: '03', icon: '📧', title: 'Gift or Keep', body: 'Enter the recipient\'s email and they get instant access. Or keep it for yourself. Either way, access is forever.' },
+              { n: '04', icon: '📖', title: 'Start Learning', body: 'Work through real-world and online safety lessons at your own pace. Every lesson has a quiz to reinforce what you\'ve learned.' },
             ].map(s => (
               <div key={s.n} className="bg-slate rounded-2xl p-8">
                 <div className="text-3xl mb-4">{s.icon}</div>
@@ -107,7 +108,7 @@ export default function HomePage() {
       {/* Gift Banner */}
       <section className="py-16 bg-gradient-to-r from-teal/10 to-orange/10">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <span className="text-4xl mb-4 block">ð</span>
+          <span className="text-4xl mb-4 block">🎁</span>
           <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-4">The Gift of Safety</h2>
           <p className="text-navy/60 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
             A young adult heading to university, an elderly parent living alone, a friend travelling abroad. One payment, lifetime access, real peace of mind.
