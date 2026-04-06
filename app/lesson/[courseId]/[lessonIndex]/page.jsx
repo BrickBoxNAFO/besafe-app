@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useRouter, useParams } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
 import { COURSES, PACKAGES } from '@/lib/data'
+import SONGS, { getAudioUrl } from '@/lib/songs'
+import AudioPlayer from '@/components/AudioPlayer'
 
 /* ────────────────────────────────────────────
    Parse a lesson's content array into:
@@ -136,6 +138,14 @@ export default function LessonPage() {
   const isGrowingEarly = course?.subPkg === 'growing-early'
   const isGrowingJunior = course?.subPkg === 'growing-junior'
   const isGrowingMind = isGrowingEarly || isGrowingJunior
+
+  // Song data for Growing Minds courses
+  const songData = course ? SONGS[course.id] : null
+  const lessonSong = songData?.lessons?.[lessonIndex]
+  const rememberSong = songData?.remember
+  const isLastLesson = lessonIndex === totalLessons - 1
+  const hasLessonSong = lessonSong?.file && lessonSong.file.length > 0
+  const hasRememberSong = isLastLesson && rememberSong?.file && rememberSong.file.length > 0
 
   const [phase, setPhase] = useState('content') // 'content' | 'quiz' | 'result'
   const [selected, setSelected] = useState({}) // { questionIndex: optionIndex }
@@ -347,6 +357,32 @@ export default function LessonPage() {
                 )}
               </div>
             </div>
+
+            {/* Lesson song */}
+            {hasLessonSong && (
+              <div className="mb-6">
+                <AudioPlayer
+                  src={getAudioUrl(lessonSong.file)}
+                  title={lessonSong.title}
+                  subtitle={course.title + ' - Lesson ' + (lessonIndex + 1) + ' of ' + totalLessons}
+                  lyrics={lessonSong.lyrics}
+                  variant="lesson"
+                />
+              </div>
+            )}
+
+            {/* Remember This recap song (shown on last lesson only) */}
+            {hasRememberSong && (
+              <div className="mb-6">
+                <AudioPlayer
+                  src={getAudioUrl(rememberSong.file)}
+                  title={rememberSong.title || 'Remember This'}
+                  subtitle={course.title + ' - Course Recap'}
+                  lyrics={rememberSong.lyrics}
+                  variant="remember"
+                />
+              </div>
+            )}
 
             {/* Previous progress notice */}
             {existingProgress?.passed && (
