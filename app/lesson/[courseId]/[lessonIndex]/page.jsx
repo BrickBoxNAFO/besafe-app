@@ -339,16 +339,48 @@ export default function LessonPage() {
             </p>
 
             {/* Answer review */}
-            <div className="text-left space-y-4 mb-8">
+            <div className="text-left space-y-5 mb-8">
               {quizQuestions.map((q, qi) => {
-                const correct = selected[qi] === q.correct
+                const isCorrect = selected[qi] === q.correct
                 return (
-                  <div key={qi} className={`rounded-xl p-4 border text-sm ${correct ? 'bg-teal/5 border-teal/20' : 'bg-red-50 border-red-100'}`}>
-                    <p className="font-medium text-navy mb-1">{q.q}</p>
-                    <p className={`text-xs ${correct ? 'text-teal' : 'text-red-500'}`}>
-                      {correct ? 'â Correct' : `â Incorrect â correct answer: ${q.opts[q.correct]}`}
-                    </p>
-                    <p className="text-navy/50 text-xs mt-1 italic">{q.expl}</p>
+                  <div key={qi} className={`rounded-2xl border overflow-hidden text-sm ${isCorrect ? 'border-teal/30' : 'border-red-200'}`}>
+                    <div className={`px-5 py-3 flex items-center gap-2 ${isCorrect ? 'bg-teal/10' : 'bg-red-50'}`}>
+                      <span className={`text-base ${isCorrect ? 'text-teal' : 'text-red-500'}`}>{isCorrect ? '\u2713' : '\u2717'}</span>
+                      <p className="font-semibold text-navy text-sm flex-1">
+                        <span className="text-navy/40 mr-1">Q{qi + 1}.</span> {q.q}
+                      </p>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${isCorrect ? 'bg-teal/20 text-teal' : 'bg-red-100 text-red-600'}`}>
+                        {isCorrect ? 'Correct' : 'Incorrect'}
+                      </span>
+                    </div>
+                    <div className="px-5 py-3 space-y-2 bg-white">
+                      {q.opts.map((opt, oi) => {
+                        const isThisCorrect = oi === q.correct
+                        const isThisSelected = oi === selected[qi]
+                        const isWrongPick = isThisSelected && !isThisCorrect
+                        let optStyle = 'border-gray-100 bg-slate text-navy/50'
+                        if (isThisCorrect) optStyle = 'border-green-300 bg-green-50 text-green-800 font-medium'
+                        if (isWrongPick) optStyle = 'border-red-300 bg-red-50 text-red-700 line-through'
+                        return (
+                          <div key={oi} className={`flex items-center gap-3 p-3 rounded-xl border text-sm ${optStyle}`}>
+                            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                              isThisCorrect ? 'bg-green-500 text-white' : isWrongPick ? 'bg-red-400 text-white' : 'bg-gray-100 text-navy/30'
+                            }`}>
+                              {isThisCorrect ? '\u2713' : isWrongPick ? '\u2717' : ['A','B','C','D'][oi]}
+                            </span>
+                            <span>{opt}</span>
+                            {isThisCorrect && !isCorrect && <span className="ml-auto text-xs font-bold text-green-600 flex-shrink-0">Correct Answer</span>}
+                            {isWrongPick && <span className="ml-auto text-xs font-bold text-red-500 flex-shrink-0">Your Answer</span>}
+                            {isThisCorrect && isCorrect && <span className="ml-auto text-xs font-bold text-green-600 flex-shrink-0">Your Answer \u2713</span>}
+                          </div>
+                        )
+                      })}
+                    </div>
+                    {q.expl && (
+                      <div className={`px-5 py-3 border-t text-xs leading-relaxed ${isCorrect ? 'bg-teal/5 border-teal/10 text-teal' : 'bg-amber-50 border-amber-100 text-amber-800'}`}>
+                        <span className="font-semibold">{isCorrect ? 'Well done!' : 'Explanation:'}</span> {q.expl}
+                      </div>
+                    )}
                   </div>
                 )
               })}
