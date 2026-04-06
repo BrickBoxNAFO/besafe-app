@@ -15,10 +15,12 @@ export async function middleware(request) {
   const region = countryToRegion(country)
 
   // Set the region as a cookie so client components can read it
+  // httpOnly must be false so PricingProvider can read it via document.cookie
   supabaseResponse.cookies.set('pricing_region', region, {
     path: '/',
     maxAge: 60 * 60 * 24, // 24 hours
     sameSite: 'lax',
+    httpOnly: false,
   })
 
   // Protect routes
