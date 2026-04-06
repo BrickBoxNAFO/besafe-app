@@ -153,7 +153,7 @@ export default function PackagesPage() {
               </div>
               <div className="sm:text-right flex-shrink-0">
                 <div className="font-serif text-3xl text-white font-bold mb-1">{packagePrice('bundle')}</div>
-                <div className="text-teal text-xs font-semibold">Save {format(bundleSavings)}</div>
+                <div className="text-teal text-xs font-semibold">Can save up to {format(bundleSavings)}</div>
                 <div className="text-white/40 text-xs">one-time payment</div>
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function PackagesPage() {
               </div>
               <div className="sm:text-right flex-shrink-0">
                 <div className="font-serif text-3xl text-navy font-bold mb-1">{packagePrice('complete')}</div>
-                <div className="text-teal text-xs font-semibold">Save {format(completeSavings)}</div>
+                <div className="text-teal text-xs font-semibold">Can save up to {format(completeSavings)}</div>
                 <div className="text-navy/40 text-xs">one-time payment</div>
               </div>
             </div>
