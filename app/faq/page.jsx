@@ -38,7 +38,7 @@ const faqSections = [
       },
       {
         q: 'What is the Family Safety Bundle?',
-        a: 'The Family Safety Bundle costs $99.99 and lets you choose any 5 packages for up to 5 family members. Each member gets their own account with individual progress tracking. It saves you up to $49.96 compared to buying packages separately.'
+        a: 'The Family Safety Bundle lets you choose any 5 packages for up to 5 family members. Each member gets their own account with individual progress tracking. Visit our Packages page for current pricing.'
       },
       {
         q: 'How do I assign packages to family members after buying the bundle?',
