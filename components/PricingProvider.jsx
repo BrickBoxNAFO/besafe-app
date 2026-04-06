@@ -30,6 +30,8 @@ export function PricingProvider({ children, initialRegion }) {
     prices: pricing.prices,
     bundleWas: pricing.bundleWas,
     bundleSavings: pricing.bundleSavings,
+    completeWas: pricing.completeWas,
+    completeSavings: pricing.completeSavings,
     /** Format a number as a price string for the current region */
     format: (amount) => formatPrice(amount, regionCode),
     /** Get formatted price for a specific package */
@@ -50,12 +52,13 @@ export function usePricing() {
   const ctx = useContext(PricingContext)
   if (!ctx) {
     // Fallback for components rendered outside provider (shouldn't happen, but safe)
+    const fallback = getRegionPricing('US')
     return {
       regionCode: 'US',
-      ...getRegionPricing('US'),
+      ...fallback,
       format: (amount) => formatPrice(amount, 'US'),
       packagePrice: (packageId) => {
-        const p = getRegionPricing('US').prices[packageId]
+        const p = fallback.prices[packageId]
         return p != null ? formatPrice(p, 'US') : null
       },
     }

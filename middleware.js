@@ -6,22 +6,19 @@ export async function middleware(request) {
   const { supabase, supabaseResponse } = createClient(request)
 
   // Refresh session keeps the user logged in
-  // IMPORTANT: this must happen BEFORE setting custom cookies,
-  // because getUser() may reassign supabaseResponse internally
   const { data: { user } } = await supabase.auth.getUser()
 
   // ── Geo-detection: resolve visitor country to pricing region ──
   const country = request.headers.get('x-vercel-ip-country') || request.geo?.country || ''
   const region = countryToRegion(country)
 
-  // Set the region as a cookie so client components can read it
-  // httpOnly must be false so PricingProvider can read it via document.cookie
-  supabaseResponse.cookies.set('pricing_region', region, {
-    path: '/',
-    maxAge: 60 * 60 * 24, // 24 hours
-    sameSite: 'lax',
-    httpOnly: false,
-  })
+  // Set the region cookie using raw Set-Cookie header directly.
+  // This bypasses NextResponse.cookies which can be unreliable with
+  // Supabase middleware's response reassignment and httpOnly defaults.
+  supabaseResponse.headers.append(
+    'Set-Cookie',
+    `pricing_region=${region}; Path=/; Max-Age=86400; SameSite=Lax`
+  )
 
   // Protect routes
   const protectedPaths = ['/dashboard', '/account', '/library', '/course', '/lesson']

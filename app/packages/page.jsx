@@ -23,7 +23,7 @@ const PKG_GRADIENTS = {
 }
 
 export default function PackagesPage() {
-  const { packagePrice, format, bundleWas, bundleSavings } = usePricing()
+  const { packagePrice, format, bundleWas, bundleSavings, completeWas, completeSavings } = usePricing()
   const earlyYearsCourses = COURSES.filter(c => c.subPkg === 'growing-early')
   const juniorCourses    = COURSES.filter(c => c.subPkg === 'growing-junior')
   const otherPackages    = PACKAGES.filter(p => p.id !== 'growing')
@@ -171,6 +171,39 @@ export default function PackagesPage() {
               </div>
             </div>
             <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
+          </div>
+        </div>
+
+        {/* Complete Library */}
+        <div id="complete" className="bg-gradient-to-br from-teal/10 to-navy/5 rounded-2xl border-2 border-teal/30 overflow-hidden relative">
+          <div className="p-8">
+            <div className="flex flex-col sm:flex-row items-start gap-5 mb-6">
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-teal/20">📚</div>
+              <div className="flex-1">
+                <div className="chip bg-navy/10 text-navy border border-navy/20 mb-2 text-xs">Everything Included</div>
+                <h2 className="font-serif text-2xl text-navy mb-1">Complete Library</h2>
+                <p className="text-navy/60 text-sm">Every single package. All 7 courses. One purchase, total coverage for your whole family.</p>
+              </div>
+              <div className="sm:text-right flex-shrink-0">
+                <div className="font-serif text-3xl text-navy font-bold mb-1">{packagePrice('complete')}</div>
+                <div className="text-teal text-xs font-semibold">Save {format(completeSavings)}</div>
+                <div className="text-navy/40 text-xs">one-time payment</div>
+              </div>
+            </div>
+            <p className="text-navy/50 text-sm leading-relaxed mb-6">Why choose when you can have it all? The Complete Library gives you every package we offer — from Growing Minds for your little ones, through Street Smart and Nest Breaking for your teens and young adults, Roaming Free for travellers, Aging Wisdom for your parents, and Family Anchor for you. Assign courses to anyone in your family. Everyone gets their own dashboard and progress tracking. One purchase, seven packages, total peace of mind.</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6">
+              <div className="text-center p-3 rounded-xl bg-white border border-gray-100">
+                <div className="text-lg mb-1">🌱</div>
+                <div className="text-xs font-medium text-navy/70">Growing Minds</div>
+              </div>
+              {PACKAGES.filter(p => p.id !== 'growing').map(pkg => (
+                <div key={pkg.id} className="text-center p-3 rounded-xl bg-white border border-gray-100">
+                  <div className="text-lg mb-1">{pkg.emoji}</div>
+                  <div className="text-xs font-medium text-navy/70">{pkg.name}</div>
+                </div>
+              ))}
+            </div>
+            <div className="w-full bg-navy/10 rounded-xl px-6 py-3 text-center"><span className="text-navy/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
           </div>
         </div>
 

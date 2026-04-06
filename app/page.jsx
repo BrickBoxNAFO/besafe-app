@@ -7,7 +7,7 @@ import NewsletterBanner from '@/components/NewsletterBanner'
 import { usePricing } from '@/components/PricingProvider'
 
 export default function HomePage() {
-  const { packagePrice, format, bundleWas, bundleSavings } = usePricing()
+  const { packagePrice, format, bundleWas, bundleSavings, completeWas, completeSavings } = usePricing()
   return (
     <div className="page-enter">
 
@@ -75,6 +75,21 @@ export default function HomePage() {
                 </div>
                 <Link href="/packages#bundle" className="btn-primary whitespace-nowrap">Get the Bundle &rarr;</Link>
               </div>
+            </div>
+          </div>
+          {/* Complete Library */}
+          <div className="md:col-span-2 lg:col-span-3 bg-gradient-to-br from-teal/10 to-navy/5 rounded-2xl p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 border-2 border-teal/30">
+            <div>
+              <div className="chip bg-navy/10 text-navy border border-navy/20 mb-3">Everything Included</div>
+              <h3 className="font-serif text-3xl text-navy mb-2">Complete Library</h3>
+              <p className="text-navy/60 max-w-lg">All 7 packages. Every course, every lesson. Total coverage for your whole family.</p>
+            </div>
+            <div className="flex flex-col items-start lg:items-end gap-3">
+              <div className="flex items-baseline gap-2">
+                <span className="font-serif text-4xl text-navy font-bold">{packagePrice('complete')}</span>
+                <span className="text-navy/40 line-through text-lg">{format(completeWas)}</span>
+              </div>
+              <Link href="/packages#complete" className="btn-primary whitespace-nowrap">Get Everything &rarr;</Link>
             </div>
           </div>
         </div>
