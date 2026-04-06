@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { PACKAGES } from '@/lib/data'
 import NewsletterSignup from '@/components/NewsletterSignup'
+import CookieSettingsButton from '@/components/CookieSettingsButton'
 
 export default function Footer() {
   return (
@@ -37,6 +38,7 @@ export default function Footer() {
               {[['/terms','Terms & Conditions'],['/privacy','Privacy Policy'],['/refunds','Refund Policy'],['/cookies','Cookie Policy'],['/safeguarding','Safeguarding Policy'],['/coppa','COPPA Notice']].map(([href,label]) => (
                 <li key={href}><Link href={href} className="text-white/60 text-sm hover:text-white transition-colors">{label}</Link></li>
               ))}
+              <li><CookieSettingsButton /></li>
             </ul>
           </div>
         </div>
@@ -44,7 +46,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/20 text-xs">&copy; {new Date().getFullYear()} HomeSafeEducation. All rights reserved.</p>
           <div className="flex items-center gap-4 text-white/30 text-xs">
-            <span>🔒 SSL Secured</span><span>&middot;</span><span>💳 Stripe</span><span>&middot;</span><span>🛡️ GDPR</span>
+            <span>🔒 SSL Secured</span><span>&middot;</span><span>💳 Stripe</span><span>&middot;</span><span>🛡️ GDPR &amp; CCPA Compliant</span>
           </div>
         </div>
       </div>
