@@ -1,6 +1,5 @@
 import { getPostBySlug, getAllPosts } from '@/lib/posts-all'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 export async function generateStaticParams() {
   return getAllPosts().map(post => ({ slug: post.slug }))
 }
@@ -15,18 +14,12 @@ export default function BlogPost({ params }) {
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="max-w-3xl mx-auto px-4 py-16">
-        <div className="mb-8">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-[#0EA5A0] hover:underline text-sm font-medium">&larr; Back to blog</Link>
-        </div>
         <div className="flex items-center gap-3 mb-5">
           <span className="text-xs font-semibold uppercase tracking-wide text-[#0EA5A0] bg-teal-50 px-3 py-1 rounded-full">{post.category}</span>
           <span className="text-sm text-gray-400">{post.readTime} min read &middot; {post.date}</span>
         </div>
         <h1 className="text-4xl font-bold text-[#0B1F3A] mb-10 leading-tight">{post.title}</h1>
         <div className="prose prose-lg max-w-none prose-headings:text-[#0B1F3A] prose-headings:font-bold prose-a:text-[#0EA5A0] prose-p:text-gray-700" dangerouslySetInnerHTML={{ __html: post.content }} />
-        <div className="mt-16 pt-8 border-t border-gray-200">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-[#0EA5A0] hover:underline font-medium">&larr; Back to all articles</Link>
-        </div>
       </div>
     </main>
   )
