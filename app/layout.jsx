@@ -3,6 +3,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import CookieConsent from '@/components/CookieConsent'
 import { PricingProvider } from '@/components/PricingProvider'
+import { getServerRegion } from '@/lib/get-region'
 
 export const metadata = {
   title: 'HomeSafeEducation  - Real-World Safety Education, Delivered Online',
@@ -17,10 +18,12 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const region = getServerRegion()
+
   return (
     <html lang="en">
       <body>
-        <PricingProvider>
+        <PricingProvider initialRegion={region}>
           <Nav />
           <main>{children}</main>
           <Footer />
