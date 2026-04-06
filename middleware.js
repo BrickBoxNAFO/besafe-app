@@ -5,6 +5,11 @@ import { countryToRegion } from '@/lib/pricing'
 export async function middleware(request) {
   const { supabase, supabaseResponse } = createClient(request)
 
+  // Refresh session keeps the user logged in
+  // IMPORTANT: this must happen BEFORE setting custom cookies,
+  // because getUser() may reassign supabaseResponse internally
+  const { data: { user } } = await supabase.auth.getUser()
+
   // ── Geo-detection: resolve visitor country to pricing region ──
   const country = request.headers.get('x-vercel-ip-country') || request.geo?.country || ''
   const region = countryToRegion(country)
@@ -15,9 +20,6 @@ export async function middleware(request) {
     maxAge: 60 * 60 * 24, // 24 hours
     sameSite: 'lax',
   })
-
-  // Refresh session keeps the user logged in
-  const { data: { user } } = await supabase.auth.getUser()
 
   // Protect routes
   const protectedPaths = ['/dashboard', '/account', '/library', '/course', '/lesson']
