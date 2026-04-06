@@ -303,14 +303,14 @@ export default function LessonPage() {
 
             {/* Age-appropriate notice for Growing Minds */}
             {isGrowingMind && lessonIndex === 0 && (
-              <div className="mb-6 flex gap-3 p-4 rounded-xl border border-amber-200 bg-amber-50/60">
-                <span className="text-lg mt-0.5 flex-shrink-0">{'\u26A0\uFE0F'}</span>
+              <div className="mb-6 flex gap-3 p-5 rounded-xl border border-amber-200 bg-amber-50/60">
+                <span className="text-2xl mt-0.5 flex-shrink-0">{isGrowingEarly ? '\uD83D\uDC68\u200D\uD83D\uDC67' : '\u26A0\uFE0F'}</span>
                 <div>
-                  <p className="text-sm font-semibold text-amber-800 mb-0.5">Age-Appropriate Content</p>
-                  <p className="text-sm text-amber-700 leading-relaxed">
+                  <p className="text-sm font-bold text-amber-900 mb-1">{isGrowingEarly ? 'Guided Learning \u2014 Complete Together With Your Child' : 'Age-Appropriate Content'}</p>
+                  <p className="text-sm text-amber-800 leading-relaxed">
                     {isGrowingEarly
-                      ? 'This course is designed for children aged 4\u20137 and should be completed together with a parent or carer.'
-                      : 'This course is designed for children aged 8\u201311. It covers topics in greater depth than the Early Years version.'}
+                      ? 'This course is designed for children aged 4\u20137 and must be completed together with a parent or carer. The content uses simple, gentle language intended to be read aloud. Please sit with your child as you work through each lesson together.'
+                      : 'This course is designed for children aged 8\u201311. It covers topics in greater depth than the Early Years version. Younger children should not access this content independently.'}
                   </p>
                 </div>
               </div>

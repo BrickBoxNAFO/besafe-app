@@ -71,12 +71,16 @@ export default function PackagesPage() {
 
           <div className="p-6 grid md:grid-cols-2 gap-4">
             <div className="rounded-xl border border-green-100 bg-green-50/40 p-5">
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-3 mb-2">
                 <span className="text-2xl">🌱</span>
                 <div>
                   <h3 className="font-semibold text-navy text-base">Early Years</h3>
                   <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white inline-block" style={{background:'#16A34A'}}>Ages 4-7</span>
                 </div>
+              </div>
+              <div className="flex items-start gap-2 bg-amber-50 border border-amber-200/60 rounded-lg px-3 py-2 mb-3">
+                <span className="text-amber-500 text-sm mt-0.5">👨‍👧</span>
+                <p className="text-xs text-amber-800 leading-relaxed"><strong>Guided learning</strong> — designed to be completed together with a parent or carer. Simple language written to be read aloud.</p>
               </div>
               <div className="space-y-1.5">
                 {earlyYearsCourses.map(c => (
