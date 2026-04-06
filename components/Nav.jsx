@@ -76,7 +76,7 @@ export default function Nav() {
           <div className="hidden md:flex items-center gap-3">
             {user ? (
               <>
-                {hasCourses && <Link href="/library" className={"text-sm font-semibold transition-colors px-3 py-2 rounded-lg " + (pathname === '/library' ? 'bg-teal/10 text-teal' : 'text-teal hover:bg-teal/5')}>📖 My Courses</Link>}
+                {hasCourses && <Link href="/library" className="text-sm font-semibold px-4 py-2 rounded-lg text-white transition-opacity hover:opacity-90" style={{ background: '#E8703A' }}>My Courses</Link>}
                 <Link href={dashboardHref} className="btn-primary text-sm py-2 px-4">Dashboard</Link>
                 <button onClick={handleSignOut} className="text-sm font-medium text-navy/50 hover:text-navy">Sign out</button>
               </>
@@ -97,7 +97,7 @@ export default function Nav() {
             <div className="mt-3 space-y-2">
               {user ? (
                 <>
-                  {hasCourses && <Link href="/library" className="block text-center text-sm font-semibold text-teal bg-teal/10 py-2.5 rounded-lg" onClick={() => setMobileOpen(false)}>📖 My Courses</Link>}
+                  {hasCourses && <Link href="/library" className="block text-center text-sm font-semibold text-white py-2.5 rounded-lg" style={{ background: '#E8703A' }} onClick={() => setMobileOpen(false)}>My Courses</Link>}
                   <div className="flex gap-3">
                     <Link href={dashboardHref} className="btn-primary text-sm py-2 flex-1 text-center" onClick={() => setMobileOpen(false)}>Dashboard</Link>
                     <button onClick={() => { handleSignOut(); setMobileOpen(false) }} className="btn-ghost text-sm py-2 flex-1">Sign out</button>

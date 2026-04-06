@@ -4,9 +4,7 @@ import { createClient } from '@/utils/supabase/server'
 import { COURSES, PACKAGES } from '@/lib/data'
 import RestartCourseButton from '@/components/RestartCourseButton'
 
-export async function generateStaticParams() {
-  return COURSES.map(c => ({ id: c.id }))
-}
+export const dynamic = 'force-dynamic'
 
 export default async function CoursePage({ params }) {
   const course = COURSES.find(c => c.id === params.id)
@@ -19,14 +17,16 @@ export default async function CoursePage({ params }) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login?redirect=/course/' + params.id)
 
-  const { data: purchase } = await supabase
+  // Check if user owns this specific package, or a bundle/complete that includes it
+  const { data: allPurchases } = await supabase
     .from('purchases')
-    .select('id')
+    .select('package_id')
     .eq('user_id', user.id)
-    .eq('package_id', purchasePkgId)
-    .maybeSingle()
 
-  if (!purchase) redirect('/packages#' + purchasePkgId)
+  const ownedIds = (allPurchases || []).map(p => p.package_id)
+  const hasAccess = ownedIds.includes(purchasePkgId) || ownedIds.includes('bundle') || ownedIds.includes('complete')
+
+  if (!hasAccess) redirect('/packages#' + purchasePkgId)
 
   const { data: progressRows } = await supabase
     .from('progress')
@@ -87,7 +87,7 @@ export default async function CoursePage({ params }) {
                       {passed ? String.fromCharCode(10003) : locked ? String.fromCharCode(128274) : idx + 1}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className={'font-medium text-sm ' + (locked ? 'text-navy/30' : 'text-navy')}>{lesson}</p>
+                      <p className={'font-medium text-sm ' + (locked ? 'text-navy/30' : 'text-navy')}>{typeof lesson === 'string' ? lesson : lesson?.title || 'Untitled Lesson'}</p>
                       {attempted && !locked && (
                         <p className="text-xs mt-0.5" style={{ color: passed ? '#0EA5A0' : '#EF4444' }}>
                           {passed ? 'Passed - ' + prog.score + '/5' : 'Score: ' + prog.score + '/5 - try again'}

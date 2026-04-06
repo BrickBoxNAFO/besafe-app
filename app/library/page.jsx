@@ -32,7 +32,7 @@ export default async function LibraryPage() {
         <div className="max-w-6xl mx-auto px-6">
           {PACKAGES.map(pkg => {
             const pkgCourses = COURSES.filter(c => c.pkg === pkg.id)
-            const owned = purchases.includes(pkg.id)
+            const owned = purchases.includes(pkg.id) || purchases.includes('bundle') || purchases.includes('complete')
             return (
               <div key={pkg.id} className="mb-12">
                 <div className="flex items-center gap-3 mb-6">
