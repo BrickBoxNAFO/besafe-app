@@ -119,6 +119,24 @@ export default function LessonPage() {
   const totalLessons = course?.lessons?.length || 0
   const nextLessonIdx = lessonIndex + 1 < totalLessons ? lessonIndex + 1 : null
 
+  // Course images for Growing Minds
+  const courseImageMap = {
+    'c26': '/images/courses/early-road-safety.jpg',
+    'c27': '/images/courses/early-anti-bullying.jpg',
+    'c28': '/images/courses/early-online-safety.jpg',
+    'c29': '/images/courses/early-stranger-danger.jpg',
+    'c30': '/images/courses/early-body-safety.jpg',
+    'c1': '/images/courses/junior-road-safety.jpg',
+    'c2': '/images/courses/junior-anti-bullying.jpg',
+    'c3': '/images/courses/junior-online-safety.jpg',
+    'c4': '/images/courses/junior-stranger-danger.jpg',
+    'c5': '/images/courses/junior-body-safety.jpg',
+  }
+  const courseImage = course ? courseImageMap[course.id] : null
+  const isGrowingEarly = course?.subPkg === 'growing-early'
+  const isGrowingJunior = course?.subPkg === 'growing-junior'
+  const isGrowingMind = isGrowingEarly || isGrowingJunior
+
   const [phase, setPhase] = useState('content') // 'content' | 'quiz' | 'result'
   const [selected, setSelected] = useState({}) // { questionIndex: optionIndex }
   const [submitted, setSubmitted] = useState(false)
@@ -191,7 +209,7 @@ export default function LessonPage() {
     setPhase('result')
   }
 
-  // Render a content paragraph with formatting
+  // Render a content paragraph with rich formatting
   const renderParagraph = (text, idx) => {
     if (!text || text.trim() === '') return null
 
@@ -203,24 +221,26 @@ export default function LessonPage() {
 
       if (bullets.length > 0) {
         return (
-          <div key={idx} className="space-y-2">
-            <p className="text-navy/70 text-[15px] leading-relaxed">{intro}</p>
-            <ul className="space-y-1.5 pl-4">
+          <div key={idx}>
+            <p className="text-navy/80 text-base leading-[1.85] mb-3">{intro}</p>
+            <div className="rounded-xl border border-gray-100 bg-slate/50 p-4 space-y-2">
               {bullets.map((b, bi) => (
-                <li key={bi} className="flex gap-2 text-navy/70 text-[15px] leading-relaxed">
-                  <span className="text-navy/30 mt-1 flex-shrink-0">&bull;</span>
+                <div key={bi} className="flex gap-3 text-navy/75 text-[15px] leading-relaxed">
+                  <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5" style={{ background: courseColor + '18', color: courseColor }}>
+                    {bi + 1}
+                  </span>
                   <span>{b.replace(/^-\s*/, '')}</span>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         )
       }
       // Multi-line without bullets
       return (
-        <div key={idx} className="space-y-2">
+        <div key={idx} className="space-y-3">
           {lines.map((line, li) => (
-            <p key={li} className="text-navy/70 text-[15px] leading-relaxed">{line}</p>
+            <p key={li} className="text-navy/80 text-base leading-[1.85]">{line}</p>
           ))}
         </div>
       )
@@ -228,7 +248,7 @@ export default function LessonPage() {
 
     // Regular paragraph
     return (
-      <p key={idx} className="text-navy/70 text-[15px] leading-relaxed">{text}</p>
+      <p key={idx} className="text-navy/80 text-base leading-[1.85]">{text}</p>
     )
   }
 
@@ -256,38 +276,76 @@ export default function LessonPage() {
         {/* ===== CONTENT PHASE ===== */}
         {phase === 'content' && (
           <div>
-            <div className="mb-6">
-              <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: courseColor }}>
-                Lesson {lessonIndex + 1} of {totalLessons}
-              </span>
-              <h1 className="font-serif text-3xl text-navy mt-1">{lessonTitle}</h1>
+            {/* Lesson header with coloured accent */}
+            <div className="mb-8">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="h-1 w-8 rounded-full" style={{ background: courseColor }} />
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: courseColor }}>
+                  Lesson {lessonIndex + 1} of {totalLessons}
+                </span>
+              </div>
+              <h1 className="font-serif text-4xl text-navy leading-tight">{lessonTitle}</h1>
+              {pkg && (
+                <p className="text-navy/40 text-sm mt-2">{course.emoji} {course.title} &middot; {pkg.name}</p>
+              )}
             </div>
 
-            {/* Lesson content */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-8 mb-6">
-              <div className="space-y-4">
-                {paragraphs.map((text, idx) => renderParagraph(text, idx))}
+            {/* Course illustration for Growing Minds */}
+            {courseImage && lessonIndex === 0 && (
+              <div className="mb-8 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <img
+                  src={courseImage}
+                  alt={'Illustration for ' + course.title}
+                  className="w-full h-auto"
+                />
               </div>
+            )}
 
-              {/* Key Takeaways */}
-              {keyTakeaways.length > 0 && (
-                <div className="mt-8 pt-6 border-t border-gray-100">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: courseColor + '20' }}>
-                      <svg className="w-3.5 h-3.5" fill="none" stroke={courseColor} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                    </div>
-                    <span className="text-sm font-bold text-navy">Key Takeaways</span>
-                  </div>
-                  <ul className="space-y-2">
-                    {keyTakeaways.map((t, i) => (
-                      <li key={i} className="flex gap-3 text-sm text-navy/70 leading-relaxed">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: courseColor }} />
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
+            {/* Age-appropriate notice for Growing Minds */}
+            {isGrowingMind && lessonIndex === 0 && (
+              <div className="mb-6 flex gap-3 p-4 rounded-xl border border-amber-200 bg-amber-50/60">
+                <span className="text-lg mt-0.5 flex-shrink-0">{'\u26A0\uFE0F'}</span>
+                <div>
+                  <p className="text-sm font-semibold text-amber-800 mb-0.5">Age-Appropriate Content</p>
+                  <p className="text-sm text-amber-700 leading-relaxed">
+                    {isGrowingEarly
+                      ? 'This course is designed for children aged 4\u20137 and should be completed together with a parent or carer.'
+                      : 'This course is designed for children aged 8\u201311. It covers topics in greater depth than the Early Years version.'}
+                  </p>
                 </div>
-              )}
+              </div>
+            )}
+
+            {/* Lesson content card */}
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-6">
+              {/* Coloured top accent bar */}
+              <div className="h-1" style={{ background: 'linear-gradient(to right, ' + courseColor + ', ' + courseColor + '60)' }} />
+
+              <div className="p-8 md:p-10">
+                <div className="space-y-5">
+                  {paragraphs.map((text, idx) => renderParagraph(text, idx))}
+                </div>
+
+                {/* Key Takeaways */}
+                {keyTakeaways.length > 0 && (
+                  <div className="mt-10 rounded-xl p-6" style={{ background: courseColor + '08', border: '1px solid ' + courseColor + '20' }}>
+                    <div className="flex items-center gap-2.5 mb-4">
+                      <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: courseColor + '20' }}>
+                        <svg className="w-4 h-4" fill="none" stroke={courseColor} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className="text-sm font-bold text-navy">Key Takeaways</span>
+                    </div>
+                    <ul className="space-y-3">
+                      {keyTakeaways.map((t, i) => (
+                        <li key={i} className="flex gap-3 text-sm text-navy/70 leading-relaxed">
+                          <span className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ background: courseColor }} />
+                          <span>{t}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Previous progress notice */}
@@ -302,11 +360,10 @@ export default function LessonPage() {
             <div className="flex items-center justify-between">
               <div />
               {questions.length > 0 ? (
-                <button onClick={() => { setPhase('quiz'); window.scrollTo(0, 0) }} className="btn-primary">
+                <button onClick={() => { setPhase('quiz'); window.scrollTo(0, 0) }} className="btn-primary text-base py-3.5 px-8">
                   Take the Quiz ({questions.length} questions)
                 </button>
               ) : (
-                // No quiz - just mark as complete and move on
                 <div className="flex gap-3">
                   {nextLessonIdx !== null ? (
                     <Link href={'/lesson/' + course.id + '/' + nextLessonIdx} className="btn-primary">
