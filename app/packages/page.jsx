@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { PACKAGES, COURSES } from '@/lib/data'
 import NewsletterBanner from '@/components/NewsletterBanner'
+import { usePricing } from '@/components/PricingProvider'
 
 const EMOTIONAL_DESCRIPTIONS = {
   street: "The teenage years move fast. New friendships, first freedoms, social media, peer pressure - the world opens up and so do the risks. Street Smart gives young people the tools to navigate it all with confidence, not fear. Because the best protection you can give a teenager is the knowledge to protect themselves.",
@@ -22,6 +23,7 @@ const PKG_GRADIENTS = {
 }
 
 export default function PackagesPage() {
+  const { packagePrice, format, bundleWas, bundleSavings } = usePricing()
   const earlyYearsCourses = COURSES.filter(c => c.subPkg === 'growing-early')
   const juniorCourses    = COURSES.filter(c => c.subPkg === 'growing-junior')
   const otherPackages    = PACKAGES.filter(p => p.id !== 'growing')
@@ -53,7 +55,7 @@ export default function PackagesPage() {
                 </div>
               </div>
               <div className="text-right">
-                <div className="font-serif text-3xl text-navy font-bold">$29.99</div>
+                <div className="font-serif text-3xl text-navy font-bold">{packagePrice('growing')}</div>
                 <div className="text-green-600 text-xs font-semibold">Both age groups included</div>
                 <div className="text-navy/40 text-xs">one-time payment</div>
               </div>
@@ -116,7 +118,7 @@ export default function PackagesPage() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-serif text-3xl text-navy font-bold">$29.99</div>
+                    <div className="font-serif text-3xl text-navy font-bold">{packagePrice(pkg.id)}</div>
                     <div className="text-navy/40 text-xs">one-time payment</div>
                   </div>
                 </div>
@@ -150,8 +152,8 @@ export default function PackagesPage() {
                 <p className="text-white/60 text-sm">Choose any 5 packages. Buy for yourself and gift courses to the people you love.</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
-                <div className="font-serif text-3xl text-white font-bold mb-1">$99.99</div>
-                <div className="text-teal text-xs font-semibold">Save $49.96</div>
+                <div className="font-serif text-3xl text-white font-bold mb-1">{packagePrice('bundle')}</div>
+                <div className="text-teal text-xs font-semibold">Save {format(bundleSavings)}</div>
                 <div className="text-white/40 text-xs">one-time payment</div>
               </div>
             </div>

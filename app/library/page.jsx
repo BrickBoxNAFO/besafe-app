@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import { createClient } from '@/utils/supabase/server'
 import { PACKAGES, COURSES } from '@/lib/data'
+import { getServerRegion } from '@/lib/get-region'
+import { getPackagePrice } from '@/lib/pricing'
 
 export default async function LibraryPage() {
+  const regionCode = getServerRegion()
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -56,7 +59,7 @@ export default async function LibraryPage() {
                         </Link>
                       ) : (
                         <Link href={`/packages#${pkg.id}`} className="text-xs font-semibold px-3 py-1.5 rounded-lg border text-navy/50 border-navy/20 hover:bg-navy/5 transition-colors">
-                          Unlock for $29.99
+                          Unlock for {getPackagePrice(pkg.id, regionCode)}
                         </Link>
                       )}
                     </div>

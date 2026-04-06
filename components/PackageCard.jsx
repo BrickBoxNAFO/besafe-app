@@ -1,8 +1,10 @@
 'use client'
 import Link from 'next/link'
 import { COURSES } from '@/lib/data'
+import { usePricing } from '@/components/PricingProvider'
 
 export default function PackageCard({ pkg, owned }) {
+  const { packagePrice } = usePricing()
   // Calculate real counts from actual course data
   const pkgCourses = COURSES.filter(c => c.pkg === pkg.id)
   const subjects = pkgCourses.length
@@ -40,7 +42,7 @@ export default function PackageCard({ pkg, owned }) {
         <span className="chip bg-navy/5 text-navy/50 text-xs px-2 py-0.5 rounded-full">{quizQs} quiz Qs</span>
       </div>
       <div className="flex items-center justify-between">
-        <span className="font-bold text-navy text-lg">$29.99</span>
+        <span className="font-bold text-navy text-lg">{packagePrice(pkg.id)}</span>
         <Link href={`/packages#${pkg.id}`} className="text-sm font-semibold px-4 py-2 rounded-xl transition-colors text-white" style={{ background: pkg.color }}>
           {owned ? 'Continue ->' : 'View Package ->'}
         </Link>

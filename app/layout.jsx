@@ -2,6 +2,7 @@ import './globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import CookieConsent from '@/components/CookieConsent'
+import { PricingProvider } from '@/components/PricingProvider'
 
 export const metadata = {
   title: 'HomeSafeEducation  - Real-World Safety Education, Delivered Online',
@@ -19,10 +20,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Nav />
-        <main>{children}</main>
-        <Footer />
-        <CookieConsent />
+        <PricingProvider>
+          <Nav />
+          <main>{children}</main>
+          <Footer />
+          <CookieConsent />
+        </PricingProvider>
       </body>
     </html>
   )

@@ -1,10 +1,13 @@
+'use client'
+
 import Link from 'next/link'
 import PackageCard from '@/components/PackageCard'
 import { PACKAGES } from '@/lib/data'
-
 import NewsletterBanner from '@/components/NewsletterBanner'
+import { usePricing } from '@/components/PricingProvider'
 
 export default function HomePage() {
+  const { packagePrice, format, bundleWas, bundleSavings } = usePricing()
   return (
     <div className="page-enter">
 
@@ -67,8 +70,8 @@ export default function HomePage() {
               </div>
               <div className="relative z-10 flex flex-col items-start lg:items-end gap-3">
                 <div className="flex items-baseline gap-2">
-                  <span className="font-serif text-4xl text-white font-bold">$99.99</span>
-                  <span className="text-white/40 line-through text-lg">$149.95</span>
+                  <span className="font-serif text-4xl text-white font-bold">{packagePrice('bundle')}</span>
+                  <span className="text-white/40 line-through text-lg">{format(bundleWas)}</span>
                 </div>
                 <Link href="/packages#bundle" className="btn-primary whitespace-nowrap">Get the Bundle &rarr;</Link>
               </div>
@@ -99,7 +102,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-8">
             {[
               { n: '01', icon: '🎁', title: 'Choose a Package', body: 'Pick the right package for you, your child, your parent, or anyone you care about. Each one is tailored to a specific age group and life stage.' },
-              { n: '02', icon: '💳', title: 'One-Time Payment', body: 'Pay $29.99 per package or $99.99 for any 5. No subscription, no hidden fees. A small price for safety.' },
+              { n: '02', icon: '💳', title: 'One-Time Payment', body: `Pay from ${packagePrice('growing')} per package or ${packagePrice('bundle')} for any 5. No subscription, no hidden fees. A small price for safety.` },
               { n: '03', icon: '📧', title: 'Gift or Keep', body: 'Enter the recipient\'s email and they get instant access. Or keep it for yourself. Either way, access is forever.' },
               { n: '04', icon: '📖', title: 'Start Learning', body: 'Work through real-world and online safety lessons at your own pace. Every lesson has a quiz to reinforce what you\'ve learned.' },
             ].map(s => (
