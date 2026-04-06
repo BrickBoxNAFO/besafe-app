@@ -17,6 +17,11 @@ export async function POST(request) {
     const { seatId, inviteEmail, memberName, packageId } = await request.json()
     if (!inviteEmail) return NextResponse.json({ error: 'Email is required' }, { status: 400 })
 
+    // Prevent users from inviting themselves
+    if (inviteEmail.toLowerCase() === user.email?.toLowerCase()) {
+      return NextResponse.json({ error: 'You cannot invite yourself. Please enter a different email address.' }, { status: 400 })
+    }
+
     const admin = createAdminClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
     const token = crypto.randomUUID().replace(/-/g, '')
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://homesafeeducation.com'
@@ -33,8 +38,8 @@ export async function POST(request) {
       if (!packageId) return NextResponse.json({ error: 'Package selection is required' }, { status: 400 })
       const { data: existingSeats } = await admin.from('seats').select('id').eq('owner_user_id', user.id)
       if ((existingSeats || []).length >= SEAT_LIMIT) return NextResponse.json({ error: 'You have reached the maximum of 5 seats' }, { status: 400 })
-      const { data: bundlePurchase } = await supabase.from('purchases').select('package_id').eq('user_id', user.id).eq('package_id', 'bundle').maybeSingle()
-      if (!bundlePurchase) return NextResponse.json({ error: 'Bundle purchase not found' }, { status: 403 })
+      const { data: bundlePurchases } = await supabase.from('purchases').select('package_id').eq('user_id', user.id).in('package_id', ['bundle', 'complete'])
+      if (!bundlePurchases || bundlePurchases.length === 0) return NextResponse.json({ error: 'Bundle or Complete Library purchase not found' }, { status: 403 })
       await admin.from('seats').insert({ owner_user_id: user.id, package_id: packageId, invite_email: inviteEmail, invite_token: token, invite_sent_at: new Date().toISOString(), member_name: memberName || null })
     }
 

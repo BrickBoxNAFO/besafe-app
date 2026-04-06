@@ -15,7 +15,7 @@ export default async function FamilyDashboardPage() {
 
   const { data: purchases } = await supabase.from('purchases').select('package_id').eq('user_id', user.id)
   const ownedIds = (purchases || []).map(p => p.package_id)
-  if (!ownedIds.includes('bundle')) redirect('/packages')
+  if (!ownedIds.includes('bundle') && !ownedIds.includes('complete')) redirect('/packages')
 
   const { data: seats } = await admin.from('seats').select('*').eq('owner_user_id', user.id).order('created_at', { ascending: true })
 

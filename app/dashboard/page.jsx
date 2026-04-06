@@ -10,7 +10,7 @@ export default async function DashboardPage() {
 
   const { data: purchaseRows } = await supabase.from('purchases').select('package_id').eq('user_id', user.id)
   const purchases = purchaseRows?.map(p => p.package_id) || []
-  if (purchases.includes('bundle')) redirect('/family')
+  if (purchases.includes('bundle') || purchases.includes('complete')) redirect('/family')
 
   const { data: progressRows } = await supabase.from('progress').select('course_id, lesson_index, passed').eq('user_id', user.id)
   const progressByCourse = {}

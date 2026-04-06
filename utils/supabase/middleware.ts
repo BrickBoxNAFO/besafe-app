@@ -30,5 +30,12 @@ export const createClient = (request: NextRequest) => {
     },
   );
 
-  return { supabase, supabaseResponse }
+  // Return a getter so callers always get the latest response
+  // (setAll may reassign supabaseResponse after getUser() runs)
+  return {
+    supabase,
+    get supabaseResponse() {
+      return supabaseResponse
+    },
+  }
 };
