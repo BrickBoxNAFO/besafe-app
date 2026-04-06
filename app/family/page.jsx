@@ -47,6 +47,7 @@ export default async function FamilyDashboardPage() {
       packageColor: pkg?.color || '#0EA5A0', packagePale: pkg?.pale || '#E6F7F7',
       memberName: seat.member_name, memberEmail: seat.invite_email,
       inviteSent: !!seat.invite_sent_at, accepted: !!seat.accepted_at,
+      isSelf: seat.owner_user_id === seat.member_user_id,
       progressPct, totalLessons, isEmpty: false,
     }
   })
