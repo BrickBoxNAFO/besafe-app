@@ -9,6 +9,7 @@ const BUNDLE_ID = 'bundle'
 export default function Nav() {
   const [user, setUser] = useState(null)
   const [dashboardHref, setDashboardHref] = useState('/dashboard')
+  const [hasCourses, setHasCourses] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
@@ -19,7 +20,8 @@ export default function Nav() {
     try {
       const { data: purchases } = await supabase.from('purchases').select('package_id').eq('user_id', userId)
       const ids = (purchases || []).map(p => p.package_id)
-      setDashboardHref(ids.includes(BUNDLE_ID) ? '/family' : '/dashboard')
+      setHasCourses(ids.length > 0)
+      setDashboardHref((ids.includes(BUNDLE_ID) || ids.includes('complete')) ? '/family' : '/dashboard')
     } catch (e) { setDashboardHref('/dashboard') }
   }
 
@@ -74,6 +76,7 @@ export default function Nav() {
           <div className="hidden md:flex items-center gap-3">
             {user ? (
               <>
+                {hasCourses && <Link href="/library" className={"text-sm font-semibold transition-colors px-3 py-2 rounded-lg " + (pathname === '/library' ? 'bg-teal/10 text-teal' : 'text-teal hover:bg-teal/5')}>📖 My Courses</Link>}
                 <Link href={dashboardHref} className="btn-primary text-sm py-2 px-4">Dashboard</Link>
                 <button onClick={handleSignOut} className="text-sm font-medium text-navy/50 hover:text-navy">Sign out</button>
               </>
@@ -91,17 +94,20 @@ export default function Nav() {
         {mobileOpen && (
           <div className="md:hidden bg-white border-t border-gray-100 px-6 pb-4">
             {links.map(l => (<Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block py-3 text-sm font-medium text-navy/70 border-b border-gray-50 last:border-0">{l.label}</Link>))}
-            <div className="mt-3 flex gap-3">
+            <div className="mt-3 space-y-2">
               {user ? (
                 <>
-                  <Link href={dashboardHref} className="btn-primary text-sm py-2 flex-1 text-center" onClick={() => setMobileOpen(false)}>Dashboard</Link>
-                  <button onClick={() => { handleSignOut(); setMobileOpen(false) }} className="btn-ghost text-sm py-2 flex-1">Sign out</button>
+                  {hasCourses && <Link href="/library" className="block text-center text-sm font-semibold text-teal bg-teal/10 py-2.5 rounded-lg" onClick={() => setMobileOpen(false)}>📖 My Courses</Link>}
+                  <div className="flex gap-3">
+                    <Link href={dashboardHref} className="btn-primary text-sm py-2 flex-1 text-center" onClick={() => setMobileOpen(false)}>Dashboard</Link>
+                    <button onClick={() => { handleSignOut(); setMobileOpen(false) }} className="btn-ghost text-sm py-2 flex-1">Sign out</button>
+                  </div>
                 </>
               ) : (
-                <>
+                <div className="flex gap-3">
                   <Link href="/login" className="btn-ghost text-sm py-2 flex-1 text-center" onClick={() => setMobileOpen(false)}>Sign in</Link>
                   <Link href="/register" className="btn-primary text-sm py-2 flex-1 text-center" onClick={() => setMobileOpen(false)}>Get Started</Link>
-                </>
+                </div>
               )}
             </div>
           </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { PACKAGES, COURSES } from '@/lib/data'
 import NewsletterBanner from '@/components/NewsletterBanner'
@@ -24,6 +25,8 @@ const PKG_GRADIENTS = {
 
 export default function PackagesPage() {
   const { packagePrice, format, bundleWas, bundleSavings, completeWas, completeSavings } = usePricing()
+  const [expanded, setExpanded] = useState({})
+  const toggleExpand = (id) => setExpanded(prev => ({ ...prev, [id]: !prev[id] }))
   const earlyYearsCourses = COURSES.filter(c => c.subPkg === 'growing-early')
   const juniorCourses    = COURSES.filter(c => c.subPkg === 'growing-junior')
   const otherPackages    = PACKAGES.filter(p => p.id !== 'growing')
@@ -96,6 +99,42 @@ export default function PackagesPage() {
               </div>
             </div>
           </div>
+          <div className="px-6 pb-2">
+            <button onClick={() => toggleExpand('growing')} className="w-full flex items-center justify-center gap-2 text-sm font-semibold text-green-700 hover:text-green-800 py-3 transition-colors">
+              <span>{expanded['growing'] ? 'Show less' : 'See more — courses & lessons included'}</span>
+              <svg className={"w-4 h-4 transition-transform duration-300 " + (expanded['growing'] ? 'rotate-180' : '')} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+            </button>
+          </div>
+          {expanded['growing'] && (
+            <div className="px-6 pb-4 animate-fadeIn">
+              <div className="grid md:grid-cols-2 gap-4">
+                {[{ label: 'Early Years (Ages 4–7)', courses: earlyYearsCourses, emoji: '🌱' }, { label: 'Junior (Ages 8–11)', courses: juniorCourses, emoji: '🌿' }].map(group => (
+                  <div key={group.label}>
+                    <h4 className="text-sm font-bold text-navy mb-3 flex items-center gap-2"><span>{group.emoji}</span>{group.label}</h4>
+                    <div className="space-y-3">
+                      {group.courses.map(c => (
+                        <div key={c.id} className="bg-white rounded-lg border border-green-100 p-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-base">{c.emoji}</span>
+                            <span className="text-sm font-semibold text-navy">{c.title}</span>
+                            <span className="ml-auto text-xs text-navy/40 flex-shrink-0">{c.lessons.length} lessons</span>
+                          </div>
+                          <div className="space-y-1 pl-6">
+                            {c.lessons.map((lesson, li) => (
+                              <div key={li} className="text-xs text-navy/50 flex items-center gap-1.5">
+                                <span className="w-1 h-1 rounded-full bg-green-400 flex-shrink-0" />
+                                {lesson.title}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           <div className="px-6 pb-6">
             <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
             <p className="text-center text-xs text-navy/40 mt-2">One payment - 10 courses - Both age groups - Perfect for growing children</p>
@@ -125,7 +164,7 @@ export default function PackagesPage() {
               </div>
               <div className="p-8">
                 <p className="text-navy/60 text-sm leading-relaxed mb-6">{EMOTIONAL_DESCRIPTIONS[pkg.id]}</p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-4">
                   {pkgCourses.map(c => (
                     <div key={c.id} className="text-center p-3 rounded-xl border border-gray-100 bg-slate">
                       <div className="text-lg mb-1">{c.emoji}</div>
@@ -134,6 +173,31 @@ export default function PackagesPage() {
                     </div>
                   ))}
                 </div>
+                <button onClick={() => toggleExpand(pkg.id)} className="w-full flex items-center justify-center gap-2 text-sm font-semibold py-3 mb-4 transition-colors hover:opacity-80" style={{ color: gradient.accent }}>
+                  <span>{expanded[pkg.id] ? 'Show less' : 'See more — courses & lessons included'}</span>
+                  <svg className={"w-4 h-4 transition-transform duration-300 " + (expanded[pkg.id] ? 'rotate-180' : '')} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                {expanded[pkg.id] && (
+                  <div className="mb-6 space-y-3 animate-fadeIn">
+                    {pkgCourses.map(c => (
+                      <div key={c.id} className="rounded-lg border p-4" style={{ borderColor: gradient.borderClr, background: gradient.gradFrom + '40' }}>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-base">{c.emoji}</span>
+                          <span className="text-sm font-semibold text-navy">{c.title}</span>
+                          <span className="ml-auto text-xs text-navy/40 flex-shrink-0">{c.lessons.length} lessons</span>
+                        </div>
+                        <div className="space-y-1 pl-6">
+                          {c.lessons.map((lesson, li) => (
+                            <div key={li} className="text-xs text-navy/50 flex items-center gap-1.5">
+                              <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: gradient.accent }} />
+                              {lesson.title}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
               </div>
             </div>
