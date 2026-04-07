@@ -2,35 +2,53 @@
 
 import Link from 'next/link'
 import NewsletterBanner from '@/components/NewsletterBanner'
+import VideoPlayer from '@/components/VideoPlayer'
+
+// ─── Set this to your Cloudflare R2 video URL once uploaded ───
+const VIDEO_URL = null  // e.g. 'https://pub-xxxxx.r2.dev/homesafe-intro.mp4'
+const VIDEO_POSTER = null // optional thumbnail image URL
 
 export default function HomePage() {
   return (
     <div className="page-enter">
 
-      {/* Hero */}
+      {/* Hero — split layout: text left, video right */}
       <section className="hero-bg noise relative overflow-hidden min-h-screen flex items-center">
-        <div className="max-w-6xl mx-auto px-6 py-24 w-full">
-          <div className="max-w-2xl">
-            <div className="chip bg-teal/15 text-teal border border-teal/25 mb-6">Real-World Safety Education, Delivered Online</div>
-            <h1 className="font-serif text-5xl lg:text-7xl leading-tight mb-6 text-white">
-              Keep Your Family Safe
-              <span className="block italic text-teal mt-1">at Every Stage of Life.</span>
-            </h1>
-            <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-              In a world full of uncertainties, keeping your family safe shouldn&apos;t be complicated or expensive. Whether you&apos;re giving your daughter the tools to stay safe on nights out and navigate university life, teaching your children about personal boundaries, or protecting your elderly parents from sophisticated scams, HomeSafeEducation has you covered. Practical, evidence-based safety courses designed for real life. Seven packages covering every age group from children aged 4 right through to older adults.
-            </p>
-            <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-              Buy for yourself or gift to someone you love. One payment, no subscription, real peace of mind.
-            </p>
-            <div className="flex flex-wrap gap-4 mb-10">
-              <Link href="/packages" className="btn-primary">View All Packages &rarr;</Link>
-              <Link href="/about" className="btn-secondary">Learn More</Link>
+        <div className="max-w-7xl mx-auto px-6 py-24 w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left — text content */}
+            <div>
+              <div className="chip bg-teal/15 text-teal border border-teal/25 mb-6">Real-World Safety Education, Delivered Online</div>
+              <h1 className="font-serif text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6 text-white">
+                Keep Your Family Safe
+                <span className="block italic text-teal mt-1">at Every Stage of Life.</span>
+              </h1>
+              <p className="text-white/70 text-lg leading-relaxed mb-6 max-w-lg">
+                Practical, evidence-based safety courses designed for real life. Seven packages covering every age group from children aged 4 right through to older adults.
+              </p>
+              <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
+                Buy for yourself or gift to someone you love. One payment, no subscription, real peace of mind.
+              </p>
+              <div className="flex flex-wrap gap-4 mb-10">
+                <Link href="/packages" className="btn-primary">View All Packages &rarr;</Link>
+                <Link href="/about" className="btn-secondary">Learn More</Link>
+              </div>
+              <div className="flex flex-wrap gap-6 text-sm text-white/50">
+                {['✓ One-time payment', '✓ 7 Packages, 120 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
+                  <span key={t}>{t}</span>
+                ))}
+              </div>
             </div>
-            <div className="flex flex-wrap gap-6 text-sm text-white/50">
-              {['✓ One-time payment', '✓ 7 Packages, 120 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
-                <span key={t}>{t}</span>
-              ))}
+
+            {/* Right — video player */}
+            <div className="hidden lg:block">
+              <VideoPlayer src={VIDEO_URL} poster={VIDEO_POSTER} />
             </div>
+          </div>
+
+          {/* Mobile video — below text on small screens */}
+          <div className="lg:hidden mt-12">
+            <VideoPlayer src={VIDEO_URL} poster={VIDEO_POSTER} />
           </div>
         </div>
       </section>
