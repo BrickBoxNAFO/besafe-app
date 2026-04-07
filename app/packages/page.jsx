@@ -313,7 +313,7 @@ export default function PackagesPage() {
               <div className="flex-1">
                 <div className="chip bg-navy/10 text-navy border border-navy/20 mb-2 text-xs">Everything Included</div>
                 <h2 className="font-serif text-2xl text-navy mb-1">Complete Library</h2>
-                <p className="text-navy/60 text-sm">7 packages to assign however you choose — keep them, gift them, or combine both. You're not limited to one of each.</p>
+                <p className="text-navy/60 text-sm">7 packages to assign however you choose — keep them or gift them. You're not limited to one of each.</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
                 <div className="font-serif text-3xl text-navy font-bold mb-1">{packagePrice('complete')}</div>
