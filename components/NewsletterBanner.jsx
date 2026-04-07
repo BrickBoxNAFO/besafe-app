@@ -35,12 +35,12 @@ export default function NewsletterBanner() {
       <div className="noise" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-        <span className="chip mb-4">Stay in the Loop</span>
+        <span className="chip mb-4">Free Safety Advice</span>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Don&apos;t Miss Out
+          Stay Safe, Stay Informed
         </h2>
         <p className="text-lg text-white/70 mb-8 max-w-xl mx-auto">
-          Be the first to hear about exclusive offers, new courses, and fresh safety content as we grow. Subscribers get free tips, early access to updates, and news on new material before anyone else. No spam — just the stuff that matters.
+          Practical safety advice and information for families, delivered straight to your inbox. Tips you can use today to keep your loved ones safer. You&apos;ll also be the first to hear about new packages, course updates, and any future offers. No spam — just content that matters.
         </p>
 
         {status === 'success' ? (
