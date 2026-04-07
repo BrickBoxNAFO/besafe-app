@@ -53,6 +53,8 @@ export default function Nav() {
     { href: '/', label: 'Home' },
     { href: '/packages', label: 'Packages' },
     { href: '/about', label: 'About' },
+    { href: '/faq', label: 'FAQ' },
+    { href: '/contact', label: 'Contact' },
   ]
 
   return (

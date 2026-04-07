@@ -1,8 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import PackageCard from '@/components/PackageCard'
-import { PACKAGES } from '@/lib/data'
 import NewsletterBanner from '@/components/NewsletterBanner'
 import { usePricing } from '@/components/PricingProvider'
 
@@ -51,20 +49,60 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Packages */}
+      {/* Packages — Life Stages Teaser */}
       <section className="section-slate py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
             <div className="chip bg-teal/10 text-teal border border-teal/20 mb-4">Our Packages</div>
-            <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Built for Every Age</h2>
+            <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Safety Education for Every Stage of Life</h2>
             <p className="text-navy/60 text-lg max-w-2xl mx-auto">
-              Seven packages covering every age group from 4 to 60+, plus a family bundle for the best value.
+              Seven packages. 33 courses. 120 lessons. From children to older adults, each package is tailored to the real-world risks that matter most at that stage.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PACKAGES.map(p => <PackageCard key={p.id} pkg={p} />)}
-            {/* Bundle */}
-            <div className="md:col-span-2 lg:col-span-3 bg-navy rounded-2xl p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative overflow-hidden">
+
+          {/* Life stages row */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3 mb-8">
+            {[
+              { emoji: '🌱', name: 'Growing Minds', age: 'Ages 4–11', color: '#16A34A' },
+              { emoji: '🛡️', name: 'Street Smart', age: 'Ages 12–15', color: '#7C3AED' },
+              { emoji: '🏠', name: 'Nest Breaking', age: 'Ages 16–18', color: '#2563EB' },
+              { emoji: '✈️', name: 'Roaming Free', age: 'All ages', color: '#EA580C' },
+              { emoji: '🕊️', name: 'Aging Wisdom', age: 'Ages 60+', color: '#E11D48' },
+              { emoji: '👨‍👩‍👧', name: 'Family Anchor', age: 'Parents', color: '#a21caf' },
+              { emoji: '🎵', name: '57 Songs', age: 'Growing Minds', color: '#0EA5A0' },
+            ].map(s => (
+              <Link href="/packages" key={s.name} className="group bg-white rounded-xl border border-gray-100 p-4 text-center hover:border-gray-200 hover:shadow-md transition-all cursor-pointer">
+                <div className="text-2xl mb-2">{s.emoji}</div>
+                <div className="text-sm font-semibold text-navy mb-0.5 group-hover:text-teal transition-colors">{s.name}</div>
+                <div className="text-[11px] font-medium" style={{ color: s.color }}>{s.age}</div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Key selling points */}
+          <div className="grid sm:grid-cols-3 gap-4 mb-10">
+            {[
+              ['💳', 'One-Time Payment', 'No subscriptions. Pay once and get lifetime access to your package.'],
+              ['🎁', 'Gift to Anyone', 'Buy for yourself or gift to a loved one. Each person gets their own account and dashboard.'],
+              ['📊', 'Track Progress', 'Every lesson completed, every quiz passed — all tracked on your personal dashboard.'],
+            ].map(([icon, title, body]) => (
+              <div key={title} className="bg-white rounded-xl border border-gray-100 p-5 text-center">
+                <div className="text-2xl mb-2">{icon}</div>
+                <div className="font-semibold text-navy text-sm mb-1">{title}</div>
+                <div className="text-navy/50 text-xs leading-relaxed">{body}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mb-10">
+            <Link href="/packages" className="btn-primary text-base px-10 py-3.5">Explore All Packages &rarr;</Link>
+            <p className="text-navy/40 text-sm mt-3">Starting from {packagePrice('growing')} per package</p>
+          </div>
+
+          {/* Bundle + Complete banners */}
+          <div className="space-y-4">
+            <div className="bg-navy rounded-2xl p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative overflow-hidden">
               <div className="noise absolute inset-0" />
               <div className="relative z-10">
                 <div className="chip bg-teal/20 text-teal border border-teal/30 mb-3">Best Value</div>
@@ -79,20 +117,19 @@ export default function HomePage() {
                 <Link href="/packages#bundle" className="btn-primary whitespace-nowrap">Get the Bundle &rarr;</Link>
               </div>
             </div>
-          </div>
-          {/* Complete Library */}
-          <div className="md:col-span-2 lg:col-span-3 bg-gradient-to-br from-teal/10 to-navy/5 rounded-2xl p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 border-2 border-teal/30">
-            <div>
-              <div className="chip bg-navy/10 text-navy border border-navy/20 mb-3">Everything Included</div>
-              <h3 className="font-serif text-3xl text-navy mb-2">Complete Library</h3>
-              <p className="text-navy/60 max-w-lg">7 packages to assign however you like — keep some for yourself, gift others to loved ones, or give someone more than one. Complete flexibility.</p>
-            </div>
-            <div className="flex flex-col items-start lg:items-end gap-3">
-              <div className="flex items-baseline gap-2">
-                <span className="font-serif text-4xl text-navy font-bold">{packagePrice('complete')}</span>
-                <span className="text-navy/40 line-through text-lg">{format(completeWas)}</span>
+            <div className="bg-gradient-to-br from-teal/10 to-navy/5 rounded-2xl p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 border-2 border-teal/30">
+              <div>
+                <div className="chip bg-navy/10 text-navy border border-navy/20 mb-3">Everything Included</div>
+                <h3 className="font-serif text-3xl text-navy mb-2">Complete Library</h3>
+                <p className="text-navy/60 max-w-lg">7 packages to assign however you like — keep some for yourself, gift others to loved ones, or give someone more than one. Complete flexibility.</p>
               </div>
-              <Link href="/packages#complete" className="btn-primary whitespace-nowrap">Get Everything &rarr;</Link>
+              <div className="flex flex-col items-start lg:items-end gap-3">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-serif text-4xl text-navy font-bold">{packagePrice('complete')}</span>
+                  <span className="text-navy/40 line-through text-lg">{format(completeWas)}</span>
+                </div>
+                <Link href="/packages#complete" className="btn-primary whitespace-nowrap">Get Everything &rarr;</Link>
+              </div>
             </div>
           </div>
         </div>
