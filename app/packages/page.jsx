@@ -167,7 +167,7 @@ export default function PackagesPage() {
 
               {/* Description */}
               <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                Growing Minds includes <strong className="text-white/80">57 original songs written and produced by HomeSafeEducation</strong> — 32 for Early Years and 25 for Junior. Every lesson has its own song, plus a bonus recap song for each course. Full lyrics are displayed inside every lesson. For Early Years (ages 4–7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8–11), lyrics are there to <strong className="text-white/80">read along and sing independently</strong>.
+                Growing Minds includes <strong className="text-white/80">57 original songs written and produced by HomeSafeEducation</strong> — 32 for Early Years and 25 for Junior. Every lesson has its own song, plus a bonus recap song for each course. Full lyrics are displayed with every song. For Early Years (ages 4–7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8–11), lyrics are there to <strong className="text-white/80">read along and sing independently</strong>.
               </p>
 
               {/* Audio previews side by side */}
