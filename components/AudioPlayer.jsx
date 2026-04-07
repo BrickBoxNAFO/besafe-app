@@ -20,6 +20,8 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
   const [duration, setDuration] = useState(0)
   const [lyricsOpen, setLyricsOpen] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [volume, setVolume] = useState(1)
+  const [prevVolume, setPrevVolume] = useState(1)
 
   const isRemember = variant === 'remember'
   const accent = accentColor || (isRemember ? '#0EA5A0' : '#E8703A')
@@ -77,6 +79,24 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
     audio.currentTime = (x / rect.width) * duration
   }, [duration])
 
+  const handleVolume = useCallback((e) => {
+    const v = parseFloat(e.target.value)
+    setVolume(v)
+    if (audioRef.current) audioRef.current.volume = v
+    if (v > 0) setPrevVolume(v)
+  }, [])
+
+  const toggleMute = useCallback(() => {
+    if (volume > 0) {
+      setPrevVolume(volume)
+      setVolume(0)
+      if (audioRef.current) audioRef.current.volume = 0
+    } else {
+      setVolume(prevVolume)
+      if (audioRef.current) audioRef.current.volume = prevVolume
+    }
+  }, [volume, prevVolume])
+
   const progress = duration ? (currentTime / duration) * 100 : 0
 
   // Parse lyrics into sections
@@ -114,21 +134,58 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
           {subtitle && <div className="text-white/50 text-xs mt-0.5 truncate">{subtitle}</div>}
         </div>
 
-        {/* Animated EQ bars when playing */}
-        {isPlaying && (
-          <div className="flex items-end gap-[3px] h-4 flex-shrink-0">
-            {[0, 0.15, 0.3, 0.1].map((delay, i) => (
-              <div
-                key={i}
-                className="w-[3px] rounded-sm"
-                style={{
-                  background: isRemember ? '#fff' : '#E8703A',
-                  animation: `eqBounce 0.8s ease-in-out ${delay}s infinite alternate`,
-                }}
-              />
-            ))}
-          </div>
-        )}
+        {/* Volume control */}
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {/* Animated EQ bars when playing */}
+          {isPlaying && (
+            <div className="flex items-end gap-[3px] h-4 mr-1">
+              {[0, 0.15, 0.3, 0.1].map((delay, i) => (
+                <div
+                  key={i}
+                  className="w-[3px] rounded-sm"
+                  style={{
+                    background: isRemember ? '#fff' : '#E8703A',
+                    animation: `eqBounce 0.8s ease-in-out ${delay}s infinite alternate`,
+                  }}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Mute/unmute button */}
+          <button onClick={toggleMute} className="text-white/70 hover:text-white transition-colors" aria-label={volume === 0 ? 'Unmute' : 'Mute'}>
+            {volume === 0 ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" />
+              </svg>
+            ) : volume < 0.5 ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </svg>
+            )}
+          </button>
+
+          {/* Volume slider */}
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
+            onChange={handleVolume}
+            className="volume-slider"
+            style={{ width: 70 }}
+            aria-label="Volume"
+          />
+        </div>
       </div>
 
       {/* Player controls */}
@@ -225,11 +282,49 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
         </div>
       )}
 
-      {/* EQ animation keyframes */}
+      {/* EQ animation keyframes + volume slider styles */}
       <style jsx global>{`
         @keyframes eqBounce {
           0% { height: 4px; }
           100% { height: 16px; }
+        }
+        .volume-slider {
+          -webkit-appearance: none;
+          appearance: none;
+          height: 4px;
+          border-radius: 2px;
+          background: rgba(255,255,255,0.25);
+          outline: none;
+          cursor: pointer;
+        }
+        .volume-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #fff;
+          border: none;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+          cursor: pointer;
+        }
+        .volume-slider::-moz-range-thumb {
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #fff;
+          border: none;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+          cursor: pointer;
+        }
+        .volume-slider::-webkit-slider-runnable-track {
+          height: 4px;
+          border-radius: 2px;
+        }
+        .volume-slider::-moz-range-track {
+          height: 4px;
+          border-radius: 2px;
+          background: rgba(255,255,255,0.25);
         }
       `}</style>
     </div>
