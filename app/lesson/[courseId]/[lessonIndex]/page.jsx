@@ -326,6 +326,19 @@ export default function LessonPage() {
               </div>
             )}
 
+            {/* Lesson song — appears BEFORE the written content */}
+            {hasLessonSong && (
+              <div className="mb-6">
+                <AudioPlayer
+                  src={getAudioUrl(lessonSong.file)}
+                  title={lessonSong.title}
+                  subtitle={course.title + ' - Lesson ' + (lessonIndex + 1) + ' of ' + totalLessons}
+                  lyrics={lessonSong.lyrics}
+                  variant="lesson"
+                />
+              </div>
+            )}
+
             {/* Lesson content card */}
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-6">
               {/* Coloured top accent bar */}
@@ -358,20 +371,7 @@ export default function LessonPage() {
               </div>
             </div>
 
-            {/* Lesson song */}
-            {hasLessonSong && (
-              <div className="mb-6">
-                <AudioPlayer
-                  src={getAudioUrl(lessonSong.file)}
-                  title={lessonSong.title}
-                  subtitle={course.title + ' - Lesson ' + (lessonIndex + 1) + ' of ' + totalLessons}
-                  lyrics={lessonSong.lyrics}
-                  variant="lesson"
-                />
-              </div>
-            )}
-
-            {/* Remember This recap song (shown on last lesson only) */}
+            {/* Remember This recap song (shown on last lesson only, after content) */}
             {hasRememberSong && (
               <div className="mb-6">
                 <AudioPlayer
