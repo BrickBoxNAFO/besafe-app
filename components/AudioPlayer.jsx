@@ -173,7 +173,7 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
             )}
           </button>
 
-          {/* Volume slider */}
+          {/* Volume slider - hidden on very small screens */}
           <input
             type="range"
             min="0"
@@ -181,7 +181,7 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
             step="0.01"
             value={volume}
             onChange={handleVolume}
-            className="volume-slider"
+            className="volume-slider hidden sm:block"
             style={{ width: 70 }}
             aria-label="Volume"
           />

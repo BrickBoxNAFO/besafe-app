@@ -164,68 +164,70 @@ export default function PackagesPage() {
           <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage:'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M20 5v10m0 10v10M5 20h10m10 0h10\' stroke=\'%23fff\' stroke-width=\'.5\' fill=\'none\'/%3E%3C/svg%3E")'}} />
           <div className="relative z-10">
             {/* Hero header */}
-            <div className="text-center px-6 pt-10 pb-6">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal/15 border border-teal/25 mb-5">
-                <span className="text-lg">🎵</span>
-                <span className="text-teal text-xs font-bold tracking-wide uppercase">Exclusive to Growing Minds</span>
+            <div className="text-center px-4 sm:px-6 pt-8 sm:pt-10 pb-6">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-teal/15 border border-teal/25 mb-4 sm:mb-5">
+                <span className="text-base sm:text-lg">🎵</span>
+                <span className="text-teal text-[10px] sm:text-xs font-bold tracking-wide uppercase">Exclusive to Growing Minds</span>
               </div>
-              <h2 className="font-serif text-3xl lg:text-4xl text-white mb-4">Original Songs That Teach Safety</h2>
-              <p className="text-white/60 text-base max-w-2xl mx-auto leading-relaxed">
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-white mb-3 sm:mb-4">Original Songs That Teach Safety</h2>
+              <p className="text-white/60 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
                 Every Growing Minds course includes <strong className="text-white">original songs written and produced by HomeSafeEducation</strong>, designed to make safety lessons memorable and fun. Children don't just learn — they sing along. Full lyrics are included with every song inside the course so your child can join in.
               </p>
             </div>
 
             {/* Song count stats */}
-            <div className="flex justify-center gap-6 px-6 pb-8">
-              <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10">
-                <div className="w-10 h-10 rounded-lg bg-[#E8703A]/15 flex items-center justify-center">
-                  <span className="text-lg">🌱</span>
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 px-4 sm:px-6 pb-8 max-w-xl mx-auto">
+              <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1.5 sm:gap-3 px-3 sm:px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-center sm:text-left">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-[#E8703A]/15 flex items-center justify-center flex-shrink-0">
+                  <span className="text-base sm:text-lg">🌱</span>
                 </div>
                 <div>
-                  <div className="text-white font-bold text-xl leading-none">32</div>
-                  <div className="text-white/40 text-xs mt-0.5">Early Years songs</div>
+                  <div className="text-white font-bold text-lg sm:text-xl leading-none">32</div>
+                  <div className="text-white/40 text-[10px] sm:text-xs mt-0.5">Early Years</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10">
-                <div className="w-10 h-10 rounded-lg bg-teal/15 flex items-center justify-center">
-                  <span className="text-lg">🌿</span>
+              <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1.5 sm:gap-3 px-3 sm:px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-center sm:text-left">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-teal/15 flex items-center justify-center flex-shrink-0">
+                  <span className="text-base sm:text-lg">🌿</span>
                 </div>
                 <div>
-                  <div className="text-white font-bold text-xl leading-none">25</div>
-                  <div className="text-white/40 text-xs mt-0.5">Junior songs</div>
+                  <div className="text-white font-bold text-lg sm:text-xl leading-none">25</div>
+                  <div className="text-white/40 text-[10px] sm:text-xs mt-0.5">Junior</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-teal/10 border border-teal/20">
-                <div className="w-10 h-10 rounded-lg bg-teal/20 flex items-center justify-center">
-                  <span className="text-lg">🎶</span>
+              <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1.5 sm:gap-3 px-3 sm:px-5 py-3 rounded-xl bg-teal/10 border border-teal/20 text-center sm:text-left">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-teal/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-base sm:text-lg">🎶</span>
                 </div>
                 <div>
-                  <div className="text-teal font-bold text-xl leading-none">57</div>
-                  <div className="text-teal/60 text-xs mt-0.5">songs in total</div>
+                  <div className="text-teal font-bold text-lg sm:text-xl leading-none">57</div>
+                  <div className="text-teal/60 text-[10px] sm:text-xs mt-0.5">total songs</div>
                 </div>
               </div>
             </div>
 
             {/* How songs work */}
-            <div className="grid md:grid-cols-3 gap-4 px-6 pb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 px-4 sm:px-6 pb-8">
               {[
                 ['🎤', 'Singalong Lyrics', 'Full lyrics are displayed inside every lesson so your child can read along and sing every word.'],
                 ['🧠', 'Reinforces Learning', 'Each song is tied to a specific lesson, turning key safety messages into catchy melodies children actually remember.'],
                 ['🎧', 'One Per Lesson + Bonus', 'Every lesson has its own song, plus each course includes a special "Remember This" recap song to tie everything together.'],
               ].map(([icon, title, body]) => (
-                <div key={title} className="bg-white/5 border border-white/10 rounded-xl p-5 text-center">
-                  <div className="text-2xl mb-2">{icon}</div>
-                  <div className="text-white font-semibold text-sm mb-1">{title}</div>
-                  <div className="text-white/40 text-xs leading-relaxed">{body}</div>
+                <div key={title} className="bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 text-center flex sm:block items-center gap-3 sm:gap-0">
+                  <div className="text-2xl sm:mb-2 flex-shrink-0">{icon}</div>
+                  <div className="text-left sm:text-center">
+                    <div className="text-white font-semibold text-sm mb-0.5 sm:mb-1">{title}</div>
+                    <div className="text-white/40 text-xs leading-relaxed">{body}</div>
+                  </div>
                 </div>
               ))}
             </div>
 
             {/* Audio previews */}
-            <div className="px-6 pb-4">
-              <h3 className="text-center text-white/50 text-xs font-bold uppercase tracking-widest mb-5">🔊 Listen to a preview from each age group</h3>
+            <div className="px-4 sm:px-6 pb-4">
+              <h3 className="text-center text-white/50 text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-4 sm:mb-5">🔊 Listen to a preview from each age group</h3>
             </div>
-            <div className="grid md:grid-cols-2 gap-5 px-6 pb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-4 sm:px-6 pb-8 sm:pb-10">
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-lg">🌱</span>
