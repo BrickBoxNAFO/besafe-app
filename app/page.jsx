@@ -65,7 +65,7 @@ export default function HomePage() {
               { emoji: '🥷', name: 'Street Smart', age: 'Ages 12–15', color: '#7C3AED' },
               { emoji: '🚀', name: 'Nest Breaking', age: 'Ages 16–18', color: '#2563EB' },
               { emoji: '✈️', name: 'Roaming Free', age: 'All ages', color: '#EA580C' },
-              { emoji: '🌸', name: 'Aging Wisdom', age: 'Ages 60+', color: '#E11D48' },
+              { emoji: '💐', name: 'Aging Wisdom', age: 'Ages 60+', color: '#E11D48' },
               { emoji: '👨‍👩‍👧', name: 'Family Anchor', age: 'Parents', color: '#a21caf' },
             ].map(s => (
               <Link href="/packages" key={s.name} className="group bg-white rounded-xl border border-gray-100 p-4 text-center hover:border-gray-200 hover:shadow-md transition-all cursor-pointer">
