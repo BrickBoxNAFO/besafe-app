@@ -64,7 +64,7 @@ export default function NewsletterSignup() {
       {status === 'error' && (
         <p className="text-red-400 text-xs mt-2">{message}</p>
       )}
-      <p className="text-white/20 text-[10px] mt-2">Safety tips and updates. Unsubscribe anytime.</p>
+      <p className="text-white/20 text-[10px] mt-2">Exclusive offers, new courses & safety tips. Unsubscribe anytime.</p>
     </div>
   )
 }
