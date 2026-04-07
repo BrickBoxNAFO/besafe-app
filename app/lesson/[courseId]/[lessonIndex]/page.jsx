@@ -265,7 +265,7 @@ export default function LessonPage() {
           passedLessons.add(lessonIndex)
 
           if (passedLessons.size >= totalLessons) {
-            // All lessons passed - trigger certificate generation
+            // All lessons passed — trigger certificate generation
             fetch('/api/generate-certificate', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
