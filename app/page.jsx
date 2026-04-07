@@ -15,9 +15,9 @@ export default function HomePage() {
       {/* Hero — split layout: text left, video right */}
       <section className="hero-bg noise relative overflow-hidden min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto px-6 py-24 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left — text content */}
-            <div>
+          <div className="grid lg:grid-cols-5 gap-10 items-center">
+            {/* Left — text content (2 cols) */}
+            <div className="lg:col-span-2">
               <div className="chip bg-teal/15 text-teal border border-teal/25 mb-6">Real-World Safety Education, Delivered Online</div>
               <h1 className="font-serif text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6 text-white">
                 Keep Your Family Safe
@@ -40,8 +40,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right — video player */}
-            <div className="hidden lg:block">
+            {/* Right — video player (3 cols — larger) */}
+            <div className="hidden lg:block lg:col-span-3">
               <VideoPlayer src={VIDEO_URL} poster={VIDEO_POSTER} />
             </div>
           </div>

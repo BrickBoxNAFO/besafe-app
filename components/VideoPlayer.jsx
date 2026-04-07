@@ -10,6 +10,7 @@ import { useRef, useState, useEffect, useCallback } from 'react'
  */
 export default function VideoPlayer({ src, poster }) {
   const videoRef = useRef(null)
+  const containerRef = useRef(null)
   const [playing, setPlaying] = useState(false)
   const [muted, setMuted] = useState(false)
   const [volume, setVolume] = useState(0.8)
@@ -17,6 +18,7 @@ export default function VideoPlayer({ src, poster }) {
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
   const [loaded, setLoaded] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
 
   // Attempt autoplay with sound; fall back to muted autoplay
   useEffect(() => {
@@ -94,6 +96,27 @@ export default function VideoPlayer({ src, poster }) {
     setLoaded(true)
   }, [])
 
+  const toggleFullscreen = useCallback(() => {
+    const el = containerRef.current
+    if (!el) return
+    if (!document.fullscreenElement) {
+      el.requestFullscreen?.() || el.webkitRequestFullscreen?.()
+    } else {
+      document.exitFullscreen?.() || document.webkitExitFullscreen?.()
+    }
+  }, [])
+
+  // Listen for fullscreen changes
+  useEffect(() => {
+    const handler = () => setIsFullscreen(!!document.fullscreenElement)
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => {
+      document.removeEventListener('fullscreenchange', handler)
+      document.removeEventListener('webkitfullscreenchange', handler)
+    }
+  }, [])
+
   const fmt = (s) => {
     const m = Math.floor(s / 60)
     const sec = Math.floor(s % 60)
@@ -116,7 +139,7 @@ export default function VideoPlayer({ src, poster }) {
   }
 
   return (
-    <div className="relative w-full aspect-video rounded-2xl overflow-hidden group">
+    <div ref={containerRef} className="relative w-full aspect-video rounded-2xl overflow-hidden group">
       {/* Video element */}
       <video
         ref={videoRef}
@@ -207,6 +230,19 @@ export default function VideoPlayer({ src, poster }) {
               background: `linear-gradient(to right, #0EA5A0 ${(muted ? 0 : volume) * 100}%, rgba(255,255,255,0.25) ${(muted ? 0 : volume) * 100}%)`,
             }}
           />
+
+          {/* Fullscreen */}
+          <button onClick={toggleFullscreen} className="text-white hover:text-teal transition-colors ml-2">
+            {isFullscreen ? (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
     </div>
