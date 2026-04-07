@@ -23,8 +23,8 @@ export default function HomePage() {
                 Keep Your Family Safe
                 <span className="block italic text-teal mt-1">at Every Stage of Life.</span>
               </h1>
-              <p className="text-white/70 text-lg leading-relaxed mb-6 max-w-lg">
-                Practical, evidence-based safety courses designed for real life. Seven packages covering every age group from children aged 4 right through to older adults.
+              <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
+                In a world full of uncertainties, keeping your family safe shouldn&apos;t be complicated or expensive. Whether you&apos;re giving your daughter the tools to stay safe on nights out and navigate university life, teaching your children about personal boundaries, or protecting your elderly parents from sophisticated scams, HomeSafeEducation has you covered. Practical, evidence-based safety courses designed for real life. Seven packages covering every age group from children aged 4 right through to older adults.
               </p>
               <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
                 Buy for yourself or gift to someone you love. One payment, no subscription, real peace of mind.
