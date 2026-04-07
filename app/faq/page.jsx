@@ -30,7 +30,7 @@ const faqSections = [
     items: [
       {
         q: 'How do I purchase a package?',
-        a: 'Choose your package on the Packages page and proceed to our secure checkout powered by Stripe. All packages are a one-time payment with no subscriptions or recurring charges.'
+        a: 'Choose your package on the Packages page and proceed to our secure checkout powered by Stripe. All packages are a one-time payment with no subscriptions or recurring charges. When purchasing a single package, you can assign it to yourself (and unlock instant access) or gift it to someone via email invite.'
       },
       {
         q: 'Can I purchase a package as a gift for someone else?',
@@ -38,15 +38,19 @@ const faqSections = [
       },
       {
         q: 'What is the Family Safety Bundle?',
-        a: 'The Family Safety Bundle lets you choose any 5 packages for up to 5 family members. Each member gets their own account with individual progress tracking. Visit our Packages page for current pricing.'
+        a: 'The Family Safety Bundle gives you 5 flexible seats to share with family members. Each seat can be assigned to yourself (to unlock a package instantly) or to a friend or family member via email invite. You can assign the same package to multiple seats if you want all your family members to take the same course. Each person gets their own account, login, and individual progress tracking. Visit our Packages page for current pricing.'
       },
       {
         q: 'How do I assign packages to family members after buying the bundle?',
-        a: 'Go to your Family Dashboard, click on an available seat, choose which package to assign, and enter the family member\'s name and email. They will receive an email invitation with a link to create their account and start learning.'
+        a: 'After purchase, go to your Family Dashboard where you\'ll see your 5 seats. For each seat, you can either assign it to yourself (pick a package and get instant access) or assign it to a family member. To invite a family member, click on an empty seat, choose which package to assign, enter their name and email address, and send the invite. They\'ll receive a personal email invitation with a unique link.'
       },
       {
         q: 'Can I assign the same package to more than one family member?',
         a: 'Yes. Each of the 5 seats in the bundle can be assigned any package, including the same one. For example, you could assign Street Smart to two different teenagers.'
+      },
+      {
+        q: 'What happens after I purchase a package or bundle?',
+        a: 'If you purchase a single package, you\'ll be taken to a page where you can assign it to yourself or gift it to someone. If you purchase the Family Safety Bundle, you\'ll be redirected to your Family Dashboard where you can assign your 5 seats. From the dashboard, you can assign packages to yourself or invite family members. You can return to your Family Dashboard anytime from your account menu to manage seats and view progress.'
       },
       {
         q: 'What payment methods do you accept?',
@@ -86,11 +90,11 @@ const faqSections = [
     items: [
       {
         q: 'How does the Family Bundle work?',
-        a: 'After purchasing, you get access to a Family Dashboard where you can manage 5 seats. For each seat, you choose a package and invite a family member by email. Each person gets their own login, their own dashboard, and their own progress tracking.'
+        a: 'After purchasing the Family Safety Bundle, you get access to your Family Dashboard where you manage 5 flexible seats. For each seat, you can assign yourself a package (and unlock it instantly) or assign a family member a package via email invite. When you invite someone, they create a free account and get instant access to their assigned package. Each person gets their own login, their own dashboard, and their own progress tracking. You can see all seats and everyone\'s progress on the Family Dashboard.'
       },
       {
         q: 'What happens when I send a family member an invite?',
-        a: 'They receive an email with a personal invitation link. When they click it, they are taken to a page where they create their free account. Once registered, the assigned package appears on their dashboard immediately.'
+        a: 'They receive an email with a personal invitation link. This link is unique and single-use. When they click it, they\'re taken to a page where they create their free account using their email address. Once they complete registration, the package you assigned to that seat appears on their dashboard immediately with full access. They don\'t need to pay anything — everything is covered by your original Family Bundle purchase.'
       },
       {
         q: 'Can I change which package is assigned to a family member?',
@@ -99,6 +103,14 @@ const faqSections = [
       {
         q: 'Does each family member need their own email address?',
         a: 'Yes. Each family member needs a unique email address to create their account and receive their invitation.'
+      },
+      {
+        q: 'Do family members get their own dashboard and progress tracking?',
+        a: 'Yes. Each family member has their own personal dashboard where they can see their assigned course(s) and track their own progress independently. As the bundle owner, you can see everyone\'s progress from your Family Dashboard. Each person\'s progress is kept separate and private to their account.'
+      },
+      {
+        q: 'Do family members have to pay anything?',
+        a: 'No. All family members invited through the Family Safety Bundle get free access to their assigned course(s). There are no additional charges. Everything is covered by your original bundle purchase.'
       },
     ]
   },
