@@ -130,7 +130,7 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
 
         {/* Title & subtitle */}
         <div className="flex-1 min-w-0">
-          <div className="text-white font-semibold text-[15px] leading-snug truncate">{title}</div>
+          <div className="text-white font-semibold text-[13px] sm:text-[15px] leading-snug truncate">{title}</div>
           {subtitle && <div className="text-white/50 text-xs mt-0.5 truncate">{subtitle}</div>}
         </div>
 

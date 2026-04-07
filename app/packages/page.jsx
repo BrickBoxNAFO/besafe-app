@@ -10,12 +10,12 @@ import { usePricing } from '@/components/PricingProvider'
 const EXAMPLE_SONGS = {
   early: {
     src: 'https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Growing%20Minds%20Early%20Years%20Example.mp3',
-    title: 'Early Years Example Song',
+    title: "Early Years Example - 'Walk With Your Grown Up'",
     subtitle: 'Ages 4–7 · Growing Minds',
   },
   junior: {
     src: 'https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Growing%20Minds%20Junior%20Example%20Song.mp3',
-    title: 'Junior Example Song',
+    title: "Junior Example - 'Private Means Mine'",
     subtitle: 'Ages 8–11 · Growing Minds',
   },
 }
