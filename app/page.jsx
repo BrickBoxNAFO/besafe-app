@@ -31,7 +31,7 @@ export default function HomePage() {
               <Link href="/about" className="btn-secondary">Learn More</Link>
             </div>
             <div className="flex flex-wrap gap-6 text-sm text-white/50">
-              {['✓ One-time payment', '✓ 7 Packages, 115 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
+              {['✓ One-time payment', '✓ 7 Packages, 120 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
                 <span key={t}>{t}</span>
               ))}
             </div>
@@ -42,7 +42,7 @@ export default function HomePage() {
       {/* Stats */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[['7', 'Packages'], ['33', 'Courses'], ['115', 'Lessons'], ['575', 'Quiz Questions']].map(([n, l]) => (
+          {[['7', 'Packages'], ['33', 'Courses'], ['120', 'Lessons'], ['600', 'Quiz Questions']].map(([n, l]) => (
             <div key={l} className="text-center">
               <div className="stat-num text-navy mb-1">{n}</div>
               <div className="text-sm text-navy/50 font-medium">{l}</div>
