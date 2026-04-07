@@ -160,18 +160,14 @@ export default function PackagesPage() {
               <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🎵</span>
-                  <h3 className="text-white font-semibold text-base">Original Songs That Teach Safety</h3>
+                  <h3 className="text-white font-semibold text-base">57 Original Songs Included</h3>
                 </div>
-                <div className="flex items-center gap-2 sm:ml-auto">
-                  <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-[#E8703A]/20 text-[#E8703A] font-bold">32 Early Years</span>
-                  <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-teal/20 text-teal font-bold">25 Junior</span>
-                  <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-white/10 text-white/70 font-bold">57 total</span>
-                </div>
+                <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-teal/15 border border-teal/25 text-teal font-semibold sm:ml-auto">Exclusive to Growing Minds</span>
               </div>
 
               {/* Description */}
               <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                Every course includes <strong className="text-white/80">original songs written and produced by HomeSafeEducation</strong> — one per lesson plus a bonus recap song for each course. Full lyrics are displayed inside every lesson. For Early Years, these are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior learners, lyrics are there to <strong className="text-white/80">read along and sing independently</strong>. Catchy melodies that turn safety messages into something children actually remember.
+                Growing Minds includes <strong className="text-white/80">57 original songs written and produced by HomeSafeEducation</strong> — 32 for Early Years and 25 for Junior. Every lesson has its own song, plus a bonus recap song for each course. Full lyrics are displayed inside every lesson. For Early Years (ages 4–7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8–11), lyrics are there to <strong className="text-white/80">read along and sing independently</strong>.
               </p>
 
               {/* Audio previews side by side */}
