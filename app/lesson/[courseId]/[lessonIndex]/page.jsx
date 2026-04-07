@@ -247,6 +247,40 @@ export default function LessonPage() {
         score,
         completed_at: new Date().toISOString(),
       }, { onConflict: 'user_id,course_id,lesson_index' })
+
+      // Check if all lessons in this course are now passed
+      if (score >= passThreshold) {
+        try {
+          const { data: progressRows } = await supabase
+            .from('progress')
+            .select('lesson_index, passed')
+            .eq('user_id', user.id)
+            .eq('course_id', params.courseId)
+
+          const passedLessons = new Set()
+          if (progressRows) {
+            progressRows.forEach(r => { if (r.passed) passedLessons.add(r.lesson_index) })
+          }
+          // Include current lesson (upsert may not be reflected yet)
+          passedLessons.add(lessonIndex)
+
+          if (passedLessons.size >= totalLessons) {
+            // All lessons passed - trigger certificate generation
+            fetch('/api/generate-certificate', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                userId: user.id,
+                courseId: params.courseId,
+                packageId: pkg?.id || '',
+                packageName: pkg?.title || course?.title || 'HomeSafe',
+              }),
+            }).catch(() => {}) // fire-and-forget, don't block UI
+          }
+        } catch (e) {
+          // Certificate trigger is non-critical, don't block lesson flow
+        }
+      }
     }
     setSaving(false)
     setPhase('result')
