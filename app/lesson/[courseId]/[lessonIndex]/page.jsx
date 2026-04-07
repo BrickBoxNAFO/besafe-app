@@ -27,9 +27,14 @@ function parseLesson(content) {
     const line = content[i]
     if (!line || line.trim() === '') continue
 
-    // Detect key takeaways section
-    if (line.includes('--- Key Takeaways ---') || line.includes('Key Takeaways')) {
-      if (phase === 'content') phase = 'takeaways'
+    // Detect key takeaways section (can appear in any phase, including after quiz)
+    if (line.includes('--- Key Takeaways ---') || line.trim() === 'Key Takeaways:' || line.trim() === 'Key Takeaways') {
+      // Save any in-progress question before switching phases
+      if (currentQuestion && currentQuestion.options.length > 0) {
+        questions.push(currentQuestion)
+        currentQuestion = null
+      }
+      phase = 'takeaways'
       continue
     }
 
@@ -56,6 +61,34 @@ function parseLesson(content) {
         const nextLine = content[i + 1] || ''
         currentQuestion = { question: nextLine.trim(), options: [], explanation: '' }
         i++ // skip the next line since we consumed it
+      }
+      continue
+    }
+
+    // Detect "Scenario Question" (used in recap/final lessons)
+    // Format 1: "Scenario Question: <question text>" (Early Years — question on same line)
+    // Format 2: "Scenario Question" alone, question text on next line (Junior/other)
+    if (/^Scenario Question/i.test(line.trim())) {
+      phase = 'quiz'
+      if (currentQuestion && currentQuestion.options.length > 0) {
+        questions.push(currentQuestion)
+      }
+
+      const afterColon = line.replace(/^Scenario Question:?\s*/i, '').trim()
+      if (afterColon) {
+        // Format 1: question text is on this line after the colon (Early Years)
+        currentQuestion = { question: afterColon, options: [], explanation: '' }
+      } else {
+        // Format 2: "Scenario Question" alone — check if next line is question text or an answer
+        const nextLine = (content[i + 1] || '').trim()
+        if (nextLine && !nextLine.startsWith('Why:') && !/^[A-D]\)/.test(nextLine)) {
+          // Next line is the question text (not an answer option)
+          currentQuestion = { question: nextLine, options: [], explanation: '' }
+          i++ // consume the next line
+        } else {
+          // Next line is already an answer option — no separate question text
+          currentQuestion = { question: 'Scenario Question', options: [], explanation: '' }
+        }
       }
       continue
     }
