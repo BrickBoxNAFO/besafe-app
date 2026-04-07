@@ -37,8 +37,41 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const region = getServerRegion()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    name: 'HomeSafeEducation',
+    url: 'https://www.homesafeeducation.com',
+    logo: 'https://www.homesafeeducation.com/opengraph-image.png',
+    description:
+      'HomeSafeEducation is an online safety education provider offering practical, evidence-based courses designed for real life. Seven specialist packages cover every age group from children aged 4 right through to older adults, teaching real-world personal safety skills.',
+    sameAs: [],
+    foundingDate: '2024',
+    areaServed: 'Worldwide',
+    serviceType: 'Online Safety Education',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Safety Education Packages',
+      itemListElement: [
+        { '@type': 'Course', name: 'Growing Minds', description: 'Safety education for young children' },
+        { '@type': 'Course', name: 'Street Smart', description: 'Safety awareness for older children' },
+        { '@type': 'Course', name: 'Roaming Free', description: 'Safety skills for teenagers' },
+        { '@type': 'Course', name: 'Nest Breaking', description: 'Safety education for young adults' },
+        { '@type': 'Course', name: 'Family Anchor', description: 'Safety knowledge for parents and families' },
+        { '@type': 'Course', name: 'Aging Wisdom', description: 'Safety awareness for older adults' },
+        { '@type': 'Course', name: 'Family Bundle', description: 'Complete family safety education package' },
+      ],
+    },
+  }
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <PricingProvider initialRegion={region}>
           <Nav />
