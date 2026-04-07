@@ -4,7 +4,21 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { PACKAGES, COURSES } from '@/lib/data'
 import NewsletterBanner from '@/components/NewsletterBanner'
+import AudioPlayer from '@/components/AudioPlayer'
 import { usePricing } from '@/components/PricingProvider'
+
+const EXAMPLE_SONGS = {
+  early: {
+    src: 'https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Growing%20Minds%20Early%20Years%20Example.mp3',
+    title: 'Early Years Example Song',
+    subtitle: 'Ages 4–7 · Growing Minds',
+  },
+  junior: {
+    src: 'https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Growing%20Minds%20Junior%20Example%20Song.mp3',
+    title: 'Junior Example Song',
+    subtitle: 'Ages 8–11 · Growing Minds',
+  },
+}
 
 const EMOTIONAL_DESCRIPTIONS = {
   street: "The teenage years move fast. New friendships, first freedoms, social media, peer pressure - the world opens up and so do the risks. Street Smart gives young people the tools to navigate it all with confidence, not fear. Because the best protection you can give a teenager is the knowledge to protect themselves.",
@@ -142,6 +156,105 @@ export default function PackagesPage() {
           <div className="px-6 pb-6">
             <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
             <p className="text-center text-xs text-navy/40 mt-2">One payment - 10 courses - Both age groups - Perfect for growing children</p>
+          </div>
+        </div>
+
+        {/* ── Original Songs Showcase ── */}
+        <div className="bg-gradient-to-br from-[#0B1F3A] via-[#122a4a] to-[#0B1F3A] rounded-2xl overflow-hidden border-2 border-teal/30 relative">
+          <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage:'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M20 5v10m0 10v10M5 20h10m10 0h10\' stroke=\'%23fff\' stroke-width=\'.5\' fill=\'none\'/%3E%3C/svg%3E")'}} />
+          <div className="relative z-10">
+            {/* Hero header */}
+            <div className="text-center px-6 pt-10 pb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal/15 border border-teal/25 mb-5">
+                <span className="text-lg">🎵</span>
+                <span className="text-teal text-xs font-bold tracking-wide uppercase">Exclusive to Growing Minds</span>
+              </div>
+              <h2 className="font-serif text-3xl lg:text-4xl text-white mb-4">Original Songs That Teach Safety</h2>
+              <p className="text-white/60 text-base max-w-2xl mx-auto leading-relaxed">
+                Every Growing Minds course includes <strong className="text-white">original songs written and produced by HomeSafeEducation</strong>, designed to make safety lessons memorable and fun. Children don't just learn — they sing along. Full lyrics are included with every song inside the course so your child can join in.
+              </p>
+            </div>
+
+            {/* Song count stats */}
+            <div className="flex justify-center gap-6 px-6 pb-8">
+              <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10">
+                <div className="w-10 h-10 rounded-lg bg-[#E8703A]/15 flex items-center justify-center">
+                  <span className="text-lg">🌱</span>
+                </div>
+                <div>
+                  <div className="text-white font-bold text-xl leading-none">32</div>
+                  <div className="text-white/40 text-xs mt-0.5">Early Years songs</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10">
+                <div className="w-10 h-10 rounded-lg bg-teal/15 flex items-center justify-center">
+                  <span className="text-lg">🌿</span>
+                </div>
+                <div>
+                  <div className="text-white font-bold text-xl leading-none">25</div>
+                  <div className="text-white/40 text-xs mt-0.5">Junior songs</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-teal/10 border border-teal/20">
+                <div className="w-10 h-10 rounded-lg bg-teal/20 flex items-center justify-center">
+                  <span className="text-lg">🎶</span>
+                </div>
+                <div>
+                  <div className="text-teal font-bold text-xl leading-none">57</div>
+                  <div className="text-teal/60 text-xs mt-0.5">songs in total</div>
+                </div>
+              </div>
+            </div>
+
+            {/* How songs work */}
+            <div className="grid md:grid-cols-3 gap-4 px-6 pb-8">
+              {[
+                ['🎤', 'Singalong Lyrics', 'Full lyrics are displayed inside every lesson so your child can read along and sing every word.'],
+                ['🧠', 'Reinforces Learning', 'Each song is tied to a specific lesson, turning key safety messages into catchy melodies children actually remember.'],
+                ['🎧', 'One Per Lesson + Bonus', 'Every lesson has its own song, plus each course includes a special "Remember This" recap song to tie everything together.'],
+              ].map(([icon, title, body]) => (
+                <div key={title} className="bg-white/5 border border-white/10 rounded-xl p-5 text-center">
+                  <div className="text-2xl mb-2">{icon}</div>
+                  <div className="text-white font-semibold text-sm mb-1">{title}</div>
+                  <div className="text-white/40 text-xs leading-relaxed">{body}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Audio previews */}
+            <div className="px-6 pb-4">
+              <h3 className="text-center text-white/50 text-xs font-bold uppercase tracking-widest mb-5">🔊 Listen to a preview from each age group</h3>
+            </div>
+            <div className="grid md:grid-cols-2 gap-5 px-6 pb-10">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-lg">🌱</span>
+                  <span className="text-white font-semibold text-sm">Early Years</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full text-white font-bold" style={{background:'#16A34A'}}>Ages 4–7</span>
+                </div>
+                <AudioPlayer
+                  src={EXAMPLE_SONGS.early.src}
+                  title={EXAMPLE_SONGS.early.title}
+                  subtitle={EXAMPLE_SONGS.early.subtitle}
+                  variant="lesson"
+                  accentColor="#E8703A"
+                />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-lg">🌿</span>
+                  <span className="text-white font-semibold text-sm">Junior</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full text-white font-bold" style={{background:'#16A34A'}}>Ages 8–11</span>
+                </div>
+                <AudioPlayer
+                  src={EXAMPLE_SONGS.junior.src}
+                  title={EXAMPLE_SONGS.junior.title}
+                  subtitle={EXAMPLE_SONGS.junior.subtitle}
+                  variant="lesson"
+                  accentColor="#0EA5A0"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
