@@ -69,7 +69,7 @@ export default function HomePage() {
               <div className="relative z-10">
                 <div className="chip bg-teal/20 text-teal border border-teal/30 mb-3">Best Value</div>
                 <h3 className="font-serif text-3xl text-white mb-2">Family Safety Bundle</h3>
-                <p className="text-white/60 max-w-lg">Any 5 packages for your whole family. Mix and match across any age group.</p>
+                <p className="text-white/60 max-w-lg">Pick any 5 packages — keep them, gift them, or mix and match. Each one can go to a different person.</p>
               </div>
               <div className="relative z-10 flex flex-col items-start lg:items-end gap-3">
                 <div className="flex items-baseline gap-2">
@@ -85,7 +85,7 @@ export default function HomePage() {
             <div>
               <div className="chip bg-navy/10 text-navy border border-navy/20 mb-3">Everything Included</div>
               <h3 className="font-serif text-3xl text-navy mb-2">Complete Library</h3>
-              <p className="text-navy/60 max-w-lg">All 7 packages. Every course, every lesson. Total coverage for your whole family.</p>
+              <p className="text-navy/60 max-w-lg">7 packages to assign however you like — keep some for yourself, gift others to loved ones, or give someone more than one. Complete flexibility.</p>
             </div>
             <div className="flex flex-col items-start lg:items-end gap-3">
               <div className="flex items-baseline gap-2">

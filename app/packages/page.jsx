@@ -217,7 +217,7 @@ export default function PackagesPage() {
               <div className="flex-1">
                 <div className="chip bg-teal/20 text-teal border border-teal/30 mb-2 text-xs">Best Value</div>
                 <h2 className="font-serif text-2xl text-white mb-1">Family Safety Bundle</h2>
-                <p className="text-white/60 text-sm">Choose any 5 packages. Buy for yourself and gift courses to the people you love.</p>
+                <p className="text-white/60 text-sm">Pick any 5 packages — keep them for yourself, gift them to loved ones, or mix both. Your choice.</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
                 <div className="font-serif text-3xl text-white font-bold mb-1">{packagePrice('bundle')}</div>
@@ -225,7 +225,7 @@ export default function PackagesPage() {
                 <div className="text-white/40 text-xs">one-time payment</div>
               </div>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed mb-6">Safety isn’t just personal, it’s something we give to the people we care about most. The Family Safety Bundle lets you choose any five packages and share them across your family. Assign courses to your children, your parents, your partner, or anyone you want to protect. Each person gets their own dashboard, their own progress tracking, and their own learning journey. One purchase, five lives made safer.</p>
+            <p className="text-white/50 text-sm leading-relaxed mb-6">Safety isn’t just personal — it’s something we give to the people we care about most. Choose any five packages and decide who gets each one. Keep them all for yourself, gift them all to loved ones, or split them however you like. You can even pick the same package twice if two people need it. Each person gets their own account, their own dashboard, and their own learning journey. One purchase, five lives made safer.</p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
               {PACKAGES.filter(p => p.id !== 'growing').map(pkg => (
                 <div key={pkg.id} className="text-center p-3 rounded-xl bg-white/5 border border-white/10">
@@ -250,7 +250,7 @@ export default function PackagesPage() {
               <div className="flex-1">
                 <div className="chip bg-navy/10 text-navy border border-navy/20 mb-2 text-xs">Everything Included</div>
                 <h2 className="font-serif text-2xl text-navy mb-1">Complete Library</h2>
-                <p className="text-navy/60 text-sm">Every single package. All 7 courses. One purchase, total coverage for your whole family.</p>
+                <p className="text-navy/60 text-sm">7 packages to assign however you choose — keep them, gift them, or combine both. You're not limited to one of each.</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
                 <div className="font-serif text-3xl text-navy font-bold mb-1">{packagePrice('complete')}</div>
@@ -258,7 +258,7 @@ export default function PackagesPage() {
                 <div className="text-navy/40 text-xs">one-time payment</div>
               </div>
             </div>
-            <p className="text-navy/50 text-sm leading-relaxed mb-6">Why choose when you can have it all? The Complete Library gives you every package we offer — from Growing Minds for your little ones, through Street Smart and Nest Breaking for your teens and young adults, Roaming Free for travellers, Aging Wisdom for your parents, and Family Anchor for you. Assign courses to anyone in your family. Everyone gets their own dashboard and progress tracking. One purchase, seven packages, total peace of mind.</p>
+            <p className="text-navy/50 text-sm leading-relaxed mb-6">The Complete Library gives you seven packages to use however you like. Keep some for yourself and gift the rest, or give them all to different family members. You're not locked into one of each — if two people need the same package, that works too. From Growing Minds for your little ones, through Street Smart and Nest Breaking for teens and young adults, Roaming Free for travellers, Aging Wisdom for your parents, and Family Anchor for you. Each person gets their own account, their own dashboard, and their own progress tracking. One purchase, seven packages, total flexibility.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6">
               <div className="text-center p-3 rounded-xl bg-white border border-gray-100">
                 <div className="text-lg mb-1">🌱</div>
