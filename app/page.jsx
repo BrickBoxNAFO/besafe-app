@@ -61,15 +61,14 @@ export default function HomePage() {
           </div>
 
           {/* Life stages row */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
             {[
               { emoji: '🌱', name: 'Growing Minds', age: 'Ages 4–11', color: '#16A34A' },
-              { emoji: '🛡️', name: 'Street Smart', age: 'Ages 12–15', color: '#7C3AED' },
-              { emoji: '🏠', name: 'Nest Breaking', age: 'Ages 16–18', color: '#2563EB' },
+              { emoji: '🥷', name: 'Street Smart', age: 'Ages 12–15', color: '#7C3AED' },
+              { emoji: '🚀', name: 'Nest Breaking', age: 'Ages 16–18', color: '#2563EB' },
               { emoji: '✈️', name: 'Roaming Free', age: 'All ages', color: '#EA580C' },
-              { emoji: '🕊️', name: 'Aging Wisdom', age: 'Ages 60+', color: '#E11D48' },
+              { emoji: '🌸', name: 'Aging Wisdom', age: 'Ages 60+', color: '#E11D48' },
               { emoji: '👨‍👩‍👧', name: 'Family Anchor', age: 'Parents', color: '#a21caf' },
-              { emoji: '🎵', name: '57 Songs', age: 'Growing Minds', color: '#0EA5A0' },
             ].map(s => (
               <Link href="/packages" key={s.name} className="group bg-white rounded-xl border border-gray-100 p-4 text-center hover:border-gray-200 hover:shadow-md transition-all cursor-pointer">
                 <div className="text-2xl mb-2">{s.emoji}</div>
