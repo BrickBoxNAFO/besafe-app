@@ -2,10 +2,8 @@
 
 import Link from 'next/link'
 import NewsletterBanner from '@/components/NewsletterBanner'
-import { usePricing } from '@/components/PricingProvider'
 
 export default function HomePage() {
-  const { packagePrice, format, bundleWas, bundleSavings, completeWas, completeSavings } = usePricing()
   return (
     <div className="page-enter">
 
@@ -94,42 +92,8 @@ export default function HomePage() {
           </div>
 
           {/* CTA */}
-          <div className="text-center mb-10">
+          <div className="text-center">
             <Link href="/packages" className="btn-primary text-base px-10 py-3.5">Explore All Packages &rarr;</Link>
-            <p className="text-navy/40 text-sm mt-3">Starting from {packagePrice('growing')} per package</p>
-          </div>
-
-          {/* Bundle + Complete banners */}
-          <div className="space-y-4">
-            <div className="bg-navy rounded-2xl p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative overflow-hidden">
-              <div className="noise absolute inset-0" />
-              <div className="relative z-10">
-                <div className="chip bg-teal/20 text-teal border border-teal/30 mb-3">Best Value</div>
-                <h3 className="font-serif text-3xl text-white mb-2">Family Safety Bundle</h3>
-                <p className="text-white/60 max-w-lg">Pick any 5 packages — keep them, gift them, or mix and match. Each one can go to a different person.</p>
-              </div>
-              <div className="relative z-10 flex flex-col items-start lg:items-end gap-3">
-                <div className="flex items-baseline gap-2">
-                  <span className="font-serif text-4xl text-white font-bold">{packagePrice('bundle')}</span>
-                  <span className="text-white/40 line-through text-lg">{format(bundleWas)}</span>
-                </div>
-                <Link href="/packages#bundle" className="btn-primary whitespace-nowrap">Get the Bundle &rarr;</Link>
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-teal/10 to-navy/5 rounded-2xl p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 border-2 border-teal/30">
-              <div>
-                <div className="chip bg-navy/10 text-navy border border-navy/20 mb-3">Everything Included</div>
-                <h3 className="font-serif text-3xl text-navy mb-2">Complete Library</h3>
-                <p className="text-navy/60 max-w-lg">7 packages to assign however you like — keep some for yourself, gift others to loved ones, or give someone more than one. Complete flexibility.</p>
-              </div>
-              <div className="flex flex-col items-start lg:items-end gap-3">
-                <div className="flex items-baseline gap-2">
-                  <span className="font-serif text-4xl text-navy font-bold">{packagePrice('complete')}</span>
-                  <span className="text-navy/40 line-through text-lg">{format(completeWas)}</span>
-                </div>
-                <Link href="/packages#complete" className="btn-primary whitespace-nowrap">Get Everything &rarr;</Link>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -156,7 +120,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-8">
             {[
               { n: '01', icon: '🎁', title: 'Choose a Package', body: 'Pick the right package for you, your child, your parent, or anyone you care about. Each one is tailored to a specific age group and life stage.' },
-              { n: '02', icon: '💳', title: 'One-Time Payment', body: `Pay from ${packagePrice('growing')} per package or ${packagePrice('bundle')} for any 5. No subscription, no hidden fees. A small price for safety.` },
+              { n: '02', icon: '💳', title: 'One-Time Payment', body: 'Pay once per package and get lifetime access. No subscription, no hidden fees, no recurring charges.' },
               { n: '03', icon: '📧', title: 'Gift or Keep', body: 'Enter the recipient\'s email and they get instant access. Or keep it for yourself. Either way, access is forever.' },
               { n: '04', icon: '📖', title: 'Start Learning', body: 'Work through real-world and online safety lessons at your own pace. Every lesson has a quiz to reinforce what you\'ve learned.' },
             ].map(s => (
