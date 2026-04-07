@@ -48,6 +48,7 @@ export default async function CoursePage({ params }) {
   const ageLabel = course.ageGroup
     ? 'Ages ' + course.ageGroup.replace('-', '\u2013')
     : (pkg && pkg.name) || ''
+  const isJunior = course.subPkg === 'growing-junior'
 
   return (
     <div className="page-enter">
@@ -81,6 +82,20 @@ export default async function CoursePage({ params }) {
 
       <section className="section-slate py-12">
         <div className="max-w-4xl mx-auto px-6">
+          {isJunior && (
+            <div className="mb-6 p-4 rounded-xl border border-amber-200 bg-amber-50/50">
+              <div className="flex gap-3">
+                <span className="text-amber-500 text-lg mt-0.5">{'\u26A0\uFE0F'}</span>
+                <div>
+                  <p className="text-sm font-semibold text-amber-800 mb-1">Age Range Notice</p>
+                  <p className="text-sm text-amber-700 leading-relaxed">
+                    This course is designed for children aged 8{'\u2013'}11 and may not be suitable for the 4{'\u2013'}7 age range.
+                    If your child is in the younger group, we recommend the Early Years courses instead.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="space-y-3">
             {course.lessons.map((lesson, idx) => {
               const prog = progressMap[idx]

@@ -61,9 +61,22 @@ export default async function DashboardPage() {
             <div className="space-y-4">
               {ownedPackages.map(pkg => {
                 const pkgCourses = COURSES.filter(c => c.pkg === pkg.id)
+
+                // Check if this package has sub-packages (e.g. Growing Minds with Early Years + Junior)
+                const hasSubPackages = pkg.subPackages && pkg.subPackages.length > 0
+                const subGroups = hasSubPackages
+                  ? pkg.subPackages.map(sub => ({
+                      id: sub.id,
+                      name: sub.name,
+                      ageRange: sub.ageRange,
+                      courses: pkgCourses.filter(c => c.subPkg === sub.id),
+                    })).filter(g => g.courses.length > 0)
+                  : [{ id: pkg.id, name: pkg.name, ageRange: null, courses: pkgCourses }]
+
                 const pkgPassed = pkgCourses.reduce((acc, c) => acc + (progressByCourse[c.id]?.passed || 0), 0)
                 const pkgTotal = pkgCourses.reduce((acc, c) => acc + c.lessons.length, 0)
                 const pkgPct = pkgTotal > 0 ? Math.round((pkgPassed / pkgTotal) * 100) : 0
+
                 return (
                   <div key={pkg.id} className="bg-white rounded-2xl border border-gray-100 p-6">
                     <div className="flex items-start justify-between mb-4">
@@ -84,22 +97,61 @@ export default async function DashboardPage() {
                         <div className="h-2 rounded-full transition-all duration-500" style={{ width: pkgPct + '%', background: pkg.color }} />
                       </div>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 mb-4">
-                      {pkgCourses.map(course => {
-                        const cp = progressByCourse[course.id] || { passed: 0, total: course.lessons.length }
-                        const coursePct = cp.total > 0 ? Math.round((cp.passed / cp.total) * 100) : 0
-                        return (
-                          <Link key={course.id} href={"/course/" + course.id} className="text-center p-3 rounded-xl border border-gray-100 hover:border-teal/30 hover:bg-teal/5 transition-all">
-                            <div className="text-lg mb-1">{course.emoji}</div>
-                            <div className="text-xs font-medium text-navy/70 leading-snug mb-2">{course.title}</div>
-                            <div className="w-full bg-gray-100 rounded-full h-1 overflow-hidden">
-                              <div className="h-1 rounded-full" style={{ width: coursePct + '%', background: pkg.color }} />
+
+                    {subGroups.map(group => {
+                      const groupPassed = group.courses.reduce((acc, c) => acc + (progressByCourse[c.id]?.passed || 0), 0)
+                      const groupTotal = group.courses.reduce((acc, c) => acc + c.lessons.length, 0)
+                      const groupPct = groupTotal > 0 ? Math.round((groupPassed / groupTotal) * 100) : 0
+                      const groupColor = group.courses[0]?.color || pkg.color
+                      const isJunior = group.id === 'growing-junior'
+
+                      return (
+                        <div key={group.id} className={hasSubPackages ? 'mb-5 last:mb-0' : ''}>
+                          {hasSubPackages && (
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="flex items-center gap-2">
+                                <span className="text-lg">{group.courses[0]?.emoji || pkg.emoji}</span>
+                                <h4 className="font-semibold text-navy text-sm">{group.name}</h4>
+                                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full text-white" style={{ background: groupColor }}>
+                                  Ages {group.ageRange}
+                                </span>
+                              </div>
+                              <div className="flex-1 flex items-center gap-2">
+                                <div className="flex-1 bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                  <div className="h-1.5 rounded-full transition-all duration-500" style={{ width: groupPct + '%', background: groupColor }} />
+                                </div>
+                                <span className="text-xs text-navy/40 whitespace-nowrap">{groupPassed}/{groupTotal}</span>
+                              </div>
                             </div>
-                            <div className="text-xs text-navy/40 mt-1">{coursePct}%</div>
-                          </Link>
-                        )
-                      })}
-                    </div>
+                          )}
+                          {isJunior && (
+                            <div className="mb-3 p-3 rounded-lg border border-amber-200 bg-amber-50/60 flex items-start gap-2">
+                              <span className="text-amber-500 text-sm mt-0.5">&#9888;&#65039;</span>
+                              <p className="text-xs text-amber-700 leading-relaxed">
+                                <strong>Note:</strong> Junior courses are designed for ages 8{'\u2013'}11 and may not be suitable for the 4{'\u2013'}7 age range.
+                                If your child is in the younger group, we recommend the Early Years courses above.
+                              </p>
+                            </div>
+                          )}
+                          <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 mb-2">
+                            {group.courses.map(course => {
+                              const cp = progressByCourse[course.id] || { passed: 0, total: course.lessons.length }
+                              const coursePct = cp.total > 0 ? Math.round((cp.passed / cp.total) * 100) : 0
+                              return (
+                                <Link key={course.id} href={"/course/" + course.id} className="text-center p-3 rounded-xl border border-gray-100 hover:border-teal/30 hover:bg-teal/5 transition-all">
+                                  <div className="text-lg mb-1">{course.emoji}</div>
+                                  <div className="text-xs font-medium text-navy/70 leading-snug mb-2">{course.title}</div>
+                                  <div className="w-full bg-gray-100 rounded-full h-1 overflow-hidden">
+                                    <div className="h-1 rounded-full" style={{ width: coursePct + '%', background: groupColor }} />
+                                  </div>
+                                  <div className="text-xs text-navy/40 mt-1">{coursePct}%</div>
+                                </Link>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      )
+                    })}
                     <Link href="/library" className="btn-primary text-sm py-2 px-5">Continue Learning</Link>
                   </div>
                 )

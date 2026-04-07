@@ -353,7 +353,7 @@ export default function LessonPage() {
                   <p className="text-sm text-amber-800 leading-relaxed">
                     {isGrowingEarly
                       ? 'This course is designed for children aged 4\u20137 and must be completed together with a parent or carer. The content uses simple, gentle language intended to be read aloud. Please sit with your child as you work through each lesson together.'
-                      : 'This course is designed for children aged 8\u201311. It covers topics in greater depth than the Early Years version. Younger children should not access this content independently.'}
+                      : 'This course is designed for children aged 8\u201311 and may not be suitable for the 4\u20137 age range. It covers topics in greater depth than the Early Years version. If your child is in the younger group, we recommend the Early Years courses instead.'}
                   </p>
                 </div>
               </div>
