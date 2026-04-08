@@ -535,7 +535,7 @@ export default function LessonPage() {
               <button
                 onClick={handleSubmit}
                 disabled={!allAnswered || saving}
-                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed min-w-[160px] text-center"
               >
                 {saving ? 'Saving...' : 'Submit Answers'}
               </button>
