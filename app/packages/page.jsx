@@ -143,7 +143,8 @@ export default function PackagesPage() {
             </div>
           </div>
           <div className="px-6 pb-2">
-            <button onClick={() => toggleExpand('growing')} className="w-full flex items-center justify-center gap-2 text-sm font-semibold text-green-700 hover:text-green-800 py-3 transition-colors">
+            <button onClick={() => toggleExpand('growing')} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold text-green-700 hover:text-green-800 py-3 px-4 rounded-lg hover:bg-green-50 transition-all">
+              <span>📋</span>
               <span>{expanded['growing'] ? 'Show less' : 'See more — courses & lessons included'}</span>
               <svg className={"w-4 h-4 transition-transform duration-300 " + (expanded['growing'] ? 'rotate-180' : '')} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </button>
@@ -273,7 +274,8 @@ export default function PackagesPage() {
                     </div>
                   ))}
                 </div>
-                <button onClick={() => toggleExpand(pkg.id)} className="w-full flex items-center justify-center gap-2 text-sm font-semibold py-3 mb-4 transition-colors hover:opacity-80" style={{ color: gradient.accent }}>
+                <button onClick={() => toggleExpand(pkg.id)} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold py-3 mb-4 rounded-lg transition-all hover:opacity-90" style={{ color: gradient.accent, backgroundColor: gradient.accentBg }}>
+                  <span>📋</span>
                   <span>{expanded[pkg.id] ? 'Show less' : 'See more — courses & lessons included'}</span>
                   <svg className={"w-4 h-4 transition-transform duration-300 " + (expanded[pkg.id] ? 'rotate-180' : '')} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                 </button>
