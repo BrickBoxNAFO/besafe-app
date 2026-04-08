@@ -42,43 +42,43 @@ const PRICES = {
   US: {
     currency: 'usd',
     amounts: {
-      growing: 2999, street: 3999, nest: 4999, roaming: 5999,
-      aging: 3999, parents: 4999, bundle: 14999, complete: 19999,
+      growing: 3499, street: 3999, nest: 4999, roaming: 5999,
+      aging: 3999, parents: 4999, bundle: 12999, complete: 21999,
     },
   },
   GB: {
     currency: 'gbp',
     amounts: {
-      growing: 1999, street: 2799, nest: 3499, roaming: 4299,
-      aging: 2799, parents: 3499, bundle: 9999, complete: 13999,
+      growing: 2299, street: 2799, nest: 3499, roaming: 4299,
+      aging: 2799, parents: 3499, bundle: 8999, complete: 14999,
     },
   },
   EU: {
     currency: 'eur',
     amounts: {
-      growing: 2499, street: 3499, nest: 4299, roaming: 4999,
-      aging: 3499, parents: 4299, bundle: 11999, complete: 16499,
+      growing: 2799, street: 3499, nest: 4299, roaming: 4999,
+      aging: 3499, parents: 4299, bundle: 10999, complete: 17999,
     },
   },
   CA: {
     currency: 'cad',
     amounts: {
-      growing: 3499, street: 4999, nest: 5999, roaming: 7499,
-      aging: 4999, parents: 5999, bundle: 18999, complete: 24999,
+      growing: 4499, street: 4999, nest: 6499, roaming: 7999,
+      aging: 4999, parents: 6499, bundle: 16999, complete: 27999,
     },
   },
   AU: {
     currency: 'aud',
     amounts: {
-      growing: 3999, street: 5499, nest: 6499, roaming: 7999,
-      aging: 5499, parents: 6499, bundle: 19999, complete: 26999,
+      growing: 4799, street: 5499, nest: 6999, roaming: 8499,
+      aging: 5499, parents: 6999, bundle: 17999, complete: 29999,
     },
   },
   NZ: {
     currency: 'nzd',
     amounts: {
-      growing: 4299, street: 5799, nest: 6999, roaming: 8499,
-      aging: 5799, parents: 6999, bundle: 21499, complete: 28999,
+      growing: 4999, street: 5799, nest: 7499, roaming: 8999,
+      aging: 5799, parents: 7499, bundle: 18999, complete: 31999,
     },
   },
 }
