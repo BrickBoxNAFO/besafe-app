@@ -4,8 +4,8 @@ import Link from 'next/link'
 import NewsletterBanner from '@/components/NewsletterBanner'
 import VideoPlayer from '@/components/VideoPlayer'
 
-// ─── Set this to your Cloudflare R2 video URL once uploaded ───
-const VIDEO_URL = null  // e.g. 'https://pub-xxxxx.r2.dev/homesafe-intro.mp4'
+// ─── Cloudflare R2 video URL ───
+const VIDEO_URL = 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/HomeSafeEducation%204K.mp4'
 const VIDEO_POSTER = null // optional thumbnail image URL
 
 export default function HomePage() {
