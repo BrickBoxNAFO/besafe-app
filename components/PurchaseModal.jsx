@@ -69,9 +69,12 @@ export default function PurchaseModal({ packageId, packageName, price, onClose, 
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center p-4 overflow-y-auto" style={{ zIndex: 9999 }} onClick={onClose}>
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" style={{ zIndex: 9999 }} />
-      <div className="relative bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden my-auto" style={{ zIndex: 10000 }} onClick={e => e.stopPropagation()}>
+    <div className="fixed inset-0" style={{ zIndex: 9999 }}>
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      {/* Centering wrapper */}
+      <div className="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+        <div className="relative bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden pointer-events-auto max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
         {/* Header */}
         <div className="bg-gradient-to-r from-navy to-navy/90 px-6 py-5">
           <div className="flex items-center justify-between">
@@ -213,6 +216,7 @@ export default function PurchaseModal({ packageId, packageName, price, onClose, 
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   )
