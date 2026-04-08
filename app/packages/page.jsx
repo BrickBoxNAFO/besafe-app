@@ -391,6 +391,18 @@ export default function PackagesPage() {
         <NewsletterBanner />
       </div>
 
+      {/* Sticky mobile buy bar */}
+      {purchasesEnabled && !purchaseModal && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 px-4 py-3 sm:hidden" style={{ zIndex: 40 }}>
+          <button
+            onClick={() => openPurchaseModal('growing', 'Growing Minds', packagePrice('growing'))}
+            className="w-full bg-teal hover:bg-teal/90 text-white font-semibold rounded-xl py-3 text-sm transition-colors"
+          >
+            Browse & Buy Packages
+          </button>
+        </div>
+      )}
+
       {/* Purchase Modal */}
       {purchaseModal && (
         <PurchaseModal

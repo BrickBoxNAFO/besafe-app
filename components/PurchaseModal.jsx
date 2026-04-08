@@ -1,9 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function PurchaseModal({ packageId, packageName, price, onClose, regionCode }) {
   const [step, setStep] = useState('choice')  // 'choice' | 'gift'
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [])
   const [giftName, setGiftName] = useState('')
   const [giftEmail, setGiftEmail] = useState('')
   const [giftEmailConfirm, setGiftEmailConfirm] = useState('')
@@ -63,9 +69,9 @@ export default function PurchaseModal({ packageId, packageName, price, onClose, 
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-      <div className="relative bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+    <div className="fixed inset-0 flex items-center justify-center p-4 overflow-y-auto" style={{ zIndex: 9999 }} onClick={onClose}>
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" style={{ zIndex: 9999 }} />
+      <div className="relative bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden my-auto" style={{ zIndex: 10000 }} onClick={e => e.stopPropagation()}>
         {/* Header */}
         <div className="bg-gradient-to-r from-navy to-navy/90 px-6 py-5">
           <div className="flex items-center justify-between">
