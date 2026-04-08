@@ -41,19 +41,32 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
     const audio = audioRef.current
     if (!audio) return
 
-    const onLoaded = () => {
-      setDuration(audio.duration)
-      setIsLoaded(true)
+    const syncDuration = () => {
+      if (audio.duration && isFinite(audio.duration)) {
+        setDuration(audio.duration)
+        setIsLoaded(true)
+      }
     }
-    const onTimeUpdate = () => setCurrentTime(audio.currentTime)
+    const onTimeUpdate = () => {
+      setCurrentTime(audio.currentTime)
+      syncDuration() // also sync duration in case it wasn't available earlier
+    }
     const onEnded = () => setIsPlaying(false)
 
-    audio.addEventListener('loadedmetadata', onLoaded)
+    // Listen to multiple events - loadedmetadata can be missed for cross-origin audio
+    audio.addEventListener('loadedmetadata', syncDuration)
+    audio.addEventListener('durationchange', syncDuration)
+    audio.addEventListener('canplay', syncDuration)
     audio.addEventListener('timeupdate', onTimeUpdate)
     audio.addEventListener('ended', onEnded)
 
+    // Check if duration is already available (cached audio)
+    syncDuration()
+
     return () => {
-      audio.removeEventListener('loadedmetadata', onLoaded)
+      audio.removeEventListener('loadedmetadata', syncDuration)
+      audio.removeEventListener('durationchange', syncDuration)
+      audio.removeEventListener('canplay', syncDuration)
       audio.removeEventListener('timeupdate', onTimeUpdate)
       audio.removeEventListener('ended', onEnded)
     }
@@ -66,6 +79,11 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
       audio.pause()
     } else {
       audio.play()
+      // Grab duration on first play in case metadata events were missed
+      if (audio.duration && isFinite(audio.duration)) {
+        setDuration(audio.duration)
+        setIsLoaded(true)
+      }
     }
     setIsPlaying(!isPlaying)
   }, [isPlaying])
@@ -239,7 +257,7 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
               className="w-full h-2 bg-gray-200 rounded-full cursor-pointer relative group"
             >
               <div
-                className="h-full rounded-full relative transition-all"
+                className="h-full rounded-full relative"
                 style={{
                   width: progress + '%',
                   background: `linear-gradient(90deg, ${accent}, ${isRemember ? '#2dd4bf' : '#f59e0b'})`,
