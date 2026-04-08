@@ -12,13 +12,15 @@ import AudioPlayer from '@/components/AudioPlayer'
    - paragraphs: the teaching content (before quiz)
    - keyTakeaways: bullet points from "--- Key Takeaways ---"
    - questions: [{ question, options: [{ text, isCorrect }], explanation }]
+   - rememberThis: optional "Remember This:" recap text (shown after quiz)
    ──────────────────────────────────────────── */
 function parseLesson(content) {
-  if (!content || !content.length) return { paragraphs: [], keyTakeaways: [], questions: [] }
+  if (!content || !content.length) return { paragraphs: [], keyTakeaways: [], questions: [], rememberThis: '' }
 
   const paragraphs = []
   const keyTakeaways = []
   const questions = []
+  let rememberThis = ''
 
   let phase = 'content' // 'content' | 'takeaways' | 'quiz'
   let currentQuestion = null
@@ -26,6 +28,17 @@ function parseLesson(content) {
   for (let i = 0; i < content.length; i++) {
     const line = content[i]
     if (!line || line.trim() === '') continue
+
+    // Detect "Remember This:" recap (can appear in any phase — extract and display after quiz)
+    if (line.startsWith('Remember This:')) {
+      rememberThis = line.replace('Remember This:', '').trim()
+      // Save any in-progress question before continuing
+      if (currentQuestion && currentQuestion.options.length > 0) {
+        questions.push(currentQuestion)
+        currentQuestion = null
+      }
+      continue
+    }
 
     // Detect key takeaways section (can appear in any phase, including after quiz)
     if (line.includes('--- Key Takeaways ---') || line.trim() === 'Key Takeaways:' || line.trim() === 'Key Takeaways') {
@@ -131,7 +144,7 @@ function parseLesson(content) {
     questions.push(currentQuestion)
   }
 
-  return { paragraphs, keyTakeaways, questions }
+  return { paragraphs, keyTakeaways, questions, rememberThis }
 }
 
 
@@ -148,7 +161,7 @@ export default function LessonPage() {
   const lessonTitle = typeof lesson === 'string' ? lesson : lesson?.title
   const rawContent = typeof lesson === 'object' && lesson?.content ? lesson.content : []
 
-  const { paragraphs, keyTakeaways, questions } = useMemo(() => parseLesson(rawContent), [rawContent])
+  const { paragraphs, keyTakeaways, questions, rememberThis } = useMemo(() => parseLesson(rawContent), [rawContent])
 
   const courseColor = course?.color || pkg?.color || '#0EA5A0'
   const totalLessons = course?.lessons?.length || 0
@@ -451,6 +464,16 @@ export default function LessonPage() {
               </div>
             )}
 
+            {/* Remember This recap text (shown on last lesson only, after content) */}
+            {rememberThis && (
+              <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
+                <h3 className="font-serif text-lg text-navy mb-2 flex items-center gap-2">
+                  <span className="text-xl">💡</span> Remember This
+                </h3>
+                <p className="text-navy/70 text-sm leading-relaxed">{rememberThis}</p>
+              </div>
+            )}
+
             {/* Previous progress notice */}
             {existingProgress?.passed && (
               <div className="mb-4 flex items-center gap-2 bg-teal/5 border border-teal/15 rounded-xl px-4 py-3">
@@ -629,6 +652,16 @@ export default function LessonPage() {
                 )
               })}
             </div>
+
+            {/* Remember This recap after quiz results */}
+            {rememberThis && (
+              <div className="mb-8 rounded-2xl border border-amber-200 bg-amber-50/60 p-5">
+                <h3 className="font-serif text-lg text-navy mb-2 flex items-center gap-2">
+                  <span className="text-xl">💡</span> Remember This
+                </h3>
+                <p className="text-navy/70 text-sm leading-relaxed">{rememberThis}</p>
+              </div>
+            )}
 
             {/* Navigation buttons */}
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
