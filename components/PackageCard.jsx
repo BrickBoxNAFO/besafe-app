@@ -40,7 +40,7 @@ export default function PackageCard({ pkg, owned }) {
         <span className="chip text-xs px-2 py-0.5 rounded-full" style={{ background: pkg.pale, color: pkg.color }}>{subjects} Courses</span>
         <span className="chip bg-navy/5 text-navy/50 text-xs px-2 py-0.5 rounded-full">{lessons} Lessons</span>
         <span className="chip bg-navy/5 text-navy/50 text-xs px-2 py-0.5 rounded-full">{quizQs} quiz Qs</span>
-        {pkg.isGrowingBundle && <span className="chip text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200/60">🎵 57 Songs</span>}
+        {pkg.isGrowingBundle && <span className="chip text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200/60">🎵 72 Songs</span>}
       </div>
       <div className="flex items-center justify-between">
         <span className="font-bold text-navy text-lg">{packagePrice(pkg.id)}</span>
