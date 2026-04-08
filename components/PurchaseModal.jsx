@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 export default function PurchaseModal({ packageId, packageName, price, onClose, regionCode }) {
   const [step, setStep] = useState('choice')  // 'choice' | 'gift'
@@ -68,7 +69,7 @@ export default function PurchaseModal({ packageId, packageName, price, onClose, 
     }
   }
 
-  return (
+  const modalContent = (
     <div className="fixed inset-0" style={{ zIndex: 9999 }}>
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
@@ -220,4 +221,6 @@ export default function PurchaseModal({ packageId, packageName, price, onClose, 
       </div>
     </div>
   )
+
+  return createPortal(modalContent, document.body)
 }
