@@ -20,8 +20,8 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
   const [duration, setDuration] = useState(0)
   const [lyricsOpen, setLyricsOpen] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [volume, setVolume] = useState(1)
-  const [prevVolume, setPrevVolume] = useState(1)
+  const [volume, setVolume] = useState(0.5)
+  const [prevVolume, setPrevVolume] = useState(0.5)
 
   const isRemember = variant === 'remember'
   const accent = accentColor || (isRemember ? '#0EA5A0' : '#E8703A')
@@ -48,6 +48,7 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
     const onTimeUpdate = () => setCurrentTime(audio.currentTime)
     const onEnded = () => setIsPlaying(false)
 
+    audio.volume = 0.5
     audio.addEventListener('loadedmetadata', onLoaded)
     audio.addEventListener('timeupdate', onTimeUpdate)
     audio.addEventListener('ended', onEnded)
@@ -182,7 +183,7 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
             value={volume}
             onChange={handleVolume}
             className="volume-slider hidden sm:block"
-            style={{ width: 70 }}
+            style={{ width: 70, background: `linear-gradient(to right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.8) ${volume * 100}%, rgba(255,255,255,0.25) ${volume * 100}%, rgba(255,255,255,0.25) 100%)` }}
             aria-label="Volume"
           />
         </div>
