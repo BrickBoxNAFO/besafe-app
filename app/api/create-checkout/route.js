@@ -5,14 +5,21 @@ import { getStripePriceId, getStripeCurrency } from '@/lib/stripe'
 import { countryToRegion } from '@/lib/pricing'
 
 export async function POST(request) {
-  // Payments not yet active - return 503 until Stripe is live
-  return NextResponse.json(
-    { error: 'Payments are not yet active. Please check back soon.' },
-    { status: 503 }
-  )
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
 
-  // The below will be activated when Stripe goes live:
-  /*
+  // Only allow test user(s) to purchase while payments are in testing mode
+  const testEmails = (process.env.TEST_USER_EMAILS || '').split(',').map(e => e.trim().toLowerCase()).filter(Boolean)
+  const paymentsLive = process.env.PAYMENTS_LIVE === 'true'
+
+  if (!paymentsLive && !testEmails.includes(user.email.toLowerCase())) {
+    return NextResponse.json(
+      { error: 'Payments are not yet active. Please check back soon.' },
+      { status: 503 }
+    )
+  }
+
   const { packageId, region: clientRegion } = await request.json()
 
   // Determine region from cookie or client-sent value
@@ -21,10 +28,6 @@ export async function POST(request) {
 
   const priceId = getStripePriceId(packageId, regionCode)
   if (!priceId) return NextResponse.json({ error: 'Invalid package' }, { status: 400 })
-
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
   const currency = getStripeCurrency(regionCode)
@@ -40,5 +43,4 @@ export async function POST(request) {
     metadata: { userId: user.id, packageId, region: regionCode },
   })
   return NextResponse.json({ url: session.url })
-  */
 }

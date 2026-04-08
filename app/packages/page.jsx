@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { PACKAGES, COURSES } from '@/lib/data'
 import NewsletterBanner from '@/components/NewsletterBanner'
@@ -38,8 +38,35 @@ const PKG_GRADIENTS = {
 }
 
 export default function PackagesPage() {
-  const { packagePrice, format, bundleWas, bundleSavings, completeWas, completeSavings } = usePricing()
+  const { packagePrice, format, bundleWas, bundleSavings, completeWas, completeSavings, regionCode } = usePricing()
   const [expanded, setExpanded] = useState({})
+  const [purchasesEnabled, setPurchasesEnabled] = useState(false)
+  const [purchasing, setPurchasing] = useState(null)
+
+  useEffect(() => {
+    fetch('/api/payments-status').then(r => r.json()).then(d => setPurchasesEnabled(d.purchasesEnabled)).catch(() => {})
+  }, [])
+
+  const handlePurchase = async (packageId) => {
+    setPurchasing(packageId)
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ packageId, region: regionCode }),
+      })
+      const data = await res.json()
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        alert(data.error || 'Something went wrong')
+      }
+    } catch {
+      alert('Something went wrong. Please try again.')
+    } finally {
+      setPurchasing(null)
+    }
+  }
   const toggleExpand = (id) => setExpanded(prev => ({ ...prev, [id]: !prev[id] }))
   const earlyYearsCourses = COURSES.filter(c => c.subPkg === 'growing-early')
   const juniorCourses    = COURSES.filter(c => c.subPkg === 'growing-junior')
@@ -203,7 +230,13 @@ export default function PackagesPage() {
           </div>
 
           <div className="px-6 pb-6">
-            <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
+            {purchasesEnabled ? (
+              <button onClick={() => handlePurchase('growing')} disabled={purchasing === 'growing'} className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors disabled:opacity-60">
+                {purchasing === 'growing' ? 'Redirecting to checkout…' : `Buy Growing Minds — ${packagePrice('growing')}`}
+              </button>
+            ) : (
+              <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
+            )}
             <p className="text-center text-xs text-navy/40 mt-2">One payment · 10 courses · 57 original songs · Both age groups included</p>
           </div>
         </div>
@@ -265,7 +298,13 @@ export default function PackagesPage() {
                     ))}
                   </div>
                 )}
-                <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
+                {purchasesEnabled ? (
+                  <button onClick={() => handlePurchase(pkg.id)} disabled={purchasing === pkg.id} className="w-full font-semibold rounded-xl px-6 py-3 text-center text-white transition-colors disabled:opacity-60" style={{ background: gradient.accent }}>
+                    {purchasing === pkg.id ? 'Redirecting to checkout…' : `Buy ${pkg.name} — ${packagePrice(pkg.id)}`}
+                  </button>
+                ) : (
+                  <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
+                )}
               </div>
             </div>
           )
@@ -301,7 +340,13 @@ export default function PackagesPage() {
                 <div className="text-xs font-medium text-white/70">Growing Minds</div>
               </div>
             </div>
-            <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
+            {purchasesEnabled ? (
+              <button onClick={() => handlePurchase('bundle')} disabled={purchasing === 'bundle'} className="w-full bg-teal hover:bg-teal/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors disabled:opacity-60">
+                {purchasing === 'bundle' ? 'Redirecting to checkout…' : `Buy Family Safety Bundle — ${packagePrice('bundle')}`}
+              </button>
+            ) : (
+              <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
+            )}
           </div>
         </div>
 
@@ -334,7 +379,13 @@ export default function PackagesPage() {
                 </div>
               ))}
             </div>
-            <div className="w-full bg-navy/10 rounded-xl px-6 py-3 text-center"><span className="text-navy/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
+            {purchasesEnabled ? (
+              <button onClick={() => handlePurchase('complete')} disabled={purchasing === 'complete'} className="w-full bg-navy hover:bg-navy/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors disabled:opacity-60">
+                {purchasing === 'complete' ? 'Redirecting to checkout…' : `Buy Complete Library — ${packagePrice('complete')}`}
+              </button>
+            ) : (
+              <div className="w-full bg-navy/10 rounded-xl px-6 py-3 text-center"><span className="text-navy/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
+            )}
           </div>
         </div>
 
