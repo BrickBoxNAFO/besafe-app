@@ -20,8 +20,8 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
   const [duration, setDuration] = useState(0)
   const [lyricsOpen, setLyricsOpen] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [volume, setVolume] = useState(0.5)
-  const [prevVolume, setPrevVolume] = useState(0.5)
+  const [volume, setVolume] = useState(1)
+  const [prevVolume, setPrevVolume] = useState(1)
 
   const isRemember = variant === 'remember'
   const accent = accentColor || (isRemember ? '#0EA5A0' : '#E8703A')
@@ -48,7 +48,6 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
     const onTimeUpdate = () => setCurrentTime(audio.currentTime)
     const onEnded = () => setIsPlaying(false)
 
-    audio.volume = 0.5
     audio.addEventListener('loadedmetadata', onLoaded)
     audio.addEventListener('timeupdate', onTimeUpdate)
     audio.addEventListener('ended', onEnded)
@@ -292,26 +291,28 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
         .volume-slider {
           -webkit-appearance: none;
           appearance: none;
-          height: 4px;
-          border-radius: 2px;
+          height: 6px;
+          border-radius: 3px;
           background: rgba(255,255,255,0.25);
           outline: none;
           cursor: pointer;
+          vertical-align: middle;
         }
         .volume-slider::-webkit-slider-thumb {
           -webkit-appearance: none;
           appearance: none;
-          width: 14px;
-          height: 14px;
+          width: 16px;
+          height: 16px;
           border-radius: 50%;
           background: #fff;
           border: none;
           box-shadow: 0 1px 4px rgba(0,0,0,0.3);
           cursor: pointer;
+          margin-top: -5px;
         }
         .volume-slider::-moz-range-thumb {
-          width: 14px;
-          height: 14px;
+          width: 16px;
+          height: 16px;
           border-radius: 50%;
           background: #fff;
           border: none;
@@ -319,12 +320,12 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
           cursor: pointer;
         }
         .volume-slider::-webkit-slider-runnable-track {
-          height: 4px;
-          border-radius: 2px;
+          height: 6px;
+          border-radius: 3px;
         }
         .volume-slider::-moz-range-track {
-          height: 4px;
-          border-radius: 2px;
+          height: 6px;
+          border-radius: 3px;
           background: rgba(255,255,255,0.25);
         }
       `}</style>
