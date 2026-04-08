@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { createClient as createAdminClient } from '@supabase/supabase-js'
-import { sendPurchaseConfirmation, sendRefundConfirmation } from '@/lib/resend'
+import { sendPurchaseConfirmation, sendRefundConfirmation, sendMemberInvite } from '@/lib/resend'
 import { PACKAGES } from '@/lib/data'
+import { randomUUID } from 'crypto'
 
 // Required for Stripe webhook - disable body parsing
 export const dynamic = 'force-dynamic'
@@ -23,14 +24,69 @@ export async function POST(request) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object
-    const { user_id, package_id, is_bundle } = session.metadata || {}
+    const meta = session.metadata || {}
+    const { userId, packageId, is_bundle, purchaseType, giftRecipientEmail, giftRecipientName, gifterName } = meta
+    // Support both old key (user_id) and new key (userId)
+    const user_id = userId || meta.user_id
+    const package_id = packageId || meta.package_id
 
     if (!user_id || !package_id) {
       return NextResponse.json({ error: 'Missing metadata' }, { status: 400 })
     }
 
     try {
-      if (is_bundle === 'true') {
+      const isGift = purchaseType === 'gift' && giftRecipientEmail
+
+      if (isGift) {
+        // ─── Gift purchase: create gift record and send invite ─────────────
+        const pkg = PACKAGES.find(p => p.id === package_id)
+        const token = randomUUID()
+        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://homesafeeducation.com'
+        const inviteUrl = `${siteUrl}/register?gift_token=${token}&package=${package_id}`
+
+        // Store gift purchase in database
+        await supabase.from('gift_purchases').insert({
+          token,
+          package_id,
+          recipient_email: giftRecipientEmail,
+          recipient_name: giftRecipientName || null,
+          gifter_name: gifterName || 'Someone special',
+          stripe_session_id: session.id,
+          redeemed: false,
+        })
+
+        // Also record the purchase against the buyer (for receipts/refund tracking)
+        await supabase.from('purchases').upsert(
+          { user_id, package_id: package_id + '_gift_' + token.slice(0, 8), stripe_payment_intent: session.payment_intent, purchased_at: new Date().toISOString() },
+          { onConflict: 'user_id,package_id' }
+        )
+
+        // Send invite email to recipient
+        await sendMemberInvite({
+          to: giftRecipientEmail,
+          memberName: giftRecipientName || 'there',
+          senderName: gifterName || 'Someone special',
+          packageName: pkg?.name || package_id,
+          packageEmoji: pkg?.emoji || '🎓',
+          inviteUrl,
+        })
+
+        // Send confirmation email to the buyer
+        const { data: userData } = await supabase.auth.admin.getUserById(user_id)
+        const buyerEmail = userData?.user?.email
+        const buyerName = userData?.user?.user_metadata?.name
+        if (buyerEmail) {
+          await sendPurchaseConfirmation({
+            to: buyerEmail,
+            name: buyerName,
+            packageName: (pkg?.name || package_id) + ' (Gift)',
+            isBundle: false,
+            orderId: session.payment_intent?.slice(-8)?.toUpperCase() || 'N/A',
+            amount: session.amount_total ? (session.amount_total / 100).toFixed(2) : 'See receipt',
+          })
+        }
+      } else if (is_bundle === 'true') {
+        // ─── Bundle purchase: grant all packages ────────────────────────────
         const packageIds = PACKAGES.map(p => p.id)
         for (const pid of packageIds) {
           await supabase.from('purchases').upsert(
@@ -38,25 +94,41 @@ export async function POST(request) {
             { onConflict: 'user_id,package_id' }
           )
         }
+
+        const { data: userData } = await supabase.auth.admin.getUserById(user_id)
+        const userEmail = userData?.user?.email
+        const userName = userData?.user?.user_metadata?.name
+
+        if (userEmail) {
+          await sendPurchaseConfirmation({
+            to: userEmail,
+            name: userName,
+            packageName: package_id,
+            isBundle: true,
+          })
+        }
       } else {
+        // ─── Self purchase: grant the package ───────────────────────────────
         await supabase.from('purchases').upsert(
           { user_id, package_id, stripe_payment_intent: session.payment_intent, purchased_at: new Date().toISOString() },
           { onConflict: 'user_id,package_id' }
         )
-      }
 
-      const { data: userData } = await supabase.auth.admin.getUserById(user_id)
-      const userEmail = userData?.user?.email
-      const userName = userData?.user?.user_metadata?.name
-      const pkg = PACKAGES.find(p => p.id === package_id)
+        const { data: userData } = await supabase.auth.admin.getUserById(user_id)
+        const userEmail = userData?.user?.email
+        const userName = userData?.user?.user_metadata?.name
+        const pkg = PACKAGES.find(p => p.id === package_id)
 
-      if (userEmail) {
-        await sendPurchaseConfirmation({
-          to: userEmail,
-          name: userName,
-          packageName: pkg?.name || package_id,
-          isBundle: is_bundle === 'true'
-        })
+        if (userEmail) {
+          await sendPurchaseConfirmation({
+            to: userEmail,
+            name: userName,
+            packageName: pkg?.name || package_id,
+            isBundle: false,
+            orderId: session.payment_intent?.slice(-8)?.toUpperCase() || 'N/A',
+            amount: session.amount_total ? (session.amount_total / 100).toFixed(2) : 'See receipt',
+          })
+        }
       }
     } catch (err) {
       console.error('Webhook processing error:', err)

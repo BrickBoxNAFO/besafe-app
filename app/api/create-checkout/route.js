@@ -3,6 +3,7 @@ import Stripe from 'stripe'
 import { createClient } from '@/utils/supabase/server'
 import { getStripePriceId, getStripeCurrency } from '@/lib/stripe'
 import { countryToRegion } from '@/lib/pricing'
+import { PACKAGES } from '@/lib/data'
 
 export async function POST(request) {
   const supabase = await createClient()
@@ -20,7 +21,7 @@ export async function POST(request) {
     )
   }
 
-  const { packageId, region: clientRegion } = await request.json()
+  const { packageId, region: clientRegion, purchaseType, giftRecipientName, giftRecipientEmail } = await request.json()
 
   // Determine region from cookie or client-sent value
   const cookieRegion = request.cookies.get('pricing_region')?.value
@@ -32,15 +33,45 @@ export async function POST(request) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
   const currency = getStripeCurrency(regionCode)
 
+  const pkg = PACKAGES.find(p => p.id === packageId)
+  const packageName = pkg?.name || packageId
+
+  const isGift = purchaseType === 'gift'
+  const isBundle = packageId === 'bundle' || packageId === 'complete'
+
+  // Build success URL with confirmation params
+  const successParams = new URLSearchParams({
+    type: isGift ? 'gift' : isBundle ? 'bundle' : 'self',
+    package: packageName,
+  })
+  if (isGift && giftRecipientEmail) {
+    successParams.set('email', giftRecipientEmail)
+  }
+  const successUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/purchase-success?${successParams.toString()}`
+
+  // Build Stripe metadata
+  const metadata = {
+    userId: user.id,
+    packageId,
+    region: regionCode,
+    purchaseType: isGift ? 'gift' : 'self',
+    is_bundle: isBundle ? 'true' : 'false',
+  }
+  if (isGift) {
+    metadata.giftRecipientName = giftRecipientName || ''
+    metadata.giftRecipientEmail = giftRecipientEmail || ''
+    metadata.gifterName = user.user_metadata?.name || user.email?.split('@')[0] || 'Someone special'
+  }
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [{ price: priceId, quantity: 1 }],
     mode: 'payment',
     currency,
-    success_url: process.env.NEXT_PUBLIC_SITE_URL + '/dashboard?purchase=success',
+    success_url: successUrl,
     cancel_url: process.env.NEXT_PUBLIC_SITE_URL + '/packages',
     customer_email: user.email,
-    metadata: { userId: user.id, packageId, region: regionCode },
+    metadata,
   })
   return NextResponse.json({ url: session.url })
 }

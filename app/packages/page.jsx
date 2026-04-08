@@ -6,6 +6,7 @@ import { PACKAGES, COURSES } from '@/lib/data'
 import NewsletterBanner from '@/components/NewsletterBanner'
 import AudioPlayer from '@/components/AudioPlayer'
 import { usePricing } from '@/components/PricingProvider'
+import PurchaseModal from '@/components/PurchaseModal'
 
 const EXAMPLE_SONGS = {
   early: {
@@ -41,31 +42,14 @@ export default function PackagesPage() {
   const { packagePrice, format, bundleWas, bundleSavings, completeWas, completeSavings, regionCode } = usePricing()
   const [expanded, setExpanded] = useState({})
   const [purchasesEnabled, setPurchasesEnabled] = useState(false)
-  const [purchasing, setPurchasing] = useState(null)
+  const [purchaseModal, setPurchaseModal] = useState(null) // { id, name, price }
 
   useEffect(() => {
     fetch('/api/payments-status').then(r => r.json()).then(d => setPurchasesEnabled(d.purchasesEnabled)).catch(() => {})
   }, [])
 
-  const handlePurchase = async (packageId) => {
-    setPurchasing(packageId)
-    try {
-      const res = await fetch('/api/create-checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ packageId, region: regionCode }),
-      })
-      const data = await res.json()
-      if (data.url) {
-        window.location.href = data.url
-      } else {
-        alert(data.error || 'Something went wrong')
-      }
-    } catch {
-      alert('Something went wrong. Please try again.')
-    } finally {
-      setPurchasing(null)
-    }
+  const openPurchaseModal = (packageId, packageName, price) => {
+    setPurchaseModal({ id: packageId, name: packageName, price })
   }
   const toggleExpand = (id) => setExpanded(prev => ({ ...prev, [id]: !prev[id] }))
   const earlyYearsCourses = COURSES.filter(c => c.subPkg === 'growing-early')
@@ -231,8 +215,8 @@ export default function PackagesPage() {
 
           <div className="px-6 pb-6">
             {purchasesEnabled ? (
-              <button onClick={() => handlePurchase('growing')} disabled={purchasing === 'growing'} className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors disabled:opacity-60">
-                {purchasing === 'growing' ? 'Redirecting to checkout…' : `Buy Growing Minds — ${packagePrice('growing')}`}
+              <button onClick={() => openPurchaseModal('growing', 'Growing Minds', packagePrice('growing'))} className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors">
+                Buy Growing Minds — {packagePrice('growing')}
               </button>
             ) : (
               <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
@@ -299,8 +283,8 @@ export default function PackagesPage() {
                   </div>
                 )}
                 {purchasesEnabled ? (
-                  <button onClick={() => handlePurchase(pkg.id)} disabled={purchasing === pkg.id} className="w-full font-semibold rounded-xl px-6 py-3 text-center text-white transition-colors disabled:opacity-60" style={{ background: gradient.accent }}>
-                    {purchasing === pkg.id ? 'Redirecting to checkout…' : `Buy ${pkg.name} — ${packagePrice(pkg.id)}`}
+                  <button onClick={() => openPurchaseModal(pkg.id, pkg.name, packagePrice(pkg.id))} className="w-full font-semibold rounded-xl px-6 py-3 text-center text-white transition-colors" style={{ background: gradient.accent }}>
+                    Buy {pkg.name} — {packagePrice(pkg.id)}
                   </button>
                 ) : (
                   <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
@@ -341,8 +325,8 @@ export default function PackagesPage() {
               </div>
             </div>
             {purchasesEnabled ? (
-              <button onClick={() => handlePurchase('bundle')} disabled={purchasing === 'bundle'} className="w-full bg-teal hover:bg-teal/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors disabled:opacity-60">
-                {purchasing === 'bundle' ? 'Redirecting to checkout…' : `Buy Family Safety Bundle — ${packagePrice('bundle')}`}
+              <button onClick={() => openPurchaseModal('bundle', 'Family Safety Bundle', packagePrice('bundle'))} className="w-full bg-teal hover:bg-teal/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors">
+                Buy Family Safety Bundle — {packagePrice('bundle')}
               </button>
             ) : (
               <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
@@ -380,8 +364,8 @@ export default function PackagesPage() {
               ))}
             </div>
             {purchasesEnabled ? (
-              <button onClick={() => handlePurchase('complete')} disabled={purchasing === 'complete'} className="w-full bg-navy hover:bg-navy/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors disabled:opacity-60">
-                {purchasing === 'complete' ? 'Redirecting to checkout…' : `Buy Complete Library — ${packagePrice('complete')}`}
+              <button onClick={() => openPurchaseModal('complete', 'Complete Library', packagePrice('complete'))} className="w-full bg-navy hover:bg-navy/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors">
+                Buy Complete Library — {packagePrice('complete')}
               </button>
             ) : (
               <div className="w-full bg-navy/10 rounded-xl px-6 py-3 text-center"><span className="text-navy/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
@@ -406,6 +390,17 @@ export default function PackagesPage() {
         {/* Newsletter Banner */}
         <NewsletterBanner />
       </div>
+
+      {/* Purchase Modal */}
+      {purchaseModal && (
+        <PurchaseModal
+          packageId={purchaseModal.id}
+          packageName={purchaseModal.name}
+          price={purchaseModal.price}
+          regionCode={regionCode}
+          onClose={() => setPurchaseModal(null)}
+        />
+      )}
     </div>
   )
 }
