@@ -187,7 +187,7 @@ export default function PackagesPage() {
                   <span className="text-lg">🎵</span>
                   <h3 className="text-white font-semibold text-base">72 Original Songs Built Into Every Lesson</h3>
                 </div>
-                <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-teal/15 border border-teal/25 text-teal font-semibold sm:ml-auto">Exclusive to Growing Minds</span>
+                <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-semibold sm:ml-auto" style={{background:'rgba(22,163,74,0.12)',border:'1px solid rgba(22,163,74,0.25)',color:'#16a34a'}}>Exclusive to Growing Minds</span>
               </div>
 
               {/* Description */}
@@ -208,7 +208,7 @@ export default function PackagesPage() {
                     subtitle={EXAMPLE_SONGS.early.subtitle}
                     lyrics={EXAMPLE_SONGS.early.lyrics}
                     variant="lesson"
-                    accentColor="#0EA5A0"
+                    accentColor="#16a34a"
                   />
                 </div>
                 <div>
@@ -222,7 +222,7 @@ export default function PackagesPage() {
                     subtitle={EXAMPLE_SONGS.junior.subtitle}
                     lyrics={EXAMPLE_SONGS.junior.lyrics}
                     variant="lesson"
-                    accentColor="#0EA5A0"
+                    accentColor="#16a34a"
                   />
                 </div>
               </div>
