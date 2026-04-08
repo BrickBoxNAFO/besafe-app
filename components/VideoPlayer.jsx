@@ -20,27 +20,21 @@ export default function VideoPlayer({ src, poster }) {
   const [loaded, setLoaded] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
-  // Attempt autoplay with sound; fall back to muted autoplay
+  // Autoplay muted (browsers require muted for autoplay), volume ready for when user unmutes
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
     v.volume = volume
+    v.muted = true
+    setMuted(true)
 
     const tryPlay = async () => {
       try {
         await v.play()
         setPlaying(true)
       } catch {
-        // Browser blocked unmuted autoplay — try muted
-        v.muted = true
-        setMuted(true)
-        try {
-          await v.play()
-          setPlaying(true)
-        } catch {
-          // Autoplay fully blocked; user must click
-          setPlaying(false)
-        }
+        // Autoplay fully blocked; user must click
+        setPlaying(false)
       }
     }
     tryPlay()
@@ -63,6 +57,11 @@ export default function VideoPlayer({ src, poster }) {
     if (!v) return
     v.muted = !v.muted
     setMuted(v.muted)
+    // When unmuting, ensure volume is audible
+    if (!v.muted && v.volume === 0) {
+      v.volume = 0.8
+      setVolume(0.8)
+    }
   }, [])
 
   const handleVolumeChange = useCallback((e) => {
