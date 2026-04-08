@@ -70,14 +70,34 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
     setIsPlaying(!isPlaying)
   }, [isPlaying])
 
-  const seek = useCallback((e) => {
+  const seekFromEvent = useCallback((e) => {
     const audio = audioRef.current
     const bar = progressRef.current
     if (!audio || !bar || !duration) return
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX
     const rect = bar.getBoundingClientRect()
-    const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width))
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width))
     audio.currentTime = (x / rect.width) * duration
   }, [duration])
+
+  const isDragging = useRef(false)
+
+  const startDrag = useCallback((e) => {
+    isDragging.current = true
+    seekFromEvent(e)
+    const onMove = (ev) => { if (isDragging.current) seekFromEvent(ev) }
+    const onUp = () => {
+      isDragging.current = false
+      document.removeEventListener('mousemove', onMove)
+      document.removeEventListener('mouseup', onUp)
+      document.removeEventListener('touchmove', onMove)
+      document.removeEventListener('touchend', onUp)
+    }
+    document.addEventListener('mousemove', onMove)
+    document.addEventListener('mouseup', onUp)
+    document.addEventListener('touchmove', onMove)
+    document.addEventListener('touchend', onUp)
+  }, [seekFromEvent])
 
   const handleVolume = useCallback((e) => {
     const v = parseFloat(e.target.value)
@@ -214,8 +234,9 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
           <div className="flex-1">
             <div
               ref={progressRef}
-              onClick={seek}
-              className="w-full h-1.5 bg-gray-200 rounded-full cursor-pointer relative group"
+              onMouseDown={startDrag}
+              onTouchStart={startDrag}
+              className="w-full h-2 bg-gray-200 rounded-full cursor-pointer relative group"
             >
               <div
                 className="h-full rounded-full relative transition-all"

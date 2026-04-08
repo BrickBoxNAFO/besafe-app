@@ -13,19 +13,19 @@ const EXAMPLE_SONGS = {
     src: 'https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Growing%20Minds%20Early%20Years%20Example.mp3',
     title: "Walk With Your Grown Up",
     subtitle: 'Ages 4–7 · Growing Minds',
-    lyrics: "Cars and buses zoom so fast,\nSo take good care when roads you pass.\nHold a hand, don't go alone,\nStay with a grown-up you have known.\n\nStop at the edge, stand nice and still,\nLook left, right, left with care and skill.\nListen close — what do you hear?\nA car might be coming very near!\n\nSome are quiet, soft as a breeze,\nElectric cars can sneak with ease.\nFind the lights with stripes so wide,\nThat's the safest place to stride.\n\nWhen the red light makes cars stay,\nWalk with your grown-up all the way.\nStep straight on, don't run or play,\nKeep looking both ways as you go your way.\n\nNever cross where cars are parked,\nIt's hard to see — it's just too dark!\nDrivers can't see little you,\nAnd you can't see the traffic too.\n\nSo stop, look, listen every time,\nAnd stay safe on roads — that's the rhyme!",
+    lyrics: "Cars and buses zoom so fast,\nSo take good care when roads you pass.\nHold a hand, don't go alone,\nStay with a grown-up you have known.\n\nStop at the edge, stand nice and still,\nLook left, right, left with care and skill.\nListen close -what do you hear?\nA car might be coming very near!\n\nSome are quiet, soft as a breeze,\nElectric cars can sneak with ease.\nFind the lights with stripes so wide,\nThat's the safest place to stride.\n\nWhen the red light makes cars stay,\nWalk with your grown-up all the way.\nStep straight on, don't run or play,\nKeep looking both ways as you go your way.\n\nNever cross where cars are parked,\nIt's hard to see -it's just too dark!\nDrivers can't see little you,\nAnd you can't see the traffic too.\n\nSo stop, look, listen every time,\nAnd stay safe on roads -that's the rhyme!",
   },
   junior: {
     src: 'https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Growing%20Minds%20Junior%20Example%20Song.mp3',
     title: "Private Means Mine",
     subtitle: 'Ages 8–11 · Growing Minds',
-    lyrics: "The parts of me that no one sees,\nAre mine alone, they belong to me.\nCovered up, that's how it stays,\nNot for others, not for display.\n\nI know what's right, I know the line,\nIf something feels off, I trust the sign.\n\nPrivate means mine, no one decides,\nI choose my space, I set the lines.\nIf it's not for health or care,\nIt's not okay, it's not fair.\nPrivate means mine, I speak it clear,\nIf something's wrong, I tell, I don't disappear.\n\nSometimes care means help or checks,\nParents or doctors with respect.\nThey explain, they don't hide,\nSomeone I trust is there beside.\n\nBut if someone crosses that line for real,\nOr asks for things that don't feel right or real,\nThat's not care, that's not okay,\nI don't stay quiet, I don't delay.\n\nDoesn't matter who they are,\nIf it feels wrong, it's gone too far.\n\nPrivate means mine, no one decides,\nI choose my space, I set the lines.\nIf it's not for health or care,\nIt's not okay, it's not fair.\nPrivate means mine, I speak it clear,\nIf something's wrong, I tell, I don't disappear.\n\nIt's not just touch, it can be words,\nImages, questions that feel absurd.\nIf they ask for pictures or make it strange,\nThat's not normal — that's not a game.\n\nEven if I feel afraid,\nEven if threats are being made,\nI tell someone, I won't hold it in,\nBecause I know I didn't do anything.\n\nPrivate means mine, I stand my ground,\nMy voice is strong, I won't back down.\nIt's not my fault, I did no wrong,\nI speak it out, I stay strong.\n\nPrivate means mine, I make it known,\nI'm not alone — I'm never alone.",
+    lyrics: "The parts of me that no one sees,\nAre mine alone, they belong to me.\nCovered up, that's how it stays,\nNot for others, not for display.\n\nI know what's right, I know the line,\nIf something feels off, I trust the sign.\n\nPrivate means mine, no one decides,\nI choose my space, I set the lines.\nIf it's not for health or care,\nIt's not okay, it's not fair.\nPrivate means mine, I speak it clear,\nIf something's wrong, I tell, I don't disappear.\n\nSometimes care means help or checks,\nParents or doctors with respect.\nThey explain, they don't hide,\nSomeone I trust is there beside.\n\nBut if someone crosses that line for real,\nOr asks for things that don't feel right or real,\nThat's not care, that's not okay,\nI don't stay quiet, I don't delay.\n\nDoesn't matter who they are,\nIf it feels wrong, it's gone too far.\n\nPrivate means mine, no one decides,\nI choose my space, I set the lines.\nIf it's not for health or care,\nIt's not okay, it's not fair.\nPrivate means mine, I speak it clear,\nIf something's wrong, I tell, I don't disappear.\n\nIt's not just touch, it can be words,\nImages, questions that feel absurd.\nIf they ask for pictures or make it strange,\nThat's not normal -that's not a game.\n\nEven if I feel afraid,\nEven if threats are being made,\nI tell someone, I won't hold it in,\nBecause I know I didn't do anything.\n\nPrivate means mine, I stand my ground,\nMy voice is strong, I won't back down.\nIt's not my fault, I did no wrong,\nI speak it out, I stay strong.\n\nPrivate means mine, I make it known,\nI'm not alone -I'm never alone.",
   },
   streetHeadphones: {
     src: 'https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Headphones%20Out.mp3',
     title: "Headphones Out",
     subtitle: 'Ages 12–17 · Street Smart',
-    lyrics: "Dark streets, lights are low, gotta see it all,\nShortcut looks fast, but I won't fall.\nStick to main roads, lit up and alive,\nPassing cars, open shops — keep the vibe.\n\nPhone in hand, one ear free,\nListen close, stay alert, that's the key.\nHeadphones out, eyes up, know who's near,\nSituational awareness — my weapon here.\n\nNew place, new route, gotta know the map,\nKnow the exits, the shops, where help is at.\nShare my location, don't wander blind,\nOwn my moves, own my time.\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night — I own the stakes.\n\nFriends split up, got my plan in hand,\nCharged phone, cash, rides I understand.\nEven if it wakes them up, that's fine,\nBetter safe than sorry, every single time.\n\nNew place feels strange, my chest beats fast,\nNervous or unsafe? My gut knows first.\nIf it feels wrong, I step, I go,\nMove toward people, lights, the flow.\n\nRoute I choose, exits I see,\nEvery step, I move strategically.\nNo guessing, no hoping, just playing it smart,\nI hold the map, I hold the chart.\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night — I own the stakes.\n\nEyes up — stay sharp — don't fall!\nMove smart — take charge — own it all!\nCheck exits — keep calm — don't run blind!\nTrust your gut — it's on your side!\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night — I own the stakes.",
+    lyrics: "Dark streets, lights are low, gotta see it all,\nShortcut looks fast, but I won't fall.\nStick to main roads, lit up and alive,\nPassing cars, open shops -keep the vibe.\n\nPhone in hand, one ear free,\nListen close, stay alert, that's the key.\nHeadphones out, eyes up, know who's near,\nSituational awareness -my weapon here.\n\nNew place, new route, gotta know the map,\nKnow the exits, the shops, where help is at.\nShare my location, don't wander blind,\nOwn my moves, own my time.\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night -I own the stakes.\n\nFriends split up, got my plan in hand,\nCharged phone, cash, rides I understand.\nEven if it wakes them up, that's fine,\nBetter safe than sorry, every single time.\n\nNew place feels strange, my chest beats fast,\nNervous or unsafe? My gut knows first.\nIf it feels wrong, I step, I go,\nMove toward people, lights, the flow.\n\nRoute I choose, exits I see,\nEvery step, I move strategically.\nNo guessing, no hoping, just playing it smart,\nI hold the map, I hold the chart.\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night -I own the stakes.\n\nEyes up -stay sharp -don't fall!\nMove smart -take charge -own it all!\nCheck exits -keep calm -don't run blind!\nTrust your gut -it's on your side!\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night -I own the stakes.",
   },
   streetDontSend: {
     src: "https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Street%20Smart_%20Don't%20Send%20it.mp3",
@@ -38,10 +38,10 @@ const EXAMPLE_SONGS = {
 const EMOTIONAL_DESCRIPTIONS = {
   street: "The teenage years move fast. New friendships, first freedoms, social media, peer pressure - the world opens up and so do the risks. Street Smart gives young people the tools to navigate it all with confidence, not fear. Because the best protection you can give a teenager is the knowledge to protect themselves.",
   nest: "They’re leaving the nest. First apartment, first nights out, first time truly on their own. Nest Breaking prepares young adults for the independence they crave and the realities that come with it. From personal safety to digital awareness, these courses turn vulnerability into confidence.",
-  roaming: "Whether it’s a gap year, a family holiday, or a retirement adventure, the world is full of incredible experiences and hidden risks. Roaming Free equips travellers of all ages with the awareness and know-how to explore safely \u2014 from pre-trip preparation and packing smart, through scam avoidance and accommodation safety, to digital security, mental wellbeing abroad, and handling high-risk situations. Fifteen practical lessons so the only surprises are the good ones.",
+  roaming: "Whether it’s a gap year, a family holiday, or a retirement adventure, the world is full of incredible experiences and hidden risks. Roaming Free equips travellers of all ages with the awareness and know-how to explore safely - from pre-trip preparation and packing smart, through scam avoidance and accommodation safety, to digital security, mental wellbeing abroad, and handling high-risk situations. Fifteen practical lessons so the only surprises are the good ones.",
   aging: "They’ve given us everything. Now the world is changing faster than ever, and the people we love most can become the easiest targets. Aging Wisdom helps older adults stay safe, informed, and independent in a world that doesn’t always look out for them.",
   parents: "The hardest conversations are often the most important ones. Family Anchor gives parents and guardians the language, the tools, and the confidence to talk to their families about safety, boundaries, and the things that really matter. Because keeping your family safe starts with being prepared.",
-  growing: "Every child deserves to feel safe, and every parent deserves peace of mind. Growing Minds brings together two carefully tailored packages, one for younger children and one for older children, each designed to teach essential safety lessons in a way that’s age-appropriate, engaging, and empowering. Both the Early Years and Junior packages cover the same core safety topics, but each has been carefully adapted to suit its age group \u2014 using age-appropriate language, relatable scenarios, and teaching methods suited to each stage of development, including the sensitive handling of more complex subjects. Because when children understand the world around them, they grow up stronger."
+  growing: "Every child deserves to feel safe, and every parent deserves peace of mind. Growing Minds brings together two carefully tailored packages, one for younger children and one for older children, each designed to teach essential safety lessons in a way that’s age-appropriate, engaging, and empowering. Both the Early Years and Junior packages cover the same core safety topics, but each has been carefully adapted to suit its age group - using age-appropriate language, relatable scenarios, and teaching methods suited to each stage of development, including the sensitive handling of more complex subjects. Because when children understand the world around them, they grow up stronger."
 }
 
 const PKG_GRADIENTS = {
@@ -119,7 +119,7 @@ export default function PackagesPage() {
               </div>
               <div className="flex items-start gap-2 bg-amber-50 border border-amber-200/60 rounded-lg px-3 py-2 mb-3">
                 <span className="text-amber-500 text-sm mt-0.5">👨‍👧</span>
-                <p className="text-xs text-amber-800 leading-relaxed"><strong>Guided learning</strong> — designed to be completed together with a parent or carer. Simple language written to be read aloud.</p>
+                <p className="text-xs text-amber-800 leading-relaxed"><strong>Guided learning</strong> - designed to be completed together with a parent or carer. Simple language written to be read aloud.</p>
               </div>
               <div className="space-y-1.5">
                 {earlyYearsCourses.map(c => (
@@ -145,7 +145,7 @@ export default function PackagesPage() {
           <div className="px-6 pb-2">
             <button onClick={() => toggleExpand('growing')} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold text-green-700 hover:text-green-800 py-3 px-4 rounded-lg hover:bg-green-50 transition-all">
               <span>📋</span>
-              <span>{expanded['growing'] ? 'Show less' : 'See more — courses & lessons included'}</span>
+              <span>{expanded['growing'] ? 'Show less' : 'See more - courses & lessons included'}</span>
               <svg className={"w-4 h-4 transition-transform duration-300 " + (expanded['growing'] ? 'rotate-180' : '')} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </button>
           </div>
@@ -179,7 +179,7 @@ export default function PackagesPage() {
               </div>
             </div>
           )}
-          {/* ── Original Songs — Integrated ── */}
+          {/* ── Original Songs - Integrated ── */}
           <div className="mx-6 mb-4 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#122a4a] p-4 sm:p-5 relative overflow-hidden">
             <div className="relative z-10">
               {/* Header row */}
@@ -193,7 +193,7 @@ export default function PackagesPage() {
 
               {/* Description */}
               <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                Growing Minds includes <strong className="text-white/80">72 original songs written and produced by HomeSafeEducation</strong> — 37 for Early Years and 35 for Junior. Every lesson features its own song built into the learning material, plus a recap song for each course. Full lyrics are displayed with every song. For Early Years (ages 4–7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8–11), lyrics are there to <strong className="text-white/80">read along and sing independently</strong>.
+                Growing Minds includes <strong className="text-white/80">72 original songs written and produced by HomeSafeEducation</strong> - 37 for Early Years and 35 for Junior. Every lesson features its own song built into the learning material, plus a recap song for each course. Full lyrics are displayed with every song. For Early Years (ages 4–7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8–11), lyrics are there to <strong className="text-white/80">read along and sing independently</strong>.
               </p>
 
               {/* Audio previews side by side */}
@@ -233,7 +233,7 @@ export default function PackagesPage() {
           <div className="px-6 pb-6">
             {purchasesEnabled ? (
               <button onClick={() => openPurchaseModal('growing', 'Growing Minds', packagePrice('growing'))} className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors">
-                Buy Growing Minds — {packagePrice('growing')}
+                Buy Growing Minds - {packagePrice('growing')}
               </button>
             ) : (
               <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
@@ -276,7 +276,7 @@ export default function PackagesPage() {
                 </div>
                 <button onClick={() => toggleExpand(pkg.id)} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold py-3 mb-4 rounded-lg transition-all hover:opacity-90" style={{ color: gradient.accent, backgroundColor: gradient.accentBg }}>
                   <span>📋</span>
-                  <span>{expanded[pkg.id] ? 'Show less' : 'See more — courses & lessons included'}</span>
+                  <span>{expanded[pkg.id] ? 'Show less' : 'See more - courses & lessons included'}</span>
                   <svg className={"w-4 h-4 transition-transform duration-300 " + (expanded[pkg.id] ? 'rotate-180' : '')} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                 </button>
                 {expanded[pkg.id] && (
@@ -315,10 +315,10 @@ export default function PackagesPage() {
 
                       {/* Description */}
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
-                        Street Smart includes <strong className="text-white/80">30 original tracks written and produced in-house by HomeSafeEducation</strong>. For every course — from early years through to late teens — we provide a song and lyrics for each lesson, plus additional tracks to accompany course summaries and reinforce learning. We have produced <strong className="text-white/80">102 age-appropriate tracks</strong> across all packages — from certified nursery rhyme bangers to educational music your teenager will actually want to share with their friends.
+                        Street Smart includes <strong className="text-white/80">30 original tracks written and produced in-house by HomeSafeEducation</strong>. For every course - from early years through to late teens - we provide a song and lyrics for each lesson, plus additional tracks to accompany course summaries and reinforce learning. We have produced <strong className="text-white/80">102 age-appropriate tracks</strong> across all packages - from certified nursery rhyme bangers to educational music your teenager will actually want to share with their friends.
                       </p>
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                        We don&apos;t teach through fear — we want to <strong className="text-white/80">empower youth with knowledge</strong> so they can decide to make safe choices. We teach with no narratives or agendas, we teach with renowned and tested safety advice.
+                        We don&apos;t teach through fear - we want to <strong className="text-white/80">empower youth with knowledge</strong> so they can decide to make safe choices. We teach with no narratives or agendas, we teach with renowned and tested safety advice.
                       </p>
 
                       {/* Audio previews */}
@@ -358,7 +358,7 @@ export default function PackagesPage() {
 
                 {purchasesEnabled ? (
                   <button onClick={() => openPurchaseModal(pkg.id, pkg.name, packagePrice(pkg.id))} className="w-full font-semibold rounded-xl px-6 py-3 text-center text-white transition-colors" style={{ background: gradient.accent }}>
-                    Buy {pkg.name} — {packagePrice(pkg.id)}
+                    Buy {pkg.name} - {packagePrice(pkg.id)}
                   </button>
                 ) : (
                   <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
@@ -377,7 +377,7 @@ export default function PackagesPage() {
               <div className="flex-1">
                 <div className="chip bg-teal/20 text-teal border border-teal/30 mb-2 text-xs">Best Value</div>
                 <h2 className="font-serif text-2xl text-white mb-1">Family Safety Bundle</h2>
-                <p className="text-white/60 text-sm">Pick any 5 packages — keep them for yourself, gift them to loved ones, or mix both. Your choice.</p>
+                <p className="text-white/60 text-sm">Pick any 5 packages - keep them for yourself, gift them to loved ones, or mix both. Your choice.</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
                 <div className="font-serif text-3xl text-white font-bold mb-1">{packagePrice('bundle')}</div>
@@ -385,7 +385,7 @@ export default function PackagesPage() {
                 <div className="text-white/40 text-xs">one-time payment</div>
               </div>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed mb-6">Safety isn’t just personal — it’s something we give to the people we care about most. Choose any five packages and decide who gets each one. Keep them all for yourself, gift them all to loved ones, or split them however you like. You can even pick the same package twice if two people need it. Each person gets their own account, their own dashboard, and their own learning journey. One purchase, five lives made safer.</p>
+            <p className="text-white/50 text-sm leading-relaxed mb-6">Safety isn’t just personal - it’s something we give to the people we care about most. Choose any five packages and decide who gets each one. Keep them all for yourself, gift them all to loved ones, or split them however you like. You can even pick the same package twice if two people need it. Each person gets their own account, their own dashboard, and their own learning journey. One purchase, five lives made safer.</p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
               {PACKAGES.filter(p => p.id !== 'growing').map(pkg => (
                 <div key={pkg.id} className="text-center p-3 rounded-xl bg-white/5 border border-white/10">
@@ -400,7 +400,7 @@ export default function PackagesPage() {
             </div>
             {purchasesEnabled ? (
               <button onClick={() => openPurchaseModal('bundle', 'Family Safety Bundle', packagePrice('bundle'))} className="w-full bg-teal hover:bg-teal/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors">
-                Buy Family Safety Bundle — {packagePrice('bundle')}
+                Buy Family Safety Bundle - {packagePrice('bundle')}
               </button>
             ) : (
               <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
@@ -416,7 +416,7 @@ export default function PackagesPage() {
               <div className="flex-1">
                 <div className="chip bg-navy/10 text-navy border border-navy/20 mb-2 text-xs">Everything Included</div>
                 <h2 className="font-serif text-2xl text-navy mb-1">Complete Library</h2>
-                <p className="text-navy/60 text-sm">7 packages to assign however you choose — keep them or gift them. You're not limited to one of each.</p>
+                <p className="text-navy/60 text-sm">7 packages to assign however you choose - keep them or gift them. You're not limited to one of each.</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
                 <div className="font-serif text-3xl text-navy font-bold mb-1">{packagePrice('complete')}</div>
@@ -424,7 +424,7 @@ export default function PackagesPage() {
                 <div className="text-navy/40 text-xs">one-time payment</div>
               </div>
             </div>
-            <p className="text-navy/50 text-sm leading-relaxed mb-6">The Complete Library gives you seven packages to use however you like. Keep some for yourself and gift the rest, or give them all to different family members. You're not locked into one of each — if two people need the same package, that works too. From Growing Minds for your little ones, through Street Smart and Nest Breaking for teens and young adults, Roaming Free for travellers, Aging Wisdom for your parents, and Family Anchor for you. Each person gets their own account, their own dashboard, and their own progress tracking. One purchase, seven packages, total flexibility.</p>
+            <p className="text-navy/50 text-sm leading-relaxed mb-6">The Complete Library gives you seven packages to use however you like. Keep some for yourself and gift the rest, or give them all to different family members. You're not locked into one of each - if two people need the same package, that works too. From Growing Minds for your little ones, through Street Smart and Nest Breaking for teens and young adults, Roaming Free for travellers, Aging Wisdom for your parents, and Family Anchor for you. Each person gets their own account, their own dashboard, and their own progress tracking. One purchase, seven packages, total flexibility.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6">
               <div className="text-center p-3 rounded-xl bg-white border border-gray-100">
                 <div className="text-lg mb-1">🌱</div>
@@ -439,7 +439,7 @@ export default function PackagesPage() {
             </div>
             {purchasesEnabled ? (
               <button onClick={() => openPurchaseModal('complete', 'Complete Library', packagePrice('complete'))} className="w-full bg-navy hover:bg-navy/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors">
-                Buy Complete Library — {packagePrice('complete')}
+                Buy Complete Library - {packagePrice('complete')}
               </button>
             ) : (
               <div className="w-full bg-navy/10 rounded-xl px-6 py-3 text-center"><span className="text-navy/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
