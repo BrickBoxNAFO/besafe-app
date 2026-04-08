@@ -13,6 +13,10 @@ export default function AccountPage() {
   const [pwMsg, setPwMsg] = useState('')
   const [pwError, setPwError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [newEmail, setNewEmail] = useState('')
+  const [emailMsg, setEmailMsg] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [emailLoading, setEmailLoading] = useState(false)
   const router = useRouter()
   const supabase = createClient()
 
@@ -97,6 +101,45 @@ export default function AccountPage() {
               })}
             </div>
           )}
+        </div>
+
+        {/* Change email */}
+        <div className="bg-white rounded-2xl border border-gray-100 p-6 mb-6">
+          <h2 className="font-semibold text-navy mb-4">Change Email Address</h2>
+          <form onSubmit={async (e) => {
+            e.preventDefault()
+            setEmailMsg(''); setEmailError('')
+            if (!newEmail) { setEmailError('Please enter a new email address.'); return }
+            setEmailLoading(true)
+            try {
+              const res = await fetch('/api/change-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ newEmail }),
+              })
+              const data = await res.json()
+              if (!res.ok) { setEmailError(data.error || 'Failed to update email') }
+              else { setEmailMsg(data.message || 'Confirmation link sent to your new email.'); setNewEmail('') }
+            } catch { setEmailError('Something went wrong. Please try again.') }
+            setEmailLoading(false)
+          }} className="space-y-4 max-w-sm">
+            {emailMsg && <div className="bg-teal/10 border border-teal/20 text-teal text-sm rounded-xl p-3">{emailMsg}</div>}
+            {emailError && <div className="bg-red-50 border border-red-100 text-red-600 text-sm rounded-xl p-3">{emailError}</div>}
+            <div>
+              <label className="block text-sm font-medium text-navy mb-1.5">Current email</label>
+              <p className="text-navy/50 text-sm">{user?.email}</p>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-navy mb-1.5">New email address</label>
+              <input type="email" value={newEmail} onChange={e => setNewEmail(e.target.value)} required
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-teal transition-colors"
+                placeholder="Enter new email address" />
+            </div>
+            <p className="text-navy/40 text-xs">A confirmation link will be sent to your new email address. A security notification will be sent to your current email.</p>
+            <button type="submit" disabled={emailLoading} className="btn-ghost text-sm">
+              {emailLoading ? 'Sending...' : 'Update Email'}
+            </button>
+          </form>
         </div>
 
         {/* Change password */}
