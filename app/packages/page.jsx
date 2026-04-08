@@ -171,14 +171,14 @@ export default function PackagesPage() {
               <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🎵</span>
-                  <h3 className="text-white font-semibold text-base">72 Original Songs Included</h3>
+                  <h3 className="text-white font-semibold text-base">72 Original Songs Built Into Every Lesson</h3>
                 </div>
                 <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-teal/15 border border-teal/25 text-teal font-semibold sm:ml-auto">Exclusive to Growing Minds</span>
               </div>
 
               {/* Description */}
               <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                Growing Minds includes <strong className="text-white/80">72 original songs written and produced by HomeSafeEducation</strong> — 37 for Early Years and 35 for Junior. Every lesson has its own song, plus a bonus recap song for each course. Full lyrics are displayed with every song. For Early Years (ages 4–7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8–11), lyrics are there to <strong className="text-white/80">read along and sing independently</strong>.
+                Growing Minds includes <strong className="text-white/80">72 original songs written and produced by HomeSafeEducation</strong> — 37 for Early Years and 35 for Junior. Every lesson features its own song built into the learning material, plus a recap song for each course. Full lyrics are displayed with every song. For Early Years (ages 4–7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8–11), lyrics are there to <strong className="text-white/80">read along and sing independently</strong>.
               </p>
 
               {/* Audio previews side by side */}
@@ -221,7 +221,7 @@ export default function PackagesPage() {
             ) : (
               <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
             )}
-            <p className="text-center text-xs text-navy/40 mt-2">One payment · 13 courses · 72 original songs · Both age groups included</p>
+            <p className="text-center text-xs text-navy/40 mt-2">One payment · 13 courses · 72 original songs in lessons · Both age groups included</p>
           </div>
         </div>
 
