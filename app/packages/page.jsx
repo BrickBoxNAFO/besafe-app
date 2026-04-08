@@ -11,13 +11,27 @@ import PurchaseModal from '@/components/PurchaseModal'
 const EXAMPLE_SONGS = {
   early: {
     src: 'https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Growing%20Minds%20Early%20Years%20Example.mp3',
-    title: "Early Years Example - 'Walk With Your Grown Up'",
+    title: "Growing Minds: Walk With Your Grown Up",
     subtitle: 'Ages 4–7 · Growing Minds',
+    lyrics: "Cars and buses zoom so fast,\nSo take good care when roads you pass.\nHold a hand, don't go alone,\nStay with a grown-up you have known.\n\nStop at the edge, stand nice and still,\nLook left, right, left with care and skill.\nListen close — what do you hear?\nA car might be coming very near!\n\nSome are quiet, soft as a breeze,\nElectric cars can sneak with ease.\nFind the lights with stripes so wide,\nThat's the safest place to stride.\n\nWhen the red light makes cars stay,\nWalk with your grown-up all the way.\nStep straight on, don't run or play,\nKeep looking both ways as you go your way.\n\nNever cross where cars are parked,\nIt's hard to see — it's just too dark!\nDrivers can't see little you,\nAnd you can't see the traffic too.\n\nSo stop, look, listen every time,\nAnd stay safe on roads — that's the rhyme!",
   },
   junior: {
     src: 'https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Growing%20Minds%20Junior%20Example%20Song.mp3',
-    title: "Junior Example - 'Private Means Mine'",
+    title: "Growing Minds: Private Means Mine",
     subtitle: 'Ages 8–11 · Growing Minds',
+    lyrics: "The parts of me that no one sees,\nAre mine alone, they belong to me.\nCovered up, that's how it stays,\nNot for others, not for display.\n\nI know what's right, I know the line,\nIf something feels off, I trust the sign.\n\nPrivate means mine, no one decides,\nI choose my space, I set the lines.\nIf it's not for health or care,\nIt's not okay, it's not fair.\nPrivate means mine, I speak it clear,\nIf something's wrong, I tell, I don't disappear.\n\nSometimes care means help or checks,\nParents or doctors with respect.\nThey explain, they don't hide,\nSomeone I trust is there beside.\n\nBut if someone crosses that line for real,\nOr asks for things that don't feel right or real,\nThat's not care, that's not okay,\nI don't stay quiet, I don't delay.\n\nDoesn't matter who they are,\nIf it feels wrong, it's gone too far.\n\nPrivate means mine, no one decides,\nI choose my space, I set the lines.\nIf it's not for health or care,\nIt's not okay, it's not fair.\nPrivate means mine, I speak it clear,\nIf something's wrong, I tell, I don't disappear.\n\nIt's not just touch, it can be words,\nImages, questions that feel absurd.\nIf they ask for pictures or make it strange,\nThat's not normal — that's not a game.\n\nEven if I feel afraid,\nEven if threats are being made,\nI tell someone, I won't hold it in,\nBecause I know I didn't do anything.\n\nPrivate means mine, I stand my ground,\nMy voice is strong, I won't back down.\nIt's not my fault, I did no wrong,\nI speak it out, I stay strong.\n\nPrivate means mine, I make it known,\nI'm not alone — I'm never alone.",
+  },
+  streetHeadphones: {
+    src: 'https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Headphones%20Out.mp3',
+    title: "Street Smart: Headphones Out",
+    subtitle: 'Ages 12–17 · Street Smart',
+    lyrics: "Dark streets, lights are low, gotta see it all,\nShortcut looks fast, but I won't fall.\nStick to main roads, lit up and alive,\nPassing cars, open shops — keep the vibe.\n\nPhone in hand, one ear free,\nListen close, stay alert, that's the key.\nHeadphones out, eyes up, know who's near,\nSituational awareness — my weapon here.\n\nNew place, new route, gotta know the map,\nKnow the exits, the shops, where help is at.\nShare my location, don't wander blind,\nOwn my moves, own my time.\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night — I own the stakes.\n\nFriends split up, got my plan in hand,\nCharged phone, cash, rides I understand.\nEven if it wakes them up, that's fine,\nBetter safe than sorry, every single time.\n\nNew place feels strange, my chest beats fast,\nNervous or unsafe? My gut knows first.\nIf it feels wrong, I step, I go,\nMove toward people, lights, the flow.\n\nRoute I choose, exits I see,\nEvery step, I move strategically.\nNo guessing, no hoping, just playing it smart,\nI hold the map, I hold the chart.\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night — I own the stakes.\n\nEyes up — stay sharp — don't fall!\nMove smart — take charge — own it all!\nCheck exits — keep calm — don't run blind!\nTrust your gut — it's on your side!\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night — I own the stakes.",
+  },
+  streetDontSend: {
+    src: "https://iixjfonhzcipinnznsot.supabase.co/storage/v1/object/public/Audio/Examples%20Package%20page/Street%20Smart_%20Don't%20Send%20it.mp3",
+    title: "Street Smart: Don't Send It",
+    subtitle: 'Ages 12–17 · Street Smart',
+    lyrics: "[Intro / Hook]\nDon't send it, don't share it\nIf it's private, beware it\nOnce it's out, it's not your call\nRespect yourself, that's the wall\n\n[Verse 1]\nEven if they ask, even if they plead\nEven if they're your age, it's still a bad deed\nThe law's serious, it's not a game\nOne photo shared could ruin your name\n\nPrivate pics? They don't stay private\nScreenshots, leaks, blackmail, they riot\nFriendships fade, trust can break\nOnce it's gone, you can't take it back\n\n[Pre-Chorus]\nNo one who respects you will push you to this\nIf someone pressures, that's a red flag you can't miss\nYour \"no\" is power, it's your shield\nStand strong, don't let them steal\n\n[Hook / Chorus]\nDon't send it, don't share it\nIf it's private, beware it\nOnce it's out, it's not your call\nRespect yourself, that's the wall\n\n[Verse 2]\nManipulators will lie and pretend\nSay they care, act like a friend\nMake you feel guilty, make you doubt\nIt's not love, it's a trap, check it out\n\nIf you've already sent, don't despair\nStop now, get help, there are people who care\nReport it, tell an adult, stay safe online\nYou're not in trouble, it's not a crime\n\n[Bridge]\nYour respect, your choice, your control\nDon't let anyone play that role\nKeep your images, your body, your space\nYou're the boss, you set the pace\n\n[Hook / Chorus]\nDon't send it, don't share it\nIf it's private, beware it\nOnce it's out, it's not your call\nRespect yourself, that's the wall\n\n[Outro]\nSay no, stand tall, keep your line\nYour safety, your rules, your sign\nTrust yourself, you know what's right\nKeep it safe, day and night",
   },
 }
 
@@ -192,6 +206,7 @@ export default function PackagesPage() {
                     src={EXAMPLE_SONGS.early.src}
                     title={EXAMPLE_SONGS.early.title}
                     subtitle={EXAMPLE_SONGS.early.subtitle}
+                    lyrics={EXAMPLE_SONGS.early.lyrics}
                     variant="lesson"
                     accentColor="#E8703A"
                   />
@@ -205,6 +220,7 @@ export default function PackagesPage() {
                     src={EXAMPLE_SONGS.junior.src}
                     title={EXAMPLE_SONGS.junior.title}
                     subtitle={EXAMPLE_SONGS.junior.subtitle}
+                    lyrics={EXAMPLE_SONGS.junior.lyrics}
                     variant="lesson"
                     accentColor="#0EA5A0"
                   />
@@ -282,6 +298,62 @@ export default function PackagesPage() {
                     ))}
                   </div>
                 )}
+                {/* ── Street Smart Music Section ── */}
+                {pkg.id === 'street' && (
+                  <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#1a1a2e] p-4 sm:p-5 relative overflow-hidden">
+                    <div className="relative z-10">
+                      {/* Header */}
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">🎵</span>
+                          <h3 className="text-white font-semibold text-base">30 Original Tracks Built Into Every Lesson</h3>
+                        </div>
+                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-red-500/15 border border-red-500/25 text-red-400 font-semibold sm:ml-auto">Exclusive to Street Smart</span>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
+                        Street Smart includes <strong className="text-white/80">30 original tracks written and produced in-house by HomeSafeEducation</strong>. For the children&apos;s lessons we provide a song and lyrics for each lesson and additional songs to go with the course summaries to reinforce learning. We have produced <strong className="text-white/80">102 age-appropriate tracks</strong> across all packages — from certified nursery rhyme bangers to educational music your teenager will actually want to share with their friends.
+                      </p>
+                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
+                        We don&apos;t teach through fear — we want to <strong className="text-white/80">empower youth with knowledge</strong> so they can decide to make safe choices. We teach with no narratives or agendas, we teach with renowned and tested safety advice.
+                      </p>
+
+                      {/* Audio previews */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm">🥷</span>
+                            <span className="text-white/70 font-medium text-xs">Street Smart · Ages 12–17</span>
+                          </div>
+                          <AudioPlayer
+                            src={EXAMPLE_SONGS.streetHeadphones.src}
+                            title={EXAMPLE_SONGS.streetHeadphones.title}
+                            subtitle={EXAMPLE_SONGS.streetHeadphones.subtitle}
+                            lyrics={EXAMPLE_SONGS.streetHeadphones.lyrics}
+                            variant="lesson"
+                            accentColor="#DC2626"
+                          />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm">🥷</span>
+                            <span className="text-white/70 font-medium text-xs">Street Smart · Ages 12–17</span>
+                          </div>
+                          <AudioPlayer
+                            src={EXAMPLE_SONGS.streetDontSend.src}
+                            title={EXAMPLE_SONGS.streetDontSend.title}
+                            subtitle={EXAMPLE_SONGS.streetDontSend.subtitle}
+                            lyrics={EXAMPLE_SONGS.streetDontSend.lyrics}
+                            variant="lesson"
+                            accentColor="#DC2626"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {purchasesEnabled ? (
                   <button onClick={() => openPurchaseModal(pkg.id, pkg.name, packagePrice(pkg.id))} className="w-full font-semibold rounded-xl px-6 py-3 text-center text-white transition-colors" style={{ background: gradient.accent }}>
                     Buy {pkg.name} — {packagePrice(pkg.id)}
