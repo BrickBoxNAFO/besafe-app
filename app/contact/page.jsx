@@ -56,7 +56,7 @@ export default function ContactPage() {
                 <p className="text-navy/50 text-xs leading-relaxed">If you need help with a payment or would like to request a refund, email us with your order number.</p>
               </div>
               <div className="bg-slate rounded-2xl p-6">
-                <div className="text-2xl mb-3">👨‍👩‍👧‍👦</div>
+                <div className="text-2xl mb-3"><span className="hidden sm:inline">👨‍👩‍👧‍👦</span><span className="sm:hidden">🏠</span></div>
                 <p className="font-semibold text-navy text-sm mb-1">Family Bundle Help</p>
                 <p className="text-navy/50 text-xs leading-relaxed">Need help inviting family members, managing seats, or understanding how the bundle works? We are happy to walk you through it.</p>
               </div>

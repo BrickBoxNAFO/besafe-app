@@ -86,7 +86,7 @@ const faqSections = [
   },
   {
     title: 'Family Bundle & Sharing',
-    emoji: '👨‍👩‍👧‍👦',
+    emoji: 'family_bundle',
     items: [
       {
         q: 'How does the Family Bundle work?',
@@ -174,7 +174,7 @@ export default function FAQPage() {
         <section key={section.title} className="py-16 odd:bg-white even:bg-slate/30">
           <div className="max-w-3xl mx-auto px-6">
             <div className="flex items-center gap-3 mb-8">
-              <span className="text-2xl">{section.emoji}</span>
+              <span className="text-2xl">{section.emoji === 'family_bundle' ? <><span className="hidden sm:inline">👨‍👩‍👧‍👦</span><span className="sm:hidden">🏠</span></> : section.emoji}</span>
               <h2 className="font-serif text-3xl text-navy">{section.title}</h2>
             </div>
             <div className="space-y-3">

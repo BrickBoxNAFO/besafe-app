@@ -299,7 +299,7 @@ export default function PackagesPage() {
           <div className="noise absolute inset-0" />
           <div className="relative z-10 p-8">
             <div className="flex flex-col sm:flex-row items-start gap-5 mb-6">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-teal/20">👨‍👩‍👧‍👦</div>
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-teal/20"><span className="hidden sm:inline">👨‍👩‍👧‍👦</span><span className="sm:hidden">🏠</span></div>
               <div className="flex-1">
                 <div className="chip bg-teal/20 text-teal border border-teal/30 mb-2 text-xs">Best Value</div>
                 <h2 className="font-serif text-2xl text-white mb-1">Family Safety Bundle</h2>
