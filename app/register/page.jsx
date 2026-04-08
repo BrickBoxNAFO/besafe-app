@@ -1,9 +1,6 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { createClient } from '@/utils/supabase/client'
-
 export default function RegisterPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -12,8 +9,6 @@ export default function RegisterPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
-  const supabase = createClient()
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -23,20 +18,23 @@ export default function RegisterPage() {
     if (password.length < 8) { setError('Password must be at least 8 characters.'); return }
 
     setLoading(true)
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { name },
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/dashboard`,
-      },
-    })
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      })
+      const data = await res.json()
 
-    if (error) {
-      setError(error.message)
+      if (!res.ok) {
+        setError(data.error || 'Something went wrong. Please try again.')
+        setLoading(false)
+      } else {
+        setSuccess(true)
+      }
+    } catch {
+      setError('Unable to connect. Please check your internet and try again.')
       setLoading(false)
-    } else {
-      setSuccess(true)
     }
   }
 

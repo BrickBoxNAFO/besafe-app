@@ -1,24 +1,34 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { createClient } from '@/utils/supabase/client'
 
 export default function ResetPasswordPage() {
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const supabase = createClient()
 
   const handleReset = async (e) => {
     e.preventDefault()
     setError('')
     setLoading(true)
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/update-password`,
-    })
-    if (error) { setError(error.message); setLoading(false) }
-    else setSent(true)
+    try {
+      const res = await fetch('/api/auth/reset-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setError(data.error || 'Something went wrong. Please try again.')
+        setLoading(false)
+      } else {
+        setSent(true)
+      }
+    } catch {
+      setError('Unable to connect. Please check your internet and try again.')
+      setLoading(false)
+    }
   }
 
   return (
