@@ -30,11 +30,11 @@ const faqSections = [
     items: [
       {
         q: 'How do I purchase a package?',
-        a: 'Choose your package on the Packages page and proceed to our secure checkout powered by Stripe. All packages are a one-time payment with no subscriptions or recurring charges. When purchasing a single package, you can assign it to yourself (and unlock instant access) or gift it to someone via email invite.'
+        a: 'Choose your package on the Packages page and proceed to our secure checkout powered by Stripe. All packages are a one-time payment with no subscriptions or recurring charges. When purchasing, you have three options: assign it to yourself for instant access, gift it now by entering the recipient\'s email address, or buy it now and assign it later from your dashboard when you are ready.'
       },
       {
         q: 'Can I purchase a package as a gift for someone else?',
-        a: 'Yes. During checkout, select the gift option and enter the recipient\'s email address. They will receive a personal invitation with a unique link to create their free account and access the course immediately.'
+        a: 'Yes. You have two options. You can gift it now by entering the recipient\'s email address during checkout — they will receive a personal invitation with a unique link to create their free account and access the course immediately. Or you can choose "Assign Later" to purchase now and send the invite whenever you are ready from your dashboard.'
       },
       {
         q: 'What is the Family Safety Bundle?',
@@ -50,7 +50,15 @@ const faqSections = [
       },
       {
         q: 'What happens after I purchase a package or bundle?',
-        a: 'If you purchase a single package, you\'ll be taken to a page where you can assign it to yourself or gift it to someone. If you purchase the Family Safety Bundle, you\'ll be redirected to your Family Dashboard where you can assign your 5 seats. From the dashboard, you can assign packages to yourself or invite family members. You can return to your Family Dashboard anytime from your account menu to manage seats and view progress.'
+        a: 'If you purchased for yourself, the course unlocks on your dashboard immediately. If you gifted it, the recipient receives an email invite. If you chose "Assign Later", a seat is created on your dashboard that you can assign to yourself or send to someone else whenever you are ready. If you purchased the Family Safety Bundle, you\'ll be redirected to your Family Dashboard where you can assign your 5 seats. You can return to your dashboard anytime from your account menu.'
+      },
+      {
+        q: 'What is the "Assign Later" option?',
+        a: 'When you purchase a package, you can choose "Assign Later" instead of assigning it to yourself or gifting it straight away. This creates a seat on your dashboard that you can assign whenever you are ready — either to yourself or to someone else via email invite. There is no time limit. The seat is yours until you assign it.'
+      },
+      {
+        q: 'What is the Complete Library?',
+        a: 'The Complete Library gives you access to all 7 packages at a significantly reduced price compared to buying them individually. It works the same way as the Family Safety Bundle, giving you 5 flexible seats to share. Visit our Packages page for current pricing.'
       },
       {
         q: 'What payment methods do you accept?',

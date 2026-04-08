@@ -37,6 +37,8 @@ export async function POST(request) {
     try {
       const isGift = purchaseType === 'gift' && giftRecipientEmail
 
+      const isGiftLater = purchaseType === 'gift_later'
+
       if (isGift) {
         // ─── Gift purchase: create gift record and send invite ─────────────
         const pkg = PACKAGES.find(p => p.id === package_id)
@@ -80,6 +82,38 @@ export async function POST(request) {
             to: buyerEmail,
             name: buyerName,
             packageName: (pkg?.name || package_id) + ' (Gift)',
+            isBundle: false,
+            orderId: session.payment_intent?.slice(-8)?.toUpperCase() || 'N/A',
+            amount: session.amount_total ? (session.amount_total / 100).toFixed(2) : 'See receipt',
+          })
+        }
+      } else if (isGiftLater) {
+        // ─── Assign-later purchase: create unassigned seat on buyer's dashboard ──
+        const pkg = PACKAGES.find(p => p.id === package_id)
+
+        // Create an unassigned seat in the seats table
+        await supabase.from('seats').insert({
+          owner_user_id: user_id,
+          package_id,
+          invite_token: randomUUID(),
+          // No invite_email, invite_sent_at, member_user_id — seat is unassigned
+        })
+
+        // Record the purchase for receipts/refund tracking
+        await supabase.from('purchases').upsert(
+          { user_id, package_id: package_id + '_seat_' + randomUUID().slice(0, 8), stripe_payment_intent: session.payment_intent, purchased_at: new Date().toISOString() },
+          { onConflict: 'user_id,package_id' }
+        )
+
+        // Send confirmation email to buyer
+        const { data: userData } = await supabase.auth.admin.getUserById(user_id)
+        const buyerEmail = userData?.user?.email
+        const buyerName = userData?.user?.user_metadata?.name
+        if (buyerEmail) {
+          await sendPurchaseConfirmation({
+            to: buyerEmail,
+            name: buyerName,
+            packageName: (pkg?.name || package_id) + ' (Assign Later)',
             isBundle: false,
             orderId: session.payment_intent?.slice(-8)?.toUpperCase() || 'N/A',
             amount: session.amount_total ? (session.amount_total / 100).toFixed(2) : 'See receipt',

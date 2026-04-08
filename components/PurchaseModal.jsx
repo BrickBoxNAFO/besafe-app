@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 
 export default function PurchaseModal({ packageId, packageName, price, onClose, regionCode }) {
-  const [step, setStep] = useState('choice')  // 'choice' | 'gift'
+  const [step, setStep] = useState('choice')  // 'choice' | 'gift' | 'gift_later_confirm'
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -55,6 +55,28 @@ export default function PurchaseModal({ packageId, packageName, price, onClose, 
           giftRecipientName: giftName || '',
           giftRecipientEmail: giftEmail,
         }),
+      })
+      const data = await res.json()
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        setError(data.error || 'Something went wrong')
+        setLoading(false)
+      }
+    } catch {
+      setError('Something went wrong. Please try again.')
+      setLoading(false)
+    }
+  }
+
+  const handleGiftLaterPurchase = async () => {
+    setLoading(true)
+    setError('')
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ packageId, region: regionCode, purchaseType: 'gift_later' }),
       })
       const data = await res.json()
       if (data.url) {
@@ -121,14 +143,28 @@ export default function PurchaseModal({ packageId, packageName, price, onClose, 
                   <span className="text-2xl">🎁</span>
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold text-navy text-sm">As a gift for someone else</div>
-                  <div className="text-navy/50 text-xs mt-0.5">We'll send them an invite email after your payment</div>
+                  <div className="font-semibold text-navy text-sm">Gift now</div>
+                  <div className="text-navy/50 text-xs mt-0.5">Send them an invite email straight after payment</div>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setStep('gift_later_confirm')}
+                disabled={loading}
+                className="w-full flex items-center gap-4 p-4 rounded-xl border-2 border-gray-200 hover:border-purple-500 hover:bg-purple-50 transition-all text-left disabled:opacity-60"
+              >
+                <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">🕐</span>
+                </div>
+                <div className="flex-1">
+                  <div className="font-semibold text-navy text-sm">Assign later</div>
+                  <div className="text-navy/50 text-xs mt-0.5">Buy now and send the invite whenever you're ready from your dashboard</div>
                 </div>
               </button>
             </div>
           )}
 
-          {/* Step 2: Gift details */}
+          {/* Step 2a: Gift now details */}
           {step === 'gift' && (
             <div>
               <button onClick={() => { setStep('choice'); setError('') }} className="flex items-center gap-1 text-sm text-navy/50 hover:text-navy mb-4 transition-colors">
@@ -196,6 +232,59 @@ export default function PurchaseModal({ packageId, packageName, price, onClose, 
                   onClick={handleGiftPurchase}
                   disabled={loading}
                   className="w-full bg-teal hover:bg-teal/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                >
+                  {loading ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      Redirecting to checkout…
+                    </>
+                  ) : (
+                    `Continue to Payment — ${price}`
+                  )}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Step 2b: Assign later confirmation */}
+          {step === 'gift_later_confirm' && (
+            <div>
+              <button onClick={() => { setStep('choice'); setError('') }} className="flex items-center gap-1 text-sm text-navy/50 hover:text-navy mb-4 transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                Back
+              </button>
+
+              <div className="flex items-center gap-3 mb-5">
+                <span className="text-2xl">🕐</span>
+                <div>
+                  <h3 className="font-semibold text-navy text-sm">Assign later</h3>
+                  <p className="text-navy/50 text-xs">Purchase now and invite someone whenever you're ready</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="bg-purple-50 border border-purple-200/60 rounded-xl p-4">
+                  <p className="text-sm text-purple-900 leading-relaxed mb-3">
+                    <strong>Here's how it works:</strong>
+                  </p>
+                  <ol className="text-xs text-purple-800 leading-relaxed space-y-2">
+                    <li className="flex gap-2"><span className="font-bold text-purple-600 flex-shrink-0">1.</span> Complete your payment as normal</li>
+                    <li className="flex gap-2"><span className="font-bold text-purple-600 flex-shrink-0">2.</span> A seat will be created on your dashboard for <strong>{packageName}</strong></li>
+                    <li className="flex gap-2"><span className="font-bold text-purple-600 flex-shrink-0">3.</span> When you're ready, visit your dashboard and assign it — either to yourself or send an invite to someone else</li>
+                  </ol>
+                  <p className="text-xs text-purple-700 mt-3">There's no time limit. The seat is yours until you assign it.</p>
+                </div>
+
+                {error && (
+                  <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">
+                    <p className="text-red-700 text-sm">{error}</p>
+                  </div>
+                )}
+
+                <button
+                  onClick={handleGiftLaterPurchase}
+                  disabled={loading}
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
                 >
                   {loading ? (
                     <>

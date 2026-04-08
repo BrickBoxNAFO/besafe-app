@@ -37,11 +37,12 @@ export async function POST(request) {
   const packageName = pkg?.name || packageId
 
   const isGift = purchaseType === 'gift'
+  const isGiftLater = purchaseType === 'gift_later'
   const isBundle = packageId === 'bundle' || packageId === 'complete'
 
   // Build success URL with confirmation params
   const successParams = new URLSearchParams({
-    type: isGift ? 'gift' : isBundle ? 'bundle' : 'self',
+    type: isGift ? 'gift' : isGiftLater ? 'gift_later' : isBundle ? 'bundle' : 'self',
     package: packageName,
   })
   if (isGift && giftRecipientEmail) {
@@ -54,12 +55,15 @@ export async function POST(request) {
     userId: user.id,
     packageId,
     region: regionCode,
-    purchaseType: isGift ? 'gift' : 'self',
+    purchaseType: isGift ? 'gift' : isGiftLater ? 'gift_later' : 'self',
     is_bundle: isBundle ? 'true' : 'false',
   }
   if (isGift) {
     metadata.giftRecipientName = giftRecipientName || ''
     metadata.giftRecipientEmail = giftRecipientEmail || ''
+    metadata.gifterName = user.user_metadata?.name || user.email?.split('@')[0] || 'Someone special'
+  }
+  if (isGiftLater) {
     metadata.gifterName = user.user_metadata?.name || user.email?.split('@')[0] || 'Someone special'
   }
 

@@ -12,21 +12,27 @@ export default async function PurchaseSuccessPage({ searchParams }) {
   const packageName = params?.package || 'your package'
   const recipientEmail = params?.email || ''
   const isGift = purchaseType === 'gift'
+  const isGiftLater = purchaseType === 'gift_later'
   const isBundle = purchaseType === 'bundle'
+
+  const heroEmoji = isGift ? '🎁' : isGiftLater ? '🕐' : '🎉'
+  const heroTitle = isGift ? 'Gift Sent Successfully!' : isGiftLater ? 'Payment Successful!' : 'Payment Successful!'
+  const heroSubtitle = isGift
+    ? `Your gift of ${packageName} is on its way.`
+    : isGiftLater
+    ? `Your seat for ${packageName} is ready to assign.`
+    : `You now have access to ${packageName}.`
 
   return (
     <div className="page-enter min-h-screen bg-slate">
       <div className="hero-bg noise relative py-14 overflow-hidden">
         <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
-          <div className="text-6xl mb-4">{isGift ? '🎁' : '🎉'}</div>
+          <div className="text-6xl mb-4">{heroEmoji}</div>
           <h1 className="font-serif text-4xl lg:text-5xl text-white mb-3">
-            {isGift ? 'Gift Sent Successfully!' : 'Payment Successful!'}
+            {heroTitle}
           </h1>
           <p className="text-white/60 text-lg">
-            {isGift
-              ? `Your gift of ${packageName} is on its way.`
-              : `You now have access to ${packageName}.`
-            }
+            {heroSubtitle}
           </p>
         </div>
       </div>
@@ -43,7 +49,45 @@ export default async function PurchaseSuccessPage({ searchParams }) {
               </div>
             </div>
 
-            {isGift ? (
+            {isGiftLater ? (
+              <>
+                <h2 className="font-serif text-2xl text-navy text-center mb-4">Your seat is ready to assign</h2>
+                <div className="bg-navy/5 rounded-xl p-5 mb-6">
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-navy/50">Package</span>
+                      <span className="font-semibold text-navy">{packageName}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-navy/50">Status</span>
+                      <span className="font-semibold text-purple-600">Ready to assign</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4 mb-6">
+                  <h3 className="font-semibold text-navy text-sm">What happens next?</h3>
+                  <div className="space-y-3">
+                    {[
+                      ['1', 'A seat has been created on your dashboard for this package.'],
+                      ['2', 'When you\'re ready, visit your dashboard and assign it — either to yourself or send an invite to someone else.'],
+                      ['3', 'There\'s no time limit. The seat is yours until you assign it.'],
+                    ].map(([num, text]) => (
+                      <div key={num} className="flex gap-3">
+                        <div className="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center flex-shrink-0">
+                          <span className="text-white text-xs font-bold">{num}</span>
+                        </div>
+                        <p className="text-navy/60 text-sm leading-relaxed">{text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="text-navy/50 text-sm text-center mb-6">
+                  We've sent a confirmation email to <strong>{user.email}</strong> with your order details.
+                </p>
+              </>
+            ) : isGift ? (
               <>
                 <h2 className="font-serif text-2xl text-navy text-center mb-4">Your gift has been sent</h2>
                 <div className="bg-navy/5 rounded-xl p-5 mb-6">
@@ -121,7 +165,16 @@ export default async function PurchaseSuccessPage({ searchParams }) {
 
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-3">
-              {isGift ? (
+              {isGiftLater ? (
+                <>
+                  <Link href="/family" className="flex-1 btn-primary text-center py-3">
+                    Go to My Dashboard
+                  </Link>
+                  <Link href="/packages" className="flex-1 bg-navy/10 hover:bg-navy/15 text-navy font-semibold rounded-xl py-3 text-center transition-colors text-sm">
+                    Browse More Packages
+                  </Link>
+                </>
+              ) : isGift ? (
                 <>
                   <Link href="/packages" className="flex-1 btn-primary text-center py-3">
                     Back to Packages

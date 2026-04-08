@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
+import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { PACKAGES, COURSES } from '@/lib/data'
 
 export default async function DashboardPage() {
@@ -11,6 +12,12 @@ export default async function DashboardPage() {
   const { data: purchaseRows } = await supabase.from('purchases').select('package_id').eq('user_id', user.id)
   const purchases = purchaseRows?.map(p => p.package_id) || []
   if (purchases.includes('bundle') || purchases.includes('complete')) redirect('/family')
+
+  // Check for unassigned seats (from "assign later" purchases)
+  const admin = createAdminClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
+  const { data: seatRows } = await admin.from('seats').select('*').eq('owner_user_id', user.id).order('created_at', { ascending: true })
+  const unassignedSeats = (seatRows || []).filter(s => !s.member_user_id && !s.invite_email)
+  const assignedSeats = (seatRows || []).filter(s => s.member_user_id || s.invite_email)
 
   const { data: progressRows } = await supabase.from('progress').select('course_id, lesson_index, passed').eq('user_id', user.id)
   const progressByCourse = {}
@@ -51,6 +58,66 @@ export default async function DashboardPage() {
             <div className="flex justify-between text-sm font-medium text-navy mb-2"><span>Overall Completion</span><span>{overallPct}%</span></div>
             <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
               <div className="h-3 rounded-full bg-teal transition-all duration-500" style={{ width: overallPct + '%' }} />
+            </div>
+          </div>
+        )}
+
+        {/* Unassigned seats from "assign later" purchases */}
+        {unassignedSeats.length > 0 && (
+          <div className="mb-10">
+            <h2 className="font-serif text-2xl text-navy mb-5">Seats to Assign</h2>
+            <p className="text-navy/50 text-sm mb-4">You have {unassignedSeats.length} seat{unassignedSeats.length !== 1 ? 's' : ''} waiting to be assigned. Assign them to yourself or invite someone.</p>
+            <div className="grid md:grid-cols-2 gap-4">
+              {unassignedSeats.map(seat => {
+                const pkg = PACKAGES.find(p => p.id === seat.package_id)
+                return (
+                  <div key={seat.id} className="bg-white rounded-2xl border-2 border-dashed border-purple-200 p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0" style={{ background: pkg?.pale || '#F3E8FF' }}>
+                        {pkg?.emoji || '📦'}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-navy">{pkg?.name || seat.package_id}</h3>
+                        <span className="text-xs font-medium text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full">Ready to assign</span>
+                      </div>
+                    </div>
+                    <Link href={`/assign/${seat.id}`} className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl py-2.5 text-center transition-colors text-sm block">
+                      Assign This Seat
+                    </Link>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Assigned seats that the user sent invites for */}
+        {assignedSeats.length > 0 && (
+          <div className="mb-10">
+            <h2 className="font-serif text-2xl text-navy mb-5">Gifted Seats</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {assignedSeats.map(seat => {
+                const pkg = PACKAGES.find(p => p.id === seat.package_id)
+                const isAccepted = !!seat.accepted_at
+                return (
+                  <div key={seat.id} className="bg-white rounded-2xl border border-gray-100 p-6">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style={{ background: pkg?.pale || '#E6F7F7' }}>
+                          {pkg?.emoji || '📦'}
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-navy text-sm">{pkg?.name || seat.package_id}</h3>
+                          <p className="text-navy/50 text-xs">{seat.member_name || seat.invite_email || 'Invited'}</p>
+                        </div>
+                      </div>
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${isAccepted ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
+                        {isAccepted ? 'Active' : 'Invite sent'}
+                      </span>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         )}
