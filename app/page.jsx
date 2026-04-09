@@ -56,7 +56,7 @@ export default function HomePage() {
       {/* Stats */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[['7', 'Packages'], ['38', 'Courses'], ['140', 'Lessons'], ['280+', 'Quiz Questions']].map(([n, l]) => (
+          {[['7', 'Packages'], ['38', 'Courses'], ['140', 'Lessons'], ['354', 'Quiz Questions']].map(([n, l]) => (
             <div key={l} className="text-center">
               <div className="stat-num text-navy mb-1">{n}</div>
               <div className="text-sm text-navy/50 font-medium">{l}</div>

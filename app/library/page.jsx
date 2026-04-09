@@ -97,7 +97,7 @@ export default async function LibraryPage() {
                               <h3 className="font-semibold text-navy text-sm leading-snug flex-1">{c.title}</h3>
                               {!owned && <span className="text-navy/30 text-lg ml-2">{'\uD83D\uDD12'}</span>}
                             </div>
-                            <div className="text-xs text-navy/40 mb-4">{'\uD83D\uDCD6'} {c.lessons.length} Lessons {'\u00B7'} {'\u2705'} {c.lessons.length * 5} quiz questions</div>
+                            <div className="text-xs text-navy/40 mb-4">{'\uD83D\uDCD6'} {c.lessons.length} Lessons {'\u00B7'} {'\u2705'} {c.lessons.reduce((t, l) => t + (l.content || []).filter(line => /^Q\d+\.?\s/.test(line) || /^Q\d+\.?\s*$/.test((line||'').trim()) || /^Scenario Question/i.test((line||'').trim())).length, 0)} quiz questions</div>
                             {owned ? (
                               <Link href={`/course/${c.id}`} className="text-xs font-semibold px-3 py-1.5 rounded-lg text-white transition-opacity hover:opacity-80" style={{ background: group.color }}>
                                 Start Course &rarr;
