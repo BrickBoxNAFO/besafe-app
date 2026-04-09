@@ -49,6 +49,9 @@ export default async function CoursePage({ params }) {
     ? 'Ages ' + course.ageGroup.replace('-', '\u2013')
     : (pkg && pkg.name) || ''
   const isJunior = course.subPkg === 'growing-junior'
+  const isGrowingEarly = course.subPkg === 'growing-early'
+  const isStreet = course.pkg === 'street'
+  const hasSongs = isGrowingEarly || isJunior || isStreet
 
   return (
     <div className="page-enter">
@@ -91,6 +94,20 @@ export default async function CoursePage({ params }) {
                   <p className="text-sm text-amber-700 leading-relaxed">
                     This course is designed for children aged 8{'\u2013'}11 and may not be suitable for the 4{'\u2013'}7 age range.
                     If your child is in the younger group, we recommend the Early Years courses instead.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+          {hasSongs && (
+            <div className="mb-6 p-4 rounded-xl border border-sky-200 bg-sky-50/50">
+              <div className="flex gap-3">
+                <span className="text-sky-500 text-lg mt-0.5">{'\uD83C\uDFB5'}</span>
+                <div>
+                  <p className="text-sm font-semibold text-sky-800 mb-1">Original Music in Every Lesson</p>
+                  <p className="text-sm text-sky-700 leading-relaxed">
+                    All songs in this course are original productions, written and produced exclusively by HomeSafeEducation
+                    and made specifically for these lessons. They are not available anywhere else.
                   </p>
                 </div>
               </div>
