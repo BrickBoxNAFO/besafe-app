@@ -205,6 +205,7 @@ export default function LessonPage() {
   const [saving, setSaving] = useState(false)
   const [existingProgress, setExistingProgress] = useState(null)
   const [showCourseCompletePopup, setShowCourseCompletePopup] = useState(false)
+  const [courseAlreadyComplete, setCourseAlreadyComplete] = useState(false)
   const [accessChecked, setAccessChecked] = useState(false)
 
   useEffect(() => {
@@ -224,6 +225,17 @@ export default function LessonPage() {
         if (!hasAccess) { router.push('/packages#' + purchasePkgId); return }
       }
       setAccessChecked(true)
+
+      // Check if this course was already fully completed (for re-play detection)
+      const { data: allProgress } = await supabase
+        .from('progress')
+        .select('lesson_index, passed')
+        .eq('user_id', user.id)
+        .eq('course_id', params.courseId)
+      if (allProgress) {
+        const passedCount = new Set(allProgress.filter(r => r.passed).map(r => r.lesson_index)).size
+        if (passedCount >= totalLessons) setCourseAlreadyComplete(true)
+      }
 
       const { data } = await supabase
         .from('progress')
@@ -297,7 +309,7 @@ export default function LessonPage() {
       }, { onConflict: 'user_id,course_id,lesson_index' })
       if (upsertError) console.error('Progress save failed:', upsertError)
 
-      // Check if all lessons in this course are now passed
+      // Check if this quiz submission is what completed the course for the first time
       if (score >= passThreshold) {
         try {
           const { data: progressRows } = await supabase
@@ -307,14 +319,27 @@ export default function LessonPage() {
             .eq('course_id', params.courseId)
 
           const passedLessons = new Set()
+          // Count how many lessons were already passed BEFORE this submission
+          let alreadyPassedCount = 0
           if (progressRows) {
-            progressRows.forEach(r => { if (r.passed) passedLessons.add(r.lesson_index) })
+            progressRows.forEach(r => {
+              if (r.passed) {
+                passedLessons.add(r.lesson_index)
+                // Don't count the current lesson — we want to know the state before this attempt
+                if (r.lesson_index !== lessonIndex) alreadyPassedCount++
+              }
+            })
           }
           // Include current lesson (upsert may not be reflected yet)
           passedLessons.add(lessonIndex)
 
-          if (passedLessons.size >= totalLessons) {
-            // All lessons in this course passed — show celebration popup then redirect
+          // Only celebrate if this lesson is what tipped the course to complete
+          // (prevents the popup from firing every time on a re-played course)
+          const wasAlreadyComplete = alreadyPassedCount >= totalLessons
+          const isNowComplete = passedLessons.size >= totalLessons
+
+          if (isNowComplete && !wasAlreadyComplete) {
+            // All lessons in this course passed for the first time — show celebration popup then redirect
             setShowCourseCompletePopup(true)
             setTimeout(() => {
               router.push('/congratulations/' + params.courseId)
@@ -734,7 +759,7 @@ export default function LessonPage() {
                   Next Lesson: {typeof course.lessons[nextLessonIdx] === 'string' ? course.lessons[nextLessonIdx] : course.lessons[nextLessonIdx]?.title}
                 </Link>
               )}
-              {passed && nextLessonIdx === null && (
+              {passed && nextLessonIdx === null && !courseAlreadyComplete && (
                 <Link href={'/congratulations/' + course.id} className="btn-primary text-center">
                   Course Complete!
                 </Link>
