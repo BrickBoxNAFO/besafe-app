@@ -18,29 +18,34 @@ const DOWNLOAD_FILES = {
 }
 
 export async function GET(request) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+  try {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
 
-  const { searchParams } = new URL(request.url)
-  const productId = searchParams.get('product')
+    const { searchParams } = new URL(request.url)
+    const productId = searchParams.get('product')
 
-  if (!productId || !DOWNLOAD_FILES[productId]) {
-    return NextResponse.json({ error: 'Invalid product' }, { status: 400 })
+    if (!productId || !DOWNLOAD_FILES[productId]) {
+      return NextResponse.json({ error: 'Invalid product' }, { status: 400 })
+    }
+
+    // Verify purchase
+    const { data: purchase } = await supabase
+      .from('music_purchases')
+      .select('id')
+      .eq('user_id', user.id)
+      .eq('product_id', productId)
+      .single()
+
+    if (!purchase) {
+      return NextResponse.json({ error: 'Purchase not found. If you just purchased, wait a moment and try again.' }, { status: 403 })
+    }
+
+    // Redirect to the pre-built download file
+    return NextResponse.redirect(DOWNLOAD_FILES[productId])
+  } catch (err) {
+    console.error('Music download error:', err)
+    return NextResponse.json({ error: 'Server error' }, { status: 500 })
   }
-
-  // Verify purchase
-  const { data: purchase } = await supabase
-    .from('music_purchases')
-    .select('id')
-    .eq('user_id', user.id)
-    .eq('product_id', productId)
-    .single()
-
-  if (!purchase) {
-    return NextResponse.json({ error: 'Purchase not found. If you just purchased, wait a moment and try again.' }, { status: 403 })
-  }
-
-  // Redirect to the pre-built download file
-  return NextResponse.redirect(DOWNLOAD_FILES[productId])
 }

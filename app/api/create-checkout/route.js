@@ -65,13 +65,18 @@ export async function POST(request) {
     metadata.gifterName = user.user_metadata?.name || user.email?.split('@')[0] || 'Someone special'
   }
 
-  const session = await stripe.checkout.sessions.create({
-    line_items: [{ price: priceId, quantity: 1 }],
-    mode: 'payment',
-    success_url: successUrl,
-    cancel_url: process.env.NEXT_PUBLIC_SITE_URL + '/packages',
-    customer_email: user.email,
-    metadata,
-  })
-  return NextResponse.json({ url: session.url })
+  try {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [{ price: priceId, quantity: 1 }],
+      mode: 'payment',
+      success_url: successUrl,
+      cancel_url: process.env.NEXT_PUBLIC_SITE_URL + '/packages',
+      customer_email: user.email,
+      metadata,
+    })
+    return NextResponse.json({ url: session.url })
+  } catch (err) {
+    console.error('Stripe checkout error:', err)
+    return NextResponse.json({ error: 'Failed to create checkout session. Please try again.' }, { status: 500 })
+  }
 }
