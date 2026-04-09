@@ -104,11 +104,13 @@ export default function CongratulationsPage() {
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''
       const lang = navigator.language || ''
-      if (tz.startsWith('Europe/London') || lang.startsWith('en-GB')) setRegion('GB')
-      else if (tz.startsWith('Europe/') || lang.match(/^(de|fr|es|it|nl|pt|pl|sv|da|fi|no|cs|el|hu|ro|bg|hr|sk|sl|et|lv|lt)/)) setRegion('EU')
-      else if (tz.startsWith('Australia/') || lang.startsWith('en-AU')) setRegion('AU')
-      else if (tz.startsWith('Pacific/Auckland') || lang.startsWith('en-NZ')) setRegion('NZ')
+      if (tz === 'Europe/London') setRegion('GB')
+      else if (tz.startsWith('Europe/')) setRegion('EU')
+      else if (tz.startsWith('Australia/')) setRegion('AU')
+      else if (tz.startsWith('Pacific/Auckland')) setRegion('NZ')
       else if (tz.startsWith('America/') && (lang.startsWith('en-CA') || lang.startsWith('fr-CA'))) setRegion('CA')
+      else if (lang.startsWith('en-GB')) setRegion('GB')
+      else if (lang.match(/^(de|fr|es|it|nl|pt|pl|sv|da|fi|no|cs|el|hu|ro|bg|hr|sk|sl|et|lv|lt)/)) setRegion('EU')
     } catch (_) {}
     return () => clearTimeout(t)
   }, [])
