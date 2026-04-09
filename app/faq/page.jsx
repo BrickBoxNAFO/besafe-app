@@ -58,7 +58,7 @@ const faqSections = [
       },
       {
         q: 'What is the Complete Library?',
-        a: 'The Complete Library gives you access to all 7 packages at a significantly reduced price compared to buying them individually. It works the same way as the Family Safety Bundle, giving you 5 flexible seats to share. Visit our Packages page for current pricing.'
+        a: 'The Complete Library gives you access to all 7 packages at a significantly reduced price compared to buying them individually. It works the same way as the Family Safety Bundle but gives you 7 flexible seats to share — one for each package. Visit our Packages page for current pricing.'
       },
       {
         q: 'What payment methods do you accept?',
@@ -142,7 +142,7 @@ const faqSections = [
     items: [
       {
         q: 'How do I reset my password?',
-        a: 'On the login page, click "Forgot your password?" and enter your email address. You will receive a link to create a new password.'
+        a: 'On the login page, click "Forgot password?" and enter your email address. You will receive a link to create a new password.'
       },
       {
         q: 'I did not receive my confirmation email. What should I do?',

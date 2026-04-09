@@ -17,7 +17,7 @@ const PRODUCTS = {
     name: 'Growing Minds: Early Years',
     subtitle: 'Complete Song Collection',
     songs: 31,
-    desc: 'Children learn best when they\'re having fun. Every lesson in the Early Years package was paired with an original song written to help little ones remember what they\'ve learned — in the car, at bedtime, or just singing around the house. These are the songs your child already knows and loves from the course.',
+    desc: 'Your child already knows and loves these songs from the course — gentle, memorable melodies built into every lesson. Download them all as MP3 files to keep playing in the car, at bedtime, or around the house — on any device, anytime.',
     color: '#16A34A',
     gradFrom: '#dcfce7',
     gradTo: '#f0fdf4',
@@ -33,7 +33,7 @@ const PRODUCTS = {
     name: 'Growing Minds: Junior',
     subtitle: 'Complete Song Collection',
     songs: 28,
-    desc: 'The lessons don\'t have to end when the screen closes. Every course in the Junior package came with its own original songs — upbeat, catchy tracks that reinforce everything your child learned. Let them keep listening, keep singing, and keep learning.',
+    desc: 'Your child has already been singing along to these throughout the course — upbeat, catchy tracks built into every lesson. Download them all as MP3 files so they can keep listening on any device — in the car, on headphones, wherever they go.',
     color: '#15803D',
     gradFrom: '#d1fae5',
     gradTo: '#ecfdf5',
@@ -49,7 +49,7 @@ const PRODUCTS = {
     name: 'Street Smart',
     subtitle: 'Complete Song Collection',
     songs: 24,
-    desc: 'Safety messages hit differently when they come through music. Every lesson in Street Smart was paired with a powerful original track — written for teenagers, in a style they\'ll actually listen to. Keep the songs, keep the lessons close.',
+    desc: 'These are the tracks from the course — powerful original songs paired with every lesson, written for teenagers in a style they\'ll actually listen to. Download them all as MP3 files to play on any device, anytime.',
     color: '#DC2626',
     gradFrom: '#fee2e2',
     gradTo: '#fff1f2',
@@ -195,7 +195,7 @@ export default function BuyMusicPage() {
 
             {/* What these songs are */}
             <div className="rounded-xl p-5 mb-8" style={{ background: product.color + '08', border: `1px solid ${product.color}15` }}>
-              <p className="text-navy/70 text-[15px] leading-relaxed">{product.songs} educational songs packed with important safety knowledge — designed to help children feel confident, stay safe, and remember what matters most.</p>
+              <p className="text-navy/70 text-[15px] leading-relaxed">All {product.songs} songs from the course as MP3 files — download once, play on any device forever. Phone, tablet, computer, or in the car.</p>
             </div>
 
             <p className="text-navy/50 text-sm text-center italic mb-8">{product.cta}</p>
@@ -207,7 +207,7 @@ export default function BuyMusicPage() {
             <div className="text-center">
               <p className="text-navy/40 text-sm font-medium mb-2">One-time purchase</p>
               <p className="font-serif text-5xl text-navy mb-1">{priceDisplay}</p>
-              <p className="text-navy/30 text-xs mb-6">Instant download after payment</p>
+              <p className="text-navy/30 text-xs mb-6">Download as MP3 files after payment — play on any device</p>
 
               {authChecked && !user && (
                 <div className="mb-5 p-4 rounded-xl border border-amber-200 bg-amber-50/60">
@@ -230,7 +230,7 @@ export default function BuyMusicPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
                 )}
-                {loading ? 'Preparing Checkout...' : 'Get the Music'}
+                {loading ? 'Preparing Checkout...' : 'Download the Songs'}
               </button>
 
               <p className="text-navy/25 text-xs mt-4 flex items-center justify-center gap-1.5">

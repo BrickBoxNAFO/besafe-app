@@ -17,7 +17,7 @@ const MUSIC_PRODUCTS = {
   'growing-early': {
     name: 'Growing Minds: Early Years',
     songs: 31,
-    desc: 'Children learn best when they\'re having fun. These are the songs your child already knows and loves from the course — gentle, memorable melodies written to help little ones remember what they\'ve learned.',
+    desc: 'Your child already knows these songs from the course — gentle, memorable melodies built into every lesson. Download them to keep playing in the car, at bedtime, or around the house — on any device, anytime.',
     emoji: '🌱',
     color: '#16A34A',
     gradient: 'from-green-500 to-emerald-600',
@@ -25,7 +25,7 @@ const MUSIC_PRODUCTS = {
   'growing-junior': {
     name: 'Growing Minds: Junior',
     songs: 28,
-    desc: 'The lessons don\'t have to end when the screen closes. Upbeat, catchy tracks that reinforce everything your child learned — let them keep listening, keep singing, and keep learning.',
+    desc: 'Your child has already been singing along to these throughout the course. Download all the songs so they can keep listening on any device — in the car, on headphones, wherever they go.',
     emoji: '🌿',
     color: '#15803D',
     gradient: 'from-emerald-500 to-green-700',
@@ -33,7 +33,7 @@ const MUSIC_PRODUCTS = {
   'street': {
     name: 'Street Smart',
     songs: 24,
-    desc: 'Safety messages hit differently when they come through music. Powerful original tracks written for teenagers, in a style they\'ll actually listen to.',
+    desc: 'These are the tracks from the course — powerful original songs written for teenagers, in a style they\'ll actually listen to. Download them to play on any device, anytime.',
     emoji: '🥷',
     color: '#DC2626',
     gradient: 'from-red-500 to-rose-700',
@@ -241,8 +241,8 @@ export default function CongratulationsPage() {
                     🎵
                   </div>
                   <div>
-                    <h2 className="font-serif text-2xl text-navy">Did You Enjoy the Music?</h2>
-                    <p className="text-navy/50 text-sm">Keep the songs. Listen anytime.</p>
+                    <h2 className="font-serif text-2xl text-navy">Take the Songs With You</h2>
+                    <p className="text-navy/50 text-sm">Download the songs from the course to play on any device.</p>
                   </div>
                 </div>
 
@@ -254,7 +254,7 @@ export default function CongratulationsPage() {
                 {/* What you get */}
                 <div className="bg-slate-50 rounded-xl p-5 mb-8">
                   <p className="text-navy/60 text-[15px] leading-relaxed">
-                    <strong className="text-navy">{musicProduct.songs} educational songs</strong> packed with important safety knowledge — designed to help children feel confident, stay safe, and remember what matters most.
+                    <strong className="text-navy">All {musicProduct.songs} songs from the course</strong> as MP3 files you can download and play on any device — phone, tablet, computer, or in the car. Yours to keep forever.
                   </p>
                 </div>
 
@@ -278,7 +278,7 @@ export default function CongratulationsPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
                     )}
-                    {loading ? 'Preparing Checkout...' : `Get the Music — ${musicPriceDisplay}`}
+                    {loading ? 'Preparing Checkout...' : `Download the Songs — ${musicPriceDisplay}`}
                   </button>
 
                   {checkoutError && (
