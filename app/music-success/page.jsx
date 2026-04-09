@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
@@ -16,7 +16,7 @@ const PRODUCT_TRACK_COUNTS = {
   'street': 24,
 }
 
-export default function MusicSuccessPage() {
+function MusicSuccessContent() {
   const searchParams = useSearchParams()
   const productId = searchParams.get('product')
   const [downloading, setDownloading] = useState(false)
@@ -121,5 +121,17 @@ export default function MusicSuccessPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function MusicSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 to-white">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-amber-500" />
+      </div>
+    }>
+      <MusicSuccessContent />
+    </Suspense>
   )
 }
