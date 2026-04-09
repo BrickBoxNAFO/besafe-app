@@ -30,7 +30,8 @@ export default function NewsletterBanner() {
   }
 
   return (
-    <section className="relative py-20 bg-navy overflow-hidden">
+    <section className="relative py-20 overflow-hidden px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-x-4 sm:inset-x-6 lg:inset-x-8 inset-y-0 bg-navy rounded-2xl"></div>
       {/* Noise texture overlay */}
       <div className="noise" />
 
