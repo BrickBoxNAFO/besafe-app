@@ -154,7 +154,6 @@ export default function VideoPlayer({ src, poster }) {
         poster={poster}
         preload="metadata"
         playsInline
-        loop
         onTimeUpdate={onTimeUpdate}
         onLoadedMetadata={onLoadedMetadata}
         onEnded={() => setPlaying(false)}
