@@ -95,11 +95,21 @@ export default function CongratulationsPage() {
     supabase.auth.getUser().then(({ data }) => setUser(data?.user))
     // Stop confetti after 5 seconds
     const t = setTimeout(() => setShowConfetti(false), 5000)
-    // Detect region from cookie or geo
+    // Detect region from cookie or browser locale fallback
     const cookie = document.cookie.split(';').find(c => c.trim().startsWith('pricing_region='))
     if (cookie) {
-      setRegion(cookie.split('=')[1]?.trim() || 'US')
+      const val = cookie.split('=')[1]?.trim()
+      if (val && val !== 'US') { setRegion(val); return () => clearTimeout(t) }
     }
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''
+      const lang = navigator.language || ''
+      if (tz.startsWith('Europe/London') || lang.startsWith('en-GB')) setRegion('GB')
+      else if (tz.startsWith('Europe/') || lang.match(/^(de|fr|es|it|nl|pt|pl|sv|da|fi|no|cs|el|hu|ro|bg|hr|sk|sl|et|lv|lt)/)) setRegion('EU')
+      else if (tz.startsWith('Australia/') || lang.startsWith('en-AU')) setRegion('AU')
+      else if (tz.startsWith('Pacific/Auckland') || lang.startsWith('en-NZ')) setRegion('NZ')
+      else if (tz.startsWith('America/') && (lang.startsWith('en-CA') || lang.startsWith('fr-CA'))) setRegion('CA')
+    } catch (_) {}
     return () => clearTimeout(t)
   }, [])
 

@@ -89,8 +89,24 @@ export default function BuyMusicPage() {
       setUser(data?.user || null)
       setAuthChecked(true)
     })
+    // 1. Try the pricing_region cookie (set by middleware via Vercel geo headers)
     const cookie = document.cookie.split(';').find(c => c.trim().startsWith('pricing_region='))
-    if (cookie) setRegion(cookie.split('=')[1]?.trim() || 'US')
+    if (cookie) {
+      const val = cookie.split('=')[1]?.trim()
+      if (val && val !== 'US') { setRegion(val); return }
+      // If cookie says US, double-check with browser locale in case geo failed
+    }
+    // 2. Fallback: infer region from browser locale / timezone
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''
+      const lang = navigator.language || ''
+      if (tz.startsWith('Europe/London') || lang.startsWith('en-GB')) setRegion('GB')
+      else if (tz.startsWith('Europe/') || lang.match(/^(de|fr|es|it|nl|pt|pl|sv|da|fi|no|cs|el|hu|ro|bg|hr|sk|sl|et|lv|lt)/)) setRegion('EU')
+      else if (tz.startsWith('Australia/') || lang.startsWith('en-AU')) setRegion('AU')
+      else if (tz.startsWith('Pacific/Auckland') || lang.startsWith('en-NZ')) setRegion('NZ')
+      else if (tz.startsWith('America/') && (lang.startsWith('en-CA') || lang.startsWith('fr-CA'))) setRegion('CA')
+      // else stays US (default)
+    } catch (_) { /* Intl not available, keep US default */ }
   }, [])
 
   const handleBuy = async () => {
