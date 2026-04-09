@@ -288,22 +288,31 @@ export default function LessonPage() {
           passedLessons.add(lessonIndex)
 
           if (passedLessons.size >= totalLessons) {
-            // All lessons passed — show congratulations popup then redirect
+            // All lessons in this course passed — show celebration popup then redirect
             setShowCourseCompletePopup(true)
             setTimeout(() => {
               router.push('/congratulations/' + params.courseId)
             }, 3000)
-            // Trigger certificate generation
-            fetch('/api/generate-certificate', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                userId: user.id,
-                courseId: params.courseId,
-                packageId: pkg?.id || '',
-                packageName: pkg?.title || course?.title || 'HomeSafe',
-              }),
-            }).catch(() => {}) // fire-and-forget, don't block UI
+            // Only trigger certificate generation for the LAST course in a package
+            const LAST_COURSES = ['c35','c39','c38','c9','c15','c20','c25']
+            if (LAST_COURSES.includes(params.courseId)) {
+              // Resolve correct package/sub-package name for certificate
+              let certName = pkg?.name || 'HomeSafe'
+              if (course.subPkg && pkg?.subPackages) {
+                const sub = pkg.subPackages.find(s => s.id === course.subPkg)
+                if (sub) certName = sub.name
+              }
+              fetch('/api/generate-certificate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  userId: user.id,
+                  courseId: params.courseId,
+                  packageId: pkg?.id || '',
+                  packageName: certName,
+                }),
+              }).catch(() => {}) // fire-and-forget, don't block UI
+            }
           }
         } catch (e) {
           // Certificate trigger is non-critical, don't block lesson flow

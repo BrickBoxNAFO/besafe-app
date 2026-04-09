@@ -25,6 +25,56 @@ export async function POST(request) {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object
     const meta = session.metadata || {}
+
+    // ─── Music download purchase ──────────────────────────────────────────
+    if (meta.type === 'music_download') {
+      const user_id = meta.userId
+      const productId = meta.productId
+      const productName = meta.productName || productId
+      if (!user_id || !productId) {
+        return NextResponse.json({ error: 'Missing music metadata' }, { status: 400 })
+      }
+
+      try {
+        // Record in music_purchases table
+        await supabase.from('music_purchases').upsert(
+          {
+            user_id,
+            product_id: productId,
+            product_name: productName,
+            stripe_session_id: session.id,
+            stripe_payment_intent: session.payment_intent,
+            region: meta.region || 'US',
+            purchased_at: new Date().toISOString(),
+          },
+          { onConflict: 'user_id,product_id' }
+        )
+
+        // Send confirmation email
+        const { data: userData } = await supabase.auth.admin.getUserById(user_id)
+        const userEmail = userData?.user?.email
+        const userName = userData?.user?.user_metadata?.name
+        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://homesafeeducation.com'
+
+        if (userEmail) {
+          await sendPurchaseConfirmation({
+            to: userEmail,
+            name: userName,
+            packageName: productName + ' (Music Download)',
+            isBundle: false,
+            orderId: session.payment_intent?.slice(-8)?.toUpperCase() || 'N/A',
+            amount: session.amount_total ? (session.amount_total / 100).toFixed(2) : 'See receipt',
+            extraHtml: `<p style="margin-top:16px;"><a href="${siteUrl}/music-success?product=${encodeURIComponent(productId)}" style="background:#0d9488;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:600;">Download Your Music</a></p>`,
+          })
+        }
+      } catch (err) {
+        console.error('Music purchase webhook error:', err)
+        return NextResponse.json({ error: 'Music purchase processing failed' }, { status: 500 })
+      }
+
+      return NextResponse.json({ received: true })
+    }
+
     const { userId, packageId, is_bundle, purchaseType, giftRecipientEmail, giftRecipientName, gifterName } = meta
     // Support both old key (user_id) and new key (userId)
     const user_id = userId || meta.user_id
