@@ -1,13 +1,13 @@
-import { createClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase-server'
 import { sendMemberInvite } from '@/lib/resend'
-import { packages } from '@/lib/data'
+import { PACKAGES } from '@/lib/data'
 import { randomUUID } from 'crypto'
 export async function POST(req) {
   try {
     const { recipientEmail, recipientName, gifterName, packageId, sessionId } = await req.json()
     if (!recipientEmail || !packageId || !sessionId) return Response.json({ error: 'Missing fields' }, { status: 400 })
-    const supabase = createClient()
-    const pkg = packages.find(p => p.id === packageId)
+    const supabase = createAdminSupabaseClient()
+    const pkg = PACKAGES.find(p => p.id === packageId)
     if (!pkg) return Response.json({ error: 'Invalid package' }, { status: 400 })
     const token = randomUUID()
     const inviteUrl = (process.env.NEXT_PUBLIC_SITE_URL||'https://homesafeeducation.com') + '/register?gift_token=' + token + '&package=' + packageId

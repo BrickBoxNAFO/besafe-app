@@ -1,9 +1,9 @@
-import { createClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase-server'
 export async function POST(req) {
   try {
     const { token, userId } = await req.json()
     if (!token || !userId) return Response.json({ error: 'Missing token or user ID' }, { status: 400 })
-    const supabase = createClient()
+    const supabase = createAdminSupabaseClient()
     const { data: gift, error } = await supabase.from('gift_purchases').select('*').eq('token', token).eq('redeemed', false).single()
     if (error || !gift) return Response.json({ error: 'Invalid or already used gift token' }, { status: 400 })
     const { error: purchaseError } = await supabase.from('purchases').insert({ user_id: userId, package_id: gift.package_id, stripe_payment_intent: 'gift_' + gift.token })
