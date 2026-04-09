@@ -102,7 +102,7 @@ export default function MusicSuccessPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
             </div>
-            <p className="text-navy/60 text-sm">MP3 files you can play on any device — phone, tablet, computer, or in the car.</p>
+            <p className="text-navy/60 text-sm">Songs you can play on any device — phone, tablet, computer, or in the car.</p>
           </div>
           <div className="bg-white rounded-xl border border-gray-100 p-4 flex gap-3">
             <div className="text-amber-500 mt-0.5 flex-shrink-0">

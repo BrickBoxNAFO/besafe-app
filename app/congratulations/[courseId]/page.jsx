@@ -17,7 +17,7 @@ const MUSIC_PRODUCTS = {
   'growing-early': {
     name: 'Growing Minds: Early Years',
     songs: 31,
-    desc: 'All 31 original songs from the Early Years courses — gentle, memorable melodies that teach safety through music your child will sing along to.',
+    desc: 'Children learn best when they\'re having fun. These are the songs your child already knows and loves from the course — gentle, memorable melodies written to help little ones remember what they\'ve learned.',
     emoji: '🌱',
     color: '#16A34A',
     gradient: 'from-green-500 to-emerald-600',
@@ -25,7 +25,7 @@ const MUSIC_PRODUCTS = {
   'growing-junior': {
     name: 'Growing Minds: Junior',
     songs: 28,
-    desc: 'All 28 original songs from the Junior courses — upbeat tracks covering everything from road safety to emotional wellbeing, written for ages 8–11.',
+    desc: 'The lessons don\'t have to end when the screen closes. Upbeat, catchy tracks that reinforce everything your child learned — let them keep listening, keep singing, and keep learning.',
     emoji: '🌿',
     color: '#15803D',
     gradient: 'from-emerald-500 to-green-700',
@@ -33,7 +33,7 @@ const MUSIC_PRODUCTS = {
   'street': {
     name: 'Street Smart',
     songs: 24,
-    desc: 'All 24 original tracks from Street Smart — real, powerful songs about personal safety, online awareness, relationships, and making smart choices.',
+    desc: 'Safety messages hit differently when they come through music. Powerful original tracks written for teenagers, in a style they\'ll actually listen to.',
     emoji: '🥷',
     color: '#DC2626',
     gradient: 'from-red-500 to-rose-700',
@@ -230,41 +230,14 @@ export default function CongratulationsPage() {
 
                 {/* Description */}
                 <p className="text-navy/70 text-lg leading-relaxed mb-6">
-                  Every lesson in <strong>{musicProduct.name}</strong> was paired with an original song — written specifically for HomeSafeEducation to make safety lessons stick. If your family loved singing along, you can now <strong>download the entire collection</strong> to keep forever.
+                  {musicProduct.desc}
                 </p>
 
                 {/* What you get */}
-                <div className="bg-slate-50 rounded-xl p-6 mb-8">
-                  <h3 className="font-semibold text-navy text-sm uppercase tracking-wider mb-4">What You Get</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style={{ background: musicProduct.color + '15' }}>
-                        🎶
-                      </div>
-                      <div>
-                        <p className="font-semibold text-navy text-sm">{musicProduct.songs} Original Songs</p>
-                        <p className="text-navy/40 text-xs">High-quality MP3 downloads</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style={{ background: musicProduct.color + '15' }}>
-                        📝
-                      </div>
-                      <div>
-                        <p className="font-semibold text-navy text-sm">Full Lyrics Included</p>
-                        <p className="text-navy/40 text-xs">Every song with complete lyrics</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center text-lg flex-shrink-0" style={{ background: musicProduct.color + '15' }}>
-                        ♾️
-                      </div>
-                      <div>
-                        <p className="font-semibold text-navy text-sm">Yours Forever</p>
-                        <p className="text-navy/40 text-xs">Download to any device, anytime</p>
-                      </div>
-                    </div>
-                  </div>
+                <div className="bg-slate-50 rounded-xl p-5 mb-8">
+                  <p className="text-navy/60 text-[15px] leading-relaxed">
+                    <strong className="text-navy">{musicProduct.songs} educational songs</strong> packed with important safety knowledge — designed to help children feel confident, stay safe, and remember what matters most.
+                  </p>
                 </div>
 
                 {/* Price and CTA */}
