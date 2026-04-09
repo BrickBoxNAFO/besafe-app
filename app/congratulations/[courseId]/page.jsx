@@ -79,6 +79,7 @@ export default function CongratulationsPage() {
   const [loading, setLoading] = useState(false)
   const [showConfetti, setShowConfetti] = useState(true)
   const [region, setRegion] = useState('US')
+  const [verified, setVerified] = useState(false)
 
   const course = COURSES.find(c => c.id === params.courseId)
   const pkg = course ? PACKAGES.find(p => p.id === course.pkg) : null
@@ -92,7 +93,25 @@ export default function CongratulationsPage() {
   const packageLabel = subPkg?.name || pkg?.name || 'HomeSafeEducation'
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUser(data?.user))
+    const checkAccess = async () => {
+      const { data: { user: u } } = await supabase.auth.getUser()
+      if (!u) { router.push('/login'); return }
+      setUser(u)
+
+      // Verify the user actually completed all lessons in this course
+      if (course) {
+        const { data: progress } = await supabase
+          .from('progress')
+          .select('lesson_index, passed')
+          .eq('user_id', u.id)
+          .eq('course_id', params.courseId)
+        const passedSet = new Set((progress || []).filter(r => r.passed).map(r => r.lesson_index))
+        const allPassed = course.lessons.every((_, i) => passedSet.has(i))
+        if (!allPassed) { router.push('/course/' + params.courseId); return }
+      }
+      setVerified(true)
+    }
+    checkAccess()
     // Stop confetti after 5 seconds
     const t = setTimeout(() => setShowConfetti(false), 5000)
     // Detect region from cookie or browser locale fallback
@@ -152,6 +171,17 @@ export default function CongratulationsPage() {
         <div className="text-center">
           <p className="text-navy/50 mb-4">Course not found.</p>
           <Link href="/library" className="btn-primary">Back to Library</Link>
+        </div>
+      </div>
+    )
+  }
+
+  if (!verified) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-teal border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+          <p className="text-navy/50 text-sm">Loading...</p>
         </div>
       </div>
     )

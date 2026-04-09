@@ -193,7 +193,7 @@ export default function FamilyDashboardClient({ slots, seatLimit, usedSeats, acc
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <div className="chip bg-teal/15 text-teal border border-teal/25 mb-4">Family Dashboard</div>
           <h1 className="font-serif text-4xl text-white mb-2">{userName ? userName + "'s Family" : 'Family Overview'}</h1>
-          <p className="text-white/60">5 flexible seats — assign courses to yourself or share with family and friends.</p>
+          <p className="text-white/60">{seatLimit} flexible seat{seatLimit !== 1 ? 's' : ''} — assign courses to yourself or share with family and friends.</p>
         </div>
       </div>
       <div className="bg-white border-b border-gray-100">
@@ -213,7 +213,7 @@ export default function FamilyDashboardClient({ slots, seatLimit, usedSeats, acc
           </div>
         </div>
         <div className="flex items-center justify-between mb-5">
-          <h2 className="font-serif text-2xl text-navy">Your 5 Seats</h2>
+          <h2 className="font-serif text-2xl text-navy">Your {seatLimit} Seat{seatLimit !== 1 ? 's' : ''}</h2>
           {usedSeats < seatLimit && <p className="text-sm text-navy/50">{seatLimit - usedSeats} seat{seatLimit - usedSeats !== 1 ? 's' : ''} remaining</p>}
         </div>
         <div className="grid md:grid-cols-2 gap-4">

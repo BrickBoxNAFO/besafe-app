@@ -205,11 +205,26 @@ export default function LessonPage() {
   const [saving, setSaving] = useState(false)
   const [existingProgress, setExistingProgress] = useState(null)
   const [showCourseCompletePopup, setShowCourseCompletePopup] = useState(false)
+  const [accessChecked, setAccessChecked] = useState(false)
 
   useEffect(() => {
     const fetchProgress = async () => {
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) { router.push('/login'); return }
+
+      // Verify user has purchased this course's package
+      const purchasePkgId = course?.pkg
+      if (purchasePkgId) {
+        const { data: purchases } = await supabase
+          .from('purchases')
+          .select('package_id')
+          .eq('user_id', user.id)
+        const ownedIds = (purchases || []).map(p => p.package_id)
+        const hasAccess = ownedIds.includes(purchasePkgId) || ownedIds.includes('bundle') || ownedIds.includes('complete')
+        if (!hasAccess) { router.push('/packages#' + purchasePkgId); return }
+      }
+      setAccessChecked(true)
+
       const { data } = await supabase
         .from('progress')
         .select('*')
@@ -239,6 +254,17 @@ export default function LessonPage() {
         <div className="text-center">
           <p className="text-navy/50 mb-4">Lesson not found.</p>
           <Link href="/library" className="btn-primary">Back to Library</Link>
+        </div>
+      </div>
+    )
+  }
+
+  if (!accessChecked) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-teal border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+          <p className="text-navy/50 text-sm">Loading lesson...</p>
         </div>
       </div>
     )

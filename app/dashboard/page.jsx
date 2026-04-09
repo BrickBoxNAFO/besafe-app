@@ -33,7 +33,14 @@ export default async function DashboardPage() {
   })
 
   const ownedPackages = PACKAGES.filter(p => purchases.includes(p.id))
-  const totalLessons = ownedPackages.reduce((acc) => acc + 50, 0)
+  const totalLessons = ownedPackages.reduce((acc, pkg) => {
+    // Growing package has subPackages, so count courses for both growing-early and growing-junior
+    if (pkg.isGrowingBundle && pkg.subPackages) {
+      const subIds = pkg.subPackages.map(sp => sp.id)
+      return acc + COURSES.filter(c => subIds.includes(c.pkg)).reduce((s, c) => s + c.lessons.length, 0)
+    }
+    return acc + COURSES.filter(c => c.pkg === pkg.id).reduce((s, c) => s + c.lessons.length, 0)
+  }, 0)
   const passedLessons = Object.values(progressByCourse).reduce((acc, v) => acc + v.passed, 0)
   const overallPct = totalLessons > 0 ? Math.round((passedLessons / totalLessons) * 100) : 0
   const name = user.user_metadata?.name || user.email?.split('@')[0]

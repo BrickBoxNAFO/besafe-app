@@ -185,21 +185,10 @@ export async function POST(request) {
           { onConflict: 'user_id,package_id' }
         )
 
-        // Create seats for the bundle/complete purchase
-        // Bundle = 5 seats, Complete Library = 7 seats
-        const seatCount = package_id === 'complete' ? 7 : 5
-        const { data: existingSeats } = await supabase.from('seats').select('id').eq('owner_user_id', user_id)
-        const currentSeatCount = existingSeats?.length || 0
-
-        // Only create new seats if this purchase adds to the total
-        // (e.g., if they had 5 from bundle and now buy complete, add 7 more)
-        for (let i = 0; i < seatCount; i++) {
-          await supabase.from('seats').insert({
-            owner_user_id: user_id,
-            package_id: 'unassigned',
-            invite_token: randomUUID(),
-          })
-        }
+        // Seats are NOT pre-created here. The seat limit is calculated dynamically
+        // from purchases (bundle=5, complete=7, individual _seat_ purchases=1 each).
+        // Seats are created on-demand when the owner assigns or invites via the
+        // Family Dashboard (/api/self-assign and /api/invite-member).
 
         const { data: userData } = await supabase.auth.admin.getUserById(user_id)
         const userEmail = userData?.user?.email
