@@ -1,6 +1,11 @@
 import Link from 'next/link'
 import NewsletterBanner from '@/components/NewsletterBanner'
 
+export const metadata = {
+  title: 'About Us',
+  description: 'Learn about HomeSafeEducation, our mission, and how we deliver practical, evidence-based safety education for every age group.',
+}
+
 export default function AboutPage() {
   return (
     <div className="page-enter">

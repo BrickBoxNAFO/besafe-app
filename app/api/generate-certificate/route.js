@@ -128,6 +128,6 @@ export async function POST(req) {
 
   } catch (err) {
     console.error('Certificate generation error:', err)
-    return Response.json({ error: 'Failed to generate certificate', details: err.message }, { status: 500 })
+    return Response.json({ error: 'Failed to generate certificate. Please try again or contact support.' }, { status: 500 })
   }
 }

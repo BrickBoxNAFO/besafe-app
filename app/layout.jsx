@@ -12,12 +12,12 @@ export const metadata = {
   },
   description:
     'Practical, evidence-based safety courses designed for real life. Seven specialist packages covering every age group from children aged 4 right through to older adults.',
-  metadataBase: new URL('https://www.homesafeeducation.com'),
+  metadataBase: new URL('https://homesafeeducation.com'),
   openGraph: {
     title: 'HomeSafeEducation — Real-World Safety Education',
     description:
       'Practical, evidence-based safety courses designed for real life. Seven specialist packages covering every age group from children aged 4 right through to older adults.',
-    url: 'https://www.homesafeeducation.com',
+    url: 'https://homesafeeducation.com',
     siteName: 'HomeSafeEducation',
     type: 'website',
     images: [{ url: '/opengraph-image.png', width: 1200, height: 630 }],
@@ -41,8 +41,8 @@ export default function RootLayout({ children }) {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
     name: 'HomeSafeEducation',
-    url: 'https://www.homesafeeducation.com',
-    logo: 'https://www.homesafeeducation.com/opengraph-image.png',
+    url: 'https://homesafeeducation.com',
+    logo: 'https://homesafeeducation.com/opengraph-image.png',
     description:
       'HomeSafeEducation is an online safety education provider offering practical, evidence-based courses designed for real life. Seven specialist packages cover every age group from children aged 4 right through to older adults, teaching real-world personal safety skills.',
     sameAs: [],

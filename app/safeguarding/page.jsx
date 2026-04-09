@@ -1,3 +1,8 @@
+export const metadata = {
+  title: 'Safeguarding Statement',
+  description: 'Our commitment to safeguarding children and vulnerable people through responsible safety education content.',
+}
+
 export default function SafeguardingPage() {
   return (
     <div className="page-enter min-h-screen bg-slate">

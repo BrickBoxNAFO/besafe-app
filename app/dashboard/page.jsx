@@ -4,6 +4,11 @@ import { createClient } from '@/utils/supabase/server'
 import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { PACKAGES, COURSES } from '@/lib/data'
 
+export const metadata = {
+  title: 'Dashboard',
+  description: 'Your HomeSafeEducation dashboard. View your courses, progress, and account details.',
+}
+
 export default async function DashboardPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()

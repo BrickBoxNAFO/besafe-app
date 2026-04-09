@@ -1,0 +1,20 @@
+# HomeSafeEducation robots.txt
+User-agent: *
+Allow: /
+
+# Protected/private pages
+Disallow: /dashboard
+Disallow: /account
+Disallow: /library
+Disallow: /course
+Disallow: /lesson
+Disallow: /family
+Disallow: /assign
+Disallow: /join
+Disallow: /update-password
+Disallow: /cancel
+Disallow: /success
+Disallow: /purchase-success
+Disallow: /api/
+
+Sitemap: https://homesafeeducation.com/sitemap.xml

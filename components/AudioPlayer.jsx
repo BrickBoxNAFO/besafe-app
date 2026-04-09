@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, useId } from 'react'
 
 /**
  * AudioPlayer component for lesson songs.
@@ -13,6 +13,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
  *   accentColor - Optional override colour
  */
 export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'lesson', accentColor }) {
+  const playerId = useId()
   const audioRef = useRef(null)
   const progressRef = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -72,21 +73,39 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
     }
   }, [src])
 
+  // Listen for other players starting — pause this one
+  useEffect(() => {
+    const handleOtherPlay = (e) => {
+      if (e.detail !== playerId) {
+        if (audioRef.current) {
+          audioRef.current.pause()
+        }
+        setIsPlaying(false)
+      }
+    }
+    window.addEventListener('audioplayer:play', handleOtherPlay)
+    return () => window.removeEventListener('audioplayer:play', handleOtherPlay)
+  }, [playerId])
+
   const togglePlay = useCallback(() => {
     const audio = audioRef.current
     if (!audio) return
     if (isPlaying) {
       audio.pause()
+      setIsPlaying(false)
     } else {
+      // Tell every other AudioPlayer on the page to stop
+      window.dispatchEvent(new CustomEvent('audioplayer:play', { detail: playerId }))
+      // Also forcefully pause all other <audio> elements as a safety net
+      document.querySelectorAll('audio').forEach(a => { if (a !== audio) a.pause() })
       audio.play()
-      // Grab duration on first play in case metadata events were missed
+      setIsPlaying(true)
       if (audio.duration && isFinite(audio.duration)) {
         setDuration(audio.duration)
         setIsLoaded(true)
       }
     }
-    setIsPlaying(!isPlaying)
-  }, [isPlaying])
+  }, [isPlaying, playerId])
 
   const seekFromEvent = useCallback((e) => {
     const audio = audioRef.current

@@ -62,7 +62,7 @@ const faqSections = [
       },
       {
         q: 'What payment methods do you accept?',
-        a: 'We accept all major credit and debit cards through Stripe, including Visa, Mastercard, and American Express. All payments are processed securely.'
+        a: 'We accept all major credit and debit cards (Visa, Mastercard, American Express), as well as Apple Pay, Google Pay, and PayPal. Apple Pay and Google Pay are available when you check out on a supported device. All payments are processed securely through Stripe.'
       },
     ]
   },

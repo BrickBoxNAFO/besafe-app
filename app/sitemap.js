@@ -1,12 +1,16 @@
+import { getAllPosts } from '@/lib/posts-all'
+
 export default function sitemap() {
   const baseUrl = 'https://homesafeeducation.com'
   const lastModified = new Date()
 
-  return [
+  const staticPages = [
     { url: baseUrl, lastModified, changeFrequency: 'weekly', priority: 1 },
     { url: `${baseUrl}/packages`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/library`, lastModified, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/about`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/faq`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/blog`, lastModified, changeFrequency: 'weekly', priority: 0.7 },
     { url: `${baseUrl}/contact`, lastModified, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${baseUrl}/login`, lastModified, changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/register`, lastModified, changeFrequency: 'monthly', priority: 0.5 },
@@ -14,5 +18,22 @@ export default function sitemap() {
     { url: `${baseUrl}/privacy`, lastModified, changeFrequency: 'monthly', priority: 0.3 },
     { url: `${baseUrl}/refunds`, lastModified, changeFrequency: 'monthly', priority: 0.3 },
     { url: `${baseUrl}/cookies`, lastModified, changeFrequency: 'monthly', priority: 0.3 },
+    { url: `${baseUrl}/safeguarding`, lastModified, changeFrequency: 'monthly', priority: 0.3 },
+    { url: `${baseUrl}/coppa`, lastModified, changeFrequency: 'monthly', priority: 0.3 },
   ]
+
+  // Dynamically add blog post URLs
+  let blogPosts = []
+  try {
+    blogPosts = getAllPosts().map(post => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    }))
+  } catch (e) {
+    // If posts can't be loaded, continue with static pages only
+  }
+
+  return [...staticPages, ...blogPosts]
 }

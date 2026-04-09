@@ -1,5 +1,10 @@
 import Link from 'next/link'
 
+export const metadata = {
+  title: 'Success',
+  description: 'Your action was completed successfully.',
+}
+
 export default function SuccessPage() {
   return (
     <div className="min-h-screen bg-slate flex items-center justify-center px-4">

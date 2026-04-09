@@ -2,6 +2,11 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 
+export const metadata = {
+  title: 'Purchase Successful',
+  description: 'Thank you for your purchase! Your safety education courses are now available.',
+}
+
 export default async function PurchaseSuccessPage({ searchParams }) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()

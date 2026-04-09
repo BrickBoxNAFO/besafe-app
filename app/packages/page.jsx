@@ -142,12 +142,14 @@ export default function PackagesPage() {
               </div>
             </div>
           </div>
-          <div className="px-6 pb-2">
-            <button onClick={() => toggleExpand('growing')} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold text-green-700 hover:text-green-800 py-3 px-4 rounded-lg hover:bg-green-50 transition-all">
-              <span>📋</span>
-              <span>{expanded['growing'] ? 'Show less' : 'See more - courses & lessons included'}</span>
-              <svg className={"w-4 h-4 transition-transform duration-300 " + (expanded['growing'] ? 'rotate-180' : '')} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-            </button>
+          <div id="growing-toggle" className="px-6 pb-2">
+            {!expanded['growing'] && (
+              <button onClick={() => toggleExpand('growing')} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold text-green-700 hover:text-green-800 py-3 px-4 rounded-lg hover:bg-green-50 transition-all">
+                <span>📋</span>
+                <span>See more - courses &amp; lessons included</span>
+                <svg className="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              </button>
+            )}
           </div>
           {expanded['growing'] && (
             <div className="px-6 pb-4 animate-fadeIn">
@@ -176,6 +178,13 @@ export default function PackagesPage() {
                     </div>
                   </div>
                 ))}
+              </div>
+              <div className="pt-3 pb-1 flex justify-center">
+                <button onClick={() => { toggleExpand('growing'); document.getElementById('growing-toggle')?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold text-green-700 hover:text-green-800 py-3 px-4 rounded-lg hover:bg-green-50 transition-all">
+                  <span>📋</span>
+                  <span>Show less</span>
+                  <svg className="w-4 h-4 rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </button>
               </div>
             </div>
           )}
@@ -274,11 +283,15 @@ export default function PackagesPage() {
                     </div>
                   ))}
                 </div>
-                <button onClick={() => toggleExpand(pkg.id)} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold py-3 mb-4 rounded-lg transition-all hover:opacity-90" style={{ color: gradient.accent, backgroundColor: gradient.accentBg }}>
-                  <span>📋</span>
-                  <span>{expanded[pkg.id] ? 'Show less' : 'See more - courses & lessons included'}</span>
-                  <svg className={"w-4 h-4 transition-transform duration-300 " + (expanded[pkg.id] ? 'rotate-180' : '')} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                </button>
+                <div id={`${pkg.id}-toggle`}>
+                  {!expanded[pkg.id] && (
+                    <button onClick={() => toggleExpand(pkg.id)} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold py-3 mb-4 rounded-lg transition-all hover:opacity-90" style={{ color: gradient.accent, backgroundColor: gradient.accentBg }}>
+                      <span>📋</span>
+                      <span>See more - courses &amp; lessons included</span>
+                      <svg className="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                  )}
+                </div>
                 {expanded[pkg.id] && (
                   <div className="mb-6 space-y-3 animate-fadeIn">
                     {pkgCourses.map(c => (
@@ -298,6 +311,13 @@ export default function PackagesPage() {
                         </div>
                       </div>
                     ))}
+                    <div className="pt-1 pb-1 flex justify-center">
+                      <button onClick={() => { toggleExpand(pkg.id); document.getElementById(`${pkg.id}-toggle`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold py-3 rounded-lg transition-all hover:opacity-90" style={{ color: gradient.accent, backgroundColor: gradient.accentBg }}>
+                        <span>📋</span>
+                        <span>Show less</span>
+                        <svg className="w-4 h-4 rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                      </button>
+                    </div>
                   </div>
                 )}
                 {/* ── Street Smart Music Section ── */}

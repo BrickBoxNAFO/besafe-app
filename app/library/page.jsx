@@ -4,6 +4,11 @@ import { PACKAGES, COURSES } from '@/lib/data'
 import { getServerRegion } from '@/lib/get-region'
 import { getPackagePrice } from '@/lib/pricing'
 
+export const metadata = {
+  title: 'My Library',
+  description: 'Access your purchased safety education courses and track your learning progress.',
+}
+
 export default async function LibraryPage() {
   const regionCode = getServerRegion()
   const supabase = await createClient()

@@ -4,6 +4,11 @@ import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { PACKAGES, COURSES } from '@/lib/data'
 import FamilyDashboardClient from './FamilyDashboardClient'
 
+export const metadata = {
+  title: 'Family Dashboard',
+  description: 'Manage your family members and assign course access to your household.',
+}
+
 const BUNDLE_SEAT_LIMIT = 5
 
 export default async function FamilyDashboardPage() {

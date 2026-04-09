@@ -6,7 +6,21 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const post = getPostBySlug(params.slug)
   if (!post) return {}
-  return { title: post.title + ' | HomeSafeEducation', description: post.metaDescription }
+  return {
+    title: post.title + ' | HomeSafeEducation',
+    description: post.metaDescription,
+    openGraph: {
+      title: post.title,
+      description: post.metaDescription,
+      type: 'article',
+      url: `https://homesafeeducation.com/blog/${post.slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.metaDescription,
+    },
+  }
 }
 export default function BlogPost({ params }) {
   const post = getPostBySlug(params.slug)

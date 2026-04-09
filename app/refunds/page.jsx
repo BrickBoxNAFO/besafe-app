@@ -1,3 +1,8 @@
+export const metadata = {
+  title: 'Refund Policy',
+  description: 'Our refund and returns policy for HomeSafeEducation course packages.',
+}
+
 export default function RefundsPage() {
   return (
     <div className="page-enter min-h-screen bg-slate">

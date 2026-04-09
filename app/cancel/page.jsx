@@ -1,5 +1,10 @@
 import Link from 'next/link'
 
+export const metadata = {
+  title: 'Payment Cancelled',
+  description: 'Your payment was cancelled. You can return to browse our safety education packages.',
+}
+
 export default function CancelPage() {
   return (
     <div className="min-h-screen bg-slate flex items-center justify-center px-4">

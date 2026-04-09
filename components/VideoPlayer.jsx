@@ -20,24 +20,32 @@ export default function VideoPlayer({ src, poster }) {
   const [loaded, setLoaded] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
-  // Autoplay muted (browsers require muted for autoplay), volume ready for when user unmutes
+  // Play with sound when the video scrolls into view, pause when it leaves
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
     v.volume = volume
-    v.muted = true
-    setMuted(true)
+    v.muted = false
+    setMuted(false)
 
-    const tryPlay = async () => {
-      try {
-        await v.play()
-        setPlaying(true)
-      } catch {
-        // Autoplay fully blocked; user must click
-        setPlaying(false)
-      }
-    }
-    tryPlay()
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          v.play().then(() => setPlaying(true)).catch(() => {
+            // Browser blocked unmuted autoplay — fall back to muted
+            v.muted = true
+            setMuted(true)
+            v.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
+          })
+        } else {
+          v.pause()
+          setPlaying(false)
+        }
+      },
+      { threshold: 0.4 }
+    )
+    observer.observe(v)
+    return () => observer.disconnect()
   }, [src]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const togglePlay = useCallback(() => {

@@ -1,3 +1,8 @@
+export const metadata = {
+  title: 'COPPA Notice',
+  description: 'How HomeSafeEducation complies with the Children\'s Online Privacy Protection Act (COPPA) and protects children\'s data.',
+}
+
 export default function CoppaPage() {
   return (
     <div className="page-enter min-h-screen bg-slate">
