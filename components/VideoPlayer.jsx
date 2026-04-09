@@ -4,14 +4,15 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 
 /**
  * Minimal, borderless video player for the HomeSafe homepage.
- * - Autoplays WITH sound on page load (falls back to muted if browser blocks)
- * - Shows: play/pause, volume, duration slider
- * - No border, blends seamlessly into the hero section
+ * - Starts PAUSED with a large play button overlay
+ * - User taps play to start; controls appear on hover / tap
+ * - No autoplay — mobile-friendly
  */
 export default function VideoPlayer({ src, poster }) {
   const videoRef = useRef(null)
   const containerRef = useRef(null)
   const [playing, setPlaying] = useState(false)
+  const [hasStarted, setHasStarted] = useState(false)
   const [muted, setMuted] = useState(false)
   const [volume, setVolume] = useState(0.8)
   const [progress, setProgress] = useState(0)
@@ -20,32 +21,11 @@ export default function VideoPlayer({ src, poster }) {
   const [loaded, setLoaded] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
-  // Play with sound when the video scrolls into view, pause when it leaves
+  // Set initial volume when src loads — no autoplay
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
     v.volume = volume
-    v.muted = false
-    setMuted(false)
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          v.play().then(() => setPlaying(true)).catch(() => {
-            // Browser blocked unmuted autoplay — fall back to muted
-            v.muted = true
-            setMuted(true)
-            v.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
-          })
-        } else {
-          v.pause()
-          setPlaying(false)
-        }
-      },
-      { threshold: 0.4 }
-    )
-    observer.observe(v)
-    return () => observer.disconnect()
   }, [src]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const togglePlay = useCallback(() => {
@@ -54,6 +34,7 @@ export default function VideoPlayer({ src, poster }) {
     if (v.paused) {
       v.play()
       setPlaying(true)
+      setHasStarted(true)
     } else {
       v.pause()
       setPlaying(false)
@@ -65,7 +46,6 @@ export default function VideoPlayer({ src, poster }) {
     if (!v) return
     v.muted = !v.muted
     setMuted(v.muted)
-    // When unmuting, ensure volume is audible
     if (!v.muted && v.volume === 0) {
       v.volume = 0.8
       setVolume(0.8)
@@ -113,7 +93,6 @@ export default function VideoPlayer({ src, poster }) {
     }
   }, [])
 
-  // Listen for fullscreen changes
   useEffect(() => {
     const handler = () => setIsFullscreen(!!document.fullscreenElement)
     document.addEventListener('fullscreenchange', handler)
@@ -130,7 +109,6 @@ export default function VideoPlayer({ src, poster }) {
     return `${m}:${sec.toString().padStart(2, '0')}`
   }
 
-  // Placeholder shown when no video src is provided yet
   if (!src) {
     return (
       <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-navy/40 flex items-center justify-center">
@@ -147,7 +125,6 @@ export default function VideoPlayer({ src, poster }) {
 
   return (
     <div ref={containerRef} className="relative w-full aspect-video rounded-2xl overflow-hidden group">
-      {/* Video element */}
       <video
         ref={videoRef}
         src={src}
@@ -161,23 +138,21 @@ export default function VideoPlayer({ src, poster }) {
         className="w-full h-full object-cover cursor-pointer"
       />
 
-      {/* Click-to-play overlay (shown when paused and not loaded or user paused) */}
       {!playing && (
         <button
           onClick={togglePlay}
-          className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity"
+          className="absolute inset-0 flex items-center justify-center transition-opacity"
+          style={{ background: hasStarted ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.45)' }}
         >
-          <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
-            <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+          <div className={`${hasStarted ? 'w-16 h-16' : 'w-20 h-20 md:w-24 md:h-24'} bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 transition-transform hover:scale-110`}>
+            <svg className={`${hasStarted ? 'w-7 h-7' : 'w-9 h-9 md:w-11 md:h-11'} text-white ml-1`} fill="currentColor" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z" />
             </svg>
           </div>
         </button>
       )}
 
-      {/* Controls bar — appears on hover */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent pt-10 pb-3 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        {/* Progress / seek bar */}
+      <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent pt-10 pb-3 px-4 transition-opacity duration-300 ${hasStarted ? 'lg:opacity-0 lg:group-hover:opacity-100 opacity-100' : 'opacity-0'}`}>
         <input
           type="range"
           min="0"
@@ -185,14 +160,13 @@ export default function VideoPlayer({ src, poster }) {
           step="0.1"
           value={progress}
           onChange={handleSeek}
-          className="video-slider w-full h-1 mb-3 cursor-pointer"
+          className="video-slider w-full h-2 lg:h-1 mb-3 cursor-pointer appearance-none rounded-full"
           style={{
             background: `linear-gradient(to right, #0EA5A0 ${progress}%, rgba(255,255,255,0.25) ${progress}%)`,
           }}
         />
 
         <div className="flex items-center gap-3">
-          {/* Play/Pause */}
           <button onClick={togglePlay} className="text-white hover:text-teal transition-colors">
             {playing ? (
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -205,14 +179,12 @@ export default function VideoPlayer({ src, poster }) {
             )}
           </button>
 
-          {/* Time */}
           <span className="text-white/70 text-xs font-mono min-w-[70px]">
             {fmt(currentTime)} / {fmt(duration)}
           </span>
 
           <div className="flex-1" />
 
-          {/* Volume */}
           <button onClick={toggleMute} className="text-white hover:text-teal transition-colors">
             {muted || volume === 0 ? (
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -237,7 +209,6 @@ export default function VideoPlayer({ src, poster }) {
             }}
           />
 
-          {/* Fullscreen */}
           <button onClick={toggleFullscreen} className="text-white hover:text-teal transition-colors ml-2">
             {isFullscreen ? (
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
