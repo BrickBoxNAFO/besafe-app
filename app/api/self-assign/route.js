@@ -2,7 +2,21 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/utils/supabase/server'
 import { createClient as createAdminClient } from '@supabase/supabase-js'
 
-const SEAT_LIMIT = 5
+const BUNDLE_SEATS = 5
+const COMPLETE_SEATS = 7
+
+function calculateSeatLimit(purchaseIds) {
+  let total = 0
+  const bundleCount = purchaseIds.filter(id => id === 'bundle').length
+  const completeCount = purchaseIds.filter(id => id === 'complete').length
+  total += bundleCount * BUNDLE_SEATS
+  total += completeCount * COMPLETE_SEATS
+  const individualPurchases = purchaseIds.filter(id =>
+    id !== 'bundle' && id !== 'complete' && id.includes('_seat_')
+  )
+  total += individualPurchases.length
+  return Math.max(total, BUNDLE_SEATS)
+}
 
 export async function POST(request) {
   try {
@@ -21,10 +35,14 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Bundle or Complete Library purchase not found' }, { status: 403 })
     }
 
+    // Calculate dynamic seat limit from purchases
+    const { data: allPurchases } = await admin.from('purchases').select('package_id').eq('user_id', user.id)
+    const seatLimit = calculateSeatLimit((allPurchases || []).map(p => p.package_id))
+
     // Check seat limit
     const { data: existingSeats } = await admin.from('seats').select('id').eq('owner_user_id', user.id)
-    if ((existingSeats || []).length >= SEAT_LIMIT) {
-      return NextResponse.json({ error: 'You have reached the maximum of 5 seats' }, { status: 400 })
+    if ((existingSeats || []).length >= seatLimit) {
+      return NextResponse.json({ error: 'You have reached your seat limit of ' + seatLimit + '. Purchase additional seats to add more members.' }, { status: 400 })
     }
 
     // Create seat and immediately mark it as accepted (self-assigned)
