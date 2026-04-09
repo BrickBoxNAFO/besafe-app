@@ -198,6 +198,7 @@ export default function LessonPage() {
   const [submitted, setSubmitted] = useState(false)
   const [saving, setSaving] = useState(false)
   const [existingProgress, setExistingProgress] = useState(null)
+  const [showCourseCompletePopup, setShowCourseCompletePopup] = useState(false)
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -252,7 +253,7 @@ export default function LessonPage() {
     setSaving(true)
     const { data: { user } } = await supabase.auth.getUser()
     if (user) {
-      await supabase.from('progress').upsert({
+      const { error: upsertError } = await supabase.from('progress').upsert({
         user_id: user.id,
         course_id: params.courseId,
         lesson_index: lessonIndex,
@@ -260,6 +261,7 @@ export default function LessonPage() {
         score,
         completed_at: new Date().toISOString(),
       }, { onConflict: 'user_id,course_id,lesson_index' })
+      if (upsertError) console.error('Progress save failed:', upsertError)
 
       // Check if all lessons in this course are now passed
       if (score >= passThreshold) {
@@ -278,7 +280,12 @@ export default function LessonPage() {
           passedLessons.add(lessonIndex)
 
           if (passedLessons.size >= totalLessons) {
-            // All lessons passed — trigger certificate generation
+            // All lessons passed — show congratulations popup then redirect
+            setShowCourseCompletePopup(true)
+            setTimeout(() => {
+              router.push('/congratulations/' + params.courseId)
+            }, 3000)
+            // Trigger certificate generation
             fetch('/api/generate-certificate', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -684,7 +691,7 @@ export default function LessonPage() {
                 </Link>
               )}
               {passed && nextLessonIdx === null && (
-                <Link href={'/course/' + course.id} className="btn-primary text-center">
+                <Link href={'/congratulations/' + course.id} className="btn-primary text-center">
                   Course Complete!
                 </Link>
               )}
@@ -695,6 +702,23 @@ export default function LessonPage() {
           </div>
         )}
       </div>
+
+      {/* Course Complete popup — brief celebration before redirect */}
+      {showCourseCompletePopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fadeIn">
+          <div className="bg-white rounded-2xl shadow-2xl p-10 max-w-md mx-4 text-center">
+            <div className="text-6xl mb-4">🎉</div>
+            <h2 className="font-serif text-3xl text-navy mb-3">Congratulations!</h2>
+            <p className="text-navy/60 text-lg mb-2">
+              You have completed <strong className="text-navy">{course.title}</strong>
+            </p>
+            <p className="text-navy/40 text-sm">Taking you to your results...</p>
+            <div className="mt-6">
+              <div className="w-12 h-12 mx-auto border-3 border-teal/30 border-t-teal rounded-full animate-spin" />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
