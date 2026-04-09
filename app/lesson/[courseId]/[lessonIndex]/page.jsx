@@ -148,6 +148,12 @@ function parseLesson(content) {
 }
 
 
+function scrollToTop() {
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  document.documentElement.scrollTop = 0
+  document.body.scrollTop = 0
+}
+
 export default function LessonPage() {
   const params = useParams()
   const router = useRouter()
@@ -222,7 +228,9 @@ export default function LessonPage() {
     setSelected({})
     setSubmitted(false)
     setSaving(false)
-    window.scrollTo(0, 0)
+    // Scroll to top with fallback for mobile browsers
+    scrollToTop()
+    setTimeout(scrollToTop, 50)
   }, [params.courseId, lessonIndex])
 
   if (!course || !lesson) {
@@ -304,6 +312,7 @@ export default function LessonPage() {
     }
     setSaving(false)
     setPhase('result')
+    scrollToTop()
   }
 
   // Render a content paragraph with rich formatting
@@ -493,7 +502,7 @@ export default function LessonPage() {
             <div className="flex items-center justify-between">
               <div />
               {questions.length > 0 ? (
-                <button onClick={() => { setPhase('quiz'); window.scrollTo(0, 0) }} className="btn-primary text-base py-3.5 px-8">
+                <button onClick={() => { setPhase('quiz'); scrollToTop() }} className="btn-primary text-base py-3.5 px-8">
                   Take the Quiz ({questions.length} questions)
                 </button>
               ) : (
@@ -558,7 +567,7 @@ export default function LessonPage() {
             </div>
 
             <div className="mt-8 flex items-center justify-between">
-              <button onClick={() => setPhase('content')} className="btn-ghost text-sm flex items-center gap-1">
+              <button onClick={() => { setPhase('content'); scrollToTop() }} className="btn-ghost text-sm flex items-center gap-1">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                 Back to Lesson
               </button>
@@ -678,7 +687,7 @@ export default function LessonPage() {
                     setPhase('content')
                     setSelected({})
                     setSubmitted(false)
-                    window.scrollTo(0, 0)
+                    scrollToTop()
                   }}
                   className="btn-ghost"
                 >

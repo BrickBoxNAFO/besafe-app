@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
 import { COURSES, PACKAGES } from '@/lib/data'
+import { getMusicPrice, countryToRegion } from '@/lib/pricing'
 
 /* ────────────────────────────────────────────
    Congratulations + Music Upsell Page
@@ -38,13 +39,19 @@ const MUSIC_PRODUCTS = {
   },
 }
 
-// Resolve which music product a course belongs to
+// Last course ID for each package with music — only show upsell once per package
+const LAST_COURSE_FOR_MUSIC = {
+  'c35':  'growing-early',   // last Early Years course
+  'c39':  'growing-junior',  // last Junior course
+  'c38':  'street',          // last Street Smart course
+}
+
+// Resolve which music product a course belongs to — only for the last course in each package
 function getMusicProduct(course) {
   if (!course) return null
-  if (course.subPkg === 'growing-early') return MUSIC_PRODUCTS['growing-early']
-  if (course.subPkg === 'growing-junior') return MUSIC_PRODUCTS['growing-junior']
-  if (course.pkg === 'street') return MUSIC_PRODUCTS['street']
-  return null
+  const musicKey = LAST_COURSE_FOR_MUSIC[course.id]
+  if (!musicKey) return null
+  return MUSIC_PRODUCTS[musicKey] || null
 }
 
 export default function CongratulationsPage() {
@@ -54,16 +61,24 @@ export default function CongratulationsPage() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
   const [showConfetti, setShowConfetti] = useState(true)
+  const [region, setRegion] = useState('US')
 
   const course = COURSES.find(c => c.id === params.courseId)
   const pkg = course ? PACKAGES.find(p => p.id === course.pkg) : null
   const musicProduct = getMusicProduct(course)
   const courseColor = course?.color || '#0EA5A0'
+  const musicProductId = course ? LAST_COURSE_FOR_MUSIC[course.id] : null
+  const musicPriceDisplay = musicProduct && musicProductId ? (getMusicPrice(musicProductId, region) || getMusicPrice(musicProductId, 'US')) : null
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUser(data?.user))
     // Stop confetti after 5 seconds
     const t = setTimeout(() => setShowConfetti(false), 5000)
+    // Detect region from cookie or geo
+    const cookie = document.cookie.split(';').find(c => c.trim().startsWith('pricing_region='))
+    if (cookie) {
+      setRegion(cookie.split('=')[1]?.trim() || 'US')
+    }
     return () => clearTimeout(t)
   }, [])
 
@@ -77,8 +92,9 @@ export default function CongratulationsPage() {
         body: JSON.stringify({
           userId: user.id,
           email: user.email,
-          productId: course.subPkg || course.pkg,
+          productId: musicProductId,
           productName: musicProduct.name + ' — Complete Song Collection',
+          region,
         }),
       })
       const data = await res.json()
@@ -156,7 +172,7 @@ export default function CongratulationsPage() {
             </div>
             <h2 className="font-serif text-2xl text-navy mb-2">Your Certificate Is On Its Way</h2>
             <p className="text-navy/50 max-w-md mx-auto">
-              A personalised certificate of completion will be delivered to your email shortly. You can also access it from your dashboard at any time.
+              A personalised certificate of completion will be delivered to your email shortly.
             </p>
           </div>
         </div>
@@ -229,10 +245,9 @@ export default function CongratulationsPage() {
               {/* Price and CTA */}
               <div className="text-center">
                 <div className="mb-4">
-                  <span className="text-4xl font-bold text-navy">$4.99</span>
+                  <span className="text-4xl font-bold text-navy">{musicPriceDisplay}</span>
                   <span className="text-navy/40 text-sm ml-2">/ one-time</span>
                 </div>
-                <p className="text-navy/40 text-xs mb-6">Also available as £4.99 GBP / €4.99 EUR — currency selected at checkout</p>
 
                 <button
                   onClick={handleBuyMusic}
@@ -247,7 +262,7 @@ export default function CongratulationsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
                   )}
-                  {loading ? 'Preparing Checkout...' : 'Get the Music — $4.99'}
+                  {loading ? 'Preparing Checkout...' : `Get the Music — ${musicPriceDisplay}`}
                 </button>
 
                 <p className="text-navy/30 text-xs mt-4 flex items-center justify-center gap-1">

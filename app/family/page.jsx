@@ -9,7 +9,31 @@ export const metadata = {
   description: 'Manage your family members and assign course access to your household.',
 }
 
-const BUNDLE_SEAT_LIMIT = 5
+const BUNDLE_SEATS = 5
+const COMPLETE_SEATS = 7
+
+/**
+ * Calculate total seat limit based on all purchases.
+ * Each bundle purchase adds 5 seats, each complete library adds 7 seats.
+ * Additional individual purchases also add 1 seat each.
+ * This allows purchase stacking (e.g., bundle + complete = 12 seats).
+ */
+function calculateSeatLimit(purchaseIds) {
+  let total = 0
+  // Count bundle purchases (may have multiple via gift_later etc.)
+  const bundleCount = purchaseIds.filter(id => id === 'bundle').length
+  const completeCount = purchaseIds.filter(id => id === 'complete').length
+  total += bundleCount * BUNDLE_SEATS
+  total += completeCount * COMPLETE_SEATS
+  // Count individual package purchases that aren't bundle/complete
+  // (gift_later seats are created separately, so we count non-bundle/complete purchases as additional seats)
+  const individualPurchases = purchaseIds.filter(id =>
+    id !== 'bundle' && id !== 'complete' &&
+    id.includes('_seat_') // gift_later purchases have _seat_ suffix
+  )
+  total += individualPurchases.length
+  return Math.max(total, BUNDLE_SEATS) // minimum 5 if they have bundle access
+}
 
 export default async function FamilyDashboardPage() {
   const supabase = await createClient()
@@ -21,6 +45,8 @@ export default async function FamilyDashboardPage() {
   const { data: purchases } = await supabase.from('purchases').select('package_id').eq('user_id', user.id)
   const ownedIds = (purchases || []).map(p => p.package_id)
   if (!ownedIds.includes('bundle') && !ownedIds.includes('complete')) redirect('/packages')
+
+  const BUNDLE_SEAT_LIMIT = calculateSeatLimit(ownedIds)
 
   const { data: seats } = await admin.from('seats').select('*').eq('owner_user_id', user.id).order('created_at', { ascending: true })
 
@@ -57,7 +83,9 @@ export default async function FamilyDashboardPage() {
     }
   })
 
-  const emptySlotCount = Math.max(0, BUNDLE_SEAT_LIMIT - filledSeats.length)
+  // Use the greater of: calculated seat limit from purchases, or actual seats in DB
+  const actualSeatLimit = Math.max(BUNDLE_SEAT_LIMIT, (seats || []).length)
+  const emptySlotCount = Math.max(0, actualSeatLimit - filledSeats.length)
   const emptySlots = Array.from({ length: emptySlotCount }, (_, i) => ({
     seatId: null, packageId: null, packageName: null, packageEmoji: null,
     packageColor: null, packagePale: null, memberName: null, memberEmail: null,

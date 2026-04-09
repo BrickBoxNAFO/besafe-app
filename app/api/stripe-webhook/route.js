@@ -120,13 +120,35 @@ export async function POST(request) {
           })
         }
       } else if (is_bundle === 'true') {
-        // ─── Bundle purchase: grant all packages ────────────────────────────
+        // ─── Bundle/Complete purchase: grant all packages + create seats ────
         const packageIds = PACKAGES.map(p => p.id)
         for (const pid of packageIds) {
           await supabase.from('purchases').upsert(
             { user_id, package_id: pid, stripe_payment_intent: session.payment_intent, purchased_at: new Date().toISOString() },
             { onConflict: 'user_id,package_id' }
           )
+        }
+
+        // Also record the bundle/complete purchase itself for seat counting
+        await supabase.from('purchases').upsert(
+          { user_id, package_id, stripe_payment_intent: session.payment_intent, purchased_at: new Date().toISOString() },
+          { onConflict: 'user_id,package_id' }
+        )
+
+        // Create seats for the bundle/complete purchase
+        // Bundle = 5 seats, Complete Library = 7 seats
+        const seatCount = package_id === 'complete' ? 7 : 5
+        const { data: existingSeats } = await supabase.from('seats').select('id').eq('owner_user_id', user_id)
+        const currentSeatCount = existingSeats?.length || 0
+
+        // Only create new seats if this purchase adds to the total
+        // (e.g., if they had 5 from bundle and now buy complete, add 7 more)
+        for (let i = 0; i < seatCount; i++) {
+          await supabase.from('seats').insert({
+            owner_user_id: user_id,
+            package_id: 'unassigned',
+            invite_token: randomUUID(),
+          })
         }
 
         const { data: userData } = await supabase.auth.admin.getUserById(user_id)
