@@ -202,7 +202,7 @@ export default function PackagesPage() {
 
               {/* Description */}
               <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                Growing Minds includes <strong className="text-white/80">72 original songs written and produced by HomeSafeEducation</strong> - 37 for Early Years and 35 for Junior. Every lesson features its own song built into the learning material, plus a recap song for each course. Full lyrics are displayed with every song. For Early Years (ages 4–7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8–11), lyrics are there to <strong className="text-white/80">read along and sing independently</strong>.
+                Growing Minds includes <strong className="text-white/80">72 original songs written and produced by HomeSafeEducation</strong> — 37 for Early Years and 35 for Junior. Every lesson features its own song built into the learning material, plus a recap song for each course. For Early Years (ages 4–7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8–11), songs are there to <strong className="text-white/80">sing along and learn independently</strong>.
               </p>
 
               {/* Audio previews side by side */}
@@ -335,7 +335,7 @@ export default function PackagesPage() {
 
                       {/* Description */}
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
-                        Street Smart includes <strong className="text-white/80">30 original tracks written and produced in-house by HomeSafeEducation</strong>. For every course - from early years through to late teens - we provide a song and lyrics for each lesson, plus additional tracks to accompany course summaries and reinforce learning. We have produced <strong className="text-white/80">102 age-appropriate tracks</strong> across the Growing Minds and Street Smart packages - from certified nursery rhyme bangers to educational music your teenager will actually want to share with their friends.
+                        Street Smart includes <strong className="text-white/80">30 original tracks written and produced in-house by HomeSafeEducation</strong>. Every lesson comes with its own song, plus additional tracks to accompany course summaries and reinforce learning. We have produced <strong className="text-white/80">102 age-appropriate tracks</strong> across the Growing Minds and Street Smart packages — from certified nursery rhyme bangers to educational music your teenager will actually want to share with their friends.
                       </p>
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
                         We don&apos;t teach through fear - we want to <strong className="text-white/80">empower youth with knowledge</strong> so they can decide to make safe choices. We don&apos;t teach with narratives or agendas, we teach with renowned and tested professional safety advice.

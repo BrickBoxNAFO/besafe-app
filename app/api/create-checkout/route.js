@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { createClient } from '@/utils/supabase/server'
-import { getStripePriceId, getStripeCurrency } from '@/lib/stripe'
-import { countryToRegion } from '@/lib/pricing'
+import { getStripePriceId } from '@/lib/stripe'
 import { PACKAGES } from '@/lib/data'
 
 export async function POST(request) {
@@ -31,7 +30,6 @@ export async function POST(request) {
   if (!priceId) return NextResponse.json({ error: 'Invalid package' }, { status: 400 })
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-  const currency = getStripeCurrency(regionCode)
 
   const pkg = PACKAGES.find(p => p.id === packageId)
   const packageName = pkg?.name || packageId
@@ -68,10 +66,8 @@ export async function POST(request) {
   }
 
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card', 'paypal'],
     line_items: [{ price: priceId, quantity: 1 }],
     mode: 'payment',
-    currency,
     success_url: successUrl,
     cancel_url: process.env.NEXT_PUBLIC_SITE_URL + '/packages',
     customer_email: user.email,
