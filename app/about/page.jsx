@@ -34,7 +34,7 @@ export default function AboutPage() {
             <div className="hidden md:block" style={{position:'absolute', top:'3rem', bottom:'3rem', left:'2rem', width:'2px', background:'linear-gradient(to bottom, transparent, rgba(14,165,160,0.35) 15%, rgba(14,165,160,0.35) 85%, transparent)', pointerEvents:'none'}} />
 
             <div className="relative z-10 md:pl-6">
-              <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-8 text-center">A Message From Our Founder</h2>
+              <h2 className="font-serif text-3xl lg:text-4xl text-teal mb-8 text-center">A Message From Our Founder</h2>
               <div className="text-navy/60 leading-relaxed space-y-4 text-[15px] italic" style={{fontFamily:"'DM Serif Display', Georgia, serif", fontWeight:'normal', lineHeight:'1.85', letterSpacing:'0.01em'}}>
                 <p>&ldquo;HomeSafeEducation started with a simple question: As a Father I asked myself, why does nobody teach this stuff properly?</p>
                 <p>We teach children to read, to count, to pass exams. But we rarely teach them how to stay safe online, or teach them about body safety, or what to do if something does not feel right. These are some difficult topics when speaking to a child.</p>
