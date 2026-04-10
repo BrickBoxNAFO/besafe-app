@@ -25,20 +25,29 @@ export default function AboutPage() {
       {/* Message From Our Founder */}
       <section className="py-20 bg-gradient-to-b from-white to-slate">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 md:p-12">
-            <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-8 text-center">A Message From Our Founder</h2>
-            <div className="text-navy/60 leading-relaxed space-y-4 text-[15px] italic">
-              <p>&ldquo;HomeSafeEducation started with a simple question: As a Father I asked myself, why does nobody teach this stuff properly?</p>
-              <p>We teach children to read, to count, to pass exams. But we rarely teach them how to stay safe online, or teach them about body safety, or what to do if something does not feel right. These are some difficult topics when speaking to a child.</p>
-              <p>We send teenagers into the world with qualifications but without the practical knowledge to navigate it confidently. We watch our parents age without ever having a conversation about scams, advance planning, or digital confidence.</p>
-              <p>Fear is the most powerful force in selling, however, I made myself a promise that selling through fear will never be a part of what we do at HomeSafeEducation, we will always sell to our customers with love, providing people the means to gift something special to their families, themselves and the people they care about, self protection, self confidence and knowledge to make informed decisions at every stage of life.</p>
-              <p>I built this platform because I wanted that knowledge to exist in one place, written properly, for every age group. Not watered down avoiding serious topics, but said in a way that&apos;s age appropriate and relevant so it can be taught to anyone. Not full of fear. Just honest, practical education that treats every person, whether they are five or seventy-five, as someone capable of learning and making good decisions.</p>
-              <p>Every course is written to empower. Every lesson ends with something you can actually use. Every quiz reinforces what you have learned. And every song for the packages that include them is written and produced in-house because I believe learning should be memorable, not miserable.</p>
-              <p>This is the education I now give to my own family. That is the standard I will hold it to, and that is the standard it will always be.&rdquo;</p>
-            </div>
-            <div className="mt-8 text-right">
-              <span style={{fontFamily:"'Dancing Script', cursive", fontSize:'2rem', color:'#2B3480'}}>Brick</span>
-              <p className="text-navy/40 text-sm mt-1">Founder, HomeSafeEducation</p>
+          <div className="relative" style={{background:'#fdfbf7', borderRadius:'4px', padding:'3rem 2.5rem', boxShadow:'0 2px 15px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)', border:'1px solid #e8e0d4'}}>
+            {/* Paper texture & edges */}
+            <div style={{position:'absolute', inset:0, borderRadius:'4px', background:'linear-gradient(135deg, rgba(0,0,0,0.02) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.015) 100%)', pointerEvents:'none'}} />
+            <div style={{position:'absolute', top:0, left:0, right:0, height:'4px', borderRadius:'4px 4px 0 0', background:'linear-gradient(to bottom, rgba(0,0,0,0.04), transparent)', pointerEvents:'none'}} />
+            <div style={{position:'absolute', bottom:0, left:0, right:0, height:'6px', borderRadius:'0 0 4px 4px', background:'linear-gradient(to top, rgba(0,0,0,0.03), transparent)', pointerEvents:'none'}} />
+            {/* Subtle left rule line like a letter */}
+            <div className="hidden md:block" style={{position:'absolute', top:'3rem', bottom:'3rem', left:'2rem', width:'2px', background:'linear-gradient(to bottom, transparent, rgba(43,52,128,0.08) 15%, rgba(43,52,128,0.08) 85%, transparent)', pointerEvents:'none'}} />
+
+            <div className="relative z-10 md:pl-6">
+              <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-8 text-center">A Message From Our Founder</h2>
+              <div className="text-navy/60 leading-relaxed space-y-4 text-[15px] italic" style={{fontFamily:"'DM Serif Display', Georgia, serif", fontWeight:'normal', lineHeight:'1.85', letterSpacing:'0.01em'}}>
+                <p>&ldquo;HomeSafeEducation started with a simple question: As a Father I asked myself, why does nobody teach this stuff properly?</p>
+                <p>We teach children to read, to count, to pass exams. But we rarely teach them how to stay safe online, or teach them about body safety, or what to do if something does not feel right. These are some difficult topics when speaking to a child.</p>
+                <p>We send teenagers into the world with qualifications but without the practical knowledge to navigate it confidently. We watch our parents age without ever having a conversation about scams, advance planning, or digital confidence.</p>
+                <p>Fear is the most powerful force in selling, however, I made myself a promise that selling through fear will never be a part of what we do at HomeSafeEducation, we will always sell to our customers with love, providing people the means to gift something special to their families, themselves and the people they care about, self protection, self confidence and knowledge to make informed decisions at every stage of life.</p>
+                <p>I built this platform because I wanted that knowledge to exist in one place, written properly, for every age group. Not watered down avoiding serious topics, but said in a way that&apos;s age appropriate and relevant so it can be taught to anyone. Not full of fear. Just honest, practical education that treats every person, whether they are five or seventy-five, as someone capable of learning and making good decisions.</p>
+                <p>Every course is written to empower. Every lesson ends with something you can actually use. Every quiz reinforces what you have learned. And every song for the packages that include them is written and produced in-house because I believe learning should be memorable, not miserable.</p>
+                <p>This is the education I now give to my own family. That is the standard I will hold it to, and that is the standard it will always be.&rdquo;</p>
+              </div>
+              <div className="mt-10 text-right">
+                <span style={{fontFamily:"'Dancing Script', cursive", fontSize:'2.2rem', color:'#2B3480'}}>Brick</span>
+                <p className="text-navy/40 text-sm mt-1" style={{fontStyle:'normal'}}>Founder, HomeSafeEducation</p>
+              </div>
             </div>
           </div>
         </div>
