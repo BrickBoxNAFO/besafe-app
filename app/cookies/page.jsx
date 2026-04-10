@@ -1,4 +1,4 @@
-export const metadata = { title: 'Cookie Policy \u2013 HomeSafeEducation' }
+export const metadata = { title: 'Cookie Policy \u2013 HomeSafeEducation', alternates: { canonical: '/cookies' } }
 
 export default function CookiesPage() {
   return (

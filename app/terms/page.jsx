@@ -1,4 +1,4 @@
-export const metadata = { title: 'Terms and Conditions \u2013 HomeSafeEducation' }
+export const metadata = { title: 'Terms and Conditions \u2013 HomeSafeEducation', alternates: { canonical: '/terms' } }
 
 export default function TermsPage() {
   return (

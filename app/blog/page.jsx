@@ -3,6 +3,7 @@ import { getAllPosts } from '@/lib/posts-all'
 export const metadata = {
   title: 'Family Safety Blog | HomeSafeEducation',
   description: 'Practical safety guidance for every stage of family life — from protecting children online and offline, to supporting teenagers, caring for elderly parents, and keeping every generation safe.',
+  alternates: { canonical: '/blog' },
 }
 export default function BlogPage() {
   const posts = getAllPosts()

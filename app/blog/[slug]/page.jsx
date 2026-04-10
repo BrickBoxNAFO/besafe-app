@@ -9,6 +9,7 @@ export async function generateMetadata({ params }) {
   return {
     title: post.title + ' | HomeSafeEducation',
     description: post.metaDescription,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.metaDescription,

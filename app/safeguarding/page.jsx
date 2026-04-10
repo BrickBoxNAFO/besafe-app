@@ -1,6 +1,7 @@
 export const metadata = {
   title: 'Safeguarding Statement',
   description: 'Our commitment to safeguarding children and vulnerable people through responsible safety education content.',
+  alternates: { canonical: '/safeguarding' },
 }
 
 export default function SafeguardingPage() {

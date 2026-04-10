@@ -30,6 +30,9 @@ export const metadata = {
     description:
       'Practical, evidence-based safety courses designed for real life. Seven specialist packages covering every age group.',
   },
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-icon.png',

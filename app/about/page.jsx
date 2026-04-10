@@ -4,6 +4,7 @@ import NewsletterBanner from '@/components/NewsletterBanner'
 export const metadata = {
   title: 'About Us',
   description: 'Learn about HomeSafeEducation, our mission, and how we deliver practical, evidence-based safety education for every age group.',
+  alternates: { canonical: '/about' },
 }
 
 export default function AboutPage() {

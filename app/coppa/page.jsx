@@ -1,6 +1,7 @@
 export const metadata = {
   title: 'COPPA Notice',
   description: 'How HomeSafeEducation complies with the Children\'s Online Privacy Protection Act (COPPA) and protects children\'s data.',
+  alternates: { canonical: '/coppa' },
 }
 
 export default function CoppaPage() {

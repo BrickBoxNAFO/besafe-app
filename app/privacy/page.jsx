@@ -1,4 +1,4 @@
-export const metadata = { title: 'Privacy Policy \u2013 HomeSafeEducation' }
+export const metadata = { title: 'Privacy Policy \u2013 HomeSafeEducation', alternates: { canonical: '/privacy' } }
 
 export default function PrivacyPage() {
   return (

@@ -4,6 +4,7 @@ import NewsletterBanner from '@/components/NewsletterBanner'
 export const metadata = {
   title: 'Contact Us | HomeSafeEducation',
   description: 'Get in touch with the HomeSafeEducation support team. We are here to help with any questions about our safety courses, your account, or anything else.',
+  alternates: { canonical: '/contact' },
 }
 
 export default function ContactPage() {
