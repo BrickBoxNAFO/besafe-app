@@ -61,6 +61,22 @@ const PRODUCTS = {
     sampleSong: null,
     courseIds: ['c31', 'c32', 'c33', 'c34', 'c37', 'c38'],
   },
+  'aging': {
+    name: 'Aging Wisdom',
+    subtitle: 'Complete Song Collection',
+    songs: 20,
+    desc: 'These are the songs from the course — warm, memorable melodies paired with every lesson, written with care and respect for older adults. Download them all as MP3 files to keep listening on any device, anytime.',
+    color: '#E11D48',
+    gradFrom: '#ffe4e6',
+    gradTo: '#fff1f2',
+    border: '#fecdd3',
+    emoji: '💐',
+    tag: 'Ages 60+',
+    topics: 'Scam awareness and fraud prevention, online banking and smartphone safety, digital confidence, home security and personal safety, fire safety and emergency preparedness, financial protection and legal planning, nutrition, cognitive wellbeing, and mental health',
+    cta: 'Warm, memorable songs that make important advice stick.',
+    sampleSong: null,
+    courseIds: ['c16', 'c17', 'c18', 'c19', 'c20'],
+  },
 }
 
 export default function BuyMusicPage() {

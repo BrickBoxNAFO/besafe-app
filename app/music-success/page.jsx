@@ -8,12 +8,14 @@ const PRODUCT_NAMES = {
   'growing-early': 'Growing Minds: Early Years Songs',
   'growing-junior': 'Growing Minds: Junior Songs',
   'street': 'Street Smart Songs',
+  'aging': 'Aging Wisdom Songs',
 }
 
 const PRODUCT_TRACK_COUNTS = {
   'growing-early': 31,
   'growing-junior': 28,
   'street': 24,
+  'aging': 20,
 }
 
 function MusicSuccessContent() {

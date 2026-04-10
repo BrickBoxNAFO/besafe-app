@@ -38,6 +38,14 @@ const MUSIC_PRODUCTS = {
     color: '#DC2626',
     gradient: 'from-red-500 to-rose-700',
   },
+  'aging': {
+    name: 'Aging Wisdom',
+    songs: 20,
+    desc: 'These are the songs from the course — warm, memorable melodies written to reinforce every lesson. Download them all to keep listening on any device, anytime.',
+    emoji: '💐',
+    color: '#E11D48',
+    gradient: 'from-rose-500 to-pink-700',
+  },
 }
 
 // Last course ID for each package/sub-package — triggers certificate + music upsell
@@ -47,7 +55,7 @@ const LAST_COURSE_IN_PACKAGE = {
   'c38':  'street',          // last Street Smart course
   'c9':   null,              // last Nest Breaking course (no music)
   'c15':  null,              // last Roaming Free course (no music)
-  'c20':  null,              // last Aging Wisdom course (no music)
+  'c20':  'aging',            // last Aging Wisdom course
   'c25':  null,              // last Family Anchor course (no music)
 }
 
