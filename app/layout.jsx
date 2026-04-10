@@ -4,6 +4,8 @@ import Footer from '@/components/Footer'
 import CookieConsent from '@/components/CookieConsent'
 import { PricingProvider } from '@/components/PricingProvider'
 import { getServerRegion } from '@/lib/get-region'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata = {
   title: {
@@ -78,6 +80,8 @@ export default function RootLayout({ children }) {
           <main>{children}</main>
           <Footer />
           <CookieConsent />
+          <Analytics />
+          <SpeedInsights />
         </PricingProvider>
       </body>
     </html>
