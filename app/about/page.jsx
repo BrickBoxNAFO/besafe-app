@@ -27,14 +27,14 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto px-6">
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 md:p-12">
             <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-8 text-center">A Message From Our Founder</h2>
-            <div className="text-navy/60 leading-relaxed space-y-4 text-[15px]">
-              <p>HomeSafeEducation started with a simple question: As a Father I asked myself, why does nobody teach this stuff properly?</p>
+            <div className="text-navy/60 leading-relaxed space-y-4 text-[15px] italic">
+              <p>&ldquo;HomeSafeEducation started with a simple question: As a Father I asked myself, why does nobody teach this stuff properly?</p>
               <p>We teach children to read, to count, to pass exams. But we rarely teach them how to stay safe online, or teach them about body safety, or what to do if something does not feel right. These are some difficult topics when speaking to a child.</p>
               <p>We send teenagers into the world with qualifications but without the practical knowledge to navigate it confidently. We watch our parents age without ever having a conversation about scams, advance planning, or digital confidence.</p>
               <p>Fear is the most powerful force in selling, however, I made myself a promise that selling through fear will never be a part of what we do at HomeSafeEducation, we will always sell to our customers with love, providing people the means to gift something special to their families, themselves and the people they care about, self protection, self confidence and knowledge to make informed decisions at every stage of life.</p>
               <p>I built this platform because I wanted that knowledge to exist in one place, written properly, for every age group. Not watered down avoiding serious topics, but said in a way that&apos;s age appropriate and relevant so it can be taught to anyone. Not full of fear. Just honest, practical education that treats every person, whether they are five or seventy-five, as someone capable of learning and making good decisions.</p>
               <p>Every course is written to empower. Every lesson ends with something you can actually use. Every quiz reinforces what you have learned. And every song for the packages that include them is written and produced in-house because I believe learning should be memorable, not miserable.</p>
-              <p>This is the education I now give to my own family. That is the standard I will hold it to, and that is the standard it will always be.</p>
+              <p>This is the education I now give to my own family. That is the standard I will hold it to, and that is the standard it will always be.&rdquo;</p>
             </div>
             <div className="mt-8 text-right">
               <span style={{fontFamily:"'Dancing Script', cursive", fontSize:'2rem', color:'#2B3480'}}>Brick</span>
