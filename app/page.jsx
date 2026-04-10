@@ -34,7 +34,7 @@ export default function HomePage() {
                 <Link href="/about" className="btn-secondary">Learn More</Link>
               </div>
               <div className="flex flex-wrap gap-6 text-sm text-white/50">
-                {['✓ One-time payment', '✓ 7 Packages, 140 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
+                {['✓ One-time payment', '✓ 7 Packages, 146 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
                   <span key={t}>{t}</span>
                 ))}
               </div>
@@ -56,7 +56,7 @@ export default function HomePage() {
       {/* Stats */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[['7', 'Packages'], ['38', 'Courses'], ['140', 'Lessons'], ['354', 'Quiz Questions']].map(([n, l]) => (
+          {[['7', 'Packages'], ['38', 'Courses'], ['146', 'Lessons'], ['371', 'Quiz Questions']].map(([n, l]) => (
             <div key={l} className="text-center">
               <div className="stat-num text-navy mb-1">{n}</div>
               <div className="text-sm text-navy/50 font-medium">{l}</div>
@@ -72,7 +72,7 @@ export default function HomePage() {
             <div className="chip bg-teal/10 text-teal border border-teal/20 mb-4">Our Packages</div>
             <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Safety Education for Every Stage of Life</h2>
             <p className="text-navy/60 text-lg max-w-2xl mx-auto">
-              Seven packages. 38 courses. 140 lessons. From children to older adults, each package is tailored to the real-world risks that matter most at that stage.
+              Seven packages. 38 courses. 146 lessons. From children to older adults, each package is tailored to the real-world risks that matter most at that stage.
             </p>
           </div>
 
