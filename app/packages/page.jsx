@@ -33,6 +33,18 @@ const EXAMPLE_SONGS = {
     subtitle: 'Ages 12–17 · Street Smart',
     lyrics: "[Intro / Hook]\nDon't send it, don't share it\nIf it's private, beware it\nOnce it's out, it's not your call\nRespect yourself, that's the wall\n\n[Verse 1]\nEven if they ask, even if they plead\nEven if they're your age, it's still a bad deed\nThe law's serious, it's not a game\nOne photo shared could ruin your name\n\nPrivate pics? They don't stay private\nScreenshots, leaks, blackmail, they riot\nFriendships fade, trust can break\nOnce it's gone, you can't take it back\n\n[Pre-Chorus]\nNo one who respects you will push you to this\nIf someone pressures, that's a red flag you can't miss\nYour \"no\" is power, it's your shield\nStand strong, don't let them steal\n\n[Hook / Chorus]\nDon't send it, don't share it\nIf it's private, beware it\nOnce it's out, it's not your call\nRespect yourself, that's the wall\n\n[Verse 2]\nManipulators will lie and pretend\nSay they care, act like a friend\nMake you feel guilty, make you doubt\nIt's not love, it's a trap, check it out\n\nIf you've already sent, don't despair\nStop now, get help, there are people who care\nReport it, tell an adult, stay safe online\nYou're not in trouble, it's not a crime\n\n[Bridge]\nYour respect, your choice, your control\nDon't let anyone play that role\nKeep your images, your body, your space\nYou're the boss, you set the pace\n\n[Hook / Chorus]\nDon't send it, don't share it\nIf it's private, beware it\nOnce it's out, it's not your call\nRespect yourself, that's the wall\n\n[Outro]\nSay no, stand tall, keep your line\nYour safety, your rules, your sign\nTrust yourself, you know what's right\nKeep it safe, day and night",
   },
+  agingDoorstep: {
+    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Doorstep%20Doubt.mp3',
+    title: "Doorstep Doubt",
+    subtitle: 'Ages 60+ · Aging Wisdom',
+    lyrics: "There's a knock upon your door one day,\nA friendly face, some lines to say,\n\"They found a fault,\" \"It can't wait,\"\nThey lean on worry, twist your fate.\nA badge, a smile, a practiced line,\nThey make it sound like perfect timing,\nBut you decide who steps inside,\nThat's your home, your right, your pride.\nIf they're real, they won't pretend,\nThey'll understand you checking them…\n\nDon't let them through the door,\nNot till you know for sure.\nTake your time, make the call,\nCheck the truth behind it all.\nIf they rush you, walk away,\nReal ones don't behave that way.\nStand your ground like you've before,\nDon't let them through the door.\n\n\"Cash today for a better deal,\nTomorrow's price won't be as real,\"\nBut honest work don't fade that fast,\nAnd truth don't fear a question asked.\nIf they sigh when you take your time,\nOr dodge your doubts, or change their line,\nThat's your sign to let it be,\nClose the door and keep your key.\n\nDon't let them through the door,\nYou've seen these tricks before.\nTake your time, don't be swayed,\nTrust the wisdom that you've made.\nYou're not alone, you've got the power,\nTo stop the game within the hour.\nStand your ground forevermore,\nDon't let them through the door.\nYeah… don't let them through…\nYou know what to do.",
+  },
+  agingNotAlone: {
+    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Not%20Alone.mp3',
+    title: "Not Alone",
+    subtitle: 'Ages 60+ · Aging Wisdom',
+    lyrics: "If the blues hang 'round too long,\nThat's not just life—that's not your song,\nSadness comes, then slips away,\nBut this one's here from day to day.\nDon't you brush it off or hide,\nHelp is there right by your side!\n\nYou're not alone, not at all!\nYou're allowed to make that call!\nThere is help, there is light,\nThings can feel good again tonight!\n\nLonely days can weigh you down,\nEven in a busy town,\nBut connection heals the mind,\nOne small step and you will find…\nA friend, a group, a place to go,\nMore support than you may know!\n\nYou're not alone, not at all!\nYou're allowed to make that call!\nLife keeps open every door,\nThere is still so much in store!\n\nIf grief is heavy, let it be,\nTalk about the memory,\nAnd if it grows instead of fades,\nSpeak up early, don't delay.\nPurpose lives in brand-new ways,\nIn learning, giving, active days.\n\nYou're not alone, not at all!\nStand up tall and make that call!\nHelp is near, steady and true,\nThere's a brighter path for you!\nSo swing along and don't forget…\nThe best days aren't behind you yet",
+  },
 }
 
 const EMOTIONAL_DESCRIPTIONS = {
@@ -335,7 +347,7 @@ export default function PackagesPage() {
 
                       {/* Description */}
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
-                        Street Smart includes <strong className="text-white/80">30 original tracks written and produced in-house by HomeSafeEducation</strong>. Every lesson comes with its own song, plus additional tracks to accompany course summaries and reinforce learning. We have produced <strong className="text-white/80">102 age-appropriate tracks</strong> across the Growing Minds and Street Smart packages — from certified nursery rhyme bangers to educational music your teenager will actually want to share with their friends.
+                        Street Smart includes <strong className="text-white/80">30 original tracks written and produced in-house by HomeSafeEducation</strong>. Every lesson comes with its own song, plus additional tracks to accompany course summaries and reinforce learning. We have produced <strong className="text-white/80">122 original tracks</strong> across the Growing Minds, Street Smart, and Aging Wisdom packages — from certified nursery rhyme bangers to educational music your teenager will actually want to share with their friends.
                       </p>
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
                         We don&apos;t teach through fear - we want to <strong className="text-white/80">empower youth with knowledge</strong> so they can decide to make safe choices. We don&apos;t teach with narratives or agendas, we teach with renowned and tested professional safety advice.
@@ -369,6 +381,61 @@ export default function PackagesPage() {
                             lyrics={EXAMPLE_SONGS.streetDontSend.lyrics}
                             variant="lesson"
                             accentColor="#7C3AED"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {/* ── Aging Wisdom Music Section ── */}
+                {pkg.id === 'aging' && (
+                  <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#1a1a2e] p-4 sm:p-5 relative overflow-hidden">
+                    <div className="relative z-10">
+                      {/* Header */}
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">🎵</span>
+                          <h3 className="text-white font-semibold text-base">20 Original Songs Built Into Every Lesson</h3>
+                        </div>
+                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-rose-500/15 border border-rose-500/25 text-rose-400 font-semibold sm:ml-auto">💐 Aging Wisdom · Ages 60+</span>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
+                        Aging Wisdom includes <strong className="text-white/80">20 original songs written and produced in-house by HomeSafeEducation</strong>, one for every lesson. Each song reinforces key safety messages through warm, memorable melodies designed to make important advice stick. From scam awareness to wellbeing, every topic has its own song.
+                      </p>
+                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
+                        We don&apos;t teach through fear. We <strong className="text-white/80">empower older adults with knowledge and confidence</strong>, delivered with warmth and respect. These songs are a gift to listen to and a powerful way to remember what matters most.
+                      </p>
+
+                      {/* Audio previews */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm">💐</span>
+                            <span className="text-white/70 font-medium text-xs">Aging Wisdom · Scam Awareness</span>
+                          </div>
+                          <AudioPlayer
+                            src={EXAMPLE_SONGS.agingDoorstep.src}
+                            title={EXAMPLE_SONGS.agingDoorstep.title}
+                            subtitle={EXAMPLE_SONGS.agingDoorstep.subtitle}
+                            lyrics={EXAMPLE_SONGS.agingDoorstep.lyrics}
+                            variant="lesson"
+                            accentColor="#E11D48"
+                          />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm">💐</span>
+                            <span className="text-white/70 font-medium text-xs">Aging Wisdom · Mental Wellbeing</span>
+                          </div>
+                          <AudioPlayer
+                            src={EXAMPLE_SONGS.agingNotAlone.src}
+                            title={EXAMPLE_SONGS.agingNotAlone.title}
+                            subtitle={EXAMPLE_SONGS.agingNotAlone.subtitle}
+                            lyrics={EXAMPLE_SONGS.agingNotAlone.lyrics}
+                            variant="lesson"
+                            accentColor="#E11D48"
                           />
                         </div>
                       </div>

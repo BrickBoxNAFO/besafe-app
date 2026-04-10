@@ -15,6 +15,7 @@ const DOWNLOAD_FILES = {
   'growing-early': `${R2_BASE}/Music%20Downloads/Growing-Minds-Early-Years-Songs.zip`,
   'growing-junior': `${R2_BASE}/Music%20Downloads/Growing-Minds-Junior-Songs.zip`,
   'street':         `${R2_BASE}/Music%20Downloads/Street-Smart-Songs.zip`,
+  'aging':          `${R2_BASE}/Music%20Downloads/Aging-Wisdom-Songs.zip`,
 }
 
 export async function GET(request) {
