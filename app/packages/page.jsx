@@ -48,11 +48,11 @@ const EXAMPLE_SONGS = {
 }
 
 const EMOTIONAL_DESCRIPTIONS = {
-  street: "The teenage years move fast. New friendships, first freedoms, social media, peer pressure - the world opens up and so do the risks. Street Smart gives young people the tools to navigate it all with confidence, not fear. Because the best protection you can give a teenager is the knowledge to protect themselves.",
-  nest: "They’re leaving the nest. First apartment, first nights out, first time truly on their own. Nest Breaking prepares young adults for the independence they crave and the realities that come with it. From personal safety to digital awareness, these courses turn vulnerability into confidence.",
-  roaming: "Whether it’s a gap year, a family holiday, or a retirement adventure, the world is full of incredible experiences and hidden risks. Roaming Free equips travellers of all ages with the awareness and know-how to explore safely - from pre-trip preparation and packing smart, through scam avoidance and accommodation safety, to digital security, mental wellbeing abroad, and handling high-risk situations. Fifteen practical lessons so the only surprises are the good ones.",
-  aging: "They’ve given us everything. Now the world is changing faster than ever, and the people we love most can become the easiest targets. Aging Wisdom helps older adults stay safe, informed, and independent in a world that doesn’t always look out for them.",
-  parents: "The hardest conversations are often the most important ones. Family Anchor gives parents and guardians the language, the tools, and the confidence to talk to their families about safety, boundaries, and the things that really matter. Because keeping your family safe starts with being prepared.",
+  street: "The teenage years move fast. New friendships, first freedoms, social media, and growing independence. Street Smart gives young people the knowledge and confidence to navigate it all on their own terms. We do not teach through fear. We teach through education, empowering young people to make informed choices. Because the best gift you can give a teenager is the confidence to trust their own judgement.",
+  nest: "They are leaving the nest. First apartment, first nights out, first time truly on their own. Nest Breaking equips young adults with the practical knowledge and confidence to thrive independently. From personal awareness to digital skills, these courses turn uncertainty into self-assurance.",
+  roaming: "Whether it is a gap year, a family holiday, or a retirement adventure, the world is full of incredible experiences waiting to be had. Roaming Free gives travellers of all ages the knowledge and confidence to explore on their own terms. From pre-trip preparation and smart packing, through cultural awareness and accommodation know-how, to digital confidence, mental wellbeing abroad, and trusting your instincts in unfamiliar places. Twenty practical lessons so you travel with confidence, not worry.",
+  aging: "They have given us everything. Now the world is changing faster than ever, and staying informed has never mattered more. Aging Wisdom gives older adults the knowledge and confidence to stay independent, make informed decisions, and live well in a world that is always evolving. From practical safety to health, nutrition, legal planning, and digital confidence, these courses treat older adults as the capable people they are.",
+  parents: "The most important conversations are not always the easiest ones. Family Anchor gives parents and guardians the language, the understanding, and the confidence to talk to their families about boundaries, wellbeing, and the things that really matter. Because supporting your family starts with being informed.",
   growing: "Every child deserves to feel safe, and every parent deserves peace of mind. Growing Minds brings together two carefully tailored packages, one for younger children and one for older children, each designed to teach essential safety lessons in a way that’s age-appropriate, engaging, and empowering. Both the Early Years and Junior packages cover the same core safety topics, but each has been carefully adapted to suit its age group - using age-appropriate language, relatable scenarios, and teaching methods suited to each stage of development, including the sensitive handling of more complex subjects. Because when children understand the world around them, they grow up stronger."
 }
 
@@ -87,8 +87,8 @@ export default function PackagesPage() {
       <div className="hero-bg noise relative py-20 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <div className="chip bg-teal/15 text-teal border border-teal/25 mb-5">Our Packages</div>
-          <h1 className="font-serif text-5xl lg:text-6xl text-white mb-5">Safety Education<br /><span className="italic text-teal">for Every Stage of Life.</span></h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">In a world of uncertainty, knowledge is power. Seven packages covering every age group from children to older adults. Pay once, learn at your own pace.</p>
+          <h1 className="font-serif text-5xl lg:text-6xl text-white mb-5">Education<br /><span className="italic text-teal">for Every Stage of Life.</span></h1>
+          <p className="text-white/60 text-lg max-w-2xl mx-auto">Knowledge builds confidence. Seven packages covering every age group from children to older adults. Pay once, learn at your own pace.</p>
         </div>
       </div>
 
@@ -472,7 +472,7 @@ export default function PackagesPage() {
                 <div className="text-white/40 text-xs">one-time payment</div>
               </div>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed mb-6">Safety isn’t just personal - it’s something we give to the people we care about most. Choose any five packages and decide who gets each one. Keep them all for yourself, gift them all to loved ones, or split them however you like. You can even pick the same package twice if two people need it. Each person gets their own account, their own dashboard, and their own learning journey. One purchase, five lives made safer.</p>
+            <p className="text-white/50 text-sm leading-relaxed mb-6">Education is one of the most meaningful things you can give to the people you care about. Choose any five packages and decide who gets each one. Keep them all for yourself, gift them all to loved ones, or split them however you like. You can even pick the same package twice if two people need it. Each person gets their own account, their own dashboard, and their own learning journey. One purchase, five lives made safer.</p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
               {PACKAGES.filter(p => p.id !== 'growing').map(pkg => (
                 <div key={pkg.id} className="text-center p-3 rounded-xl bg-white/5 border border-white/10">
@@ -538,7 +538,7 @@ export default function PackagesPage() {
         <div className="bg-slate rounded-2xl p-8">
           <h2 className="font-serif text-2xl text-navy text-center mb-6">What Every Package Includes</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[['📖','Age-Appropriate Content','Every course written for its specific audience'],['✅','Quiz Questions','Reinforce knowledge after every lesson'],['📊','Progress Tracking','Dashboard tracks every lesson you complete'],['💳','One-Time Payment','No subscription, no hidden fees, no recurring charges']].map(([icon,title,body]) => (
+            {[['📖','Age-Appropriate Content','Every course designed for its audience, covering the topics that matter most at that stage of life'],['✅','Quiz Questions','Reinforce knowledge after every lesson'],['📊','Progress Tracking','Dashboard tracks every lesson you complete'],['💳','One-Time Payment','No subscription, no hidden fees, no recurring charges']].map(([icon,title,body]) => (
               <div key={title} className="bg-white rounded-xl p-5 border border-gray-100 text-center">
                 <div className="text-2xl mb-2">{icon}</div>
                 <div className="font-semibold text-navy text-sm mb-1">{title}</div>

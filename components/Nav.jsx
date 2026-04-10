@@ -61,10 +61,10 @@ export default function Nav() {
     <>
       <div className="bg-navy text-white text-xs py-2 overflow-hidden whitespace-nowrap">
         <div className="flex gap-10 animate-marquee px-4">
-          {['✓ One-time payment no subscription','7 Packages · 38 Courses · 146 Lessons','Real-world and online safety education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
+          {['✓ One-time payment no subscription','7 Packages · 38 Courses · 146 Lessons','Real-world safety, wellbeing, and life skills education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
             <span key={i} className="flex-shrink-0 text-white/70">{t}</span>
           ))}
-          {['✓ One-time payment no subscription','7 Packages · 38 Courses · 146 Lessons','Real-world and online safety education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
+          {['✓ One-time payment no subscription','7 Packages · 38 Courses · 146 Lessons','Real-world safety, wellbeing, and life skills education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
             <span key={"b"+i} className="flex-shrink-0 text-white/70">{t}</span>
           ))}
         </div>

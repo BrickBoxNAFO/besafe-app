@@ -7,16 +7,16 @@ import { getServerRegion } from '@/lib/get-region'
 
 export const metadata = {
   title: {
-    default: 'HomeSafeEducation — Real-World Safety Education',
+    default: 'HomeSafeEducation — Practical Life Skills for Every Age',
     template: '%s | HomeSafeEducation',
   },
   description:
-    'Practical, evidence-based safety courses designed for real life. Seven specialist packages covering every age group from children aged 4 right through to older adults.',
+    'Practical courses in safety, wellbeing, and life skills designed for real life. Seven packages covering every age group from children aged 4 to older adults, teaching people to live with confidence at every stage.',
   metadataBase: new URL('https://homesafeeducation.com'),
   openGraph: {
-    title: 'HomeSafeEducation — Real-World Safety Education',
+    title: 'HomeSafeEducation — Practical Life Skills for Every Age',
     description:
-      'Practical, evidence-based safety courses designed for real life. Seven specialist packages covering every age group from children aged 4 right through to older adults.',
+      'Practical courses in safety, wellbeing, and life skills designed for real life. Seven packages covering every age group from children aged 4 to older adults, teaching people to live with confidence at every stage.',
     url: 'https://homesafeeducation.com',
     siteName: 'HomeSafeEducation',
     type: 'website',
@@ -24,7 +24,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'HomeSafeEducation — Real-World Safety Education',
+    title: 'HomeSafeEducation — Practical Life Skills for Every Age',
     description:
       'Practical, evidence-based safety courses designed for real life. Seven specialist packages covering every age group.',
   },

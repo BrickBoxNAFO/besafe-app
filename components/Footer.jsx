@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-1">
             <Link href="/"><span style={{fontFamily:'Georgia,"Times New Roman",serif',fontWeight:'bold',fontSize:'1.45rem',letterSpacing:'-0.01em',lineHeight:1,display:'inline-block',marginBottom:'1rem'}}><span style={{color:'#ffffff'}}>HomeSafe</span><span style={{color:'#E8703A'}}>Education</span></span></Link>
-            <p className="text-white/50 text-sm leading-relaxed mb-6">Practical safety education for every member of your family.</p>
+            <p className="text-white/50 text-sm leading-relaxed mb-6">Practical education in safety, wellbeing, and life skills for every member of your family.</p>
             <NewsletterSignup />
           </div>
 

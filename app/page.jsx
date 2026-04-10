@@ -18,16 +18,16 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-5 gap-10 items-center">
             {/* Left — text content (2 cols) */}
             <div className="lg:col-span-2">
-              <div className="chip bg-teal/15 text-teal border border-teal/25 mb-6">Real-World Safety Education, Delivered Online</div>
+              <div className="chip bg-teal/15 text-teal border border-teal/25 mb-6">Real-World Education for Confident Living</div>
               <h1 className="font-serif text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6 text-white">
-                Keep Your Family Safe
+                Empower Your Family
                 <span className="block italic text-teal mt-1">at Every Stage of Life.</span>
               </h1>
               <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-                In a world full of uncertainties, keeping your family safe shouldn&apos;t be complicated or expensive. Whether you&apos;re giving your daughter the tools to stay safe on nights out and navigate university life, teaching your children about personal boundaries, or protecting your elderly parents from sophisticated scams, HomeSafeEducation has you covered. Practical, evidence-based safety courses designed for real life. Seven packages covering every age group from children aged 4 right through to older adults.
+                In a world that moves fast, giving your family the knowledge to navigate it confidently should not be complicated or expensive. Whether you are helping your daughter prepare for university life, teaching your children about boundaries and wellbeing, or giving your parents the tools to stay independent and informed, HomeSafeEducation has you covered. Practical, evidence-based courses in safety, wellness, and life skills designed for real life. Seven packages covering every age group from children aged 4 right through to older adults.
               </p>
               <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-                Buy for yourself or gift to someone you love. One payment, no subscription, real peace of mind.
+                Buy for yourself or gift to someone you love. One payment, no subscription, real confidence for life.
               </p>
               <div className="flex flex-wrap gap-4 mb-10">
                 <Link href="/packages" className="btn-primary">View All Packages &rarr;</Link>
@@ -70,9 +70,9 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
             <div className="chip bg-teal/10 text-teal border border-teal/20 mb-4">Our Packages</div>
-            <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Safety Education for Every Stage of Life</h2>
+            <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Education for Every Stage of Life</h2>
             <p className="text-navy/60 text-lg max-w-2xl mx-auto">
-              Seven packages. 38 courses. 146 lessons. From children to older adults, each package is tailored to the real-world risks that matter most at that stage.
+              Seven packages. 38 courses. 146 lessons. From children to older adults, each package is tailored to the real-world knowledge that matters most at that stage of life.
             </p>
           </div>
 
@@ -122,7 +122,7 @@ export default function HomePage() {
           <span className="text-4xl mb-4 block">🎁</span>
           <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-4">The Gift of Safety</h2>
           <p className="text-navy/60 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-            A young adult heading to university, an elderly parent living alone, a friend travelling abroad. One payment, lifetime access, real peace of mind.
+            A young adult heading to university, a parent navigating life after 60, a friend exploring the world. One payment, lifetime access, real confidence.
           </p>
           <Link href="/packages" className="btn-primary text-base px-8 py-3">Buy as a Gift &rarr;</Link>
         </div>
@@ -137,10 +137,10 @@ export default function HomePage() {
           </div>
           <div className="grid md:grid-cols-4 gap-8">
             {[
-              { n: '01', icon: '🎁', title: 'Choose a Package', body: 'Pick the right package for you, your child, your parent, or anyone you care about. Each one is tailored to a specific age group and life stage.' },
+              { n: '01', icon: '🎁', title: 'Choose a Package', body: 'Pick the right package for you, your child, your parent, or anyone you care about. Each one is designed for a specific stage of life, covering the topics that matter most.' },
               { n: '02', icon: '💳', title: 'One-Time Payment', body: 'Pay once per package and get lifetime access. No subscription, no hidden fees, no recurring charges.' },
               { n: '03', icon: '📧', title: 'Gift or Keep', body: 'Enter the recipient\'s email and they get instant access. Or keep it for yourself. Either way, access is forever.' },
-              { n: '04', icon: '📖', title: 'Start Learning', body: 'Work through real-world and online safety lessons at your own pace. Every lesson has a quiz to reinforce what you\'ve learned.' },
+              { n: '04', icon: '📖', title: 'Start Learning', body: 'Work through practical lessons in safety, wellbeing, and life skills at your own pace. Every lesson has a quiz to reinforce what you have learned.' },
             ].map(s => (
               <div key={s.n} className="bg-slate rounded-2xl p-8">
                 <div className="text-3xl mb-4">{s.icon}</div>
@@ -159,8 +159,8 @@ export default function HomePage() {
       {/* CTA */}
       <section className="hero-bg noise relative py-24 overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
-          <h2 className="font-serif text-4xl lg:text-5xl text-white mb-5">Start Protecting Your Family Today</h2>
-          <p className="text-white/60 text-lg max-w-xl mx-auto mb-8">In a world of uncertainty, knowledge is power. One-time payment. No subscription. Buy for yourself or gift to someone you love.</p>
+          <h2 className="font-serif text-4xl lg:text-5xl text-white mb-5">Start Empowering Your Family Today</h2>
+          <p className="text-white/60 text-lg max-w-xl mx-auto mb-8">Knowledge is the foundation of confidence. One-time payment. No subscription. Buy for yourself or gift to someone you love.</p>
           <Link href="/packages" className="btn-primary text-base px-8 py-4">View All Packages &rarr;</Link>
         </div>
       </section>
