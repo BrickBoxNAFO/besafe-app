@@ -45,7 +45,7 @@ export default function AboutPage() {
                 <p>This is the education I now give to my own family. That is the standard I will hold it to, and that is the standard it will always be.&rdquo;</p>
               </div>
               <div className="mt-10 text-right">
-                <span style={{fontFamily:"'Dancing Script', cursive", fontSize:'2.2rem', color:'#2B3480'}}>Brick</span>
+                <span style={{fontFamily:"'Great Vibes', cursive", fontSize:'2.5rem', color:'#2B3480'}}>Brick</span>
                 <p className="text-navy/40 text-sm mt-1" style={{fontStyle:'normal'}}>Founder, HomeSafeEducation</p>
               </div>
             </div>
