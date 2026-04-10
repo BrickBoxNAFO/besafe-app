@@ -46,8 +46,8 @@ export default function AboutPage() {
               </div>
               <div className="mt-10 text-right">
                 <div className="inline-block text-center">
-                  <span style={{fontFamily:"'Great Vibes', cursive", fontSize:'2.5rem', color:'#2B3480'}}>Brick</span>
-                  <p className="text-navy/40 text-sm mt-1" style={{fontStyle:'normal'}}>Founder, HomeSafeEducation</p>
+                  <span style={{fontFamily:"'Great Vibes', cursive", fontSize:'2.5rem', color:'#0EA5A0'}}>Brick</span>
+                  <p className="text-navy/60 text-sm mt-1" style={{fontStyle:'normal'}}>Founder, HomeSafeEducation</p>
                 </div>
               </div>
             </div>
