@@ -33,6 +33,9 @@ export const metadata = {
   alternates: {
     canonical: '/',
   },
+  verification: {
+    google: 'xGTglhMwfarVcfkTIdkesbAsY_qn3fN78ZdpRhXQP2E',
+  },
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-icon.png',
