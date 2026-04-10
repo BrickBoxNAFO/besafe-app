@@ -31,7 +31,7 @@ export default function AboutPage() {
             <div style={{position:'absolute', top:0, left:0, right:0, height:'4px', borderRadius:'4px 4px 0 0', background:'linear-gradient(to bottom, rgba(0,0,0,0.04), transparent)', pointerEvents:'none'}} />
             <div style={{position:'absolute', bottom:0, left:0, right:0, height:'6px', borderRadius:'0 0 4px 4px', background:'linear-gradient(to top, rgba(0,0,0,0.03), transparent)', pointerEvents:'none'}} />
             {/* Subtle left rule line like a letter */}
-            <div className="hidden md:block" style={{position:'absolute', top:'3rem', bottom:'3rem', left:'2rem', width:'2px', background:'linear-gradient(to bottom, transparent, rgba(43,52,128,0.08) 15%, rgba(43,52,128,0.08) 85%, transparent)', pointerEvents:'none'}} />
+            <div className="hidden md:block" style={{position:'absolute', top:'3rem', bottom:'3rem', left:'2rem', width:'2px', background:'linear-gradient(to bottom, transparent, rgba(14,165,160,0.35) 15%, rgba(14,165,160,0.35) 85%, transparent)', pointerEvents:'none'}} />
 
             <div className="relative z-10 md:pl-6">
               <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-8 text-center">A Message From Our Founder</h2>
