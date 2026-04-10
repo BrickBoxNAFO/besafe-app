@@ -402,7 +402,7 @@ export default function PackagesPage() {
 
                       {/* Description */}
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
-                        Aging Wisdom includes <strong className="text-white/80">20 original songs written and produced in-house by HomeSafeEducation</strong>, one for every lesson. Each song reinforces key safety messages through warm, memorable melodies designed to make important advice stick. From scam awareness to wellbeing, every topic has its own song.
+                        <em className="text-white/70">&ldquo;They don&apos;t make music like they used to&rdquo;</em> &mdash; they do, and we have. Aging Wisdom includes <strong className="text-white/80">20 original songs written and produced in-house by HomeSafeEducation</strong>, one for every lesson. Each song reinforces key messages through warm, memorable melodies designed to make important advice stick. From scam awareness to wellbeing, every topic has its own song.
                       </p>
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
                         We don&apos;t teach through fear. We <strong className="text-white/80">empower older adults with knowledge and confidence</strong>, delivered with warmth and respect. These songs are a gift to listen to and a powerful way to remember what matters most.
