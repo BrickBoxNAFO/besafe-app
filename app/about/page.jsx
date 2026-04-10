@@ -44,7 +44,7 @@ export default function AboutPage() {
                 <p>Every course is written to empower. Every lesson ends with something you can actually use. Every quiz reinforces what you have learned. And every song for the packages that include them is written and produced in-house because I believe learning should be memorable, not miserable.</p>
                 <p>This is the education I now give to my own family. That is the standard I will hold it to, and that is the standard it will always be.&rdquo;</p>
               </div>
-              <div className="mt-10 text-right">
+              <div className="mt-10 text-center">
                 <span style={{fontFamily:"'Great Vibes', cursive", fontSize:'2.5rem', color:'#2B3480'}}>Brick</span>
                 <p className="text-navy/40 text-sm mt-1" style={{fontStyle:'normal'}}>Founder, HomeSafeEducation</p>
               </div>
