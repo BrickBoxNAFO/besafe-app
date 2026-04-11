@@ -84,6 +84,7 @@ export default function Nav() {
               </>
             ) : (
               <>
+                <Link href="/example" className="text-sm font-medium text-teal hover:text-teal2 transition-colors">Try a Free Lesson</Link>
                 <Link href="/login" className="text-sm font-medium text-navy/70 hover:text-navy">Sign in</Link>
                 <Link href="/register" className="btn-primary text-sm py-2 px-4">Get Started</Link>
               </>
@@ -106,6 +107,7 @@ export default function Nav() {
                   </div>
                 </>
               ) : (
+                <Link href="/example" className="block text-center text-sm font-semibold text-teal py-2.5 rounded-lg border border-teal/30 bg-teal/5 hover:bg-teal/10 transition-colors" onClick={() => setMobileOpen(false)}>Try a Free Lesson</Link>
                 <div className="flex gap-3">
                   <Link href="/login" className="btn-ghost text-sm py-2 flex-1 text-center" onClick={() => setMobileOpen(false)}>Sign in</Link>
                   <Link href="/register" className="btn-primary text-sm py-2 flex-1 text-center" onClick={() => setMobileOpen(false)}>Get Started</Link>

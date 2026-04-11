@@ -93,6 +93,10 @@ export default function PackagesPage() {
       </div>
 
       <div className="max-w-5xl mx-auto px-6 -mt-10 relative z-10 space-y-8 pb-20">
+        {/* Try before you buy banner */}
+        <Link href="/example" className="block bg-gradient-to-r from-teal/10 to-teal2/10 border border-teal/20 rounded-2xl px-6 py-4 text-center hover:border-teal/40 transition-all group">
+          <p className="text-navy font-semibold text-sm">Not sure yet? <span className="text-teal group-hover:underline">Try a real lesson for free</span> before you buy.</p>
+        </Link>
 
         {/* Growing Minds Bundle */}
         <div id="growing" className="bg-white rounded-2xl border-2 border-green-200 overflow-hidden">

@@ -31,7 +31,7 @@ export default function HomePage() {
               </p>
               <div className="flex flex-wrap gap-4 mb-10">
                 <Link href="/packages" className="btn-primary">View All Packages &rarr;</Link>
-                <Link href="/about" className="btn-secondary">Learn More</Link>
+                <Link href="/example" className="btn-secondary">Try a Free Lesson</Link>
               </div>
               <div className="flex flex-wrap gap-6 text-sm text-white/50">
                 {['✓ One-time payment', '✓ 7 Packages, 146 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (

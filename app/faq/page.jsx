@@ -71,6 +71,10 @@ const faqSections = [
     emoji: '📚',
     items: [
       {
+        q: 'How do the lessons actually work?',
+        a: 'Each lesson includes written content tailored to the age group, key takeaways, quiz questions to reinforce learning, and for selected packages, original music with full lyrics. You can try a complete lesson for free right now at homesafeeducation.com/example to see exactly how it works before you buy.'
+      },
+      {
         q: 'How do I access my courses after purchasing?',
         a: 'Log in to your account and go to your Dashboard. Your purchased courses will appear in your Course Library, ready to start.'
       },
@@ -193,6 +197,18 @@ export default function FAQPage() {
           </div>
         </section>
       ))}
+
+      {/* Try a lesson CTA */}
+      <section className="py-16 bg-gradient-to-r from-teal/10 to-teal2/10">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <span className="text-4xl mb-4 block">📖</span>
+          <h2 className="font-serif text-3xl text-navy mb-3">Still not sure? See it for yourself.</h2>
+          <p className="text-navy/60 text-base leading-relaxed mb-6 max-w-xl mx-auto">
+            The best way to understand what we offer is to experience it. Try a complete lesson for free - no account needed.
+          </p>
+          <Link href="/example" className="btn-primary text-base px-8 py-3">Try a Free Lesson</Link>
+        </div>
+      </section>
 
       {/* Newsletter */}
       <NewsletterBanner />
