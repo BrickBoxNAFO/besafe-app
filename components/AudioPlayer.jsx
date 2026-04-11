@@ -186,9 +186,9 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
         </div>
 
         {/* Title & subtitle */}
-        <div className="flex-1 min-w-0">
-          <div className="text-white font-semibold text-[13px] sm:text-[15px] leading-snug truncate">{title}</div>
-          {subtitle && <div className="text-white/50 text-xs mt-0.5 truncate">{subtitle}</div>}
+        <div className="flex-1 min-w-0 overflow-hidden">
+          <div className="text-white font-semibold text-[13px] sm:text-[15px] leading-snug audio-scroll-text"><span>{title}</span></div>
+          {subtitle && <div className="text-white/50 text-xs mt-0.5 audio-scroll-text"><span>{subtitle}</span></div>}
         </div>
 
         {/* Volume control */}
@@ -345,6 +345,22 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
         @keyframes eqBounce {
           0% { height: 4px; }
           100% { height: 16px; }
+        }
+        @keyframes scrollText {
+          0%, 20% { transform: translateX(0); }
+          80%, 100% { transform: translateX(calc(-100% + 200px)); }
+        }
+        .audio-scroll-text {
+          overflow: hidden;
+          white-space: nowrap;
+        }
+        .audio-scroll-text span {
+          display: inline-block;
+        }
+        @media (max-width: 640px) {
+          .audio-scroll-text span {
+            animation: scrollText 6s ease-in-out infinite alternate;
+          }
         }
         .volume-slider {
           -webkit-appearance: none;

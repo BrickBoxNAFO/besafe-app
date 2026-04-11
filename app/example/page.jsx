@@ -301,11 +301,11 @@ export default function ExampleLessonPage() {
               annotationColor="amber"
               annotationLabel="Music"
             >
-              <div>
+              <div className="max-w-full overflow-hidden">
                 <AudioPlayer
                   src={getAudioUrl(LESSON_SONG.file)}
                   title={LESSON_SONG.title}
-                  subtitle={LESSON.courseTitle + ' -Lesson ' + (LESSON.lessonIndex + 1) + ' of ' + LESSON.totalLessons}
+                  subtitle={LESSON.courseTitle + ' - Lesson ' + (LESSON.lessonIndex + 1) + ' of ' + LESSON.totalLessons}
                   lyrics={LESSON_SONG.lyrics}
                   variant="lesson"
                 />
@@ -407,11 +407,11 @@ export default function ExampleLessonPage() {
               annotationColor="amber"
               annotationLabel="Recap Song"
             >
-              <div>
+              <div className="max-w-full overflow-hidden">
                 <AudioPlayer
                   src={getAudioUrl(REMEMBER_SONG.file)}
                   title={REMEMBER_SONG.title}
-                  subtitle={LESSON.courseTitle + ' -Course Recap'}
+                  subtitle={LESSON.courseTitle + ' - Course Recap'}
                   lyrics={REMEMBER_SONG.lyrics}
                   variant="remember"
                 />
