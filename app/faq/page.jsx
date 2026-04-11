@@ -72,7 +72,7 @@ const faqSections = [
     items: [
       {
         q: 'How do the lessons actually work?',
-        a: <span>Each lesson includes written content tailored to the age group, key takeaways, quiz questions to reinforce learning, and for selected packages, original music with full lyrics. You can <Link href="/example" className="text-teal font-semibold hover:underline">try a complete lesson for free</Link> to see exactly how it works before you buy.</span>
+        a: <span>Each lesson includes written content tailored to the age group, key takeaways, quiz questions to reinforce learning, and for selected packages, original music with full lyrics. You can <Link href="/example" className="text-teal font-semibold hover:underline">try a lesson for free</Link> to see exactly how it works before you buy.</span>
       },
       {
         q: 'How do I access my courses after purchasing?',
