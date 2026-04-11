@@ -1,0 +1,509 @@
+'use client'
+import { useState, useMemo } from 'react'
+import Link from 'next/link'
+import AudioPlayer from '@/components/AudioPlayer'
+import { getAudioUrl } from '@/lib/songs'
+
+/* ────────────────────────────────────────────
+   FREE EXAMPLE LESSON
+   Street Smart → Online Safety & Social Media → Lesson 4: Scams, Catfishing and Fake Profiles
+   This is the LAST lesson in the course, so it includes the "Remember This" recap song.
+   ──────────────────────────────────────────── */
+
+const COURSE_COLOR = '#DC2626'
+
+const LESSON = {
+  title: 'Scams, Catfishing and Fake Profiles',
+  courseTitle: 'Online Safety and Social Media',
+  packageName: 'Street Smart',
+  emoji: '🥷',
+  lessonIndex: 3,
+  totalLessons: 4,
+}
+
+const LESSON_SONG = {
+  title: 'Scams, Catfishing and Fake Profiles',
+  file: 'Street Smart/Course 2/Scams, Catfishing and Fake Profiles.mp3',
+  lyrics: `Not everyone online is who they say
+Fake pics, fake stories, fake games they play
+Pause, think, check the vibe
+Trust your gut, don't take the dive
+Catfishers hide behind a screen
+Photos stolen, lives unseen
+Say they care, say they're real
+But their goal is to make you feel
+They dodge the video, their stories don't fit
+Vague details, excuses that don't quit
+Ask for money, ask for more
+Watch your back, don't ignore
+Reverse search, check the face
+Too perfect? Something's off in place
+Feel it in your gut? You're right
+No one online deserves your trust overnight
+Not everyone online is who they say
+Fake pics, fake stories, fake games they play
+Pause, think, check the vibe
+Trust your gut, don't take the dive
+Scams come fast, "Act now, limited time!"
+"Win a prize!" "Do this task, it's fine!"
+Phishing links, fake logins, shady deals
+Don't click, don't send, protect what's real
+Anything too good to be true, it's a lie
+Stop, breathe, don't comply
+Tell a trusted adult, report it fast
+You're smarter than they think, you'll last
+Pause before you click, think before you share
+Your safety online is handled with care
+Scammers are clever, but you're wise too
+Don't let anyone trick you
+Not everyone online is who they say
+Fake pics, fake stories, fake games they play
+Pause, think, check the vibe
+Trust your gut, don't take the dive
+Check the links, protect your space
+Your safety online, you own that place
+Trust yourself, be alert, stay strong
+You know what's right, you can't go wrong`,
+}
+
+const REMEMBER_SONG = {
+  title: 'Remember This — Online Safety Recap',
+  file: 'Street Smart/Course 2/Remember This Course 2.mp3',
+  lyrics: `Your footprint online stays forever
+Think before you post, keep it clever
+Screenshots, shares, nothing disappears
+Your safety online is worth your years
+Location, routine, personal stuff
+Privacy settings help, but they're not enough
+Anything can be screenshotted, shared, or leaked
+Keep control of what you post, don't be tricked
+Groomers online use distance and lies
+Ask personal questions, tell fake ties
+Secrets, pics, isolation from friends
+Stay alert, trust instincts, that's how it ends
+Grooming happens in person too
+Know the signs, know what to do
+Harassment online? Document, block, report
+Tell a trusted adult, you're in support
+Think before you post, think before you share
+Your digital life needs your care
+Trust your gut, stay aware
+Safety online is everywhere
+Not everyone online is who they claim
+Catfish, scams, urgency games
+Fake profiles, shady deals, phishing too
+Pause, check, don't fall for the crew
+If it feels wrong, it probably is
+Your instincts are sharp, your mind is bliss
+You control what you share, what you trust
+Respect yourself, protect your stuff
+Screenshots, passwords, block and report
+Safety online is your own fort
+Friends, family, adults you trust
+Use their help, it's a must
+Think before you post, think before you share
+Your digital life needs your care
+Trust your gut, stay aware
+Safety online is everywhere
+Digital footprint, yeah, it's real
+Your posts, your pics, everything you feel
+Stay smart, stay safe, keep your light
+Trust yourself, and do what's right`,
+}
+
+const PARAGRAPHS = [
+  "Not everyone online is who they say they are. This is not just about groomers. It is about the wide range of people who create fake profiles, fake identities, and fake stories to get something from you.",
+  "Catfishing is when someone creates a fake identity online to deceive you. They might use someone else's photos, make up a life story, and build a relationship with you based on lies. People catfish for different reasons: loneliness, manipulation, financial gain, or to get personal information. The result is the same. You are connecting with someone who does not exist.",
+  "Signs of catfishing: they avoid video calls or always have an excuse, their photos look too polished or like they came from a modelling page, their stories do not add up over time, they are vague about details of their life, they got very emotionally intense very quickly, or they ask for money or personal information.",
+  "If you suspect someone is not who they claim to be, you can reverse-image search their profile photos. If the photos appear on other accounts or stock photo sites, that tells you everything. But even without proof, if something feels off, trust that feeling. You do not owe anyone online your trust.",
+  "Online scams targeting teenagers are more common than you might think. These include: fake giveaways that ask for your details to \"claim a prize,\" messages saying you have won something you never entered, links that look like login pages but are actually designed to steal your password (this is called phishing), people offering easy money for doing small tasks that turn out to be illegal, and \"too good to be true\" deals on items that do not exist.",
+  "The common thread in all scams is urgency. They want you to act fast before you think. \"Limited time only.\" \"Act now or lose your account.\" \"Reply in the next hour.\" Urgency is a manipulation tactic. Anything legitimate will still be there after you have taken time to think.",
+  "If someone contacts you with an offer, a prize, a deal, or a request, pause. Do not click links in messages from people you do not know. Do not enter your login details on any page you reached through a link in a message. Go directly to the website yourself instead. Never send money to someone you have only met online. Never share passwords, even with people you think you trust online.",
+  "If you have been scammed, tell a trusted adult. It is not embarrassing. Scammers are professionals who trick adults every day. Report the account and the scam to the platform.",
+]
+
+const KEY_TAKEAWAYS = [
+  "Not everyone online is who they say they are. Watch for signs of fake profiles and catfishing.",
+  "Scams use urgency to stop you thinking. Pause before clicking, sharing, or sending.",
+  "If someone avoids video calls, has inconsistent stories, or asks for money — trust your instincts.",
+  "Never enter login details through a link someone sends you. Go to the website directly.",
+  "If you have been scammed, tell a trusted adult. It is not your fault.",
+]
+
+const REMEMBER_THIS = "Your digital footprint is permanent — think before posting about your location, routine, or personal content. Privacy settings help but are not perfect; assume anything can be screenshotted and shared. Online grooming uses anonymity and distance to build trust and exploit you — watch for increasing personal questions, image requests, secrecy, and isolation from friends and family. Remember that grooming happens in person too. If you are harassed online, document everything, block the person, report to the platform, and tell a trusted adult. Not everyone online is who they say they are — watch for signs of catfishing and scams, and never act on urgency. If something feels wrong, trust that feeling."
+
+const QUESTIONS = [
+  {
+    question: "Someone you have been talking to online for weeks always has an excuse for why they cannot video call. Their photos look very professional and their stories sometimes contradict each other. What is most likely happening?",
+    options: [
+      { text: "They are just shy about video calls", isCorrect: false },
+      { text: "They probably have a bad camera", isCorrect: false },
+      { text: "They may be catfishing you, using a fake identity and photos that are not theirs", isCorrect: true },
+      { text: "This is completely normal behaviour", isCorrect: false },
+    ],
+    explanation: "Consistently avoiding video calls combined with professional-looking photos and inconsistent stories are classic signs of catfishing. Trust the pattern, not the excuses.",
+  },
+  {
+    question: "You receive a message saying you have won a competition and need to click a link and enter your login details to claim your prize. What should you do?",
+    options: [
+      { text: "Click the link quickly before the offer expires", isCorrect: false },
+      { text: "Enter your details because you might have actually won", isCorrect: false },
+      { text: "Forward it to your friends so they can win too", isCorrect: false },
+      { text: "Do not click the link. This is likely a phishing scam designed to steal your password", isCorrect: true },
+    ],
+    explanation: "Legitimate prizes do not ask for your login details through a message link. This is a common phishing tactic. Never enter your details through a link someone sends you.",
+  },
+  {
+    question: "You have been messaging someone online for weeks who seems understanding about your problems. They have said no one at school gets you like they do. They have asked you to keep your friendship \"private\" and are asking for photos \"to feel closer.\" You are starting to feel uncomfortable. What should you do?",
+    options: [
+      { text: "Send photos to show you trust them", isCorrect: false },
+      { text: "Keep messaging but do not send photos", isCorrect: false },
+      { text: "Stop contact, tell a trusted adult about the pattern, and do not delete messages", isCorrect: true },
+      { text: "Confront them about grooming", isCorrect: false },
+    ],
+    explanation: "The pattern (understanding approach, isolation from peers, secret-keeping, photo requests) adds up to grooming. Your discomfort is data. Tell an adult with evidence.",
+  },
+]
+
+
+export default function ExampleLessonPage() {
+  const [phase, setPhase] = useState('content') // 'content' | 'quiz' | 'result'
+  const [selected, setSelected] = useState({})
+  const [submitted, setSubmitted] = useState(false)
+
+  const totalQ = QUESTIONS.length
+  const score = QUESTIONS.reduce((sum, q, qi) => {
+    const picked = selected[qi]
+    if (picked !== undefined && q.options[picked]?.isCorrect) return sum + 1
+    return sum
+  }, 0)
+  const passThreshold = Math.max(1, Math.ceil(totalQ * 0.6))
+  const passed = score >= passThreshold
+  const allAnswered = Object.keys(selected).length === totalQ
+
+  const handleSubmit = () => {
+    if (!allAnswered) return
+    setSubmitted(true)
+    setPhase('result')
+  }
+
+  return (
+    <div className="page-enter min-h-screen bg-slate">
+      {/* Free example banner */}
+      <div className="bg-gradient-to-r from-red-600 to-orange-500 text-white text-center py-3 px-4">
+        <p className="text-sm font-semibold">
+          Free Example Lesson &mdash; This is a real lesson from the Street Smart package for teenagers (ages 12-17)
+        </p>
+      </div>
+
+      {/* Sticky header with progress bar */}
+      <div className="bg-white border-b border-gray-100 sticky top-16 z-10">
+        <div className="max-w-3xl mx-auto px-6 py-3 flex items-center gap-4">
+          <Link href="/packages" className="text-navy/50 hover:text-navy text-sm transition-colors flex items-center gap-1 flex-shrink-0">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            View All Packages
+          </Link>
+          <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all duration-500"
+              style={{ width: '100%', background: COURSE_COLOR }}
+            />
+          </div>
+          <span className="text-xs text-navy/40 flex-shrink-0">{LESSON.lessonIndex + 1}/{LESSON.totalLessons}</span>
+        </div>
+      </div>
+
+      <div className="max-w-3xl mx-auto px-6 py-10">
+
+        {/* ===== CONTENT PHASE ===== */}
+        {phase === 'content' && (
+          <div>
+            {/* Lesson header */}
+            <div className="mb-8">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="h-1 w-8 rounded-full" style={{ background: COURSE_COLOR }} />
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: COURSE_COLOR }}>
+                  Lesson {LESSON.lessonIndex + 1} of {LESSON.totalLessons}
+                </span>
+              </div>
+              <h1 className="font-serif text-4xl text-navy leading-tight">{LESSON.title}</h1>
+              <p className="text-navy/40 text-sm mt-2">{LESSON.emoji} {LESSON.courseTitle} &middot; {LESSON.packageName}</p>
+            </div>
+
+            {/* Lesson song */}
+            <div className="mb-6">
+              <AudioPlayer
+                src={getAudioUrl(LESSON_SONG.file)}
+                title={LESSON_SONG.title}
+                subtitle={LESSON.courseTitle + ' — Lesson ' + (LESSON.lessonIndex + 1) + ' of ' + LESSON.totalLessons}
+                lyrics={LESSON_SONG.lyrics}
+                variant="lesson"
+              />
+            </div>
+
+            {/* Lesson content card */}
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-6">
+              <div className="h-1" style={{ background: 'linear-gradient(to right, ' + COURSE_COLOR + ', ' + COURSE_COLOR + '60)' }} />
+              <div className="p-8 md:p-10">
+                <div className="space-y-5">
+                  {PARAGRAPHS.map((text, idx) => (
+                    <p key={idx} className="text-navy/80 text-base leading-[1.85]">{text}</p>
+                  ))}
+                </div>
+
+                {/* Key Takeaways */}
+                <div className="mt-10 rounded-xl p-6" style={{ background: COURSE_COLOR + '08', border: '1px solid ' + COURSE_COLOR + '20' }}>
+                  <div className="flex items-center gap-2.5 mb-4">
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: COURSE_COLOR + '20' }}>
+                      <svg className="w-4 h-4" fill="none" stroke={COURSE_COLOR} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                    </div>
+                    <span className="text-sm font-bold text-navy">Key Takeaways</span>
+                  </div>
+                  <ul className="space-y-3">
+                    {KEY_TAKEAWAYS.map((t, i) => (
+                      <li key={i} className="flex gap-3 text-sm text-navy/70 leading-relaxed">
+                        <span className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ background: COURSE_COLOR }} />
+                        <span>{t}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Remember This recap section */}
+            <div className="bg-white rounded-2xl border border-teal/20 shadow-sm overflow-hidden mb-6">
+              <div className="h-1 bg-gradient-to-r from-teal to-teal2" />
+              <div className="p-6 md:p-8">
+                <div className="flex items-center gap-2.5 mb-4">
+                  <div className="w-7 h-7 rounded-lg bg-teal/20 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  </div>
+                  <span className="text-sm font-bold text-navy">Remember This — Course Recap</span>
+                </div>
+                <p className="text-navy/70 text-sm leading-relaxed">{REMEMBER_THIS}</p>
+              </div>
+            </div>
+
+            {/* Remember This song */}
+            <div className="mb-6">
+              <AudioPlayer
+                src={getAudioUrl(REMEMBER_SONG.file)}
+                title={REMEMBER_SONG.title}
+                subtitle={LESSON.courseTitle + ' — Course Recap'}
+                lyrics={REMEMBER_SONG.lyrics}
+                variant="remember"
+              />
+            </div>
+
+            {/* Action button */}
+            <div className="flex items-center justify-between">
+              <div />
+              <button onClick={() => { setPhase('quiz'); window.scrollTo(0, 0) }} className="btn-primary text-base py-3.5 px-8">
+                Take the Quiz ({QUESTIONS.length} questions)
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ===== QUIZ PHASE ===== */}
+        {phase === 'quiz' && (
+          <div>
+            <div className="mb-8">
+              <h2 className="font-serif text-2xl text-navy mb-1">Check Your Understanding</h2>
+              <p className="text-navy/50 text-sm">
+                Answer all {totalQ} questions. Score {passThreshold} or more to pass.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {QUESTIONS.map((q, qi) => (
+                <div key={qi} className="bg-white rounded-2xl border border-gray-100 p-6">
+                  <p className="font-semibold text-navy mb-4 text-sm">
+                    <span style={{ color: COURSE_COLOR }} className="font-bold">Q{qi + 1}.</span>{' '}
+                    {q.question}
+                  </p>
+                  <div className="space-y-2">
+                    {q.options.map((opt, oi) => (
+                      <button
+                        key={oi}
+                        onClick={() => {
+                          if (!submitted) setSelected(prev => ({ ...prev, [qi]: oi }))
+                        }}
+                        className={'w-full text-left p-3 rounded-xl text-sm transition-all border ' +
+                          (selected[qi] === oi
+                            ? 'border-teal bg-teal/10 text-navy font-medium'
+                            : 'border-gray-100 bg-slate text-navy/70 hover:border-gray-200')
+                        }
+                      >
+                        <span className="font-bold mr-2" style={{ color: COURSE_COLOR }}>
+                          {['A', 'B', 'C', 'D'][oi]}.
+                        </span>
+                        {opt.text}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex items-center justify-between">
+              <button onClick={() => setPhase('content')} className="btn-ghost text-sm flex items-center gap-1">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                Back to Lesson
+              </button>
+              <button
+                onClick={handleSubmit}
+                disabled={!allAnswered}
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Submit Answers
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ===== RESULT PHASE ===== */}
+        {phase === 'result' && (
+          <div>
+            <div className={'rounded-2xl p-8 mb-8 text-center ' + (passed ? 'bg-teal/10 border border-teal/20' : 'bg-red-50 border border-red-100')}>
+              <div className={'w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-4 ' + (passed ? 'bg-teal/20' : 'bg-red-100')}>
+                {passed ? '\u{1F389}' : '\u{1F4AA}'}
+              </div>
+              <h2 className="font-serif text-2xl text-navy mb-2">
+                {passed ? 'Lesson Passed!' : 'Not Quite There'}
+              </h2>
+              <p className="text-navy/60 mb-1">
+                You scored <strong className={passed ? 'text-teal' : 'text-red-500'}>{score}/{totalQ}</strong>
+              </p>
+              <p className="text-navy/40 text-sm">
+                {passed
+                  ? 'Great work! This is how every lesson works in HomeSafeEducation.'
+                  : 'You need ' + passThreshold + ' or more to pass. Review the lesson and try again.'}
+              </p>
+            </div>
+
+            {/* Answer review */}
+            <div className="space-y-4 mb-8">
+              {QUESTIONS.map((q, qi) => {
+                const pickedIdx = selected[qi]
+                const isCorrect = q.options[pickedIdx]?.isCorrect
+
+                return (
+                  <div key={qi} className={'rounded-2xl border overflow-hidden ' + (isCorrect ? 'border-teal/30' : 'border-red-200')}>
+                    <div className={'px-5 py-3 flex items-center gap-2 ' + (isCorrect ? 'bg-teal/10' : 'bg-red-50')}>
+                      <span className={'text-lg ' + (isCorrect ? 'text-teal' : 'text-red-500')}>
+                        {isCorrect ? '\u2713' : '\u2717'}
+                      </span>
+                      <p className="font-semibold text-navy text-sm flex-1">
+                        <span className="text-navy/40 mr-1">Q{qi + 1}.</span> {q.question}
+                      </p>
+                      <span className={'text-xs font-bold px-2.5 py-1 rounded-full ' + (isCorrect ? 'bg-teal/20 text-teal' : 'bg-red-100 text-red-600')}>
+                        {isCorrect ? 'Correct' : 'Incorrect'}
+                      </span>
+                    </div>
+
+                    <div className="px-5 py-3 space-y-2 bg-white">
+                      {q.options.map((opt, oi) => {
+                        const isThisCorrect = opt.isCorrect
+                        const isThisSelected = oi === pickedIdx
+                        const isWrongPick = isThisSelected && !isThisCorrect
+
+                        let style = 'border-gray-100 bg-slate text-navy/40'
+                        if (isThisCorrect) style = 'border-green-300 bg-green-50 text-green-800 font-medium'
+                        if (isWrongPick) style = 'border-red-300 bg-red-50 text-red-700 line-through'
+
+                        return (
+                          <div key={oi} className={'flex items-center gap-3 p-3 rounded-xl border text-sm ' + style}>
+                            <span className={'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ' +
+                              (isThisCorrect ? 'bg-green-500 text-white' : isWrongPick ? 'bg-red-400 text-white' : 'bg-gray-100 text-navy/30')
+                            }>
+                              {isThisCorrect ? '\u2713' : isWrongPick ? '\u2717' : ['A','B','C','D'][oi]}
+                            </span>
+                            <span className="flex-1">{opt.text}</span>
+                            {isThisCorrect && !isCorrect && (
+                              <span className="text-xs font-bold text-green-600 flex-shrink-0">Correct Answer</span>
+                            )}
+                            {isWrongPick && (
+                              <span className="text-xs font-bold text-red-500 flex-shrink-0">Your Answer</span>
+                            )}
+                            {isThisCorrect && isCorrect && (
+                              <span className="text-xs font-bold text-green-600 flex-shrink-0">Your Answer {'\u2713'}</span>
+                            )}
+                          </div>
+                        )
+                      })}
+                    </div>
+
+                    {q.explanation && (
+                      <div className={'px-5 py-3 border-t text-sm leading-relaxed ' + (isCorrect ? 'bg-teal/5 border-teal/10 text-teal' : 'bg-amber-50 border-amber-100 text-amber-800')}>
+                        <span className="font-semibold">{isCorrect ? 'Well done! ' : 'Explanation: '}</span>
+                        {q.explanation}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* CTA — this is the key conversion section */}
+            <div className="bg-gradient-to-br from-[#0B1F3A] to-[#1B3358] rounded-2xl p-8 md:p-10 text-center mb-6">
+              <h2 className="font-serif text-2xl md:text-3xl text-white mb-3">
+                You just completed a real lesson.
+              </h2>
+              <p className="text-white/60 text-base mb-2">
+                This is one lesson from one course in one package.
+              </p>
+              <p className="text-white/80 text-lg font-semibold mb-6">
+                The full library has <span className="text-teal">7 packages</span>, <span className="text-teal">38 courses</span>, and <span className="text-teal">146 lessons</span> — each with original music, quizzes, and real-world safety education.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 max-w-md mx-auto">
+                <div className="bg-white/10 rounded-xl p-4">
+                  <div className="text-2xl mb-1">🌱</div>
+                  <div className="text-white font-semibold text-sm">Growing Minds</div>
+                  <div className="text-white/50 text-xs">Ages 4-11</div>
+                </div>
+                <div className="bg-white/10 rounded-xl p-4 ring-2 ring-teal/50">
+                  <div className="text-2xl mb-1">🥷</div>
+                  <div className="text-white font-semibold text-sm">Street Smart</div>
+                  <div className="text-white/50 text-xs">Ages 12-17</div>
+                </div>
+                <div className="bg-white/10 rounded-xl p-4">
+                  <div className="text-2xl mb-1">💐</div>
+                  <div className="text-white font-semibold text-sm">Aging Wisdom</div>
+                  <div className="text-white/50 text-xs">Ages 60+</div>
+                </div>
+              </div>
+
+              <Link href="/packages" className="inline-flex items-center gap-2 bg-teal text-white font-semibold px-8 py-4 rounded-xl hover:bg-teal2 transition-all duration-200 text-lg">
+                View All Packages
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+              </Link>
+
+              <p className="text-white/40 text-xs mt-4">One-time payment &middot; No subscription &middot; Secure checkout via Stripe</p>
+            </div>
+
+            {/* Retry button */}
+            <div className="flex justify-center gap-3">
+              <button
+                onClick={() => {
+                  setPhase('content')
+                  setSelected({})
+                  setSubmitted(false)
+                  window.scrollTo(0, 0)
+                }}
+                className="btn-ghost"
+              >
+                Try the Lesson Again
+              </button>
+              <Link href="/packages" className="btn-primary text-center">
+                Browse Packages
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
