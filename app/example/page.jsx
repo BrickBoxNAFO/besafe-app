@@ -757,9 +757,9 @@ export default function ExampleLessonPage() {
                     <span className="text-white font-bold text-sm">Growing Minds</span>
                     <span className="text-white/40 text-xs">Ages 4-7 and 8-11</span>
                   </div>
-                  <p className="text-white/60 text-xs leading-relaxed">Road safety, stranger danger, body safety, online safety, anti-bullying, fire safety, and emotional wellbeing. Thirteen courses across two age ranges, both included in one purchase. Original music in every lesson.</p>
+                  <p className="text-white/60 text-xs leading-relaxed">Two packages for the price of one - Early Years (ages 4-7) and Junior (ages 8-11) both included. Road safety, stranger danger, body safety, online safety, anti-bullying, fire safety, and emotional wellbeing. Thirteen courses in total. Original music in every lesson.</p>
                 </div>
-                <div className="bg-white/10 rounded-xl px-5 py-3 ring-2 ring-teal/50">
+                <div className="bg-white/10 rounded-xl px-5 py-3">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-lg">{'\uD83E\uDD77'}</span>
                     <span className="text-white font-bold text-sm">Street Smart</span>
@@ -798,14 +798,6 @@ export default function ExampleLessonPage() {
                     <span className="text-white/40 text-xs">Parents and Guardians</span>
                   </div>
                   <p className="text-white/60 text-xs leading-relaxed">Bullying, grooming and child protection, online safety guidance, drug and alcohol awareness, mental health and eating disorders. Five courses helping parents have the difficult conversations that matter most.</p>
-                </div>
-                <div className="bg-white/10 rounded-xl px-5 py-3">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-lg">{'\uD83D\uDCBC'}</span>
-                    <span className="text-white font-bold text-sm">Full Library</span>
-                    <span className="text-white/40 text-xs">All Ages</span>
-                  </div>
-                  <p className="text-white/60 text-xs leading-relaxed">Every package, every course, every lesson. All 38 courses and 146 lessons across all seven packages in one purchase. The complete HomeSafeEducation library for the whole family.</p>
                 </div>
               </div>
 
