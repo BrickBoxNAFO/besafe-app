@@ -168,9 +168,9 @@ const QUESTIONS = [
 /* ────────────────────────────────────────────
    Side Annotation Component
    ──────────────────────────────────────────── */
-function Annotation({ children, color = 'teal', pulse = false }) {
+function Annotation({ children, color = 'teal' }) {
   return (
-    <div className={`relative bg-white rounded-xl border-l-4 shadow-sm p-4 text-sm leading-relaxed text-navy/70 ${pulse ? 'animate-fadeIn' : ''}`}
+    <div className="relative bg-white rounded-lg border-l-3 shadow-sm px-3 py-2.5 text-xs leading-relaxed text-navy/70"
       style={{ borderLeftColor: color === 'red' ? COURSE_COLOR : color === 'navy' ? '#0B1F3A' : color === 'amber' ? '#F59E0B' : '#0EA5A0' }}>
       {children}
     </div>
@@ -182,12 +182,12 @@ function Annotation({ children, color = 'teal', pulse = false }) {
    ──────────────────────────────────────────── */
 function GuidedRow({ children, annotation, annotationColor, annotationKey }) {
   return (
-    <div className="flex gap-6 items-start mb-6">
+    <div className="flex gap-4 items-start mb-6">
       <div className="flex-1 min-w-0">
         {children}
       </div>
       {annotation && (
-        <div className="hidden lg:block w-72 flex-shrink-0 sticky top-32" key={annotationKey}>
+        <div className="hidden lg:block w-56 flex-shrink-0" key={annotationKey}>
           <Annotation color={annotationColor}>{annotation}</Annotation>
         </div>
       )}
@@ -201,15 +201,7 @@ export default function ExampleLessonPage() {
   const [selected, setSelected] = useState({})
   const [submitted, setSubmitted] = useState(false)
 
-  // For the guided demo, we pre-select wrong answers on Q1 and Q2
-  // Q1: option 0 (shy about video calls) - WRONG
-  // Q2: option 0 (click the link quickly) - WRONG
-  // Q3: option 2 (correct - stop contact) - let them see correct
-  const DEMO_WRONG_CLICKABLE = {
-    0: [0, 1],    // Q1: only "shy" and "bad camera" clickable (both wrong)
-    1: [0, 2],    // Q2: only "click quickly" and "forward to friends" clickable (both wrong)
-    2: [0, 1, 2, 3], // Q3: all clickable (but we'll explain after)
-  }
+  const [showWrongPrompt, setShowWrongPrompt] = useState(null) // which question to show popup on
 
   const totalQ = QUESTIONS.length
   const score = QUESTIONS.reduce((sum, q, qi) => {
@@ -265,7 +257,6 @@ export default function ExampleLessonPage() {
                   <p className="font-bold text-navy mb-2">What you are looking at</p>
                   <p>This is a lesson from <strong>Street Smart</strong>, one of our 7 packages. Street Smart is designed for <strong>teenagers aged 12–17</strong>.</p>
                   <p className="mt-2">Every lesson is written specifically for its age group — the language, examples, and scenarios are all age-appropriate.</p>
-                  <p className="mt-2 text-navy/50 text-xs">This is lesson 4 of 4 in the Online Safety and Social Media course.</p>
                 </div>
               }
               annotationColor="navy"
@@ -453,8 +444,7 @@ export default function ExampleLessonPage() {
 
             <div className="space-y-6">
               {QUESTIONS.map((q, qi) => {
-                const clickableOptions = DEMO_WRONG_CLICKABLE[qi] || [0, 1, 2, 3]
-                const isRestrictedQuestion = qi < 2 // Q1 and Q2 are restricted
+                const isRestrictedQuestion = qi < 2
 
                 return (
                   <GuidedRow
@@ -462,18 +452,18 @@ export default function ExampleLessonPage() {
                     annotation={
                       qi === 0 ? (
                         <div>
-                          <p className="font-bold text-navy mb-2">Try a Wrong Answer</p>
-                          <p>Click one of the <strong>highlighted answers</strong> below. We want to show you what happens when a learner gets an answer wrong — this is where the real learning happens.</p>
+                          <p className="font-bold text-navy mb-1">Please click on a wrong answer</p>
+                          <p>We want to show you what happens when a learner gets something wrong — this is where the real learning happens.</p>
                         </div>
                       ) : qi === 1 ? (
                         <div>
-                          <p className="font-bold text-navy mb-2">One More Wrong Answer</p>
-                          <p>Pick one of the highlighted options again. After you submit, you will see how we explain <strong>why</strong> each answer was right or wrong.</p>
+                          <p className="font-bold text-navy mb-1">Please click on a wrong answer</p>
+                          <p>After you submit, you will see how we explain <strong>why</strong> each answer was right or wrong.</p>
                         </div>
                       ) : (
                         <div>
-                          <p className="font-bold text-navy mb-2">Your Choice</p>
-                          <p>This one is up to you — pick any answer. This is a scenario question that combines everything from the course.</p>
+                          <p className="font-bold text-navy mb-1">Your Choice</p>
+                          <p>This one is up to you — pick any answer.</p>
                         </div>
                       )
                     }
@@ -485,36 +475,54 @@ export default function ExampleLessonPage() {
                         <span style={{ color: COURSE_COLOR }} className="font-bold">Q{qi + 1}.</span>{' '}
                         {q.question}
                       </p>
-                      <div className="space-y-2">
+
+                      {/* "Please click a wrong answer" prompt below question for Q1 and Q2 */}
+                      {isRestrictedQuestion && !selected[qi] && selected[qi] !== 0 && (
+                        <p className="text-red-500 text-xs font-semibold mb-3 flex items-center gap-1.5">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 13l-7 7-7-7m14-8l-7 7-7-7" /></svg>
+                          Please click on a wrong answer
+                        </p>
+                      )}
+
+                      <div className="space-y-2 relative">
                         {q.options.map((opt, oi) => {
-                          const isClickable = clickableOptions.includes(oi)
                           const isSelected = selected[qi] === oi
-                          const showBorder = isRestrictedQuestion && isClickable && !selected[qi] && selected[qi] !== 0
 
                           return (
                             <button
                               key={oi}
                               onClick={() => {
-                                if (!submitted && isClickable) setSelected(prev => ({ ...prev, [qi]: oi }))
+                                if (submitted) return
+                                // If restricted question and they click the correct answer, show popup
+                                if (isRestrictedQuestion && opt.isCorrect) {
+                                  setShowWrongPrompt(qi)
+                                  setTimeout(() => setShowWrongPrompt(null), 2500)
+                                  return
+                                }
+                                setShowWrongPrompt(null)
+                                setSelected(prev => ({ ...prev, [qi]: oi }))
                               }}
-                              disabled={!isClickable}
-                              className={'w-full text-left p-3 rounded-xl text-sm transition-all border relative ' +
+                              className={'w-full text-left p-3 rounded-xl text-sm transition-all border ' +
                                 (isSelected
                                   ? 'border-teal bg-teal/10 text-navy font-medium'
-                                  : isClickable && isRestrictedQuestion
-                                    ? 'border-red-300 bg-red-50/50 text-navy/70 hover:border-red-400 hover:bg-red-50 cursor-pointer ring-1 ring-red-200'
-                                    : isClickable
-                                      ? 'border-gray-100 bg-slate text-navy/70 hover:border-gray-200 cursor-pointer'
-                                      : 'border-gray-100 bg-gray-50 text-navy/30 cursor-not-allowed opacity-50')
+                                  : 'border-gray-100 bg-slate text-navy/70 hover:border-gray-200 cursor-pointer')
                               }
                             >
-                              <span className="font-bold mr-2" style={{ color: isClickable ? COURSE_COLOR : '#ccc' }}>
+                              <span className="font-bold mr-2" style={{ color: COURSE_COLOR }}>
                                 {['A', 'B', 'C', 'D'][oi]}.
                               </span>
                               {opt.text}
                             </button>
                           )
                         })}
+
+                        {/* Popup when they click the correct answer on a restricted question */}
+                        {showWrongPrompt === qi && (
+                          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 mx-4 bg-navy text-white rounded-xl px-5 py-4 shadow-xl text-sm text-center z-10 animate-fadeIn">
+                            <p className="font-semibold">For the purpose of this demo, please click on a wrong answer</p>
+                            <p className="text-white/60 text-xs mt-1">We want to show you how the review system works when a learner makes a mistake.</p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </GuidedRow>
