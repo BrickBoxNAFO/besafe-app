@@ -193,7 +193,7 @@ function Annotation({ children, color = 'teal', label = 'How it works' }) {
 function GuidedRow({ children, annotation, annotationColor, annotationKey, annotationLabel }) {
   return (
     <div className="mb-6">
-      <div className="flex flex-col lg:flex-row gap-3 items-start">
+      <div className="flex flex-col-reverse lg:flex-row gap-3 items-start">
         <div className="flex-1 min-w-0">
           {children}
         </div>
