@@ -5,7 +5,7 @@ import AudioPlayer from '@/components/AudioPlayer'
 import { getAudioUrl } from '@/lib/songs'
 
 /* ────────────────────────────────────────────
-   GUIDED EXAMPLE LESSON — Product Tour
+   GUIDED EXAMPLE LESSON -Product Tour
    Street Smart → Online Safety & Social Media → Lesson 4: Scams, Catfishing and Fake Profiles
    ──────────────────────────────────────────── */
 
@@ -66,7 +66,7 @@ You know what's right, you can't go wrong`,
 }
 
 const REMEMBER_SONG = {
-  title: 'Remember This — Online Safety Recap',
+  title: 'Remember This -Online Safety Recap',
   file: 'Street Smart/Course 2/Remember This Course 2.mp3',
   lyrics: `Your footprint online stays forever
 Think before you post, keep it clever
@@ -124,12 +124,12 @@ const PARAGRAPHS = [
 const KEY_TAKEAWAYS = [
   "Not everyone online is who they say they are. Watch for signs of fake profiles and catfishing.",
   "Scams use urgency to stop you thinking. Pause before clicking, sharing, or sending.",
-  "If someone avoids video calls, has inconsistent stories, or asks for money — trust your instincts.",
+  "If someone avoids video calls, has inconsistent stories, or asks for money -trust your instincts.",
   "Never enter login details through a link someone sends you. Go to the website directly.",
   "If you have been scammed, tell a trusted adult. It is not your fault.",
 ]
 
-const REMEMBER_THIS = "Your digital footprint is permanent — think before posting about your location, routine, or personal content. Privacy settings help but are not perfect; assume anything can be screenshotted and shared. Online grooming uses anonymity and distance to build trust and exploit you — watch for increasing personal questions, image requests, secrecy, and isolation from friends and family. Remember that grooming happens in person too. If you are harassed online, document everything, block the person, report to the platform, and tell a trusted adult. Not everyone online is who they say they are — watch for signs of catfishing and scams, and never act on urgency. If something feels wrong, trust that feeling."
+const REMEMBER_THIS = "Your digital footprint is permanent -think before posting about your location, routine, or personal content. Privacy settings help but are not perfect; assume anything can be screenshotted and shared. Online grooming uses anonymity and distance to build trust and exploit you -watch for increasing personal questions, image requests, secrecy, and isolation from friends and family. Remember that grooming happens in person too. If you are harassed online, document everything, block the person, report to the platform, and tell a trusted adult. Not everyone online is who they say they are -watch for signs of catfishing and scams, and never act on urgency. If something feels wrong, trust that feeling."
 
 const QUESTIONS = [
   {
@@ -235,9 +235,9 @@ export default function ExampleLessonPage() {
   return (
     <div className="page-enter min-h-screen bg-slate">
       {/* Free example banner */}
-      <div className="bg-gradient-to-r from-red-600 to-orange-500 text-white text-center py-3 px-4">
+      <div className="bg-gradient-to-r from-teal to-teal2 text-white text-center py-3 px-4">
         <p className="text-sm font-semibold">
-          Guided Example &mdash; See how a real HomeSafeEducation lesson works
+          Guided Example  - See how a real HomeSafeEducation lesson works
         </p>
       </div>
 
@@ -269,7 +269,7 @@ export default function ExampleLessonPage() {
                 <div>
                   <p className="font-bold text-navy mb-2">What you are looking at</p>
                   <p>This is a lesson from <strong>Street Smart</strong>, one of our 7 packages. Street Smart is designed for <strong>teenagers aged 12–17</strong>.</p>
-                  <p className="mt-2">Every lesson is written specifically for its age group — the language, examples, and scenarios are all age-appropriate.</p>
+                  <p className="mt-2">Every lesson is written specifically for its age group -the language, examples, and scenarios are all age-appropriate.</p>
                 </div>
               }
               annotationColor="navy"
@@ -294,6 +294,7 @@ export default function ExampleLessonPage() {
                   <p className="font-bold text-navy mb-2">Educational Music</p>
                   <p>Selected packages include <strong>original songs written and produced by HomeSafeEducation</strong>, with age-appropriate lyrics and a music style designed for the age range.</p>
                   <p className="mt-2">Press play to hear it. The lyrics reinforce the lesson&apos;s key safety messages in a way that sticks.</p>
+                  <p className="mt-2"><strong>Every song comes with full lyrics</strong> -click the &ldquo;Lyrics&rdquo; dropdown on the player to read along.</p>
                   <p className="mt-2 text-navy/50 text-xs">Growing Minds (ages 4–11), Street Smart (ages 12–17), and Aging Wisdom (60+) include original music in every lesson.</p>
                 </div>
               }
@@ -304,7 +305,7 @@ export default function ExampleLessonPage() {
                 <AudioPlayer
                   src={getAudioUrl(LESSON_SONG.file)}
                   title={LESSON_SONG.title}
-                  subtitle={LESSON.courseTitle + ' — Lesson ' + (LESSON.lessonIndex + 1) + ' of ' + LESSON.totalLessons}
+                  subtitle={LESSON.courseTitle + ' -Lesson ' + (LESSON.lessonIndex + 1) + ' of ' + LESSON.totalLessons}
                   lyrics={LESSON_SONG.lyrics}
                   variant="lesson"
                 />
@@ -316,7 +317,7 @@ export default function ExampleLessonPage() {
               annotation={
                 <div>
                   <p className="font-bold text-navy mb-2">The Lesson Content</p>
-                  <p>This is the main body of the lesson. It covers the key information your child needs to know about this topic — written clearly and directly.</p>
+                  <p>This is the main body of the lesson. It covers the key information your child needs to know about this topic -written clearly and directly.</p>
                   <p className="mt-2">No filler, no fluff. Just the information that matters, in language designed for the age group.</p>
                 </div>
               }
@@ -340,8 +341,8 @@ export default function ExampleLessonPage() {
               annotation={
                 <div>
                   <p className="font-bold text-navy mb-2">Key Takeaways</p>
-                  <p>After the main lesson content, we summarise the most important points. This helps reinforce learning and gives a quick reference to come back to.</p>
-                  <p className="mt-2">Think of it as the &ldquo;if you remember nothing else, remember this&rdquo; section.</p>
+                  <p>Where a lesson covers complex or high-stakes topics, we include a Key Takeaways section that distils the most important points into a quick-reference summary.</p>
+                  <p className="mt-2">It reinforces what matters most and gives learners something to come back to.</p>
                 </div>
               }
               annotationColor="red"
@@ -373,9 +374,9 @@ export default function ExampleLessonPage() {
             <GuidedRow
               annotation={
                 <div>
-                  <p className="font-bold text-navy mb-2">Remember This — Course Recap</p>
-                  <p>This section appears at the end of the final lesson in each course. It summarises <strong>everything learned across all previous lessons</strong> in the course — not just this one.</p>
-                  <p className="mt-2">It ties the whole course together so the learner leaves with a complete picture.</p>
+                  <p className="font-bold text-navy mb-2">Remember This - Course Recap</p>
+                  <p>Courses that cover critical safety topics include a <strong>Remember This</strong> section at the end. It summarises <strong>everything learned across all lessons</strong> in the course, not just the final one.</p>
+                  <p className="mt-2">It ties the whole course together so the learner walks away with the full picture.</p>
                 </div>
               }
               annotationColor="teal"
@@ -388,7 +389,7 @@ export default function ExampleLessonPage() {
                     <div className="w-7 h-7 rounded-lg bg-teal/20 flex items-center justify-center">
                       <svg className="w-4 h-4 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     </div>
-                    <span className="text-sm font-bold text-navy">Remember This — Course Recap</span>
+                    <span className="text-sm font-bold text-navy">Remember This -Course Recap</span>
                   </div>
                   <p className="text-navy/70 text-sm leading-relaxed">{REMEMBER_THIS}</p>
                 </div>
@@ -400,7 +401,7 @@ export default function ExampleLessonPage() {
               annotation={
                 <div>
                   <p className="font-bold text-navy mb-2">Recap Song</p>
-                  <p>The final lesson also includes a <strong>recap song</strong> that musically summarises the entire course. It reinforces all the key messages from every lesson in one track.</p>
+                  <p>For packages that include music, the final lesson in a course features a <strong>recap song</strong> that musically summarises everything covered across the entire course in one track.</p>
                 </div>
               }
               annotationColor="amber"
@@ -410,7 +411,7 @@ export default function ExampleLessonPage() {
                 <AudioPlayer
                   src={getAudioUrl(REMEMBER_SONG.file)}
                   title={REMEMBER_SONG.title}
-                  subtitle={LESSON.courseTitle + ' — Course Recap'}
+                  subtitle={LESSON.courseTitle + ' -Course Recap'}
                   lyrics={REMEMBER_SONG.lyrics}
                   variant="remember"
                 />
@@ -422,7 +423,7 @@ export default function ExampleLessonPage() {
               annotation={
                 <div>
                   <p className="font-bold text-navy mb-2">Every Lesson Has a Quiz</p>
-                  <p>Every single lesson across all packages includes a quiz that reinforces learning. It is not just about testing — it is about making sure the information sticks.</p>
+                  <p>Every single lesson across all packages includes a quiz that reinforces learning. It is not just about testing -it is about making sure the information sticks.</p>
                   <p className="mt-2">Click below to see how it works.</p>
                 </div>
               }
@@ -447,7 +448,7 @@ export default function ExampleLessonPage() {
               annotation={
                 <div>
                   <p className="font-bold text-navy mb-2">The Quiz</p>
-                  <p>The quiz covers information learned across the lessons in this course — not just this single lesson.</p>
+                  <p>The quiz covers information learned across the lessons in this course -not just this single lesson.</p>
                   <p className="mt-3 font-semibold text-red-600">For this demo, please click a wrong answer on the first two questions so we can show you how the review system works.</p>
                   <p className="mt-2 text-navy/50 text-xs">We have highlighted which answers are clickable.</p>
                 </div>
@@ -474,7 +475,7 @@ export default function ExampleLessonPage() {
                       qi === 0 ? (
                         <div>
                           <p className="font-bold text-navy mb-1">Please click on a wrong answer</p>
-                          <p>We want to show you what happens when a learner gets something wrong — this is where the real learning happens.</p>
+                          <p>We want to show you what happens when a learner gets something wrong -this is where the real learning happens.</p>
                         </div>
                       ) : qi === 1 ? (
                         <div>
@@ -484,7 +485,7 @@ export default function ExampleLessonPage() {
                       ) : (
                         <div>
                           <p className="font-bold text-navy mb-1">Your Choice</p>
-                          <p>This one is up to you — pick any answer.</p>
+                          <p>This one is up to you -pick any answer.</p>
                         </div>
                       )
                     }
@@ -577,7 +578,7 @@ export default function ExampleLessonPage() {
                   <p className="font-bold text-navy mb-2">Quiz Results</p>
                   <p>After submitting, the learner sees their score immediately. They need <strong>60% or more</strong> to pass the lesson.</p>
                   <p className="mt-2">If they do not pass, they can review the lesson and try again. If they pass, they move on to the next lesson.</p>
-                  <p className="mt-2">Every lesson across all packages works this way — building knowledge step by step.</p>
+                  <p className="mt-2">Every lesson across all packages works this way -building knowledge step by step.</p>
                 </div>
               }
               annotationColor="navy"
@@ -620,13 +621,13 @@ export default function ExampleLessonPage() {
                             <li className="flex gap-2"><span className="text-green-500 font-bold flex-shrink-0">✓</span><span>The correct answer (highlighted in green)</span></li>
                             <li className="flex gap-2"><span className="text-amber-500 font-bold flex-shrink-0">!</span><span>An explanation of <strong>why</strong> the correct answer is right</span></li>
                           </ul>
-                          <p className="mt-2">This is where the real reinforcement happens. They do not just learn the right answer — they understand <strong>why</strong>.</p>
+                          <p className="mt-2">This is where the real reinforcement happens. They do not just learn the right answer -they understand <strong>why</strong>.</p>
                         </div>
                       ) : qi === 1 ? (
                         <div>
                           <p className="font-bold text-navy mb-2">Consistent Reinforcement</p>
                           <p>Every question follows the same pattern. The learner always walks away understanding <strong>what they got wrong and why the correct answer matters</strong>.</p>
-                          <p className="mt-2">This is not just a quiz — it is a learning tool.</p>
+                          <p className="mt-2">This is not just a quiz -it is a learning tool.</p>
                         </div>
                       ) : (
                         <div>
@@ -740,7 +741,7 @@ export default function ExampleLessonPage() {
                 This is one lesson from one course in one package.
               </p>
               <p className="text-white/80 text-lg font-semibold mb-6">
-                The full library has <span className="text-teal">7 packages</span>, <span className="text-teal">38 courses</span>, and <span className="text-teal">146 lessons</span> — each with quizzes and real-world safety education. Selected packages include original music in every lesson.
+                The full library has <span className="text-teal">7 packages</span>, <span className="text-teal">38 courses</span>, and <span className="text-teal">146 lessons</span> -each with quizzes and real-world safety education. Selected packages include original music in every lesson.
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 max-w-lg mx-auto">
