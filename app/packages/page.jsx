@@ -93,10 +93,6 @@ export default function PackagesPage() {
       </div>
 
       <div className="max-w-5xl mx-auto px-6 -mt-10 relative z-10 space-y-8 pb-20">
-        {/* Try before you buy banner */}
-        <Link href="/example" className="block bg-gradient-to-r from-teal/10 to-teal2/10 border border-teal/20 rounded-2xl px-6 py-4 text-center hover:border-teal/40 transition-all group">
-          <p className="text-navy font-semibold text-sm">Not sure yet? <span className="text-teal group-hover:underline">Try a real lesson for free</span> before you buy.</p>
-        </Link>
 
         {/* Growing Minds Bundle */}
         <div id="growing" className="bg-white rounded-2xl border-2 border-green-200 overflow-hidden">
@@ -550,6 +546,16 @@ export default function PackagesPage() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Try a free lesson CTA */}
+        <div className="bg-gradient-to-br from-[#0B1F3A] to-[#1B3358] rounded-2xl p-8 md:p-10 text-center">
+          <p className="text-white font-serif text-2xl mb-2">Not sure which package is right for you?</p>
+          <p className="text-white/60 text-base mb-6">Try a complete lesson for free and see how it works before you buy.</p>
+          <Link href="/example" className="inline-flex items-center gap-2 bg-teal text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-teal2 transition-all text-base">
+            Try a Free Lesson
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </Link>
         </div>
 
         {/* Newsletter Banner */}
