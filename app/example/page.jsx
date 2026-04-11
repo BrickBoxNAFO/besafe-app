@@ -169,9 +169,10 @@ const QUESTIONS = [
    Side Annotation Component
    ──────────────────────────────────────────── */
 function Annotation({ children, color = 'teal' }) {
+  const borderColor = color === 'red' ? COURSE_COLOR : color === 'navy' ? '#0B1F3A' : color === 'amber' ? '#F59E0B' : '#0EA5A0'
   return (
-    <div className="relative bg-white rounded-lg border-l-3 shadow-sm px-3 py-2.5 text-xs leading-relaxed text-navy/70"
-      style={{ borderLeftColor: color === 'red' ? COURSE_COLOR : color === 'navy' ? '#0B1F3A' : color === 'amber' ? '#F59E0B' : '#0EA5A0' }}>
+    <div className="relative bg-white rounded-md shadow-sm px-4 py-1.5 text-[11px] leading-relaxed text-navy/70 border-l-2"
+      style={{ borderLeftColor: borderColor }}>
       {children}
     </div>
   )
@@ -179,18 +180,22 @@ function Annotation({ children, color = 'teal' }) {
 
 /* ────────────────────────────────────────────
    Two-column layout wrapper
+   On desktop: side-by-side with wide thin annotation on right
+   On mobile: annotation wraps below the content
    ──────────────────────────────────────────── */
 function GuidedRow({ children, annotation, annotationColor, annotationKey }) {
   return (
-    <div className="flex gap-4 items-start mb-6">
-      <div className="flex-1 min-w-0">
-        {children}
-      </div>
-      {annotation && (
-        <div className="hidden lg:block w-56 flex-shrink-0" key={annotationKey}>
-          <Annotation color={annotationColor}>{annotation}</Annotation>
+    <div className="mb-6">
+      <div className="flex flex-col lg:flex-row gap-3 items-start">
+        <div className="flex-1 min-w-0">
+          {children}
         </div>
-      )}
+        {annotation && (
+          <div className="w-full lg:w-80 flex-shrink-0" key={annotationKey}>
+            <Annotation color={annotationColor}>{annotation}</Annotation>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
@@ -700,6 +705,7 @@ export default function ExampleLessonPage() {
                     <div className="text-3xl mb-2">{'\u{1F389}'}</div>
                     <p className="font-bold text-navy text-sm mb-1">60% or Above</p>
                     <p className="text-navy/60 text-xs">Lesson passed! Progress is saved and the next lesson unlocks.</p>
+                    <p className="text-navy/50 text-xs mt-1">All courses and lessons will remain accessible to the user in the future.</p>
                   </div>
                 </div>
               </div>
