@@ -208,6 +208,12 @@ function GuidedRow({ children, annotation, annotationColor, annotationKey, annot
 }
 
 
+function scrollToTop() {
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  document.documentElement.scrollTop = 0
+  document.body.scrollTop = 0
+}
+
 export default function ExampleLessonPage() {
   const [phase, setPhase] = useState('content') // 'content' | 'quiz' | 'result'
   const [selected, setSelected] = useState({})
@@ -229,7 +235,7 @@ export default function ExampleLessonPage() {
     if (!allAnswered) return
     setSubmitted(true)
     setPhase('result')
-    window.scrollTo(0, 0)
+    scrollToTop(); setTimeout(scrollToTop, 50)
   }
 
   return (
@@ -292,7 +298,7 @@ export default function ExampleLessonPage() {
               annotation={
                 <div>
                   <p className="font-bold text-navy mb-2">Educational Music</p>
-                  <p>Selected packages include <strong>original songs written and produced by HomeSafeEducation</strong>, with age-appropriate lyrics and a music style designed for the age range.</p>
+                  <p>Selected packages include <strong>original songs produced by HomeSafeEducation</strong>, with age-appropriate lyrics and a music style designed for the age range.</p>
                   <p className="mt-2">Press play to hear it. The lyrics reinforce the lesson&apos;s key safety messages in a way that sticks.</p>
                   <p className="mt-2"><strong>Every song comes with full lyrics</strong> -click the &ldquo;Lyrics&rdquo; dropdown on the player to read along.</p>
                   <p className="mt-2 text-navy/50 text-xs">Growing Minds (ages 4–11), Street Smart (ages 12–17), and Aging Wisdom (60+) include original music in every lesson.</p>
@@ -432,7 +438,7 @@ export default function ExampleLessonPage() {
             >
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
                 <p className="text-navy/60 text-base mb-4">That covers the lesson content. Now it is time to check what you have learned.</p>
-                <button onClick={() => { setPhase('quiz'); window.scrollTo(0, 0) }} className="btn-primary text-base py-3.5 px-8 group">
+                <button onClick={() => { setPhase('quiz'); scrollToTop(); setTimeout(scrollToTop, 50) }} className="btn-primary text-base py-3.5 px-8 group">
                   Now let&apos;s move onto the quiz
                   <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                 </button>
@@ -554,7 +560,7 @@ export default function ExampleLessonPage() {
             </div>
 
             <div className="mt-8 flex items-center justify-between">
-              <button onClick={() => { setPhase('content'); window.scrollTo(0, 0) }} className="btn-ghost text-sm flex items-center gap-1">
+              <button onClick={() => { setPhase('content'); scrollToTop(); setTimeout(scrollToTop, 50) }} className="btn-ghost text-sm flex items-center gap-1">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
                 Back to Lesson
               </button>
@@ -735,35 +741,71 @@ export default function ExampleLessonPage() {
             {/* CTA */}
             <div className="bg-gradient-to-br from-[#0B1F3A] to-[#1B3358] rounded-2xl p-8 md:p-10 text-center mb-6">
               <h2 className="font-serif text-2xl md:text-3xl text-white mb-3">
-                You just experienced a real lesson.
+                You just experienced an example lesson on HomeSafeEducation.
               </h2>
               <p className="text-white/60 text-base mb-2">
                 This is one lesson from one course in one package.
               </p>
-              <p className="text-white/80 text-lg font-semibold mb-6">
-                The full library has <span className="text-teal">7 packages</span>, <span className="text-teal">38 courses</span>, and <span className="text-teal">146 lessons</span> -each with quizzes and real-world safety education. Selected packages include original music in every lesson.
+              <p className="text-white/80 text-lg font-semibold mb-4">
+                The full library has <span className="text-teal">7 packages</span>, <span className="text-teal">38 courses</span>, and <span className="text-teal">146 lessons</span> - each with quizzes and real-world safety education. Selected packages include original music in every lesson.
               </p>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 max-w-lg mx-auto">
-                <div className="bg-white/10 rounded-xl p-3">
-                  <div className="text-xl mb-1">{'\uD83C\uDF31'}</div>
-                  <div className="text-white font-semibold text-xs">Growing Minds</div>
-                  <div className="text-white/50 text-[10px]">Ages 4-11</div>
+              <div className="text-left max-w-2xl mx-auto space-y-3 mb-8">
+                <div className="bg-white/10 rounded-xl px-5 py-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">{'\uD83C\uDF31'}</span>
+                    <span className="text-white font-bold text-sm">Growing Minds</span>
+                    <span className="text-white/40 text-xs">Ages 4-7 and 8-11</span>
+                  </div>
+                  <p className="text-white/60 text-xs leading-relaxed">Road safety, stranger danger, body safety, online safety, anti-bullying, fire safety, and emotional wellbeing. Thirteen courses across two age ranges, both included in one purchase. Original music in every lesson.</p>
                 </div>
-                <div className="bg-white/10 rounded-xl p-3 ring-2 ring-teal/50">
-                  <div className="text-xl mb-1">{'\uD83E\uDD77'}</div>
-                  <div className="text-white font-semibold text-xs">Street Smart</div>
-                  <div className="text-white/50 text-[10px]">Ages 12-17</div>
+                <div className="bg-white/10 rounded-xl px-5 py-3 ring-2 ring-teal/50">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">{'\uD83E\uDD77'}</span>
+                    <span className="text-white font-bold text-sm">Street Smart</span>
+                    <span className="text-white/40 text-xs">Ages 12-17</span>
+                  </div>
+                  <p className="text-white/60 text-xs leading-relaxed">Online safety, healthy relationships, personal safety, peer pressure, substance awareness, mental health, and weapons awareness. Six courses giving teenagers the knowledge to stay safe in the real world. Original music in every lesson.</p>
                 </div>
-                <div className="bg-white/10 rounded-xl p-3">
-                  <div className="text-xl mb-1">{'\uD83D\uDC90'}</div>
-                  <div className="text-white font-semibold text-xs">Aging Wisdom</div>
-                  <div className="text-white/50 text-[10px]">Ages 60+</div>
+                <div className="bg-white/10 rounded-xl px-5 py-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">{'\uD83C\uDF93'}</span>
+                    <span className="text-white font-bold text-sm">Nest Breaking</span>
+                    <span className="text-white/40 text-xs">Ages 16-25</span>
+                  </div>
+                  <p className="text-white/60 text-xs leading-relaxed">Living independently, navigating social situations, spatial awareness, personal safety, and managing your digital identity. Four practical courses for young adults stepping out on their own.</p>
                 </div>
-                <div className="bg-white/10 rounded-xl p-3">
-                  <div className="text-xl mb-1">{'\u2764\uFE0F'}</div>
-                  <div className="text-white font-semibold text-xs">Family Anchor</div>
-                  <div className="text-white/50 text-[10px]">Parents</div>
+                <div className="bg-white/10 rounded-xl px-5 py-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">{'\u2708\uFE0F'}</span>
+                    <span className="text-white font-bold text-sm">Roaming Free</span>
+                    <span className="text-white/40 text-xs">Travellers of All Ages</span>
+                  </div>
+                  <p className="text-white/60 text-xs leading-relaxed">Pre-trip planning, scam avoidance, accommodation safety, digital security abroad, health emergencies, and trusting your instincts in high-risk situations. Five courses covering everything from packing smart to getting home safe.</p>
+                </div>
+                <div className="bg-white/10 rounded-xl px-5 py-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">{'\uD83D\uDC90'}</span>
+                    <span className="text-white font-bold text-sm">Aging Wisdom</span>
+                    <span className="text-white/40 text-xs">Ages 60+</span>
+                  </div>
+                  <p className="text-white/60 text-xs leading-relaxed">Scam recognition, AI fraud, digital safety, home and fire safety, financial protection, advance planning, and staying well. Five respectful, practical courses designed for older adults. Original music in every lesson.</p>
+                </div>
+                <div className="bg-white/10 rounded-xl px-5 py-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">{'\u2764\uFE0F'}</span>
+                    <span className="text-white font-bold text-sm">Family Anchor</span>
+                    <span className="text-white/40 text-xs">Parents and Guardians</span>
+                  </div>
+                  <p className="text-white/60 text-xs leading-relaxed">Bullying, grooming and child protection, online safety guidance, drug and alcohol awareness, mental health and eating disorders. Five courses helping parents have the difficult conversations that matter most.</p>
+                </div>
+                <div className="bg-white/10 rounded-xl px-5 py-3">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-lg">{'\uD83D\uDCBC'}</span>
+                    <span className="text-white font-bold text-sm">Full Library</span>
+                    <span className="text-white/40 text-xs">All Ages</span>
+                  </div>
+                  <p className="text-white/60 text-xs leading-relaxed">Every package, every course, every lesson. All 38 courses and 146 lessons across all seven packages in one purchase. The complete HomeSafeEducation library for the whole family.</p>
                 </div>
               </div>
 
@@ -781,7 +823,7 @@ export default function ExampleLessonPage() {
                   setPhase('content')
                   setSelected({})
                   setSubmitted(false)
-                  window.scrollTo(0, 0)
+                  scrollToTop(); setTimeout(scrollToTop, 50)
                 }}
                 className="btn-ghost"
               >
