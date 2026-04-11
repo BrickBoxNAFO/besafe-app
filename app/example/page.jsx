@@ -113,7 +113,7 @@ Trust yourself, and do what's right`,
 const PARAGRAPHS = [
   "Not everyone online is who they say they are. This is not just about groomers. It is about the wide range of people who create fake profiles, fake identities, and fake stories to get something from you.",
   "Catfishing is when someone creates a fake identity online to deceive you. They might use someone else's photos, make up a life story, and build a relationship with you based on lies. People catfish for different reasons: loneliness, manipulation, financial gain, or to get personal information. The result is the same. You are connecting with someone who does not exist.",
-  "Signs of catfishing: they avoid video calls or always have an excuse, their photos look too polished or like they came from a modelling page, their stories do not add up over time, they are vague about details of their life, they got very emotionally intense very quickly, or they ask for money or personal information.",
+  "Signs of catfishing: they avoid video calls or always have an excuse, their photos look too polished or like they came from a modelling page, their stories do not add up over time, they are vague about details of their life, they got very emotionally intense very quickly, or they ask for money or personal information. Warning: with current technology, people can use AI face-changing software to deepfake the way they look in real time whilst on video calls. Even a video call is not guaranteed proof someone is who they say they are. Always be wary.",
   "If you suspect someone is not who they claim to be, you can reverse-image search their profile photos. If the photos appear on other accounts or stock photo sites, that tells you everything. But even without proof, if something feels off, trust that feeling. You do not owe anyone online your trust.",
   "Online scams targeting teenagers are more common than you might think. These include: fake giveaways that ask for your details to \"claim a prize,\" messages saying you have won something you never entered, links that look like login pages but are actually designed to steal your password (this is called phishing), people offering easy money for doing small tasks that turn out to be illegal, and \"too good to be true\" deals on items that do not exist.",
   "The common thread in all scams is urgency. They want you to act fast before you think. \"Limited time only.\" \"Act now or lose your account.\" \"Reply in the next hour.\" Urgency is a manipulation tactic. Anything legitimate will still be there after you have taken time to think.",
@@ -124,7 +124,7 @@ const PARAGRAPHS = [
 const KEY_TAKEAWAYS = [
   "Not everyone online is who they say they are. Watch for signs of fake profiles and catfishing.",
   "Scams use urgency to stop you thinking. Pause before clicking, sharing, or sending.",
-  "If someone avoids video calls, has inconsistent stories, or asks for money -trust your instincts.",
+  "If someone avoids video calls, has inconsistent stories, or asks for money -trust your instincts. Be aware that AI deepfake software can now change how someone looks in real time on video calls, so even a video call is not proof they are real.",
   "Never enter login details through a link someone sends you. Go to the website directly.",
   "If you have been scammed, tell a trusted adult. It is not your fault.",
 ]
@@ -140,7 +140,7 @@ const QUESTIONS = [
       { text: "They may be catfishing you, using a fake identity and photos that are not theirs", isCorrect: true },
       { text: "This is completely normal behaviour", isCorrect: false },
     ],
-    explanation: "Consistently avoiding video calls combined with professional-looking photos and inconsistent stories are classic signs of catfishing. Trust the pattern, not the excuses.",
+    explanation: "Consistently avoiding video calls combined with professional-looking photos and inconsistent stories are classic signs of catfishing. Trust the pattern, not the excuses. Remember: even if someone does agree to a video call, AI deepfake software can change how they look in real time. A video call alone is not proof someone is who they claim to be.",
   },
   {
     question: "You receive a message saying you have won a competition and need to click a link and enter your login details to claim your prize. What should you do?",
@@ -301,7 +301,7 @@ export default function ExampleLessonPage() {
               annotationColor="amber"
               annotationLabel="Music"
             >
-              <div className="max-w-full overflow-hidden">
+              <div className="min-w-0 w-full overflow-hidden">
                 <AudioPlayer
                   src={getAudioUrl(LESSON_SONG.file)}
                   title={LESSON_SONG.title}
@@ -407,7 +407,7 @@ export default function ExampleLessonPage() {
               annotationColor="amber"
               annotationLabel="Recap Song"
             >
-              <div className="max-w-full overflow-hidden">
+              <div className="min-w-0 w-full overflow-hidden">
                 <AudioPlayer
                   src={getAudioUrl(REMEMBER_SONG.file)}
                   title={REMEMBER_SONG.title}

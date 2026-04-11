@@ -168,7 +168,7 @@ export default function AudioPlayer({ src, title, subtitle, lyrics, variant = 'l
   if (!src) return null
 
   return (
-    <div className="rounded-2xl overflow-hidden shadow-sm border border-gray-100" style={{ background: '#fff' }}>
+    <div className="rounded-2xl overflow-hidden shadow-sm border border-gray-100 min-w-0 w-full" style={{ background: '#fff' }}>
       {/* Hidden audio element */}
       <audio ref={audioRef} src={src} preload="metadata" />
 
