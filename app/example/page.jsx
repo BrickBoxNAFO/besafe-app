@@ -168,12 +168,19 @@ const QUESTIONS = [
 /* ────────────────────────────────────────────
    Side Annotation Component
    ──────────────────────────────────────────── */
-function Annotation({ children, color = 'teal' }) {
+function Annotation({ children, color = 'teal', label = 'How it works' }) {
   const borderColor = color === 'red' ? COURSE_COLOR : color === 'navy' ? '#0B1F3A' : color === 'amber' ? '#F59E0B' : '#0EA5A0'
   return (
-    <div className="relative bg-white rounded-md shadow-sm px-4 py-1.5 text-[11px] leading-relaxed text-navy/70 border-l-2"
+    <div className="relative bg-white rounded-lg shadow-sm border-l-3 overflow-hidden"
       style={{ borderLeftColor: borderColor }}>
-      {children}
+      {/* Explainer tag */}
+      <div className="px-3 py-1.5 flex items-center gap-1.5" style={{ background: borderColor + '12' }}>
+        <svg className="w-4 h-4 flex-shrink-0" style={{ color: borderColor }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span className="text-xs font-bold uppercase tracking-wider" style={{ color: borderColor }}>{label}</span>
+      </div>
+      <div className="px-4 py-3 text-sm leading-relaxed text-navy/70">
+        {children}
+      </div>
     </div>
   )
 }
@@ -183,7 +190,7 @@ function Annotation({ children, color = 'teal' }) {
    On desktop: side-by-side with wide thin annotation on right
    On mobile: annotation wraps below the content
    ──────────────────────────────────────────── */
-function GuidedRow({ children, annotation, annotationColor, annotationKey }) {
+function GuidedRow({ children, annotation, annotationColor, annotationKey, annotationLabel }) {
   return (
     <div className="mb-6">
       <div className="flex flex-col lg:flex-row gap-3 items-start">
@@ -192,7 +199,7 @@ function GuidedRow({ children, annotation, annotationColor, annotationKey }) {
         </div>
         {annotation && (
           <div className="w-full lg:w-80 flex-shrink-0" key={annotationKey}>
-            <Annotation color={annotationColor}>{annotation}</Annotation>
+            <Annotation color={annotationColor} label={annotationLabel || 'How it works'}>{annotation}</Annotation>
           </div>
         )}
       </div>
@@ -222,6 +229,7 @@ export default function ExampleLessonPage() {
     if (!allAnswered) return
     setSubmitted(true)
     setPhase('result')
+    window.scrollTo(0, 0)
   }
 
   return (
@@ -265,6 +273,7 @@ export default function ExampleLessonPage() {
                 </div>
               }
               annotationColor="navy"
+              annotationLabel="This Lesson"
             >
               <div className="mb-8">
                 <div className="flex items-center gap-2 mb-3">
@@ -289,6 +298,7 @@ export default function ExampleLessonPage() {
                 </div>
               }
               annotationColor="amber"
+              annotationLabel="Music"
             >
               <div>
                 <AudioPlayer
@@ -311,6 +321,7 @@ export default function ExampleLessonPage() {
                 </div>
               }
               annotationColor="teal"
+              annotationLabel="Lesson Content"
             >
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                 <div className="h-1" style={{ background: 'linear-gradient(to right, ' + COURSE_COLOR + ', ' + COURSE_COLOR + '60)' }} />
@@ -334,6 +345,7 @@ export default function ExampleLessonPage() {
                 </div>
               }
               annotationColor="red"
+              annotationLabel="Key Takeaways"
             >
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                 <div className="p-6 md:p-8">
@@ -367,6 +379,7 @@ export default function ExampleLessonPage() {
                 </div>
               }
               annotationColor="teal"
+              annotationLabel="Course Recap"
             >
               <div className="bg-white rounded-2xl border border-teal/20 shadow-sm overflow-hidden">
                 <div className="h-1 bg-gradient-to-r from-teal to-teal2" />
@@ -391,6 +404,7 @@ export default function ExampleLessonPage() {
                 </div>
               }
               annotationColor="amber"
+              annotationLabel="Recap Song"
             >
               <div>
                 <AudioPlayer
@@ -413,6 +427,7 @@ export default function ExampleLessonPage() {
                 </div>
               }
               annotationColor="navy"
+              annotationLabel="Quiz"
             >
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
                 <p className="text-navy/60 text-base mb-4">That covers the lesson content. Now it is time to check what you have learned.</p>
@@ -438,6 +453,7 @@ export default function ExampleLessonPage() {
                 </div>
               }
               annotationColor="red"
+              annotationLabel="Demo Instructions"
             >
               <div className="mb-8">
                 <h2 className="font-serif text-2xl text-navy mb-1">Check Your Understanding</h2>
@@ -474,6 +490,7 @@ export default function ExampleLessonPage() {
                     }
                     annotationColor={qi < 2 ? 'red' : 'teal'}
                     annotationKey={'quiz-' + qi}
+                    annotationLabel={qi < 2 ? 'Try It' : 'Your Turn'}
                   >
                     <div className="bg-white rounded-2xl border border-gray-100 p-6">
                       <p className="font-semibold text-navy mb-4 text-sm">
@@ -564,6 +581,7 @@ export default function ExampleLessonPage() {
                 </div>
               }
               annotationColor="navy"
+              annotationLabel="Results"
             >
               <div className={'rounded-2xl p-8 mb-2 text-center ' + (passed ? 'bg-teal/10 border border-teal/20' : 'bg-red-50 border border-red-100')}>
                 <div className={'w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-4 ' + (passed ? 'bg-teal/20' : 'bg-red-100')}>
@@ -598,9 +616,9 @@ export default function ExampleLessonPage() {
                           <p className="font-bold text-navy mb-2">How Wrong Answers Work</p>
                           <p>When a learner gets an answer wrong, we show them:</p>
                           <ul className="mt-2 space-y-1 text-xs">
-                            <li className="flex gap-2"><span className="text-red-500 font-bold">✗</span> Their wrong answer (crossed out in red)</li>
-                            <li className="flex gap-2"><span className="text-green-500 font-bold">✓</span> The correct answer (highlighted in green)</li>
-                            <li className="flex gap-2"><span className="text-amber-500 font-bold">!</span> An explanation of <strong>why</strong> the correct answer is right</li>
+                            <li className="flex gap-2"><span className="text-red-500 font-bold flex-shrink-0">✗</span><span>Their wrong answer (crossed out in red)</span></li>
+                            <li className="flex gap-2"><span className="text-green-500 font-bold flex-shrink-0">✓</span><span>The correct answer (highlighted in green)</span></li>
+                            <li className="flex gap-2"><span className="text-amber-500 font-bold flex-shrink-0">!</span><span>An explanation of <strong>why</strong> the correct answer is right</span></li>
                           </ul>
                           <p className="mt-2">This is where the real reinforcement happens. They do not just learn the right answer — they understand <strong>why</strong>.</p>
                         </div>
@@ -621,6 +639,7 @@ export default function ExampleLessonPage() {
                     }
                     annotationColor={isCorrect ? 'teal' : 'red'}
                     annotationKey={'result-' + qi}
+                    annotationLabel="Review System"
                   >
                     <div className={'rounded-2xl border overflow-hidden ' + (isCorrect ? 'border-teal/30' : 'border-red-200')}>
                       <div className={'px-5 py-3 flex items-center gap-2 ' + (isCorrect ? 'bg-teal/10' : 'bg-red-50')}>
@@ -693,6 +712,7 @@ export default function ExampleLessonPage() {
                 </div>
               }
               annotationColor="navy"
+              annotationLabel="Outcomes"
             >
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
