@@ -65,7 +65,7 @@ function LoginForm() {
                 onChange={e => setPassword(e.target.value)}
                 required
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-navy focus:outline-none focus:border-teal transition-colors"
-                placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"
+                placeholder="••••••••"
               />
             </div>
             <div className="flex justify-end">
@@ -74,12 +74,12 @@ function LoginForm() {
               </Link>
             </div>
             <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3 disabled:opacity-60">
-              {loading ? 'Signing in...' : 'Sign In \u2192'}
+              {loading ? 'Signing in...' : 'Sign In →'}
             </button>
           </form>
 
           <p className="text-center text-sm text-navy/50 mt-6">
-            Don\u2019t have an account?{' '}
+            Don’t have an account?{' '}
             <Link href="/register" className="text-teal font-medium hover:underline">Create one free</Link>
           </p>
         </div>
