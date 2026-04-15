@@ -1,54 +1,37 @@
-'use client'
-
 import Link from 'next/link'
-import NewsletterBanner from '@/components/NewsletterBanner'
-import VideoPlayer from '@/components/VideoPlayer'
+import PackageCard from '@/components/PackageCard'
+import { PACKAGES } from '@/lib/data'
 
-// ─── Cloudflare R2 video URL ───
-const VIDEO_URL = 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/HomeSafeEducation%204K.mp4'
-const VIDEO_POSTER = null // optional thumbnail image URL
+const REVIEWS = [
+  { q: '"Got the Family Safety Bundle for the whole family, my son before university, my mum, my wife, and myself. All four of us have now completed our packages. I still have one slot left that I\'m planning to pass to a close friend. It\'s been great value."', name: 'James M.', role: 'Parent, age 48', stars: 5 },
+  { q: '"My mum completed Aging Wisdom and now she knows exactly what to do when she gets those scam calls. She feels so much more confident."', name: 'Sarah T.', role: 'Daughter, age 42', stars: 5 },
+  { q: '"The Night Out Safety course should be compulsory for every young person. My daughter did it before going to university and I feel so much better about it."', name: 'Mark R.', role: 'Father, age 51', stars: 5 },
+]
 
 export default function HomePage() {
   return (
     <div className="page-enter">
-
-      {/* Hero — split layout: text left, video right */}
+      {/* Hero */}
       <section className="hero-bg noise relative overflow-hidden min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-6 py-24 w-full">
-          <div className="grid lg:grid-cols-5 gap-10 items-center">
-            {/* Left — text content (2 cols) */}
-            <div className="lg:col-span-2">
-              <div className="chip bg-teal/15 text-teal border border-teal/25 mb-6">Real-World Education for Confident Living</div>
-              <h1 className="font-serif text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6 text-white">
-                Empower Your Family
-                <span className="block italic text-teal mt-1">at Every Stage of Life.</span>
-              </h1>
-              <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-                In a world that moves fast, giving your family the knowledge to navigate it confidently should not be complicated or expensive. Whether you are helping your daughter prepare for university life, teaching your children about boundaries and wellbeing, or giving your parents the tools to stay independent and informed, HomeSafeEducation has you covered. Practical, evidence-based courses in safety, wellness, and life skills designed for real life. Seven packages covering every age group from children aged 4 right through to older adults.
-              </p>
-              <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
-                Buy for yourself or gift to someone you love. One payment, no subscription, real confidence for life.
-              </p>
-              <div className="flex flex-wrap gap-4 mb-10">
-                <Link href="/packages" className="btn-primary">View All Packages &rarr;</Link>
-                <Link href="/example" className="btn-secondary">Try a Free Lesson</Link>
-              </div>
-              <div className="flex flex-wrap gap-6 text-sm text-white/50">
-                {['✓ One-time payment', '✓ 7 Packages, 146 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
-                  <span key={t}>{t}</span>
-                ))}
-              </div>
+        <div className="max-w-6xl mx-auto px-6 py-24 w-full">
+          <div className="max-w-2xl">
+            <div className="chip bg-teal/15 text-teal border border-teal/25 mb-6">Online Safety Education</div>
+            <h1 className="font-serif text-5xl lg:text-7xl leading-tight mb-6 text-white">
+              Keep Your Family Safe
+              <span className="block italic text-teal mt-1">at Every Stage of Life.</span>
+            </h1>
+            <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-lg">
+              Five specialist packages covering every age group — children, young adults, travellers, older adults, and parents. Practical, evidence-based, and genuinely life-changing.
+            </p>
+            <div className="flex flex-wrap gap-4 mb-10">
+              <Link href="/packages" className="btn-primary">View All Packages →</Link>
+              <Link href="/about" className="btn-secondary">Learn More</Link>
             </div>
-
-            {/* Right — video player (3 cols — larger) */}
-            <div className="hidden lg:block lg:col-span-3">
-              <VideoPlayer src={VIDEO_URL} poster={VIDEO_POSTER} />
+            <div className="flex flex-wrap gap-6 text-sm text-white/50">
+              {['✓ One-time payment', '✓ 25 Subjects, 250 Lessons', '✓ Family progress tracking', '✓ No subscription'].map(t => (
+                <span key={t}>{t}</span>
+              ))}
             </div>
-          </div>
-
-          {/* Mobile video — below text on small screens */}
-          <div className="lg:hidden mt-12">
-            <VideoPlayer src={VIDEO_URL} poster={VIDEO_POSTER} />
           </div>
         </div>
       </section>
@@ -56,7 +39,7 @@ export default function HomePage() {
       {/* Stats */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[['7', 'Packages'], ['38', 'Courses'], ['146', 'Lessons'], ['371', 'Quiz Questions']].map(([n, l]) => (
+          {[['5', 'Packages'], ['25', 'Subjects'], ['250', 'Lessons'], ['1,250', 'Quiz Questions']].map(([n, l]) => (
             <div key={l} className="text-center">
               <div className="stat-num text-navy mb-1">{n}</div>
               <div className="text-sm text-navy/50 font-medium">{l}</div>
@@ -65,66 +48,35 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Packages — Life Stages Teaser */}
+      {/* Packages */}
       <section className="section-slate py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
             <div className="chip bg-teal/10 text-teal border border-teal/20 mb-4">Our Packages</div>
-            <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Education for Every Stage of Life</h2>
+            <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Built for Every Age</h2>
             <p className="text-navy/60 text-lg max-w-2xl mx-auto">
-              Seven packages. 38 courses. 146 lessons. From children to older adults, each package is tailored to the real-world knowledge that matters most at that stage of life.
+              Every package contains 5 Subjects with 50 Lessons and 250 quiz questions — for one payment of $29.99.
             </p>
           </div>
-
-          {/* Life stages row */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
-            {[
-              { emoji: '🌱', name: 'Growing Minds', age: 'Ages 4–11', color: '#16A34A' },
-              { emoji: '🥷', name: 'Street Smart', age: 'Ages 12–15', color: '#7C3AED' },
-              { emoji: '🚀', name: 'Nest Breaking', age: 'Ages 16–18', color: '#2563EB' },
-              { emoji: '✈️', name: 'Roaming Free', age: 'All ages', color: '#EA580C' },
-              { emoji: '💐', name: 'Aging Wisdom', age: 'Ages 60+', color: '#E11D48' },
-              { emoji: '👨‍👩‍👧', name: 'Family Anchor', age: 'Parents', color: '#a21caf' },
-            ].map(s => (
-              <Link href="/packages" key={s.name} className="group bg-white rounded-xl border border-gray-100 p-4 text-center hover:border-gray-200 hover:shadow-md transition-all cursor-pointer">
-                <div className="text-2xl mb-2">{s.emoji}</div>
-                <div className="text-sm font-semibold text-navy mb-0.5 group-hover:text-teal transition-colors">{s.name}</div>
-                <div className="text-[11px] font-medium" style={{ color: s.color }}>{s.age}</div>
-              </Link>
-            ))}
-          </div>
-
-          {/* Key selling points */}
-          <div className="grid sm:grid-cols-3 gap-4 mb-10">
-            {[
-              ['💳', 'One-Time Payment', 'No subscriptions. Pay once and get lifetime access to your package.'],
-              ['🎁', 'Gift to Anyone', 'Buy for yourself or gift to a loved one. Each person gets their own account and dashboard.'],
-              ['📊', 'Track Progress', 'Every lesson completed, every quiz passed — all tracked on your personal dashboard.'],
-            ].map(([icon, title, body]) => (
-              <div key={title} className="bg-white rounded-xl border border-gray-100 p-5 text-center">
-                <div className="text-2xl mb-2">{icon}</div>
-                <div className="font-semibold text-navy text-sm mb-1">{title}</div>
-                <div className="text-navy/50 text-xs leading-relaxed">{body}</div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PACKAGES.map(p => <PackageCard key={p.id} pkg={p} />)}
+            {/* Bundle */}
+            <div className="md:col-span-2 lg:col-span-3 bg-navy rounded-2xl p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative overflow-hidden">
+              <div className="noise absolute inset-0" />
+              <div className="relative z-10">
+                <div className="chip bg-teal/20 text-teal border border-teal/30 mb-3">Best Value</div>
+                <h3 className="font-serif text-3xl text-white mb-2">Family Safety Bundle</h3>
+                <p className="text-white/60 max-w-lg">Any 5 packages for your whole family. Mix and match across any age group.</p>
               </div>
-            ))}
+              <div className="relative z-10 flex flex-col items-start lg:items-end gap-3">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-serif text-4xl text-white font-bold">$99.99</span>
+                  <span className="text-white/40 line-through text-lg">$149.95</span>
+                </div>
+                <Link href="/packages#bundle" className="btn-primary whitespace-nowrap">Get the Bundle →</Link>
+              </div>
+            </div>
           </div>
-
-          {/* CTA */}
-          <div className="text-center">
-            <Link href="/packages" className="btn-primary text-base px-10 py-3.5">Explore All Packages &rarr;</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Gift Banner */}
-      <section className="py-16 bg-gradient-to-r from-teal/10 to-orange/10">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <span className="text-4xl mb-4 block">🎁</span>
-          <h2 className="font-serif text-3xl lg:text-4xl text-navy mb-4">The Gift of Safety</h2>
-          <p className="text-navy/60 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-            A young adult heading to university, a parent navigating life after 60, a friend exploring the world. One payment, lifetime access, real confidence.
-          </p>
-          <Link href="/packages" className="btn-primary text-base px-8 py-3">Buy as a Gift &rarr;</Link>
         </div>
       </section>
 
@@ -133,14 +85,13 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
             <div className="chip bg-teal/10 text-teal border border-teal/20 mb-4">How It Works</div>
-            <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Buy for Yourself or a Loved One</h2>
+            <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Simple, Clear, Effective</h2>
           </div>
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
-              { n: '01', icon: '🎁', title: 'Choose a Package', body: 'Pick the right package for you, your child, your parent, or anyone you care about. Each one is designed for a specific stage of life, covering the topics that matter most.' },
-              { n: '02', icon: '💳', title: 'One-Time Payment', body: 'Pay once per package and get lifetime access. No subscription, no hidden fees, no recurring charges.' },
-              { n: '03', icon: '📧', title: 'Gift or Keep', body: 'Enter the recipient\'s email and they get instant access. Or keep it for yourself. Either way, access is forever.' },
-              { n: '04', icon: '📖', title: 'Start Learning', body: 'Work through practical lessons in safety, wellbeing, and life skills at your own pace. Every lesson has a quiz to reinforce what you have learned.' },
+              { n: '01', icon: '📦', title: 'Choose Your Package', body: 'Select the package that fits your family member. Each one is tailored to a specific age group and life stage.' },
+              { n: '02', icon: '💳', title: 'One-Time Payment', body: 'Pay $29.99 per package or $99.99 for any 5 Packages. No subscription, no hidden fees.' },
+              { n: '03', icon: '📖', title: 'Start Learning', body: 'Work through 50 lessons at your own pace. Every lesson has a quiz to reinforce what you have learned.' },
             ].map(s => (
               <div key={s.n} className="bg-slate rounded-2xl p-8">
                 <div className="text-3xl mb-4">{s.icon}</div>
@@ -153,18 +104,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Newsletter Banner */}
-      <NewsletterBanner />
+      {/* Reviews */}
+      <section className="section-slate py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-14">
+            <div className="chip bg-teal/10 text-teal border border-teal/20 mb-4">What Families Say</div>
+            <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-4">Real Families. Real Results.</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {REVIEWS.map((r, i) => (
+              <div key={i} className="bg-white rounded-2xl p-6 border border-gray-100">
+                <div className="flex gap-0.5 mb-4">{Array(r.stars).fill(0).map((_, j) => <span key={j} className="text-amber-400">★</span>)}</div>
+                <p className="text-navy/80 text-sm leading-relaxed mb-5 italic">{r.q}</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-navy flex items-center justify-center text-white text-sm font-bold">{r.name[0]}</div>
+                  <div>
+                    <p className="font-semibold text-navy text-sm">{r.name}</p>
+                    <p className="text-navy/40 text-xs">{r.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="hero-bg noise relative py-24 overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
-          <h2 className="font-serif text-4xl lg:text-5xl text-white mb-5">Start Empowering Your Family Today</h2>
-          <p className="text-white/60 text-lg max-w-xl mx-auto mb-8">Knowledge is the foundation of confidence. One-time payment. No subscription. Buy for yourself or gift to someone you love.</p>
-          <Link href="/packages" className="btn-primary text-base px-8 py-4">View All Packages &rarr;</Link>
+          <h2 className="font-serif text-4xl lg:text-5xl text-white mb-5">Start Protecting Your Family Today</h2>
+          <p className="text-white/60 text-lg max-w-xl mx-auto mb-8">One-time payment. No subscription. Real knowledge that makes a real difference.</p>
+          <Link href="/packages" className="btn-primary text-base px-8 py-4">View All Packages →</Link>
         </div>
       </section>
-
     </div>
   )
 }

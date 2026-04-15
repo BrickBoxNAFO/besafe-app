@@ -1,11 +1,11 @@
 'use client'
-import { useState, Suspense } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
 import { LOGO_SRC } from '@/lib/data'
 
-function LoginForm() {
+export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -74,7 +74,7 @@ function LoginForm() {
               </Link>
             </div>
             <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3 disabled:opacity-60">
-              {loading ? 'Signing in...' : 'Sign In \u2192'}
+              {loading ? 'Signing in...' : 'Sign In →'}
             </button>
           </form>
 
@@ -85,13 +85,5 @@ function LoginForm() {
         </div>
       </div>
     </div>
-  )
-}
-
-export default function LoginPage() {
-  return (
-    <Suspense fallback={<div className="min-h-screen bg-slate flex items-center justify-center"><p className="text-navy/50">Loading...</p></div>}>
-      <LoginForm />
-    </Suspense>
   )
 }
