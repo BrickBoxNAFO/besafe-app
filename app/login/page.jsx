@@ -1,11 +1,11 @@
 'use client'
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
 import { LOGO_SRC } from '@/lib/data'
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -65,7 +65,7 @@ export default function LoginPage() {
                 onChange={e => setPassword(e.target.value)}
                 required
                 className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-navy focus:outline-none focus:border-teal transition-colors"
-                placeholder="••••••••"
+                placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"
               />
             </div>
             <div className="flex justify-end">
@@ -74,16 +74,24 @@ export default function LoginPage() {
               </Link>
             </div>
             <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3 disabled:opacity-60">
-              {loading ? 'Signing in...' : 'Sign In →'}
+              {loading ? 'Signing in...' : 'Sign In \u2192'}
             </button>
           </form>
 
           <p className="text-center text-sm text-navy/50 mt-6">
-            Don't have an account?{' '}
+            Don\u2019t have an account?{' '}
             <Link href="/register" className="text-teal font-medium hover:underline">Create one free</Link>
           </p>
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate flex items-center justify-center"><p className="text-navy/50">Loading...</p></div>}>
+      <LoginForm />
+    </Suspense>
   )
 }
