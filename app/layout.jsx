@@ -1,6 +1,5 @@
 import './globals.css'
 import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { PricingProvider } from '@/components/PricingProvider'
@@ -17,35 +16,26 @@ export const metadata = {
   },
 }
 
-// Force dynamic rendering so auth state is always fresh on every request
 export const dynamic = 'force-dynamic'
 
 export default async function RootLayout({ children }) {
-  // Server-render the user — uses the same getUser() call the dashboard uses,
-  // so if the dashboard sees you, so will the Nav.
-  let initialUser = null
-  let initialPurchases = []
-  try {
-    const cookieStore = await cookies()
-    const supabase = createClient(cookieStore)
-    const { data: { user } } = await supabase.auth.getUser()
-    if (user) {
-      initialUser = { id: user.id, email: user.email }
-      const { data } = await supabase
-        .from('purchases')
-        .select('package_id')
-        .eq('user_id', user.id)
-      initialPurchases = (data || []).map(p => p.package_id)
-    }
-  } catch (e) {
-    // fall through — Nav will still render, just as logged-out
-  }
+  // CRITICAL: Layout does NOT call Supabase. Calling getUser() here would
+  // trigger a token refresh in a server component, and server components
+  // cannot persist new cookies — causing the subsequent page's getUser()
+  // to fail with stale (now-invalidated) cookies.
+  //
+  // Instead: just check if an auth cookie is present. Nav will fetch user
+  // details client-side via /api/me. Session refresh happens in middleware.
+  const cookieStore = await cookies()
+  const hasAuthCookie = cookieStore.getAll().some(c =>
+    c.name.startsWith('sb-') && c.name.includes('auth-token')
+  )
 
   return (
     <html lang="en">
       <body>
         <PricingProvider>
-          <Nav initialUser={initialUser} initialPurchases={initialPurchases} />
+          <Nav initialLoggedIn={hasAuthCookie} />
           <main>{children}</main>
           <Footer />
         </PricingProvider>

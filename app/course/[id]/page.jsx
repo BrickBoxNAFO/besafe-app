@@ -84,7 +84,9 @@ export default async function CoursePage({ params }) {
                       {passed ? '✓' : locked ? '🔒' : idx + 1}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className={`font-medium text-sm ${locked ? 'text-navy/30' : 'text-navy'}`}>{lesson}</p>
+                      <p className={`font-medium text-sm ${locked ? 'text-navy/30' : 'text-navy'}`}>
+                        {typeof lesson === 'string' ? lesson : (lesson?.title || `Lesson ${idx + 1}`)}
+                      </p>
                       {attempted && !locked && (
                         <p className="text-xs mt-0.5" style={{ color: passed ? '#0EA5A0' : '#EF4444' }}>
                           {passed ? `Passed · ${prog.score}/5` : `Score: ${prog.score}/5 — try again`}

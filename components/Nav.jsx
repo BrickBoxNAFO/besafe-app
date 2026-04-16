@@ -6,33 +6,49 @@ import { createClient } from '@/utils/supabase/client'
 
 const BUNDLE_ID = 'bundle'
 
-export default function Nav({ initialUser = null, initialPurchases = [] }) {
-  const [user, setUser] = useState(initialUser)
-  const [purchases, setPurchases] = useState(initialPurchases)
+export default function Nav({ initialLoggedIn = false }) {
+  // Start from server-provided cookie presence (no flicker on load)
+  const [user, setUser] = useState(initialLoggedIn ? { placeholder: true } : null)
+  const [purchases, setPurchases] = useState([])
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const supabase = createClient()
 
-  // Keep state synced when layout re-renders with fresh server props
-  useEffect(() => { setUser(initialUser) }, [initialUser?.id])
-  useEffect(() => { setPurchases(initialPurchases) }, [initialPurchases?.join(',')])
-
-  // Listen for client-side auth events (sign-out button) to update immediately
-  useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
-      if (event === 'SIGNED_OUT') {
+  // Fetch full user info + purchases from server endpoint (uses getUser under the hood)
+  const refreshAuthState = async () => {
+    try {
+      const res = await fetch('/api/me', { cache: 'no-store', credentials: 'include' })
+      if (!res.ok) { setUser(null); setPurchases([]); return }
+      const data = await res.json()
+      if (data?.user) {
+        setUser(data.user)
+        setPurchases(data.purchases || [])
+      } else {
         setUser(null)
         setPurchases([])
-      } else if (event === 'SIGNED_IN') {
-        // Force a server re-render so layout re-fetches user via getUser()
-        router.refresh()
       }
+    } catch (e) {
+      // leave current state — don't flip Nav to logged-out on network hiccup
+    }
+  }
+
+  useEffect(() => {
+    refreshAuthState()
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') { setUser(null); setPurchases([]) }
+      else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') { refreshAuthState() }
     })
     return () => subscription.unsubscribe()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // Re-check on route change so Nav reflects current auth after navigation
+  useEffect(() => {
+    refreshAuthState()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -47,7 +63,6 @@ export default function Nav({ initialUser = null, initialPurchases = [] }) {
     await supabase.auth.signOut()
     setUser(null)
     setPurchases([])
-    // Full reload to clear server-side session cookies as well
     window.location.href = '/'
   }
 
