@@ -4,9 +4,7 @@ import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { COURSES, PACKAGES } from '@/lib/data'
 
-export async function generateStaticParams() {
-  return COURSES.map(c => ({ id: c.id }))
-}
+export const dynamic = 'force-dynamic'
 
 export default async function CoursePage({ params }) {
   const course = COURSES.find(c => c.id === params.id)
