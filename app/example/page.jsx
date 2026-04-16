@@ -4,10 +4,10 @@ import Link from 'next/link'
 import AudioPlayer from '@/components/AudioPlayer'
 import { getAudioUrl } from '@/lib/songs'
 
-/* ââââââââââââââââââââââââââââââââââââââââââââ
+/* ────────────────────────────────────────────
    GUIDED EXAMPLE LESSON -Product Tour
-   Street Smart â Online Safety & Social Media â Lesson 4: Scams, Catfishing and Fake Profiles
-   ââââââââââââââââââââââââââââââââââââââââââââ */
+   Street Smart → Online Safety & Social Media → Lesson 4: Scams, Catfishing and Fake Profiles
+   ──────────────────────────────────────────── */
 
 const COURSE_COLOR = '#DC2626'
 
@@ -15,7 +15,7 @@ const LESSON = {
   title: 'Scams, Catfishing and Fake Profiles',
   courseTitle: 'Online Safety and Social Media',
   packageName: 'Street Smart',
-  emoji: 'ð¥·',
+  emoji: '🥷',
   lessonIndex: 3,
   totalLessons: 4,
 }
@@ -165,9 +165,9 @@ const QUESTIONS = [
 ]
 
 
-/* ââââââââââââââââââââââââââââââââââââââââââââ
+/* ────────────────────────────────────────────
    Side Annotation Component
-   ââââââââââââââââââââââââââââââââââââââââââââ */
+   ──────────────────────────────────────────── */
 function Annotation({ children, color = 'teal', label = 'How it works' }) {
   const borderColor = color === 'red' ? COURSE_COLOR : color === 'navy' ? '#0B1F3A' : color === 'amber' ? '#F59E0B' : '#0EA5A0'
   return (
@@ -185,11 +185,11 @@ function Annotation({ children, color = 'teal', label = 'How it works' }) {
   )
 }
 
-/* ââââââââââââââââââââââââââââââââââââââââââââ
+/* ────────────────────────────────────────────
    Two-column layout wrapper
    On desktop: side-by-side with wide thin annotation on right
    On mobile: annotation wraps below the content
-   ââââââââââââââââââââââââââââââââââââââââââââ */
+   ──────────────────────────────────────────── */
 function GuidedRow({ children, annotation, annotationColor, annotationKey, annotationLabel }) {
   return (
     <div className="mb-6">
@@ -274,7 +274,7 @@ export default function ExampleLessonPage() {
               annotation={
                 <div>
                   <p className="font-bold text-navy mb-2">What you are looking at</p>
-                  <p>This is a lesson from <strong>Street Smart</strong>, one of our 7 packages. Street Smart is designed for <strong>teenagers aged 12â17</strong>.</p>
+                  <p>This is a lesson from <strong>Street Smart</strong>, one of our 7 packages. Street Smart is designed for <strong>teenagers aged 12–17</strong>.</p>
                   <p className="mt-2">Every lesson is written specifically for its age group -the language, examples, and scenarios are all age-appropriate.</p>
                 </div>
               }
@@ -301,7 +301,7 @@ export default function ExampleLessonPage() {
                   <p>Selected packages include <strong>original songs produced by HomeSafeEducation</strong>, with age-appropriate lyrics and a music style designed for the age range.</p>
                   <p className="mt-2">Press play to hear it. The lyrics reinforce the lesson&apos;s key safety messages in a way that sticks.</p>
                   <p className="mt-2"><strong>Every song comes with full lyrics</strong> -click the &ldquo;Lyrics&rdquo; dropdown on the player to read along.</p>
-                  <p className="mt-2 text-navy/50 text-xs">Growing Minds (ages 4â11), Street Smart (ages 12â17), and Aging Wisdom (60+) include original music in every lesson.</p>
+                  <p className="mt-2 text-navy/50 text-xs">Growing Minds (ages 4–11), Street Smart (ages 12–17), and Aging Wisdom (60+) include original music in every lesson.</p>
                 </div>
               }
               annotationColor="amber"
@@ -623,8 +623,8 @@ export default function ExampleLessonPage() {
                           <p className="font-bold text-navy mb-2">How Wrong Answers Work</p>
                           <p>When a learner gets an answer wrong, we show them:</p>
                           <ul className="mt-2 space-y-1 text-xs">
-                            <li className="flex gap-2"><span className="text-red-500 font-bold flex-shrink-0">â</span><span>Their wrong answer (crossed out in red)</span></li>
-                            <li className="flex gap-2"><span className="text-green-500 font-bold flex-shrink-0">â</span><span>The correct answer (highlighted in green)</span></li>
+                            <li className="flex gap-2"><span className="text-red-500 font-bold flex-shrink-0">✗</span><span>Their wrong answer (crossed out in red)</span></li>
+                            <li className="flex gap-2"><span className="text-green-500 font-bold flex-shrink-0">✓</span><span>The correct answer (highlighted in green)</span></li>
                             <li className="flex gap-2"><span className="text-amber-500 font-bold flex-shrink-0">!</span><span>An explanation of <strong>why</strong> the correct answer is right</span></li>
                           </ul>
                           <p className="mt-2">This is where the real reinforcement happens. They do not just learn the right answer -they understand <strong>why</strong>.</p>
@@ -798,7 +798,7 @@ export default function ExampleLessonPage() {
                     <span className="text-white/40 text-xs">Parents and Guardians</span>
                   </div>
                   <p className="text-white/60 text-xs leading-relaxed">Bullying, grooming and child protection, online safety guidance, drug and alcohol awareness, mental health and eating disorders. Five courses helping parents have the difficult conversations that matter most.</p>
-               </div>
+                </div>
               </div>
 
               <Link href="/packages" className="inline-flex items-center gap-2 bg-teal text-white font-semibold px-8 py-4 rounded-xl hover:bg-teal2 transition-all duration-200 text-lg">

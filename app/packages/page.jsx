@@ -12,74 +12,38 @@ const EXAMPLE_SONGS = {
   early: {
     src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Growing%20Minds%20Early%20Years%20Example.mp3',
     title: "Walk With Your Grown Up",
-    subtitle: 'Ages 4â7 Â· Growing Minds',
+    subtitle: 'Ages 4–7 · Growing Minds',
     lyrics: "Cars and buses zoom so fast,\nSo take good care when roads you pass.\nHold a hand, don't go alone,\nStay with a grown-up you have known.\n\nStop at the edge, stand nice and still,\nLook left, right, left with care and skill.\nListen close -what do you hear?\nA car might be coming very near!\n\nSome are quiet, soft as a breeze,\nElectric cars can sneak with ease.\nFind the lights with stripes so wide,\nThat's the safest place to stride.\n\nWhen the red light makes cars stay,\nWalk with your grown-up all the way.\nStep straight on, don't run or play,\nKeep looking both ways as you go your way.\n\nNever cross where cars are parked,\nIt's hard to see -it's just too dark!\nDrivers can't see little you,\nAnd you can't see the traffic too.\n\nSo stop, look, listen every time,\nAnd stay safe on roads -that's the rhyme!",
   },
   junior: {
     src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Growing%20Minds%20Junior%20Example%20Song%20(1).mp3',
     title: "Private Means Mine",
-    subtitle: 'Ages 8â11 Â· Growing Minds',
+    subtitle: 'Ages 8–11 · Growing Minds',
     lyrics: "The parts of me that no one sees,\nAre mine alone, they belong to me.\nCovered up, that's how it stays,\nNot for others, not for display.\n\nI know what's right, I know the line,\nIf something feels off, I trust the sign.\n\nPrivate means mine, no one decides,\nI choose my space, I set the lines.\nIf it's not for health or care,\nIt's not okay, it's not fair.\nPrivate means mine, I speak it clear,\nIf something's wrong, I tell, I don't disappear.\n\nSometimes care means help or checks,\nParents or doctors with respect.\nThey explain, they don't hide,\nSomeone I trust is there beside.\n\nBut if someone crosses that line for real,\nOr asks for things that don't feel right or real,\nThat's not care, that's not okay,\nI don't stay quiet, I don't delay.\n\nDoesn't matter who they are,\nIf it feels wrong, it's gone too far.\n\nPrivate means mine, no one decides,\nI choose my space, I set the lines.\nIf it's not for health or care,\nIt's not okay, it's not fair.\nPrivate means mine, I speak it clear,\nIf something's wrong, I tell, I don't disappear.\n\nIt's not just touch, it can be words,\nImages, questions that feel absurd.\nIf they ask for pictures or make it strange,\nThat's not normal -that's not a game.\n\nEven if I feel afraid,\nEven if threats are being made,\nI tell someone, I won't hold it in,\nBecause I know I didn't do anything.\n\nPrivate means mine, I stand my ground,\nMy voice is strong, I won't back down.\nIt's not my fault, I did no wrong,\nI speak it out, I stay strong.\n\nPrivate means mine, I make it known,\nI'm not alone -I'm never alone.",
   },
   streetHeadphones: {
     src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Headphones%20Out.mp3',
     title: "Headphones Out",
-    subtitle: 'Ages 12â17 Â· Street Smart',
+    subtitle: 'Ages 12–17 · Street Smart',
     lyrics: "Dark streets, lights are low, gotta see it all,\nShortcut looks fast, but I won't fall.\nStick to main roads, lit up and alive,\nPassing cars, open shops -keep the vibe.\n\nPhone in hand, one ear free,\nListen close, stay alert, that's the key.\nHeadphones out, eyes up, know who's near,\nSituational awareness -my weapon here.\n\nNew place, new route, gotta know the map,\nKnow the exits, the shops, where help is at.\nShare my location, don't wander blind,\nOwn my moves, own my time.\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night -I own the stakes.\n\nFriends split up, got my plan in hand,\nCharged phone, cash, rides I understand.\nEven if it wakes them up, that's fine,\nBetter safe than sorry, every single time.\n\nNew place feels strange, my chest beats fast,\nNervous or unsafe? My gut knows first.\nIf it feels wrong, I step, I go,\nMove toward people, lights, the flow.\n\nRoute I choose, exits I see,\nEvery step, I move strategically.\nNo guessing, no hoping, just playing it smart,\nI hold the map, I hold the chart.\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night -I own the stakes.\n\nEyes up -stay sharp -don't fall!\nMove smart -take charge -own it all!\nCheck exits -keep calm -don't run blind!\nTrust your gut -it's on your side!\n\nLevel up at night, I see it all,\nStay aware, stand tall.\nTrust my gut, don't let it slide,\nI pick the path where I survive.\n\nWell-lit streets, eyes open wide,\nI don't hide, I decide.\nSafety first, every step I take,\nLevel up at night -I own the stakes.",
   },
   streetDontSend: {
     src: "https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Don't%20Send%20it.mp3",
     title: "Don't Send It",
-    subtitle: 'Ages 12â17 Â· Street Smart',
+    subtitle: 'Ages 12–17 · Street Smart',
     lyrics: "[Intro / Hook]\nDon't send it, don't share it\nIf it's private, beware it\nOnce it's out, it's not your call\nRespect yourself, that's the wall\n\n[Verse 1]\nEven if they ask, even if they plead\nEven if they're your age, it's still a bad deed\nThe law's serious, it's not a game\nOne photo shared could ruin your name\n\nPrivate pics? They don't stay private\nScreenshots, leaks, blackmail, they riot\nFriendships fade, trust can break\nOnce it's gone, you can't take it back\n\n[Pre-Chorus]\nNo one who respects you will push you to this\nIf someone pressures, that's a red flag you can't miss\nYour \"no\" is power, it's your shield\nStand strong, don't let them steal\n\n[Hook / Chorus]\nDon't send it, don't share it\nIf it's private, beware it\nOnce it's out, it's not your call\nRespect yourself, that's the wall\n\n[Verse 2]\nManipulators will lie and pretend\nSay they care, act like a friend\nMake you feel guilty, make you doubt\nIt's not love, it's a trap, check it out\n\nIf you've already sent, don't despair\nStop now, get help, there are people who care\nReport it, tell an adult, stay safe online\nYou're not in trouble, it's not a crime\n\n[Bridge]\nYour respect, your choice, your control\nDon't let anyone play that role\nKeep your images, your body, your space\nYou're the boss, you set the pace\n\n[Hook / Chorus]\nDon't send it, don't share it\nIf it's private, beware it\nOnce it's out, it's not your call\nRespect yourself, that's the wall\n\n[Outro]\nSay no, stand tall, keep your line\nYour safety, your rules, your sign\nTrust yourself, you know what's right\nKeep it safe, day and night",
   },
   agingDoorstep: {
     src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Aging%20Wisdom/Example%20Songs/Doorstep%20Doubt.mp3',
     title: "Doorstep Doubt",
-    subtitle: 'Ages 60+ Â· Aging Wisdom',
-    lyrics: "There's a knock upon your door one day,\nA friendly face, some lines to say,\n\"They found a fault,\" \"It can't wait,\"\nThey lean on worry, twist your fate.\nA badge, a smile, a practiced line,\nThey make it sound like perfect timing,\nBut you decide who steps inside,\nThat's your home, your right, your pride.\nIf they're real, they won't pretend,\nThey'll understand you checking themâ¦\n\nDon't let them through the door,\nNot till you know for sure.\nTake your time, make the call,\nCheck the truth behind it all.\nIf they rush you, walk away,\nReal ones don't behave that way.\nStand your ground like you've before,\nDon't let them through the door.\n\n\"Cash today for a better deal,\nTomorrow's price won't be as real,\"\nBut honest work don't fade that fast,\nAnd truth don't fear a question asked.\nIf they sigh when you take your time,\nOr dodge your doubts, or change their line,\nThat's your sign to let it be,\nClose the door and keep your key.\n\nDon't let them through the door,\nYou've seen these tricks before.\nTake your time, don't be swayed,\nTrust the wisdom that you've made.\nYou're not alone, you've got the power,\nTo stop the game within the hour.\nStand your ground forevermore,\nDon't let them through the door.\nYeahâ¦ don't let them throughâ¦\nYou know what to do.",
+    subtitle: 'Ages 60+ · Aging Wisdom',
+    lyrics: "There's a knock upon your door one day,\nA friendly face, some lines to say,\n\"They found a fault,\" \"It can't wait,\"\nThey lean on worry, twist your fate.\nA badge, a smile, a practiced line,\nThey make it sound like perfect timing,\nBut you decide who steps inside,\nThat's your home, your right, your pride.\nIf they're real, they won't pretend,\nThey'll understand you checking them…\n\nDon't let them through the door,\nNot till you know for sure.\nTake your time, make the call,\nCheck the truth behind it all.\nIf they rush you, walk away,\nReal ones don't behave that way.\nStand your ground like you've before,\nDon't let them through the door.\n\n\"Cash today for a better deal,\nTomorrow's price won't be as real,\"\nBut honest work don't fade that fast,\nAnd truth don't fear a question asked.\nIf they sigh when you take your time,\nOr dodge your doubts, or change their line,\nThat's your sign to let it be,\nClose the door and keep your key.\n\nDon't let them through the door,\nYou've seen these tricks before.\nTake your time, don't be swayed,\nTrust the wisdom that you've made.\nYou're not alone, you've got the power,\nTo stop the game within the hour.\nStand your ground forevermore,\nDon't let them through the door.\nYeah… don't let them through…\nYou know what to do.",
   },
   agingNotAlone: {
     src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Aging%20Wisdom/Example%20Songs/Not%20Alone.mp3',
     title: "Not Alone",
-    subtitle: 'Ages 60+ Â· Aging Wisdom',
-    lyrics: "If the blues hang 'round too long,\nThat's not just lifeâthat's not your song,\nSadness comes, then slips away,\nBut this one's here from day to day.\nDon't you brush it off or hide,\nHelp is there right by your side!\n\nYou're not alone, not at all!\nYou're allowed to make that call!\nThere is help, there is light,\nThings can feel good again tonight!\n\nLonely days can weigh you down,\nEven in a busy town,\nBut connection heals the mind,\nOne small step and you will findâ¦\nA friend, a group, a place to go,\nMore support than you may know!\n\nYou're not alone, not at all!\nYou're allowed to make that call!\nLife keeps open every door,\nThere is still so much in store!\n\nIf grief is heavy, let it be,\nTalk about the memory,\nAnd if it grows instead of fades,\nSpeak up early, don't delay.\nPurpose lives in brand-new ways,\nIn learning, giving, active days.\n\nYou're not alone, not at all!\nStand up tall and make that call!\nHelp is near, steady and true,\nThere's a brighter path for you!\nSo swing along and don't forgetâ¦\nThe best days aren't behind you yet",
-  },
-  roamingMove: {
-    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Roaming%20free/Roaming%20Free%20Examples/Move%20With%20Purpose.mp3',
-    title: "Move With Purpose",
-    subtitle: 'All Ages Â· Roaming Free',
-    lyrics: "Step into the city lights,\nLet the rhythm move your pace,\nThere\u2019s a balance in the way you walk,\nA presence in your space.\nYou don\u2019t need to rush the night,\nOr prove that you belong,\nBecause confidence is quiet\nWhen it\u2019s steady, calm, and strong.\nKeep your focus soft but wide,\nTake in what\u2019s around,\nNot every detail needs your thought,\nJust notice sight and sound.\nAnd when you meet a stranger\u2019s smile,\nBe open, but be wise,\nThere\u2019s a difference you can feel\nBetween the truth and disguise.\nIt\u2019s not about suspicion,\nIt\u2019s awareness in your stride,\nA way of moving through the world\nWith nothing left to hide.\nMove with purpose, steady pace,\nLet your presence speak,\nBecause the way you carry yourself\nIs stronger than you think.\nHead up high, eyes awake,\nLet confidence be seen,\nAnd you\u2019ll find the space around you\nStays calmer in between.\nYou\u2019ve walked through years of living,\nYou know more than you say,\nSo trust the way you read a room\nWithout needing to explain.\nYou belong wherever you stand.",
-  },
-  roamingTrust: {
-    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Roaming%20free/Roaming%20Free%20Examples/Trust%20With%20A%20Second%20Look.mp3',
-    title: "Trust With A Second Look",
-    subtitle: 'All Ages Â· Roaming Free',
-    lyrics: "A friendly voice with easy charm,\nA deal too good to miss,\nA helping hand you didn\u2019t ask\u2014\nIt starts a lot like this.\nThey rush the moment forward\nBefore you think it through,\nBecause the space between the steps\nIs where you\u2019d see the truth.\nA taxi with no meter running,\nA guide you never planned,\nA story that keeps changing\nAs it slips right through your hands.\nIt\u2019s not about distrust of all,\nOr shutting every door,\nIt\u2019s simply knowing when to pause\nAnd question just a little more.\nIf it feels too quick, too easy,\nOr just a little strange,\nThat\u2019s your moment to step back\nBefore the terms can change.\nTrust, but take a second look,\nDon\u2019t let hurry lead,\nBecause the calm and careful step\nIs always what you need.\nLet them talk, but keep your ground,\nYou don\u2019t have to agree,\nThe strongest place you stand is where\nYou choose your clarity.\nA \u201cno\u201d can close a thousand doors\nThat shouldn\u2019t open wide,\nAnd peace of mind is worth far more\nThan saving time or pride.\nNot every shortcut leads you forward.",
-  },
-  nestGlass: {
-    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Nest%20breaking/Nest%20Breaking%20Examples/Glass%20Left%20Standing.mp3',
-    title: "Glass Left Standing",
-    subtitle: 'Ages 18+ Â· Nest Breaking',
-    lyrics: "Before the night begins to glow,\nBefore the laughter flows,\nA little thought, a simple plan,\nGoes further than you know.\nWho you\u2019re with and where you go,\nHow you\u2019ll make your way,\nThese quiet steps before the night\nHelp keep the dark at bay.\nEnjoy the night, but know your ground,\nKeep your circle near,\nThe best of times are still the ones\nWhere you feel safe and clear.\n\nA glass left standing all alone\nIs one you leave behind,\nA moment\u2019s cost is nothing next\nTo peace within your mind.\nIf something feels a little off,\nDon\u2019t question what you feel,\nYour body speaks in subtle ways,\nAnd what it says is real.\nEnjoy the night, but know your ground,\nLet wisdom lead the way,\nA thoughtful start, a careful step,\nKeeps trouble far away.",
-  },
-  nestSetWords: {
-    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Nest%20breaking/Nest%20Breaking%20Examples/Set%20Words%20Free.mp3',
-    title: "Set Words Free",
-    subtitle: 'Ages 18+ Â· Nest Breaking',
-    lyrics: "When something weighs upon your mind\nAnd steals your sense of ease,\nIt\u2019s not a burden meant for you\nTo carry silently.\nThere\u2019s strength in saying something,\nIn letting others know,\nBecause the darkest situations\nFade when light is shown.\nHold onto what has happened,\nKeep the proof before it\u2019s gone,\nBecause your voice may be the one\nThat helps another on.\nAnd telling isn\u2019t weakness,\nIt\u2019s courage in its form,\nA quiet act of standing up\nWhen something isn\u2019t right.\nYou don\u2019t have to manage\nEvery storm that comes your way,\nThere are hands that will reach out\nIf you choose to say.\nSpeak it out, let it be heard,\nYou are not alone,\nThere is power in your voice\nAnd strength in what you\u2019ve shown.\nStep by step, you\u2019ll find your ground,\nEven through the strain,\nBecause asking for support\nIs how we rise again.\nAnd someone else may need your voice\nTo find their courage too,\nWhat you choose to say today\nMay guide somebody through.\nYou don\u2019t have to carry it alone.",
-  },
-  familyGuidance: {
-    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Family%20Anchor/Family%20Anchor%20Examples/Guidance.mp3',
-    title: "Guidance",
-    subtitle: 'Parents & Guardians Â· Family Anchor',
-    lyrics: "Mm\u2026\nIt doesn\u2019t stay at school\n\nIt follows home, it doesn\u2019t end\nIt moves through screens, it can extend\nAny hour, any day\nNo distance keeps it away\nMessages that cut and land\nGroups that close on command\nNames repeated, turned to noise\nOr taken from them, voice by voice\nIt spreads fast, it leaves a trace\nIt doesn\u2019t fade like a face\n\nAnd what you don\u2019t always see\nIs how deep it can be\n\nSo hold them close through what they face\nLet them know it\u2019s not their place\nNot their fault, not who they are\nJust something happening too far\nHold them close, stay with them through\nThere\u2019s nothing they did to deserve what\u2019s true\nIt\u2019s what was done, not what they are\nYou guide them through it, from where you are\n\nMm\u2026\nIt follows home\u2026 but so do you",
-  },
-  familyQuietly: {
-    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Family%20Anchor/Family%20Anchor%20Examples/Quietly%20Noticed.mp3',
-    title: "Quietly Noticed",
-    subtitle: 'Parents & Guardians Â· Family Anchor',
-    lyrics: "Mm\u2026\nSometimes they don\u2019t say it\n\nIt\u2019s not just a moment, not just a day\nNot something that simply fades away\nWhen it\u2019s repeated, when it\u2019s planned\nWhen one holds more than the other can\n\nIt\u2019s not every fall-out, not every fight\nBut patterns that settle over time\nAnd if it\u2019s there, it won\u2019t resolve\nWithout someone getting involved\n\nThey won\u2019t always tell you\nNot in words\nSo look a little closer\nAt what\u2019s changed, not what\u2019s said\nThere\u2019s a story in the silence\nIn the spaces left instead\n\nTrust the feeling\nIf something\u2019s not right\nYou don\u2019t need proof\nTo take a closer look\n\nMm\u2026\nSometimes they don\u2019t say it\nBut they show you",
+    subtitle: 'Ages 60+ · Aging Wisdom',
+    lyrics: "If the blues hang 'round too long,\nThat's not just life—that's not your song,\nSadness comes, then slips away,\nBut this one's here from day to day.\nDon't you brush it off or hide,\nHelp is there right by your side!\n\nYou're not alone, not at all!\nYou're allowed to make that call!\nThere is help, there is light,\nThings can feel good again tonight!\n\nLonely days can weigh you down,\nEven in a busy town,\nBut connection heals the mind,\nOne small step and you will find…\nA friend, a group, a place to go,\nMore support than you may know!\n\nYou're not alone, not at all!\nYou're allowed to make that call!\nLife keeps open every door,\nThere is still so much in store!\n\nIf grief is heavy, let it be,\nTalk about the memory,\nAnd if it grows instead of fades,\nSpeak up early, don't delay.\nPurpose lives in brand-new ways,\nIn learning, giving, active days.\n\nYou're not alone, not at all!\nStand up tall and make that call!\nHelp is near, steady and true,\nThere's a brighter path for you!\nSo swing along and don't forget…\nThe best days aren't behind you yet",
   },
 }
 
@@ -89,7 +53,7 @@ const EMOTIONAL_DESCRIPTIONS = {
   roaming: "Whether it is a gap year, a family holiday, or a retirement adventure, the world is full of incredible experiences waiting to be had. Roaming Free gives travellers of all ages the knowledge and confidence to explore on their own terms. From pre-trip preparation and smart packing, through cultural awareness and accommodation know-how, to digital confidence, mental wellbeing abroad, and trusting your instincts in unfamiliar places. Fifteen practical lessons so you travel with confidence, not worry.",
   aging: "They have given us everything. Now the world is changing faster than ever, and staying informed has never mattered more. Aging Wisdom gives older adults the knowledge and confidence to stay independent, make informed decisions, and live well in a world that is always evolving. From practical safety to health, nutrition, legal planning, and digital confidence, these courses treat older adults as the capable people they are.",
   parents: "The most important conversations are not always the easiest ones. Family Anchor gives parents and guardians the language, the understanding, and the confidence to talk to their families about boundaries, wellbeing, and the things that really matter. Because supporting your family starts with being informed.",
-  growing: "Every child deserves to feel safe, and every parent deserves peace of mind. Growing Minds brings together two carefully tailored packages, one for younger children and one for older children, each designed to teach essential safety lessons in a way thatâs age-appropriate, engaging, and empowering. Both the Early Years and Junior packages cover the same core safety topics, but each has been carefully adapted to suit its age group - using age-appropriate language, relatable scenarios, and teaching methods suited to each stage of development, including the sensitive handling of more complex subjects. Because when children understand the world around them, they grow up stronger."
+  growing: "Every child deserves to feel safe, and every parent deserves peace of mind. Growing Minds brings together two carefully tailored packages, one for younger children and one for older children, each designed to teach essential safety lessons in a way that’s age-appropriate, engaging, and empowering. Both the Early Years and Junior packages cover the same core safety topics, but each has been carefully adapted to suit its age group - using age-appropriate language, relatable scenarios, and teaching methods suited to each stage of development, including the sensitive handling of more complex subjects. Because when children understand the world around them, they grow up stronger."
 }
 
 const PKG_GRADIENTS = {
@@ -114,8 +78,8 @@ export default function PackagesPage() {
     setPurchaseModal({ id: packageId, name: packageName, price })
   }
   const toggleExpand = (id) => setExpanded(prev => ({ ...prev, [id]: !prev[id] }))
-  const earlyYearsCourses = COURSES.filter(c => c.pkg === 'growing')
-  const juniorCourses    = COURSES.filter(c => c.pkg === 'growing')
+  const earlyYearsCourses = COURSES.filter(c => c.subPkg === 'growing-early')
+  const juniorCourses    = COURSES.filter(c => c.subPkg === 'growing-junior')
   const otherPackages    = PACKAGES.filter(p => p.id !== 'growing')
 
   return (
@@ -135,7 +99,7 @@ export default function PackagesPage() {
           <div className="bg-gradient-to-r from-green-100 to-emerald-100 border-b border-green-200 px-8 py-5">
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style={{background:'rgba(22,163,74,0.12)'}}>ð±</div>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl" style={{background:'rgba(22,163,74,0.12)'}}>🌱</div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <h2 className="font-serif text-2xl text-navy">Growing Minds</h2>
@@ -159,14 +123,14 @@ export default function PackagesPage() {
           <div className="p-6 grid md:grid-cols-2 gap-4">
             <div className="rounded-xl border border-green-100 bg-green-50/40 p-5">
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-2xl">ð±</span>
+                <span className="text-2xl">🌱</span>
                 <div>
                   <h3 className="font-semibold text-navy text-base">Early Years</h3>
                   <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white inline-block" style={{background:'#16A34A'}}>Ages 4-7</span>
                 </div>
               </div>
               <div className="flex items-start gap-2 bg-amber-50 border border-amber-200/60 rounded-lg px-3 py-2 mb-3">
-                <span className="text-amber-500 text-sm mt-0.5">ð¨âð§</span>
+                <span className="text-amber-500 text-sm mt-0.5">👨‍👧</span>
                 <p className="text-xs text-amber-800 leading-relaxed"><strong>Guided learning</strong> - designed to be completed together with a parent or carer. Simple language written to be read aloud.</p>
               </div>
               <div className="space-y-1.5">
@@ -177,7 +141,7 @@ export default function PackagesPage() {
             </div>
             <div className="rounded-xl border border-green-100 bg-green-50/40 p-5">
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl">ð¿</span>
+                <span className="text-2xl">🌿</span>
                 <div>
                   <h3 className="font-semibold text-navy text-base">Junior</h3>
                   <span className="text-xs font-bold px-2 py-0.5 rounded-full text-white inline-block" style={{background:'#16A34A'}}>Ages 8-11</span>
@@ -193,7 +157,7 @@ export default function PackagesPage() {
           <div id="growing-toggle" className="px-6 pb-2">
             {!expanded['growing'] && (
               <button onClick={() => toggleExpand('growing')} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold text-green-700 hover:text-green-800 py-3 px-4 rounded-lg hover:bg-green-50 transition-all">
-                <span>ð</span>
+                <span>📋</span>
                 <span>See more - courses &amp; lessons included</span>
                 <svg className="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
               </button>
@@ -202,7 +166,7 @@ export default function PackagesPage() {
           {expanded['growing'] && (
             <div className="px-6 pb-4 animate-fadeIn">
               <div className="grid md:grid-cols-2 gap-4">
-                {[{ label: 'Early Years (Ages 4â7)', courses: earlyYearsCourses, emoji: 'ð±' }, { label: 'Junior (Ages 8â11)', courses: juniorCourses, emoji: 'ð¿' }].map(group => (
+                {[{ label: 'Early Years (Ages 4–7)', courses: earlyYearsCourses, emoji: '🌱' }, { label: 'Junior (Ages 8–11)', courses: juniorCourses, emoji: '🌿' }].map(group => (
                   <div key={group.label}>
                     <h4 className="text-sm font-bold text-navy mb-3 flex items-center gap-2"><span>{group.emoji}</span>{group.label}</h4>
                     <div className="space-y-3">
@@ -217,7 +181,7 @@ export default function PackagesPage() {
                             {c.lessons.map((lesson, li) => (
                               <div key={li} className="text-xs text-navy/50 flex items-center gap-1.5">
                                 <span className="w-1 h-1 rounded-full bg-green-400 flex-shrink-0" />
-                                {typeof lesson === 'string' ? lesson : lesson.title}
+                                {lesson.title}
                               </div>
                             ))}
                           </div>
@@ -229,20 +193,20 @@ export default function PackagesPage() {
               </div>
               <div className="pt-3 pb-1 flex justify-center">
                 <button onClick={() => { toggleExpand('growing'); document.getElementById('growing-toggle')?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold text-green-700 hover:text-green-800 py-3 px-4 rounded-lg hover:bg-green-50 transition-all">
-                  <span>ð</span>
+                  <span>📋</span>
                   <span>Show less</span>
                   <svg className="w-4 h-4 rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                 </button>
               </div>
             </div>
           )}
-          {/* ââ Original Songs - Integrated ââ */}
+          {/* ── Original Songs - Integrated ── */}
           <div className="mx-6 mb-4 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#122a4a] p-4 sm:p-5 relative overflow-hidden">
             <div className="relative z-10">
               {/* Header row */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-lg">ðµ</span>
+                  <span className="text-lg">🎵</span>
                   <h3 className="text-white font-semibold text-base">72 Original Songs Built Into Every Lesson</h3>
                 </div>
                 <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-semibold sm:ml-auto" style={{background:'rgba(22,163,74,0.12)',border:'1px solid rgba(22,163,74,0.25)',color:'#16a34a'}}>Exclusive to Growing Minds</span>
@@ -250,15 +214,15 @@ export default function PackagesPage() {
 
               {/* Description */}
               <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                Growing Minds includes <strong className="text-white/80">72 original songs written and produced by HomeSafeEducation</strong> â 37 for Early Years and 35 for Junior. Every lesson features its own song built into the learning material, plus a recap song for each course. For Early Years (ages 4â7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8â11), songs are there to <strong className="text-white/80">sing along and learn independently</strong>.
+                Growing Minds includes <strong className="text-white/80">72 original songs written and produced by HomeSafeEducation</strong> — 37 for Early Years and 35 for Junior. Every lesson features its own song built into the learning material, plus a recap song for each course. For Early Years (ages 4–7), songs are designed to be <strong className="text-white/80">listened to and sung together with a parent or carer</strong>. For Junior (ages 8–11), songs are there to <strong className="text-white/80">sing along and learn independently</strong>.
               </p>
 
               {/* Audio previews side by side */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-sm">ð±</span>
-                    <span className="text-white/70 font-medium text-xs">Early Years Â· Ages 4â7</span>
+                    <span className="text-sm">🌱</span>
+                    <span className="text-white/70 font-medium text-xs">Early Years · Ages 4–7</span>
                   </div>
                   <AudioPlayer
                     src={EXAMPLE_SONGS.early.src}
@@ -271,8 +235,8 @@ export default function PackagesPage() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-sm">ð¿</span>
-                    <span className="text-white/70 font-medium text-xs">Junior Â· Ages 8â11</span>
+                    <span className="text-sm">🌿</span>
+                    <span className="text-white/70 font-medium text-xs">Junior · Ages 8–11</span>
                   </div>
                   <AudioPlayer
                     src={EXAMPLE_SONGS.junior.src}
@@ -293,9 +257,9 @@ export default function PackagesPage() {
                 Buy Growing Minds - {packagePrice('growing')}
               </button>
             ) : (
-              <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">ð Purchases opening soon</span></div>
+              <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
             )}
-            <p className="text-center text-xs text-navy/40 mt-2">One payment Â· 13 courses Â· 72 original songs in lessons Â· Both age groups included</p>
+            <p className="text-center text-xs text-navy/40 mt-2">One payment · 13 courses · 72 original songs in lessons · Both age groups included</p>
           </div>
         </div>
 
@@ -334,7 +298,7 @@ export default function PackagesPage() {
                 <div id={`${pkg.id}-toggle`}>
                   {!expanded[pkg.id] && (
                     <button onClick={() => toggleExpand(pkg.id)} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold py-3 mb-4 rounded-lg transition-all hover:opacity-90" style={{ color: gradient.accent, backgroundColor: gradient.accentBg }}>
-                      <span>ð</span>
+                      <span>📋</span>
                       <span>See more - courses &amp; lessons included</span>
                       <svg className="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                     </button>
@@ -353,7 +317,7 @@ export default function PackagesPage() {
                           {c.lessons.map((lesson, li) => (
                             <div key={li} className="text-xs text-navy/50 flex items-center gap-1.5">
                               <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: gradient.accent }} />
-                              {typeof lesson === 'string' ? lesson : lesson.title}
+                              {lesson.title}
                             </div>
                           ))}
                         </div>
@@ -361,29 +325,29 @@ export default function PackagesPage() {
                     ))}
                     <div className="pt-1 pb-1 flex justify-center">
                       <button onClick={() => { toggleExpand(pkg.id); document.getElementById(`${pkg.id}-toggle`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }} className="w-full flex items-center justify-center gap-2 text-[15px] font-bold py-3 rounded-lg transition-all hover:opacity-90" style={{ color: gradient.accent, backgroundColor: gradient.accentBg }}>
-                        <span>ð</span>
+                        <span>📋</span>
                         <span>Show less</span>
                         <svg className="w-4 h-4 rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                       </button>
                     </div>
                   </div>
                 )}
-                {/* ââ Street Smart Music Section ââ */}
+                {/* ── Street Smart Music Section ── */}
                 {pkg.id === 'street' && (
                   <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#1a1a2e] p-4 sm:p-5 relative overflow-hidden">
                     <div className="relative z-10">
                       {/* Header */}
                       <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
                         <div className="flex items-center gap-2">
-                          <span className="text-lg">ðµ</span>
+                          <span className="text-lg">🎵</span>
                           <h3 className="text-white font-semibold text-base">30 Original Tracks Built Into Every Lesson</h3>
                         </div>
-                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-purple-500/15 border border-purple-500/25 text-purple-400 font-semibold sm:ml-auto">ð¥· Street Smart Â· Ages 12â17</span>
+                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-purple-500/15 border border-purple-500/25 text-purple-400 font-semibold sm:ml-auto">🥷 Street Smart · Ages 12–17</span>
                       </div>
 
                       {/* Description */}
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
-                        Street Smart includes <strong className="text-white/80">30 original tracks written and produced in-house by HomeSafeEducation</strong>. Every lesson comes with its own song, plus additional tracks to accompany course summaries and reinforce learning. We have produced <strong className="text-white/80">184 original tracks</strong> across all seven packages â from certified nursery rhyme bangers to educational music your teenager will actually want to share with their friends.
+                        Street Smart includes <strong className="text-white/80">30 original tracks written and produced in-house by HomeSafeEducation</strong>. Every lesson comes with its own song, plus additional tracks to accompany course summaries and reinforce learning. We have produced <strong className="text-white/80">122 original tracks</strong> across the Growing Minds, Street Smart, and Aging Wisdom packages — from certified nursery rhyme bangers to educational music your teenager will actually want to share with their friends.
                       </p>
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
                         We don&apos;t teach through fear - we want to <strong className="text-white/80">empower youth with knowledge</strong> so they can decide to make safe choices. We don&apos;t teach with narratives or agendas, we teach with renowned and tested professional safety advice.
@@ -393,8 +357,8 @@ export default function PackagesPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
                           <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm">ð¥·</span>
-                            <span className="text-white/70 font-medium text-xs">Street Smart Â· Ages 12â17</span>
+                            <span className="text-sm">🥷</span>
+                            <span className="text-white/70 font-medium text-xs">Street Smart · Ages 12–17</span>
                           </div>
                           <AudioPlayer
                             src={EXAMPLE_SONGS.streetHeadphones.src}
@@ -407,8 +371,8 @@ export default function PackagesPage() {
                         </div>
                         <div>
                           <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm">ð¥·</span>
-                            <span className="text-white/70 font-medium text-xs">Street Smart Â· Ages 12â17</span>
+                            <span className="text-sm">🥷</span>
+                            <span className="text-white/70 font-medium text-xs">Street Smart · Ages 12–17</span>
                           </div>
                           <AudioPlayer
                             src={EXAMPLE_SONGS.streetDontSend.src}
@@ -423,122 +387,22 @@ export default function PackagesPage() {
                     </div>
                   </div>
                 )}
-                {/* ââ Nest Breaking Music Section ââ */}
-                {pkg.id === 'nest' && (
-                  <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#1a1a2e] p-4 sm:p-5 relative overflow-hidden">
-                    <div className="relative z-10">
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                        <div className="flex items-center gap-2">
-                          <span className="text-lg">ðµ</span>
-                          <h3 className="text-white font-semibold text-base">17 Original Songs Built Into Every Lesson</h3>
-                        </div>
-                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-sky-500/15 border border-sky-500/25 text-sky-400 font-semibold sm:ml-auto">ð  Nest Breaking Â· Ages 18+</span>
-                      </div>
-                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
-                        Nest Breaking includes <strong className="text-white/80">17 original songs written and produced in-house by HomeSafeEducation</strong>. Every lesson comes with its own song, plus a recap song for each course. From home safety and financial awareness to nightlife, consent, and digital identity â each topic has its own track.
-                      </p>
-                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                        We don&apos;t teach through fear. We <strong className="text-white/80">empower young adults with knowledge and confidence</strong> for every step into independence.
-                      </p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm">ð </span>
-                            <span className="text-white/70 font-medium text-xs">Nest Breaking Â· Nightlife Safety</span>
-                          </div>
-                          <AudioPlayer
-                            src={EXAMPLE_SONGS.nestGlass.src}
-                            title={EXAMPLE_SONGS.nestGlass.title}
-                            subtitle={EXAMPLE_SONGS.nestGlass.subtitle}
-                            lyrics={EXAMPLE_SONGS.nestGlass.lyrics}
-                            variant="lesson"
-                            accentColor="#0284C7"
-                          />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm">ð </span>
-                            <span className="text-white/70 font-medium text-xs">Nest Breaking Â· Reporting & Support</span>
-                          </div>
-                          <AudioPlayer
-                            src={EXAMPLE_SONGS.nestSetWords.src}
-                            title={EXAMPLE_SONGS.nestSetWords.title}
-                            subtitle={EXAMPLE_SONGS.nestSetWords.subtitle}
-                            lyrics={EXAMPLE_SONGS.nestSetWords.lyrics}
-                            variant="lesson"
-                            accentColor="#0284C7"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {/* ââ Roaming Free Music Section ââ */}
-                {pkg.id === 'roaming' && (
-                  <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#1a1a2e] p-4 sm:p-5 relative overflow-hidden">
-                    <div className="relative z-10">
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                        <div className="flex items-center gap-2">
-                          <span className="text-lg">ðµ</span>
-                          <h3 className="text-white font-semibold text-base">20 Original Songs Built Into Every Lesson</h3>
-                        </div>
-                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-orange-500/15 border border-orange-500/25 text-orange-400 font-semibold sm:ml-auto">âï¸ Roaming Free Â· All Ages</span>
-                      </div>
-                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
-                        Roaming Free includes <strong className="text-white/80">20 original songs written and produced in-house by HomeSafeEducation</strong>. Every lesson comes with its own song, plus a recap song for each course. From travel preparation and scam awareness to health, emergencies, and digital security abroad â each topic has its own track.
-                      </p>
-                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                        We don&apos;t teach through fear. We <strong className="text-white/80">empower travellers of all ages with knowledge and confidence</strong> to explore the world on their own terms.
-                      </p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm">âï¸</span>
-                            <span className="text-white/70 font-medium text-xs">Roaming Free Â· Personal Safety</span>
-                          </div>
-                          <AudioPlayer
-                            src={EXAMPLE_SONGS.roamingMove.src}
-                            title={EXAMPLE_SONGS.roamingMove.title}
-                            subtitle={EXAMPLE_SONGS.roamingMove.subtitle}
-                            lyrics={EXAMPLE_SONGS.roamingMove.lyrics}
-                            variant="lesson"
-                            accentColor="#EA580C"
-                          />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm">âï¸</span>
-                            <span className="text-white/70 font-medium text-xs">Roaming Free Â· Scam Awareness</span>
-                          </div>
-                          <AudioPlayer
-                            src={EXAMPLE_SONGS.roamingTrust.src}
-                            title={EXAMPLE_SONGS.roamingTrust.title}
-                            subtitle={EXAMPLE_SONGS.roamingTrust.subtitle}
-                            lyrics={EXAMPLE_SONGS.roamingTrust.lyrics}
-                            variant="lesson"
-                            accentColor="#EA580C"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {/* ââ Aging Wisdom Music Section ââ */}
+                {/* ── Aging Wisdom Music Section ── */}
                 {pkg.id === 'aging' && (
                   <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#1a1a2e] p-4 sm:p-5 relative overflow-hidden">
                     <div className="relative z-10">
                       {/* Header */}
                       <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
                         <div className="flex items-center gap-2">
-                          <span className="text-lg">ðµ</span>
-                          <h3 className="text-white font-semibold text-base">25 Original Songs Built Into Every Lesson</h3>
+                          <span className="text-lg">🎵</span>
+                          <h3 className="text-white font-semibold text-base">20 Original Songs Built Into Every Lesson</h3>
                         </div>
-                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-rose-500/15 border border-rose-500/25 text-rose-400 font-semibold sm:ml-auto">ð Aging Wisdom Â· Ages 60+</span>
+                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-rose-500/15 border border-rose-500/25 text-rose-400 font-semibold sm:ml-auto">💐 Aging Wisdom · Ages 60+</span>
                       </div>
 
                       {/* Description */}
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
-                        <em className="text-white/70">&ldquo;They don&apos;t make music like they used to&rdquo;</em> they do, and we have. Aging Wisdom includes <strong className="text-white/80">25 original songs written and produced in-house by HomeSafeEducation</strong> â one for every lesson, plus a recap song for each course. Each song reinforces key messages through warm, memorable melodies designed to make important advice stick. From scam awareness to wellbeing, every topic has its own song.
+                        <em className="text-white/70">&ldquo;They don&apos;t make music like they used to&rdquo;</em> they do, and we have. Aging Wisdom includes <strong className="text-white/80">20 original songs written and produced in-house by HomeSafeEducation</strong>, one for every lesson. Each song reinforces key messages through warm, memorable melodies designed to make important advice stick. From scam awareness to wellbeing, every topic has its own song.
                       </p>
                       <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
                         We don&apos;t teach through fear. We <strong className="text-white/80">empower older adults with knowledge and confidence</strong>, delivered with warmth and respect. These songs are a gift to listen to and a powerful way to remember what matters most.
@@ -548,8 +412,8 @@ export default function PackagesPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         <div>
                           <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm">ð</span>
-                            <span className="text-white/70 font-medium text-xs">Aging Wisdom Â· Scam Awareness</span>
+                            <span className="text-sm">💐</span>
+                            <span className="text-white/70 font-medium text-xs">Aging Wisdom · Scam Awareness</span>
                           </div>
                           <AudioPlayer
                             src={EXAMPLE_SONGS.agingDoorstep.src}
@@ -562,8 +426,8 @@ export default function PackagesPage() {
                         </div>
                         <div>
                           <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm">ð</span>
-                            <span className="text-white/70 font-medium text-xs">Aging Wisdom Â· Mental Wellbeing</span>
+                            <span className="text-sm">💐</span>
+                            <span className="text-white/70 font-medium text-xs">Aging Wisdom · Mental Wellbeing</span>
                           </div>
                           <AudioPlayer
                             src={EXAMPLE_SONGS.agingNotAlone.src}
@@ -578,63 +442,13 @@ export default function PackagesPage() {
                     </div>
                   </div>
                 )}
-                {/* ââ Family Anchor Music Section ââ */}
-                {pkg.id === 'parents' && (
-                  <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#1a1a2e] p-4 sm:p-5 relative overflow-hidden">
-                    <div className="relative z-10">
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
-                        <div className="flex items-center gap-2">
-                          <span className="text-lg">ðµ</span>
-                          <h3 className="text-white font-semibold text-base">20 Original Songs Built Into Every Lesson</h3>
-                        </div>
-                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-fuchsia-500/15 border border-fuchsia-500/25 text-fuchsia-400 font-semibold sm:ml-auto">â Family Anchor Â· Parents &amp; Guardians</span>
-                      </div>
-                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-3">
-                        Family Anchor includes <strong className="text-white/80">20 original songs written and produced in-house by HomeSafeEducation</strong>. Every lesson comes with its own song, plus a recap song for each course. From bullying and grooming awareness to online safety, drug awareness, and mental health â each topic has its own track.
-                      </p>
-                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
-                        We don&apos;t teach through fear. We <strong className="text-white/80">give parents and guardians the language and confidence</strong> to have the conversations that matter most.
-                      </p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm">â</span>
-                            <span className="text-white/70 font-medium text-xs">Family Anchor Â· Bullying Awareness</span>
-                          </div>
-                          <AudioPlayer
-                            src={EXAMPLE_SONGS.familyGuidance.src}
-                            title={EXAMPLE_SONGS.familyGuidance.title}
-                            subtitle={EXAMPLE_SONGS.familyGuidance.subtitle}
-                            lyrics={EXAMPLE_SONGS.familyGuidance.lyrics}
-                            variant="lesson"
-                            accentColor="#a21caf"
-                          />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm">â</span>
-                            <span className="text-white/70 font-medium text-xs">Family Anchor Â· Recognising the Signs</span>
-                          </div>
-                          <AudioPlayer
-                            src={EXAMPLE_SONGS.familyQuietly.src}
-                            title={EXAMPLE_SONGS.familyQuietly.title}
-                            subtitle={EXAMPLE_SONGS.familyQuietly.subtitle}
-                            lyrics={EXAMPLE_SONGS.familyQuietly.lyrics}
-                            variant="lesson"
-                            accentColor="#a21caf"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
 
                 {purchasesEnabled ? (
                   <button onClick={() => openPurchaseModal(pkg.id, pkg.name, packagePrice(pkg.id))} className="w-full font-semibold rounded-xl px-6 py-3 text-center text-white transition-colors" style={{ background: gradient.accent }}>
                     Buy {pkg.name} - {packagePrice(pkg.id)}
                   </button>
                 ) : (
-                  <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">ð Purchases opening soon</span></div>
+                  <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
                 )}
               </div>
             </div>
@@ -646,7 +460,7 @@ export default function PackagesPage() {
           <div className="noise absolute inset-0" />
           <div className="relative z-10 p-8">
             <div className="flex flex-col sm:flex-row items-start gap-5 mb-6">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-teal/20"><span className="hidden sm:inline">ð¨âð©âð§âð¦</span><span className="sm:hidden">ð </span></div>
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-teal/20"><span className="hidden sm:inline">👨‍👩‍👧‍👦</span><span className="sm:hidden">🏠</span></div>
               <div className="flex-1">
                 <div className="chip bg-teal/20 text-teal border border-teal/30 mb-2 text-xs">Best Value</div>
                 <h2 className="font-serif text-2xl text-white mb-1">Family Safety Bundle</h2>
@@ -667,7 +481,7 @@ export default function PackagesPage() {
                 </div>
               ))}
               <div className="text-center p-3 rounded-xl bg-white/5 border border-white/10">
-                <div className="text-lg mb-1">ð±</div>
+                <div className="text-lg mb-1">🌱</div>
                 <div className="text-xs font-medium text-white/70">Growing Minds</div>
               </div>
             </div>
@@ -676,7 +490,7 @@ export default function PackagesPage() {
                 Buy Family Safety Bundle - {packagePrice('bundle')}
               </button>
             ) : (
-              <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">ð Purchases opening soon</span></div>
+              <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
             )}
           </div>
         </div>
@@ -685,7 +499,7 @@ export default function PackagesPage() {
         <div id="complete" className="bg-gradient-to-br from-teal/10 to-navy/5 rounded-2xl border-2 border-teal/30 overflow-hidden relative">
           <div className="p-8">
             <div className="flex flex-col sm:flex-row items-start gap-5 mb-6">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-teal/20">ð</div>
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-teal/20">📚</div>
               <div className="flex-1">
                 <div className="chip bg-navy/10 text-navy border border-navy/20 mb-2 text-xs">Everything Included</div>
                 <h2 className="font-serif text-2xl text-navy mb-1">Complete Library</h2>
@@ -700,7 +514,7 @@ export default function PackagesPage() {
             <p className="text-navy/50 text-sm leading-relaxed mb-6">The Complete Library gives you seven packages to use however you like. Keep some for yourself and gift the rest, or give them all to different family members. You're not locked into one of each - if two people need the same package, that works too. From Growing Minds for your little ones, through Street Smart and Nest Breaking for teens and young adults, Roaming Free for travellers, Aging Wisdom for your parents, and Family Anchor for you. Each person gets their own account, their own dashboard, and their own progress tracking. One purchase, seven packages, total flexibility.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6">
               <div className="text-center p-3 rounded-xl bg-white border border-gray-100">
-                <div className="text-lg mb-1">ð±</div>
+                <div className="text-lg mb-1">🌱</div>
                 <div className="text-xs font-medium text-navy/70">Growing Minds</div>
               </div>
               {PACKAGES.filter(p => p.id !== 'growing').map(pkg => (
@@ -715,7 +529,7 @@ export default function PackagesPage() {
                 Buy Complete Library - {packagePrice('complete')}
               </button>
             ) : (
-              <div className="w-full bg-navy/10 rounded-xl px-6 py-3 text-center"><span className="text-navy/50 font-medium text-sm">ð Purchases opening soon</span></div>
+              <div className="w-full bg-navy/10 rounded-xl px-6 py-3 text-center"><span className="text-navy/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
             )}
           </div>
         </div>
@@ -724,7 +538,7 @@ export default function PackagesPage() {
         <div className="bg-slate rounded-2xl p-8">
           <h2 className="font-serif text-2xl text-navy text-center mb-6">What Every Package Includes</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[['ð','Age-Appropriate Content','Every course designed for its audience, covering the topics that matter most at that stage of life'],['â','Quiz Questions','Reinforce knowledge after every lesson'],['ð','Progress Tracking','Dashboard tracks every lesson you complete'],['ð³','One-Time Payment','No subscription, no hidden fees, no recurring charges']].map(([icon,title,body]) => (
+            {[['📖','Age-Appropriate Content','Every course designed for its audience, covering the topics that matter most at that stage of life'],['✅','Quiz Questions','Reinforce knowledge after every lesson'],['📊','Progress Tracking','Dashboard tracks every lesson you complete'],['💳','One-Time Payment','No subscription, no hidden fees, no recurring charges']].map(([icon,title,body]) => (
               <div key={title} className="bg-white rounded-xl p-5 border border-gray-100 text-center">
                 <div className="text-2xl mb-2">{icon}</div>
                 <div className="font-semibold text-navy text-sm mb-1">{title}</div>
