@@ -21,18 +21,16 @@ export default function AboutPage() {
       {/* Founder Letter */}
       <section className="section-light py-20">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-10">
-            <div className="chip bg-teal/15 text-teal border border-teal/25 inline-block">A Message From Our Founder</div>
-          </div>
 
           <div className="relative bg-white rounded-xl px-8 sm:px-14 py-12"
                style={{
-                 boxShadow: '0 2px 8px rgba(14,165,160,0.10), 0 8px 24px rgba(14,165,160,0.08), 0 0 0 1px rgba(14,165,160,0.06)',
+                 boxShadow: '0 4px 16px rgba(14,165,160,0.18), 0 12px 40px rgba(14,165,160,0.14), 0 0 0 1.5px rgba(14,165,160,0.12)',
+                 transform: 'translateY(-24px)',
                }}>
 
-            <h2 className="font-serif text-2xl text-navy mb-8 text-center tracking-wide">
-              A Message From Our Founder
-            </h2>
+            <div className="text-center mb-8">
+              <div className="chip bg-teal/15 text-teal border border-teal/25 inline-block">A Message From Our Founder</div>
+            </div>
 
             <div className="space-y-5 text-navy/75 text-[1.05rem] leading-[1.85]">
               <p>
