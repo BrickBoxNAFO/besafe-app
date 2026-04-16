@@ -4,13 +4,13 @@ import { stripe } from '@/lib/stripe'
 
 // R2 public download URLs for all 7 music products
 const DOWNLOAD_FILES = {
-  'growing-early': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Growing-Minds-Early-Years-Songs.zip',
-  'growing-junior': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Growing-Minds-Junior-Songs.zip',
-  'street': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Street-Smart-Songs.zip',
-  'nest': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Nest-Breaking-Songs.zip',
-  'roaming': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Roaming-Free-Songs.zip',
-  'aging': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Aging-Wisdom-Songs.zip',
-  'parents': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Family-Anchor-Songs.zip',
+  'growing-early': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Music%20Downloads/Growing-Minds-Early-Years-Songs.zip',
+  'growing-junior': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Music%20Downloads/Growing-Minds-Junior-Songs.zip',
+  'street': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Music%20Downloads/Street-Smart-Songs.zip',
+  'nest': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Music%20Downloads/Nest-Breaking-Songs.zip',
+  'roaming': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Music%20Downloads/Roaming-Free-Songs.zip',
+  'aging': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Music%20Downloads/Aging-Wisdom-Songs.zip',
+  'parents': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Music%20Downloads/Family-Anchor-Songs.zip',
 }
 
 export async function GET(request) {
