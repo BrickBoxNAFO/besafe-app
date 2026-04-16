@@ -25,48 +25,39 @@ export default function AboutPage() {
             <div className="chip bg-teal/15 text-teal border border-teal/25 inline-block">A Message From Our Founder</div>
           </div>
 
-          <div style={{ transform: 'rotate(-0.5deg)', transformOrigin: 'center top' }}>
-            <div className="relative bg-[#fdfdf5] rounded-sm px-8 sm:px-14 py-12"
-                 style={{
-                   boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.07), 0 16px 40px rgba(0,0,0,0.08)',
-                   borderTop: '4px solid #e9e4d4',
-                 }}>
-              <div className="absolute top-0 left-0 w-0 h-0"
-                   style={{
-                     borderStyle: 'solid',
-                     borderWidth: '20px 20px 0 0',
-                     borderColor: '#e2dcc8 transparent transparent transparent',
-                   }} />
+          <div className="relative bg-white rounded-xl px-8 sm:px-14 py-12"
+               style={{
+                 boxShadow: '0 2px 8px rgba(14,165,160,0.10), 0 8px 24px rgba(14,165,160,0.08), 0 0 0 1px rgba(14,165,160,0.06)',
+               }}>
 
-              <h2 className="font-serif text-2xl text-navy mb-8 text-center tracking-wide">
-                A Message From Our Founder
-              </h2>
+            <h2 className="font-serif text-2xl text-navy mb-8 text-center tracking-wide">
+              A Message From Our Founder
+            </h2>
 
-              <div className="space-y-5 font-serif text-navy/80 text-[1.05rem] leading-relaxed">
-                <p>
-                  HomeSafeEducation started with a simple question: as a father, I asked myself, why does nobody teach this stuff properly?
-                </p>
-                <p>
-                  We teach children to read, to count, to pass exams. But we rarely teach them how to stay safe online, or about body safety, or what to do if something does not feel right. We send teenagers into the world with qualifications but without the practical knowledge to navigate it confidently. We watch our parents age without ever having a conversation about scams, advance planning, or digital confidence.
-                </p>
-                <p>
-                  Fear is the most powerful force in selling. I made myself a promise that selling through fear will never be part of what we do at HomeSafeEducation. We will always sell with love, providing people the means to give something special to their families, themselves, and the people they care about: self protection, self confidence, and the knowledge to make informed decisions at every stage of life.
-                </p>
-                <p>
-                  I built this platform because I wanted that knowledge to exist in one place, written properly, for every age group. Not watered down or avoiding serious topics, but said in a way that is age-appropriate and relevant so it can be taught to anyone. Not full of fear. Just honest, practical education that treats every person, whether they are five or seventy-five, as someone capable of learning and making good decisions.
-                </p>
-                <p>
-                  Every course is written to empower. Every lesson ends with something you can actually use. Every quiz reinforces what you have learned. And every song, for the packages that include them, is written and produced in-house, because I believe learning should be memorable, not miserable.
-                </p>
-                <p>
-                  This is the education I now give to my own family. That is the standard I hold it to, and that is the standard it will always be.
-                </p>
-              </div>
+            <div className="space-y-5 font-serif text-navy/80 text-[1.05rem] leading-relaxed">
+              <p>
+                HomeSafeEducation started with a simple question: as a father, I asked myself, why does nobody teach this stuff properly?
+              </p>
+              <p>
+                We teach children to read, to count, to pass exams. But we rarely teach them how to stay safe online, or about body safety, or what to do if something does not feel right. We send teenagers into the world with qualifications but without the practical knowledge to navigate it confidently. We watch our parents age without ever having a conversation about scams, advance planning, or digital confidence.
+              </p>
+              <p>
+                Fear is the most powerful force in selling. I made myself a promise that selling through fear will never be part of what we do at HomeSafeEducation. We will always sell with love, providing people the means to give something special to their families, themselves, and the people they care about: self protection, self confidence, and the knowledge to make informed decisions at every stage of life.
+              </p>
+              <p>
+                I built this platform because I wanted that knowledge to exist in one place, written properly, for every age group. Not watered down or avoiding serious topics, but said in a way that is age-appropriate and relevant so it can be taught to anyone. Not full of fear. Just honest, practical education that treats every person, whether they are five or seventy-five, as someone capable of learning and making good decisions.
+              </p>
+              <p>
+                Every course is written to empower. Every lesson ends with something you can actually use. Every quiz reinforces what you have learned. And every song, for the packages that include them, is written and produced in-house, because I believe learning should be memorable, not miserable.
+              </p>
+              <p>
+                This is the education I now give to my own family. That is the standard I hold it to, and that is the standard it will always be.
+              </p>
+            </div>
 
-              <div className="mt-10 pt-6 border-t border-[#e2dcc8]">
-                <p style={{ fontFamily: "'Dancing Script', cursive", color: '#0EA5A0', fontSize: '2rem', lineHeight: 1.2, marginBottom: '0.25rem' }}>Brick</p>
-                <p className="text-navy/50 text-sm">Founder, HomeSafeEducation</p>
-              </div>
+            <div className="mt-10 pt-6 border-t border-gray-100 text-center">
+              <p style={{ fontFamily: "'Dancing Script', cursive", color: '#0EA5A0', fontSize: '2rem', lineHeight: 1.2, marginBottom: '0.25rem' }}>Brick</p>
+              <p className="text-navy/50 text-sm">Founder, HomeSafeEducation</p>
             </div>
           </div>
         </div>
