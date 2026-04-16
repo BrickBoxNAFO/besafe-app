@@ -16,57 +16,19 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <section className="section-light py-20">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="prose prose-lg text-navy/70 leading-relaxed space-y-6">
-            <p>
-              HomeSafeEducation exists because safety knowledge should be accessible to every family — not locked behind expensive consultants or buried in confusing guidance. Our courses are built to give real people the awareness and confidence to protect themselves and the people they love.
-            </p>
-            <p>
-              Every package is built around a specific life stage, because the threats facing a 7-year-old are entirely different from those facing a 72-year-old. Our courses are written by safety professionals and education specialists, and reviewed to ensure they are accurate, current, and genuinely useful.
-            </p>
-            <p>
-              We believe that knowing what to do — before something happens — is one of the most powerful things a person can have. Our mission is to put that knowledge within reach of every family, at a price that reflects its value without being a barrier to access.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="section-slate py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              ['5', 'Specialist Packages'],
-              ['25', 'Safety Subjects'],
-              ['250', 'In-depth Lessons'],
-              ['1,250', 'Quiz Questions'],
-            ].map(([n, l]) => (
-              <div key={l} className="text-center bg-white rounded-2xl p-6 border border-gray-100">
-                <div className="font-serif text-4xl text-navy mb-1">{n}</div>
-                <div className="text-navy/50 text-sm">{l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Founder Letter */}
+      {/* Founder Letter — directly below hero */}
       <section className="section-light py-20">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-10">
             <div className="chip bg-navy/10 text-navy border border-navy/20 inline-block">A Message From Our Founder</div>
           </div>
 
-          {/* Paper card */}
           <div style={{ transform: 'rotate(-0.5deg)', transformOrigin: 'center top' }}>
             <div className="relative bg-[#fdfdf5] rounded-sm px-8 sm:px-14 py-12"
                  style={{
-                   boxShadow:
-                     '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.07), 0 16px 40px rgba(0,0,0,0.08)',
+                   boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.07), 0 16px 40px rgba(0,0,0,0.08)',
                    borderTop: '4px solid #e9e4d4',
                  }}>
-              {/* Subtle top-left fold */}
               <div className="absolute top-0 left-0 w-0 h-0"
                    style={{
                      borderStyle: 'solid',
@@ -99,12 +61,47 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Signature */}
               <div className="mt-10 pt-6 border-t border-[#e2dcc8]">
                 <p className="font-serif text-navy text-2xl italic mb-1">Brick</p>
                 <p className="text-navy/50 text-sm">Founder, HomeSafeEducation</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About body */}
+      <section className="section-slate py-20">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="prose prose-lg text-navy/70 leading-relaxed space-y-6">
+            <p>
+              HomeSafeEducation exists because safety knowledge should be accessible to every family — not locked behind expensive consultants or buried in confusing guidance. Our courses are built to give real people the awareness and confidence to protect themselves and the people they love.
+            </p>
+            <p>
+              Every package is built around a specific life stage, because the threats facing a 7-year-old are entirely different from those facing a 72-year-old. Our courses are written by safety professionals and education specialists, and reviewed to ensure they are accurate, current, and genuinely useful.
+            </p>
+            <p>
+              We believe that knowing what to do — before something happens — is one of the most powerful things a person can have. Our mission is to put that knowledge within reach of every family, at a price that reflects its value without being a barrier to access.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="section-light py-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              ['5', 'Specialist Packages'],
+              ['25', 'Safety Subjects'],
+              ['250', 'In-depth Lessons'],
+              ['1,250', 'Quiz Questions'],
+            ].map(([n, l]) => (
+              <div key={l} className="text-center bg-white rounded-2xl p-6 border border-gray-100">
+                <div className="font-serif text-4xl text-navy mb-1">{n}</div>
+                <div className="text-navy/50 text-sm">{l}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
