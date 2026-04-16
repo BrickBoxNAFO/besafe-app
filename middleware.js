@@ -1,21 +1,34 @@
+import { createClient } from '@/utils/supabase/middleware'
 import { NextResponse } from 'next/server'
 
-// PASSTHROUGH MIDDLEWARE — intentionally does NOT call Supabase.
+// Canonical Supabase SSR pattern:
+// Middleware's ONLY job is to refresh the session. It does NOT do auth checks
+// or redirects — pages handle their own auth via getUser() in server components.
 //
-// Why: @supabase/ssr at the Edge runtime (where Next.js middleware runs)
-// has a bug where calling getUser() can rotate / wipe session cookies when
-// the library's internal token refresh doesn't round-trip cleanly. That
-// causes users to get logged out on navigation.
+// This matters because Next.js server components CANNOT reliably write cookies
+// (cookieStore.set() throws, and @supabase/ssr's setAll handler catches silently).
+// If server components trigger a token refresh, the new cookies are lost and
+// the browser keeps sending now-invalidated old cookies on the next request —
+// which is why clicking any link was logging users out.
 //
-// Pages protect themselves: /dashboard, /course/[id], /lesson/[...], /account,
-// /library all call supabase.auth.getUser() server-side and redirect to /login
-// if there's no user. Middleware auth checking is redundant, so we skip it.
-export function middleware(request) {
-  return NextResponse.next()
+// Middleware, on the other hand, CAN write cookies. So we do the refresh here,
+// which updates both the request (for this request's server components) and the
+// response (for the browser). Server components' subsequent getUser() calls
+// just validate — no refresh, no cookie rotation, no data loss.
+export async function middleware(request) {
+  try {
+    const { supabase, supabaseResponse } = createClient(request)
+    // Refresh the session. supabaseResponse gets the new cookies on its way
+    // back to the browser, and request.cookies are updated for this request.
+    await supabase.auth.getUser()
+    return supabaseResponse
+  } catch (e) {
+    // If Supabase SSR fails for any reason at the Edge runtime, never redirect.
+    // Just pass the request through — pages will handle auth themselves.
+    return NextResponse.next()
+  }
 }
 
-// Matcher kept narrow — middleware only runs where it's needed, which is
-// effectively nowhere now. We leave a harmless matcher so the file is valid.
 export const config = {
-  matcher: ['/__noop__'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|api/stripe-webhook).*)'],
 }
