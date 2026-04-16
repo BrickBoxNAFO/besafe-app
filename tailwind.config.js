@@ -20,7 +20,21 @@ module.exports = {
         serif: ['"DM Serif Display"', 'Georgia', 'serif'],
         sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': '#334155',
+            '--tw-prose-headings': '#0B1F3A',
+            '--tw-prose-links': '#0EA5A0',
+            '--tw-prose-bold': '#0B1F3A',
+            '--tw-prose-quotes': '#0B1F3A',
+            '--tw-prose-quote-borders': '#0EA5A0',
+            '--tw-prose-bullets': '#0EA5A0',
+            maxWidth: 'none',
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
