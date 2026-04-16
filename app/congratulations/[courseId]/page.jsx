@@ -145,6 +145,13 @@ export default function CongratulationsPage() {
         if (!allPassed) { router.push('/course/' + params.courseId); return }
       }
       setVerified(true)
+
+      // Fire course completion email (best-effort, don't block the page)
+      fetch('/api/course-complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseId: params.courseId }),
+      }).catch(() => {}) // silent — email is a bonus, not critical
     }
     checkAccess()
     const t = setTimeout(() => setShowConfetti(false), 5000)

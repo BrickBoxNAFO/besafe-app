@@ -2,17 +2,15 @@ import { NextResponse } from 'next/server'
 import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { stripe } from '@/lib/stripe'
 
-// Public R2 URLs for each music product ZIP. The original 4 packages are served
-// from `/Site Music/Music Downloads/`; the 3 newer packages (nest, roaming,
-// parents) were uploaded directly into the root `/Music Downloads/` folder.
+// R2 public download URLs for all 7 music products
 const DOWNLOAD_FILES = {
-  'growing-early':  'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Growing-Minds-Early-Years-Songs.zip',
+  'growing-early': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Growing-Minds-Early-Years-Songs.zip',
   'growing-junior': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Growing-Minds-Junior-Songs.zip',
-  'street':         'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Street-Smart-Songs.zip',
-  'aging':          'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Aging-Wisdom-Songs.zip',
-  'nest':           'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Music%20Downloads/Nest-Breaking-Songs.zip',
-  'roaming':        'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Music%20Downloads/Roaming-Free-Songs.zip',
-  'parents':        'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Music%20Downloads/Family-Anchor-Songs.zip',
+  'street': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Street-Smart-Songs.zip',
+  'nest': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Nest-Breaking-Songs.zip',
+  'roaming': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Roaming-Free-Songs.zip',
+  'aging': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Aging-Wisdom-Songs.zip',
+  'parents': 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/Music%20Downloads/Family-Anchor-Songs.zip',
 }
 
 export async function GET(request) {
@@ -20,7 +18,6 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url)
     const product = searchParams.get('product')
     const sessionId = searchParams.get('session_id')
-    const userId = searchParams.get('user_id')
 
     if (!product) {
       return NextResponse.json(
@@ -37,26 +34,22 @@ export async function GET(request) {
       )
     }
 
-    // If session_id provided, verify purchase and log it
+    // If session_id provided, verify the purchase is paid before allowing download
     if (sessionId) {
       try {
         const session = await stripe.checkout.sessions.retrieve(sessionId)
-        if (session.payment_status === 'paid' && session.metadata?.user_id) {
-          const supabase = createAdminClient(
-            process.env.NEXT_PUBLIC_SUPABASE_URL,
-            process.env.SUPABASE_SERVICE_ROLE_KEY
+        if (session.payment_status !== 'paid') {
+          return NextResponse.json(
+            { error: 'Payment not completed' },
+            { status: 403 }
           )
-
-          // Log the download access
-          await supabase.from('music_purchases').insert({
-            user_id: session.metadata.user_id,
-            product_id: product,
-            stripe_session_id: sessionId,
-            created_at: new Date().toISOString(),
-          }).catch(e => console.error('DB logging error:', e))
         }
       } catch (error) {
         console.error('Session verification error:', error)
+        return NextResponse.json(
+          { error: 'Could not verify purchase' },
+          { status: 403 }
+        )
       }
     }
 

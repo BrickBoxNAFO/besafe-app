@@ -20,6 +20,11 @@ function MusicSuccessContent() {
   const productId = searchParams.get('product')
   const productName = PRODUCT_NAMES[productId] || 'Song Collection'
 
+  // Build download URL with both product and session_id for verification
+  const downloadHref = productId && sessionId
+    ? `/api/music-download?product=${encodeURIComponent(productId)}&session_id=${encodeURIComponent(sessionId)}`
+    : null
+
   return (
     <main className="min-h-screen bg-slate flex items-center justify-center px-4">
       <div className="max-w-lg w-full text-center">
@@ -44,9 +49,9 @@ function MusicSuccessContent() {
           </p>
 
           <div className="space-y-3">
-            {sessionId && (
+            {downloadHref && (
               <a
-                href={`/api/music-download?session_id=${encodeURIComponent(sessionId)}`}
+                href={downloadHref}
                 className="btn-primary justify-center w-full text-center"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,10 +66,15 @@ function MusicSuccessContent() {
           </div>
         </div>
 
-        {/* Help */}
-        <p className="text-navy/40 text-sm">
-          Having trouble? <Link href="/contact" className="text-teal hover:underline">Contact support</Link>
-        </p>
+        {/* Help + email note */}
+        <div className="space-y-2">
+          <p className="text-navy/50 text-sm">
+            We have also sent a confirmation email with your download link, so you can re-download any time.
+          </p>
+          <p className="text-navy/40 text-sm">
+            Having trouble? <Link href="/contact" className="text-teal hover:underline">Contact support</Link>
+          </p>
+        </div>
       </div>
     </main>
   )
