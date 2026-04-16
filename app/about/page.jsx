@@ -34,7 +34,7 @@ export default function AboutPage() {
               A Message From Our Founder
             </h2>
 
-            <div className="space-y-5 font-serif text-navy/80 text-[1.05rem] leading-relaxed">
+            <div className="space-y-5 text-navy/75 text-[1.05rem] leading-[1.85]">
               <p>
                 HomeSafeEducation started with a simple question: as a father, I asked myself, why does nobody teach this stuff properly?
               </p>
