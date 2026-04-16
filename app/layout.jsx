@@ -1,8 +1,10 @@
 import './globals.css'
+import { Suspense } from 'react'
 import { cookies } from 'next/headers'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { PricingProvider } from '@/components/PricingProvider'
+import ScrollToTop from '@/components/ScrollToTop'
 
 export const metadata = {
   title: 'HomeSafeEducation — Practical Life Skills for Every Age',
@@ -35,6 +37,10 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body>
         <PricingProvider>
+          {/* Snap scroll to top on every route change (useSearchParams must be inside Suspense in Next 14). */}
+          <Suspense fallback={null}>
+            <ScrollToTop />
+          </Suspense>
           <Nav initialLoggedIn={hasAuthCookie} />
           <main>{children}</main>
           <Footer />

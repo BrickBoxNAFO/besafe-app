@@ -334,7 +334,10 @@ export default function AffiliatesPage() {
               </a>
             </div>
             <p className="text-white/40 text-xs mt-6">
-              Questions? Email <Link href="/contact" className="text-white/60 underline hover:text-white">the HomeSafeEducation team</Link>.
+              By signing up you agree to our{' '}
+              <Link href="/affiliates/terms" className="text-white/60 underline hover:text-white">Affiliate Terms &amp; Conditions</Link>.
+              Questions? Email{' '}
+              <Link href="/contact" className="text-white/60 underline hover:text-white">the HomeSafeEducation team</Link>.
             </p>
           </div>
         </div>
