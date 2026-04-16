@@ -60,6 +60,26 @@ function packageFor(post) {
   return 'parents';
 }
 
+/* ---------- Split content at the middle </p> so we can insert a thin in-article CTA ---------- */
+function splitAtMiddleParagraph(html) {
+  if (!html) return [html || '', ''];
+  const closes = [];
+  const re = /<\/p>/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) closes.push(m.index + m[0].length);
+  // Need at least a few paragraphs to justify a mid-article break
+  if (closes.length < 4) return [html, ''];
+  // Pick the paragraph closest to the true midpoint of the HTML string
+  const mid = Math.floor(html.length / 2);
+  let best = closes[0];
+  let bestDelta = Math.abs(best - mid);
+  for (const pos of closes) {
+    const d = Math.abs(pos - mid);
+    if (d < bestDelta) { best = pos; bestDelta = d; }
+  }
+  return [html.slice(0, best), html.slice(best)];
+}
+
 /* ---------- Next.js metadata / static params ---------- */
 export async function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -135,9 +155,10 @@ export default function BlogPost({ params }) {
           </p>
         )}
 
-        {/* Body */}
-        <div
-          className="blog-content prose prose-lg max-w-none
+        {/* Body split at the middle paragraph, with a thin in-article CTA inserted between */}
+        {(() => {
+          const [topHtml, bottomHtml] = splitAtMiddleParagraph(post.content || '');
+          const proseClass = `blog-content prose prose-lg max-w-none
             prose-headings:font-serif prose-headings:text-[#0B1F3A] prose-headings:font-bold
             prose-h2:text-[1.75rem] prose-h2:mt-12 prose-h2:mb-5 prose-h2:pb-2 prose-h2:border-b prose-h2:border-slate-200
             prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-[#1B3358]
@@ -145,27 +166,67 @@ export default function BlogPost({ params }) {
             prose-a:text-[#0EA5A0] prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
             prose-strong:text-[#0B1F3A]
             prose-ul:my-5 prose-ol:my-5 prose-li:my-2 prose-li:text-slate-700 prose-li:leading-[1.75]
-            prose-blockquote:border-l-[#0EA5A0] prose-blockquote:bg-slate-100 prose-blockquote:not-italic prose-blockquote:rounded-r-lg prose-blockquote:py-2 prose-blockquote:px-5"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+            prose-blockquote:border-l-[#0EA5A0] prose-blockquote:bg-slate-100 prose-blockquote:not-italic prose-blockquote:rounded-r-lg prose-blockquote:py-2 prose-blockquote:px-5`;
+          return (
+            <>
+              <div className={proseClass} dangerouslySetInnerHTML={{ __html: topHtml }} />
 
-        {/* Package CTA \u2014 dynamic based on article's packageId */}
+              {/* Thin mid-article CTA — compact, brand-coloured, doesn't break reading flow */}
+              {bottomHtml && (
+                <Link
+                  href={`/packages#${pkgId}`}
+                  className="not-prose my-8 flex items-center gap-3 md:gap-4 bg-white hover:bg-slate-50 border-l-4 border-[#0EA5A0] ring-1 ring-slate-200 hover:ring-[#0EA5A0] rounded-r-lg rounded-l-sm pl-4 pr-3 py-3 md:pl-5 md:pr-4 md:py-3.5 shadow-sm hover:shadow transition-all group"
+                >
+                  <div className="flex-shrink-0 w-9 h-9 rounded-full bg-teal-50 flex items-center justify-center ring-1 ring-teal-100">
+                    <svg className="w-4 h-4 text-[#0EA5A0]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[11px] font-semibold uppercase tracking-wider text-[#0EA5A0] leading-tight">
+                      From HomeSafe Education
+                    </div>
+                    <div className="text-[14px] md:text-[15px] text-[#0B1F3A] font-medium leading-snug truncate">
+                      Learn more in our <strong>{pkg.name}</strong> course &mdash; {pkg.tag}
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 inline-flex items-center gap-1 text-[13px] font-semibold text-[#0EA5A0] group-hover:text-[#0B1F3A] whitespace-nowrap">
+                    <span className="hidden sm:inline">Learn more</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </Link>
+              )}
+
+              {bottomHtml && (
+                <div className={proseClass} dangerouslySetInnerHTML={{ __html: bottomHtml }} />
+              )}
+            </>
+          );
+        })()}
+
+        {/* Package CTA — dynamic based on article's packageId */}
         <aside className="mt-14 rounded-2xl overflow-hidden shadow-xl ring-1 ring-[#0B1F3A]/10">
           <div className="relative bg-gradient-to-br from-[#0B1F3A] via-[#122a4d] to-[#0B1F3A] px-6 py-10 md:px-10 md:py-12 text-center">
-            {/* Shield icon */}
-            <div className="mx-auto w-10 h-10 mb-4 flex items-center justify-center rounded-full ring-1 ring-white/20">
-              <svg className="w-5 h-5 text-white/80" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" />
-              </svg>
-            </div>
+            {/* HomeSafe Education wordmark (matches site nav) */}
+            <Link href="/" className="inline-block mb-5">
+              <span
+                className="text-2xl md:text-[1.65rem] font-bold tracking-tight leading-none"
+                style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
+              >
+                <span className="text-white">HomeSafe</span>
+                <span className="text-[#E8703A]">Education</span>
+              </span>
+            </Link>
             <h3 className="font-serif text-white text-2xl md:text-[1.75rem] leading-tight mb-3">
               Expert Safety Education For Every Generation
             </h3>
             <p className="text-white/80 text-[15px] md:text-base max-w-xl mx-auto leading-relaxed mb-2">
-              Our <strong className="text-white font-semibold">{pkg.name}</strong> course {pkg.blurb.replace(/^Our [^\u2014]+\u2014\s*/, '').replace(/^Our [^.]+\.?\s*/, '').trim() || pkg.tagline.toLowerCase() + '.'}
+              Our <strong className="text-white font-semibold">{pkg.name}</strong> course &mdash; {pkg.tagline.toLowerCase()}.
             </p>
             <p className="text-white/50 text-sm max-w-lg mx-auto mb-7">
-              Take a course yourself \u2014 or give one as a gift to your child, teenager, or elderly parent.
+              Take a course yourself &mdash; or give one as a gift to your child, teenager, or elderly parent.
             </p>
             <Link
               href={`/packages#${pkgId}`}
