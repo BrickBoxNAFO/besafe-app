@@ -7,6 +7,21 @@ import { COURSES, PACKAGES } from '@/lib/data'
 import SONGS, { getAudioUrl } from '@/lib/songs'
 import AudioPlayer from '@/components/AudioPlayer'
 
+// Courses that are the LAST course in their package/sub-package.
+// A certificate is only issued when one of these is completed (and all other
+// courses in the same package are also complete) — so users get exactly one
+// certificate per package, not one per course. Must stay in sync with
+// LAST_COURSE_IN_PACKAGE in /app/congratulations/[courseId]/page.jsx.
+const LAST_COURSE_IDS = new Set([
+  'c35',  // Growing Minds: Early Years
+  'c39',  // Growing Minds: Junior
+  'c38',  // Street Smart
+  'c9',   // Nest Breaking
+  'c15',  // Roaming Free
+  'c20',  // Aging Wisdom
+  'c25',  // Family Anchor
+])
+
 /* ────────────────────────────────────────────
    Parse a lesson's content array into:
    - paragraphs: the teaching content (before quiz)
@@ -264,18 +279,59 @@ export default function LessonPage() {
           passedLessons.add(lessonIndex)
 
           if (passedLessons.size >= totalLessons) {
-            // All lessons passed — trigger certificate generation
-            const pkgName = pkg?.name || course.title || 'Course'
-            fetch('/api/generate-certificate', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                userId: user.id,
-                courseId: params.courseId,
-                packageId: course.pkg || '',
-                packageName: pkgName,
-              }),
-            }).catch(err => console.error('Certificate generation failed:', err))
+            // All lessons in THIS course passed. Only issue a certificate
+            // when (a) this is the designated "last course" of its package
+            // AND (b) every other course in the same package/sub-package is
+            // also complete. This guarantees exactly one certificate per
+            // package — not one per course.
+            if (LAST_COURSE_IDS.has(params.courseId)) {
+              const siblingCourses = COURSES.filter(c => {
+                if (course.subPkg) return c.subPkg === course.subPkg
+                return c.pkg === course.pkg
+              })
+              const otherCourseIds = siblingCourses
+                .map(c => c.id)
+                .filter(id => id !== params.courseId)
+
+              let packageComplete = true
+              if (otherCourseIds.length > 0) {
+                const { data: pkgProgress } = await supabase
+                  .from('progress')
+                  .select('course_id, lesson_index, passed')
+                  .eq('user_id', user.id)
+                  .in('course_id', otherCourseIds)
+
+                // For each sibling course, confirm every lesson is passed
+                for (const sibling of siblingCourses) {
+                  if (sibling.id === params.courseId) continue
+                  const total = sibling.lessons?.length || 0
+                  if (total === 0) continue
+                  const passedForSibling = new Set(
+                    (pkgProgress || [])
+                      .filter(r => r.course_id === sibling.id && r.passed)
+                      .map(r => r.lesson_index)
+                  )
+                  if (passedForSibling.size < total) {
+                    packageComplete = false
+                    break
+                  }
+                }
+              }
+
+              if (packageComplete) {
+                const pkgName = pkg?.name || course.title || 'Course'
+                fetch('/api/generate-certificate', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    userId: user.id,
+                    courseId: params.courseId,
+                    packageId: course.pkg || '',
+                    packageName: pkgName,
+                  }),
+                }).catch(err => console.error('Certificate generation failed:', err))
+              }
+            }
           }
         } catch (err) {
           console.error('Course completion check failed:', err)

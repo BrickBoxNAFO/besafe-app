@@ -46,17 +46,42 @@ const MUSIC_PRODUCTS = {
     color: '#E11D48',
     gradient: 'from-rose-500 to-pink-700',
   },
+  'nest': {
+    name: 'Nest Breaking',
+    songs: 20,
+    desc: 'The songs that carried you through the course — written for young adults stepping into life on their own. Download them all to keep listening on any device, anytime.',
+    emoji: '🦅',
+    color: '#7C3AED',
+    gradient: 'from-violet-500 to-purple-700',
+  },
+  'roaming': {
+    name: 'Roaming Free',
+    songs: 24,
+    desc: 'Travel-ready tracks from every Roaming Free lesson — made for long journeys, airport lounges, and everywhere in between. Download them all and play them on any device, anywhere.',
+    emoji: '✈️',
+    color: '#0EA5E9',
+    gradient: 'from-sky-500 to-blue-700',
+  },
+  'parents': {
+    name: 'Family Anchor',
+    songs: 24,
+    desc: 'The songs from the Family Anchor course — memorable, family-friendly tracks that reinforce every lesson across every age group. Download them all to play on any device at home, in the car, wherever you are.',
+    emoji: '⚓',
+    color: '#E8703A',
+    gradient: 'from-orange-500 to-amber-700',
+  },
 }
 
-// Last course ID for each package/sub-package — triggers certificate + music upsell
+// Last course ID for each package/sub-package — triggers certificate + music upsell.
+// The value is the music product ID for the upsell (or null to show certificate-only).
 const LAST_COURSE_IN_PACKAGE = {
-  'c35':  'growing-early',   // last Early Years course
-  'c39':  'growing-junior',  // last Junior course
-  'c38':  'street',          // last Street Smart course
-  'c9':   null,              // last Nest Breaking course (no music)
-  'c15':  null,              // last Roaming Free course (no music)
+  'c35':  'growing-early',    // last Early Years course
+  'c39':  'growing-junior',   // last Junior course
+  'c38':  'street',           // last Street Smart course
+  'c9':   'nest',             // last Nest Breaking course
+  'c15':  'roaming',          // last Roaming Free course
   'c20':  'aging',            // last Aging Wisdom course
-  'c25':  null,              // last Family Anchor course (no music)
+  'c25':  'parents',          // last Family Anchor course
 }
 
 // Resolve which music product a course belongs to — only for the last course in each package
