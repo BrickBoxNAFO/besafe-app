@@ -26,14 +26,17 @@ export default function Nav() {
   }
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user)
-      if (user) loadDashboardRoute(user.id)
+    // getSession reads from local storage immediately — no server round trip
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      const u = session?.user ?? null
+      setUser(u)
+      if (u) loadDashboardRoute(u.id)
     })
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
-      setUser(session?.user ?? null)
-      if (session?.user) loadDashboardRoute(session.user.id)
-      else setDashboardHref('/dashboard')
+      const u = session?.user ?? null
+      setUser(u)
+      if (u) loadDashboardRoute(u.id)
+      else { setDashboardHref('/dashboard'); setHasCourses(false) }
     })
     return () => subscription.unsubscribe()
   }, [])
@@ -61,10 +64,10 @@ export default function Nav() {
     <>
       <div className="bg-navy text-white text-xs py-2 overflow-hidden whitespace-nowrap">
         <div className="flex gap-10 animate-marquee px-4">
-          {['✓ One-time payment no subscription','7 Packages · 38 Courses · 146 Lessons','Real-world safety, wellbeing, and life skills education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
+          {['\u2713 One-time payment no subscription','7 Packages \u00b7 38 Courses \u00b7 146 Lessons','Real-world safety, wellbeing, and life skills education','Family progress tracking included','\ud83d\udd12 Secure checkout via Stripe'].map((t, i) => (
             <span key={i} className="flex-shrink-0 text-white/70">{t}</span>
           ))}
-          {['✓ One-time payment no subscription','7 Packages · 38 Courses · 146 Lessons','Real-world safety, wellbeing, and life skills education','Family progress tracking included','🔒 Secure checkout via Stripe'].map((t, i) => (
+          {['\u2713 One-time payment no subscription','7 Packages \u00b7 38 Courses \u00b7 146 Lessons','Real-world safety, wellbeing, and life skills education','Family progress tracking included','\ud83d\udd12 Secure checkout via Stripe'].map((t, i) => (
             <span key={"b"+i} className="flex-shrink-0 text-white/70">{t}</span>
           ))}
         </div>
