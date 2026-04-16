@@ -26,7 +26,7 @@ export default function ResetPasswordPage() {
     <div className="min-h-screen bg-slate flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <img src={LOGO_SRC} alt="The Be Safe Group" className="h-12 mx-auto mb-6 object-contain rounded-lg" />
+          <img src={LOGO_SRC} alt="HomeSafeEducation" className="h-12 mx-auto mb-6 object-contain rounded-lg" />
           <h1 className="font-serif text-3xl text-navy mb-2">Reset your password</h1>
           <p className="text-navy/50 text-sm">We'll send a reset link to your email address.</p>
         </div>

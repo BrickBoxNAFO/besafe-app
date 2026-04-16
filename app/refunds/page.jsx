@@ -1,4 +1,4 @@
-export const metadata = { title: 'Refund Policy — The Be Safe Group' }
+export const metadata = { title: 'Refund Policy — HomeSafeEducation' }
 
 export default function RefundsPage() {
   return (

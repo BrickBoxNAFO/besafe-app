@@ -1,4 +1,4 @@
-export const metadata = { title: 'Cookie Policy — The Be Safe Group' }
+export const metadata = { title: 'Cookie Policy — HomeSafeEducation' }
 
 export default function CookiesPage() {
   return (

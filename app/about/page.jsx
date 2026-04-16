@@ -11,7 +11,7 @@ export default function AboutPage() {
             <span className="italic text-teal">than it looks.</span>
           </h1>
           <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            The Be Safe Group was built on a simple belief: that practical safety knowledge, delivered clearly and respectfully, changes outcomes.
+            HomeSafeEducation was built on a simple belief: that practical safety knowledge, delivered clearly and respectfully, changes outcomes.
           </p>
         </div>
       </div>
@@ -20,7 +20,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto px-6">
           <div className="prose prose-lg text-navy/70 leading-relaxed space-y-6">
             <p>
-              The Be Safe Group exists because safety knowledge should be accessible to every family — not locked behind expensive consultants or buried in confusing guidance. We build practical, honest courses that give real people the awareness and confidence to protect themselves and the people they love.
+              HomeSafeEducation exists because safety knowledge should be accessible to every family — not locked behind expensive consultants or buried in confusing guidance. We build practical, honest courses that give real people the awareness and confidence to protect themselves and the people they love.
             </p>
             <p>
               Every package is built around a specific life stage, because the threats facing a 7-year-old are entirely different from those facing a 72-year-old. Our courses are written by safety professionals and education specialists, and reviewed to ensure they are accurate, current, and genuinely useful.

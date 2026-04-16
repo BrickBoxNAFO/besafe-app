@@ -1,4 +1,4 @@
-export const metadata = { title: 'Privacy Policy — The Be Safe Group' }
+export const metadata = { title: 'Privacy Policy — HomeSafeEducation' }
 
 export default function PrivacyPage() {
   return (
