@@ -74,12 +74,12 @@ function LoginForm() {
               </Link>
             </div>
             <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3 disabled:opacity-60">
-              {loading ? 'Signing in...' : 'Sign In →'}
+              {loading ? 'Signing in...' : 'Sign In \u2192'}
             </button>
           </form>
 
           <p className="text-center text-sm text-navy/50 mt-6">
-            Don’t have an account?{' '}
+            Don't have an account?{' '}
             <Link href="/register" className="text-teal font-medium hover:underline">Create one free</Link>
           </p>
         </div>

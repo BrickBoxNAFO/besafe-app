@@ -26,8 +26,6 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Missing metadata' }, { status: 400 })
     }
 
-    // For bundle: insert all 5 packages
-    // For single: insert the one package
     const packageIds = is_bundle === 'true'
       ? ['growing', 'nest', 'roaming', 'aging', 'parents']
       : [package_id]
@@ -41,7 +39,6 @@ export async function POST(request) {
       if (error) console.error('DB insert error:', error)
     }
 
-    // Fetch user email for confirmation
     const { data: { user } } = await supabase.auth.admin.getUserById(user_id)
     if (user?.email) {
       const pkg = PACKAGES.find(p => p.id === package_id)
@@ -56,9 +53,7 @@ export async function POST(request) {
 
   if (event.type === 'payment_intent.payment_failed') {
     console.log('Payment failed:', event.data.object.id)
-    // Optional: send a "payment failed" email here
   }
 
   return NextResponse.json({ received: true })
 }
-
