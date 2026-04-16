@@ -127,8 +127,9 @@ export default function AccountPage() {
         <div className="bg-amber-50 border border-amber-100 rounded-2xl p-6 mb-6">
           <h2 className="font-semibold text-navy mb-2">Refund Policy</h2>
           <p className="text-navy/60 text-sm leading-relaxed">
-            We offer a full refund within 7 days of purchase, provided that less than 20% of any course has been completed.
-            To request a refund, email <a href="mailto:support@thebesafegroup.com" className="text-teal underline">support@thebesafegroup.com</a>.
+            We offer a full refund within 7 days of purchase, provided that less than 20% of the overall package has been completed.
+            Approved refunds are returned to your original payment method within 10 business days. To request a refund, email{' '}
+            <a href="mailto:Support@HomeSafeEducation.com" className="text-teal underline">Support@HomeSafeEducation.com</a>.
           </p>
         </div>
 

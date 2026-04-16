@@ -29,6 +29,7 @@ export async function POST(request) {
     let finalPackageId = packageId
 
     if (seatId) {
+      // Existing seat — works for both bundle/complete seats and single-package seats
       const { data: seat } = await admin.from('seats').select('*').eq('id', seatId).eq('owner_user_id', user.id).maybeSingle()
       if (!seat) return NextResponse.json({ error: 'Seat not found' }, { status: 404 })
       if (seat.member_user_id) return NextResponse.json({ error: 'This seat has already been accepted' }, { status: 400 })
@@ -36,10 +37,12 @@ export async function POST(request) {
       await admin.from('seats').update({ invite_email: inviteEmail, invite_token: token, invite_sent_at: new Date().toISOString(), member_name: memberName || seat.member_name || null }).eq('id', seatId)
     } else {
       if (!packageId) return NextResponse.json({ error: 'Package selection is required' }, { status: 400 })
+      // Bundle / Complete owners can create new seats on demand up to SEAT_LIMIT.
+      // Single-package owners can only invite via an existing seat (seatId branch above).
       const { data: existingSeats } = await admin.from('seats').select('id').eq('owner_user_id', user.id)
       if ((existingSeats || []).length >= SEAT_LIMIT) return NextResponse.json({ error: 'You have reached the maximum of 5 seats' }, { status: 400 })
       const { data: bundlePurchases } = await supabase.from('purchases').select('package_id').eq('user_id', user.id).in('package_id', ['bundle', 'complete'])
-      if (!bundlePurchases || bundlePurchases.length === 0) return NextResponse.json({ error: 'Bundle or Complete Library purchase not found' }, { status: 403 })
+      if (!bundlePurchases || bundlePurchases.length === 0) return NextResponse.json({ error: 'To invite on a new seat you need the Family Bundle or Complete Library. If you bought a single package you can invite from that seat on your dashboard.' }, { status: 403 })
       await admin.from('seats').insert({ owner_user_id: user.id, package_id: packageId, invite_email: inviteEmail, invite_token: token, invite_sent_at: new Date().toISOString(), member_name: memberName || null })
     }
 
