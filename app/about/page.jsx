@@ -11,7 +11,7 @@ export default function AboutPage() {
             <span className="italic text-teal">than it looks.</span>
           </h1>
           <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            HomeSafeEducation was built on a simple belief: that practical safety knowledge, delivered clearly and respectfully, changes outcomes.
+            The Be Safe Group was built on a simple belief: that practical safety knowledge, delivered clearly and respectfully, changes outcomes.
           </p>
         </div>
       </div>
@@ -20,7 +20,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto px-6">
           <div className="prose prose-lg text-navy/70 leading-relaxed space-y-6">
             <p>
-              HomeSafeEducation exists because safety knowledge should be accessible to every family — not locked behind expensive consultants or buried in confusing guidance. We build practical, honest courses that give real people the awareness and confidence to protect themselves and the people they love.
+              The Be Safe Group exists because safety knowledge should be accessible to every family — not locked behind expensive consultants or buried in confusing guidance. We build practical, honest courses that give real people the awareness and confidence to protect themselves and the people they love.
             </p>
             <p>
               Every package is built around a specific life stage, because the threats facing a 7-year-old are entirely different from those facing a 72-year-old. Our courses are written by safety professionals and education specialists, and reviewed to ensure they are accurate, current, and genuinely useful.
@@ -37,16 +37,74 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              ['7', 'Specialist Packages'],
-              ['38', 'Safety Subjects'],
-              ['146', 'In-depth Lessons'],
-              ['371', 'Quiz Questions'],
+              ['5', 'Specialist Packages'],
+              ['25', 'Safety Subjects'],
+              ['250', 'In-depth Lessons'],
+              ['1,250', 'Quiz Questions'],
             ].map(([n, l]) => (
               <div key={l} className="text-center bg-white rounded-2xl p-6 border border-gray-100">
                 <div className="font-serif text-4xl text-navy mb-1">{n}</div>
                 <div className="text-navy/50 text-sm">{l}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Letter */}
+      <section className="section-light py-20">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <div className="chip bg-navy/10 text-navy border border-navy/20 inline-block">A Message From Our Founder</div>
+          </div>
+
+          {/* Paper card */}
+          <div style={{ transform: 'rotate(-0.5deg)', transformOrigin: 'center top' }}>
+            <div className="relative bg-[#fdfdf5] rounded-sm px-8 sm:px-14 py-12"
+                 style={{
+                   boxShadow:
+                     '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.07), 0 16px 40px rgba(0,0,0,0.08)',
+                   borderTop: '4px solid #e9e4d4',
+                 }}>
+              {/* Subtle top-left fold */}
+              <div className="absolute top-0 left-0 w-0 h-0"
+                   style={{
+                     borderStyle: 'solid',
+                     borderWidth: '20px 20px 0 0',
+                     borderColor: '#e2dcc8 transparent transparent transparent',
+                   }} />
+
+              <h2 className="font-serif text-2xl text-navy mb-8 text-center tracking-wide">
+                A Message From Our Founder
+              </h2>
+
+              <div className="space-y-5 font-serif text-navy/80 text-[1.05rem] leading-relaxed">
+                <p>
+                  HomeSafeEducation started with a simple question: as a father, I asked myself — why does nobody teach this stuff properly?
+                </p>
+                <p>
+                  We teach children to read, to count, to pass exams. But we rarely teach them how to stay safe online, or about body safety, or what to do if something does not feel right. We send teenagers into the world with qualifications but without the practical knowledge to navigate it confidently. We watch our parents age without ever having a conversation about scams, advance planning, or digital confidence.
+                </p>
+                <p>
+                  Fear is the most powerful force in selling. I made myself a promise that selling through fear will never be part of what we do at HomeSafeEducation. We will always sell with love — providing people the means to give something special to their families, themselves, and the people they care about: self protection, self confidence, and the knowledge to make informed decisions at every stage of life.
+                </p>
+                <p>
+                  I built this platform because I wanted that knowledge to exist in one place, written properly, for every age group. Not watered down or avoiding serious topics, but said in a way that is age-appropriate and relevant so it can be taught to anyone. Not full of fear. Just honest, practical education that treats every person — whether they are five or seventy-five — as someone capable of learning and making good decisions.
+                </p>
+                <p>
+                  Every course is written to empower. Every lesson ends with something you can actually use. Every quiz reinforces what you have learned. And every song — for the packages that include them — is written and produced in-house, because I believe learning should be memorable, not miserable.
+                </p>
+                <p>
+                  This is the education I now give to my own family. That is the standard I hold it to, and that is the standard it will always be.
+                </p>
+              </div>
+
+              {/* Signature */}
+              <div className="mt-10 pt-6 border-t border-[#e2dcc8]">
+                <p className="font-serif text-navy text-2xl italic mb-1">Brick</p>
+                <p className="text-navy/50 text-sm">Founder, HomeSafeEducation</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
