@@ -1,0 +1,238 @@
+'use client'
+
+import { useRef, useState, useEffect, useCallback } from 'react'
+
+/**
+ * Minimal, borderless video player for the HomeSafe homepage.
+ * - Starts PAUSED with a large play button overlay
+ * - User taps play to start; controls appear on hover / tap
+ * - No autoplay — mobile-friendly
+ */
+export default function VideoPlayer({ src, poster }) {
+  const videoRef = useRef(null)
+  const containerRef = useRef(null)
+  const [playing, setPlaying] = useState(false)
+  const [hasStarted, setHasStarted] = useState(false)
+  const [muted, setMuted] = useState(false)
+  const [volume, setVolume] = useState(0.8)
+  const [progress, setProgress] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [loaded, setLoaded] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+
+  // Set initial volume when src loads — no autoplay
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    v.volume = volume
+  }, [src]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const togglePlay = useCallback(() => {
+    const v = videoRef.current
+    if (!v) return
+    if (v.paused) {
+      v.play()
+      setPlaying(true)
+      setHasStarted(true)
+    } else {
+      v.pause()
+      setPlaying(false)
+    }
+  }, [])
+
+  const toggleMute = useCallback(() => {
+    const v = videoRef.current
+    if (!v) return
+    v.muted = !v.muted
+    setMuted(v.muted)
+    // When unmuting, ensure volume is audible
+    if (!v.muted && v.volume === 0) {
+      v.volume = 0.8
+      setVolume(0.8)
+    }
+  }, [])
+
+  const handleVolumeChange = useCallback((e) => {
+    const val = parseFloat(e.target.value)
+    const v = videoRef.current
+    if (!v) return
+    v.volume = val
+    v.muted = val === 0
+    setVolume(val)
+    setMuted(val === 0)
+  }, [])
+
+  const handleSeek = useCallback((e) => {
+    const val = parseFloat(e.target.value)
+    const v = videoRef.current
+    if (!v || !duration) return
+    v.currentTime = (val / 100) * duration
+  }, [duration])
+
+  const onTimeUpdate = useCallback(() => {
+    const v = videoRef.current
+    if (!v) return
+    setCurrentTime(v.currentTime)
+    setProgress(duration ? (v.currentTime / duration) * 100 : 0)
+  }, [duration])
+
+  const onLoadedMetadata = useCallback(() => {
+    const v = videoRef.current
+    if (!v) return
+    setDuration(v.duration)
+    setLoaded(true)
+  }, [])
+
+  const toggleFullscreen = useCallback(() => {
+    const el = containerRef.current
+    if (!el) return
+    if (!document.fullscreenElement) {
+      el.requestFullscreen?.() || el.webkitRequestFullscreen?.()
+    } else {
+      document.exitFullscreen?.() || document.webkitExitFullscreen?.()
+    }
+  }, [])
+
+  // Listen for fullscreen changes
+  useEffect(() => {
+    const handler = () => setIsFullscreen(!!document.fullscreenElement)
+    document.addEventListener('fullscreenchange', handler)
+    document.addEventListener('webkitfullscreenchange', handler)
+    return () => {
+      document.removeEventListener('fullscreenchange', handler)
+      document.removeEventListener('webkitfullscreenchange', handler)
+    }
+  }, [])
+
+  const fmt = (s) => {
+    const m = Math.floor(s / 60)
+    const sec = Math.floor(s % 60)
+    return `${m}:${sec.toString().padStart(2, '0')}`
+  }
+
+  // Placeholder shown when no video src is provided yet
+  if (!src) {
+    return (
+      <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-navy/40 flex items-center justify-center">
+        <div className="text-white/30 text-center">
+          <svg className="w-16 h-16 mx-auto mb-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p className="text-sm font-medium">Video Coming Soon</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div ref={containerRef} className="relative w-full aspect-video rounded-2xl overflow-hidden group">
+      {/* Video element */}
+      <video
+        ref={videoRef}
+        src={src}
+        poster={poster}
+        preload="metadata"
+        playsInline
+        onTimeUpdate={onTimeUpdate}
+        onLoadedMetadata={onLoadedMetadata}
+        onEnded={() => setPlaying(false)}
+        onClick={togglePlay}
+        className="w-full h-full object-cover cursor-pointer"
+      />
+
+      {/* Big play overlay — shown before user has started, or when paused */}
+      {!playing && (
+        <button
+          onClick={togglePlay}
+          className="absolute inset-0 flex items-center justify-center transition-opacity"
+          style={{ background: hasStarted ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.45)' }}
+        >
+          <div className={`${hasStarted ? 'w-16 h-16' : 'w-20 h-20 md:w-24 md:h-24'} bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30 transition-transform hover:scale-110`}>
+            <svg className={`${hasStarted ? 'w-7 h-7' : 'w-9 h-9 md:w-11 md:h-11'} text-white ml-1`} fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </button>
+      )}
+
+      {/* Controls bar — visible when playing (hover on desktop, always on mobile while playing) */}
+      <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent pt-10 pb-3 px-4 transition-opacity duration-300 ${hasStarted ? 'lg:opacity-0 lg:group-hover:opacity-100 opacity-100' : 'opacity-0'}`}>
+        {/* Progress / seek bar */}
+        <input
+          type="range"
+          min="0"
+          max="100"
+          step="0.1"
+          value={progress}
+          onChange={handleSeek}
+          className="video-slider w-full h-2 lg:h-1 mb-3 cursor-pointer appearance-none rounded-full"
+          style={{
+            background: `linear-gradient(to right, #0EA5A0 ${progress}%, rgba(255,255,255,0.25) ${progress}%)`,
+          }}
+        />
+
+        <div className="flex items-center gap-3">
+          {/* Play/Pause */}
+          <button onClick={togglePlay} className="text-white hover:text-teal transition-colors">
+            {playing ? (
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            )}
+          </button>
+
+          {/* Time */}
+          <span className="text-white/70 text-xs font-mono min-w-[70px]">
+            {fmt(currentTime)} / {fmt(duration)}
+          </span>
+
+          <div className="flex-1" />
+
+          {/* Volume */}
+          <button onClick={toggleMute} className="text-white hover:text-teal transition-colors">
+            {muted || volume === 0 ? (
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0021 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-3.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+              </svg>
+            )}
+          </button>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.05"
+            value={muted ? 0 : volume}
+            onChange={handleVolumeChange}
+            className="video-slider w-20 h-1 cursor-pointer"
+            style={{
+              background: `linear-gradient(to right, #0EA5A0 ${(muted ? 0 : volume) * 100}%, rgba(255,255,255,0.25) ${(muted ? 0 : volume) * 100}%)`,
+            }}
+          />
+
+          {/* Fullscreen */}
+          <button onClick={toggleFullscreen} className="text-white hover:text-teal transition-colors ml-2">
+            {isFullscreen ? (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
