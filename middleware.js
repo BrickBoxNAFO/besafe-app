@@ -4,9 +4,11 @@ import { createClient } from '@/utils/supabase/middleware'
 export async function middleware(request) {
   const { supabase, supabaseResponse } = createClient(request)
 
-  // Read session from cookies — no server round-trip, no spurious logouts
-  const { data: { session } } = await supabase.auth.getSession()
-  const user = session?.user ?? null
+  // IMPORTANT: use getUser() (matches dashboard/course server pages).
+  // getUser() sends cookies to Supabase for validation — works even when
+  // chunked session cookies cannot be reassembled locally by @supabase/ssr.
+  // getSession() parses cookies locally and fails with chunked cookies in older versions.
+  const { data: { user } } = await supabase.auth.getUser()
 
   // Protect routes
   const protectedPaths = ['/dashboard', '/account', '/library', '/course', '/lesson']

@@ -16,30 +16,45 @@ export default function Nav() {
   const router = useRouter()
   const supabase = createClient()
 
-  const loadDashboardRoute = async (userId) => {
+  // Fetch auth state from server endpoint — reliable even when client-side
+  // session parsing fails (e.g. chunked cookies in older @supabase/ssr).
+  const refreshAuthState = async () => {
     try {
-      const { data: purchases } = await supabase.from('purchases').select('package_id').eq('user_id', userId)
-      const ids = (purchases || []).map(p => p.package_id)
-      setHasCourses(ids.length > 0)
-      setDashboardHref((ids.includes(BUNDLE_ID) || ids.includes('complete')) ? '/family' : '/dashboard')
-    } catch (e) { setDashboardHref('/dashboard') }
+      const res = await fetch('/api/me', { cache: 'no-store' })
+      const data = await res.json()
+      if (data?.user) {
+        setUser(data.user)
+        const ids = data.purchases || []
+        setHasCourses(ids.length > 0)
+        setDashboardHref((ids.includes(BUNDLE_ID) || ids.includes('complete')) ? '/family' : '/dashboard')
+      } else {
+        setUser(null)
+        setHasCourses(false)
+        setDashboardHref('/dashboard')
+      }
+    } catch (e) {
+      // network/other error — don't crash the Nav
+    }
   }
 
   useEffect(() => {
-    // getSession reads from local storage immediately — no server round trip
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      const u = session?.user ?? null
-      setUser(u)
-      if (u) loadDashboardRoute(u.id)
-    })
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
-      const u = session?.user ?? null
-      setUser(u)
-      if (u) loadDashboardRoute(u.id)
-      else { setDashboardHref('/dashboard'); setHasCourses(false) }
+    // Primary: fetch auth state from reliable server endpoint on mount + route change
+    refreshAuthState()
+
+    // Secondary: also listen to client auth events (sign-in on /login, sign-out button)
+    // to refresh immediately rather than waiting for next route change.
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
+      refreshAuthState()
     })
     return () => subscription.unsubscribe()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // Re-check on every route change so Nav stays in sync after navigation.
+  useEffect(() => {
+    refreshAuthState()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -49,6 +64,7 @@ export default function Nav() {
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
+    setUser(null)
     router.push('/')
   }
 
