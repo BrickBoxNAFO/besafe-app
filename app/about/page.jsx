@@ -7,11 +7,11 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <div className="chip bg-teal/15 text-teal border border-teal/25 mb-5">Who We Are</div>
           <h1 className="font-serif text-5xl lg:text-6xl text-white mb-6">
-            The world is more dangerous<br />
-            <span className="italic text-teal">than it looks.</span>
+            The right knowledge<br />
+            <span className="italic text-teal">changes everything.</span>
           </h1>
           <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            The Be Safe Group was built on a simple belief: that practical safety knowledge, delivered clearly and respectfully, changes outcomes.
+            HomeSafeEducation was built on a simple belief: that practical safety education, delivered honestly and without fear, gives every person the confidence to protect themselves and the people they love.
           </p>
         </div>
       </div>
