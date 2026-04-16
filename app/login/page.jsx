@@ -1,16 +1,14 @@
 'use client'
 import { useState, Suspense } from 'react'
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
-import { LOGO_SRC } from '@/lib/data'
 
 function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
   const searchParams = useSearchParams()
   const redirect = searchParams.get('redirect') || '/dashboard'
   const supabase = createClient()
@@ -24,8 +22,7 @@ function LoginForm() {
       setError(error.message)
       setLoading(false)
     } else {
-      router.push(redirect)
-      router.refresh()
+      window.location.href = redirect
     }
   }
 
@@ -33,7 +30,12 @@ function LoginForm() {
     <div className="min-h-screen bg-slate flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <img src={LOGO_SRC} alt="The Be Safe Group" className="h-12 mx-auto mb-6 object-contain rounded-lg" />
+          <Link href="/" className="inline-block mb-6">
+            <span style={{fontFamily:'Georgia,"Times New Roman",serif',fontWeight:'bold',fontSize:'1.55rem',letterSpacing:'-0.01em',lineHeight:1}}>
+              <span style={{color:'#2B3480'}}>HomeSafe</span>
+              <span style={{color:'#E8703A'}}>Education</span>
+            </span>
+          </Link>
           <h1 className="font-serif text-3xl text-navy mb-2">Welcome back</h1>
           <p className="text-navy/50 text-sm">Sign in to access your courses</p>
         </div>
