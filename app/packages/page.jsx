@@ -45,6 +45,42 @@ const EXAMPLE_SONGS = {
     subtitle: 'Ages 60+ · Aging Wisdom',
     lyrics: "If the blues hang 'round too long,\nThat's not just life—that's not your song,\nSadness comes, then slips away,\nBut this one's here from day to day.\nDon't you brush it off or hide,\nHelp is there right by your side!\n\nYou're not alone, not at all!\nYou're allowed to make that call!\nThere is help, there is light,\nThings can feel good again tonight!\n\nLonely days can weigh you down,\nEven in a busy town,\nBut connection heals the mind,\nOne small step and you will find…\nA friend, a group, a place to go,\nMore support than you may know!\n\nYou're not alone, not at all!\nYou're allowed to make that call!\nLife keeps open every door,\nThere is still so much in store!\n\nIf grief is heavy, let it be,\nTalk about the memory,\nAnd if it grows instead of fades,\nSpeak up early, don't delay.\nPurpose lives in brand-new ways,\nIn learning, giving, active days.\n\nYou're not alone, not at all!\nStand up tall and make that call!\nHelp is near, steady and true,\nThere's a brighter path for you!\nSo swing along and don't forget…\nThe best days aren't behind you yet",
   },
+  nestGlass: {
+    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Nest%20Breaking%20Examples/Glass%20Left%20Standing.mp3',
+    title: "Glass Left Standing",
+    subtitle: 'Ages 18+ · Nest Breaking',
+    lyrics: "Before the night begins to glow,\nBefore the laughter flows,\nA little thought, a simple plan,\nGoes further than you know.\nWho you're with and where you go,\nHow you'll make your way,\nThese quiet steps before the night\nHelp keep the dark at bay.\nEnjoy the night, but know your ground,\nKeep your circle near,\nThe best of times are still the ones\nWhere you feel safe and clear.\n\nA glass left standing all alone\nIs one you leave behind,\nA moment's cost is nothing next\nTo peace within your mind.\nIf something feels a little off,\nDon't question what you feel,\nYour body speaks in subtle ways,\nAnd what it says is real.\nEnjoy the night, but know your ground,\nLet wisdom lead the way,\nA thoughtful start, a careful step,\nKeeps trouble far away.",
+  },
+  nestSetWords: {
+    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Nest%20Breaking%20Examples/Set%20Words%20Free.mp3',
+    title: "Set Words Free",
+    subtitle: 'Ages 18+ · Nest Breaking',
+    lyrics: "When something weighs upon your mind\nAnd steals your sense of ease,\nIt's not a burden meant for you\nTo carry silently.\nThere's strength in saying something,\nIn letting others know,\nBecause the darkest situations\nFade when light is shown.\nHold onto what has happened,\nKeep the proof before it's gone,\nBecause your voice may be the one\nThat helps another on.\nAnd telling isn't weakness,\nIt's courage in its form,\nA quiet act of standing up\nWhen something isn't right.\nYou don't have to manage\nEvery storm that comes your way,\nThere are hands that will reach out\nIf you choose to say.\nSpeak it out, let it be heard,\nYou are not alone,\nThere is power in your voice\nAnd strength in what you've shown.\nStep by step, you'll find your ground,\nEven through the strain,\nBecause asking for support\nIs how we rise again.\nAnd someone else may need your voice\nTo find their courage too,\nWhat you choose to say today\nMay guide somebody through.\nYou don't have to carry it alone.",
+  },
+  roamingMove: {
+    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Roaming%20Free%20Examples/Move%20With%20Purpose.mp3',
+    title: "Move With Purpose",
+    subtitle: 'All Ages · Roaming Free',
+    lyrics: "Step into the city lights,\nLet the rhythm move your pace,\nThere's a balance in the way you walk,\nA presence in your space.\nYou don't need to rush the night,\nOr prove that you belong,\nBecause confidence is quiet\nWhen it's steady, calm, and strong.\nKeep your focus soft but wide,\nTake in what's around,\nNot every detail needs your thought,\nJust notice sight and sound.\nAnd when you meet a stranger's smile,\nBe open, but be wise,\nThere's a difference you can feel\nBetween the truth and disguise.\nIt's not about suspicion,\nIt's awareness in your stride,\nA way of moving through the world\nWith nothing left to hide.\nMove with purpose, steady pace,\nLet your presence speak,\nBecause the way you carry yourself\nIs stronger than you think.\nHead up high, eyes awake,\nLet confidence be seen,\nAnd you'll find the space around you\nStays calmer in between.\nYou've walked through years of living,\nYou know more than you say,\nSo trust the way you read a room\nWithout needing to explain.\nYou belong wherever you stand.",
+  },
+  roamingTrust: {
+    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Roaming%20Free%20Examples/Trust%20With%20A%20Second%20Look.mp3',
+    title: "Trust With A Second Look",
+    subtitle: 'All Ages · Roaming Free',
+    lyrics: "A friendly voice with easy charm,\nA deal too good to miss,\nA helping hand you didn't ask—\nIt starts a lot like this.\nThey rush the moment forward\nBefore you think it through,\nBecause the space between the steps\nIs where you'd see the truth.\nA taxi with no meter running,\nA guide you never planned,\nA story that keeps changing\nAs it slips right through your hands.\nIt's not about distrust of all,\nOr shutting every door,\nIt's simply knowing when to pause\nAnd question just a little more.\nIf it feels too quick, too easy,\nOr just a little strange,\nThat's your moment to step back\nBefore the terms can change.\nTrust, but take a second look,\nDon't let hurry lead,\nBecause the calm and careful step\nIs always what you need.\nLet them talk, but keep your ground,\nYou don't have to agree,\nThe strongest place you stand is where\nYou choose your clarity.\nA 'no' can close a thousand doors\nThat shouldn't open wide,\nAnd peace of mind is worth far more\nThan saving time or pride.\nNot every shortcut leads you forward.",
+  },
+  familyGuidance: {
+    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Family%20Anchor%20Examples/Guidance.mp3',
+    title: "Guidance",
+    subtitle: 'Parents & Guardians · Family Anchor',
+    lyrics: "Mm…\nIt doesn't stay at school\n\nIt follows home, it doesn't end\nIt moves through screens, it can extend\nAny hour, any day\nNo distance keeps it away\nMessages that cut and land\nGroups that close on command\nNames repeated, turned to noise\nOr taken from them, voice by voice\nIt spreads fast, it leaves a trace\nIt doesn't fade like a face\n\nAnd what you don't always see\nIs how deep it can be\n\nSo hold them close through what they face\nLet them know it's not their place\nNot their fault, not who they are\nJust something happening too far\nHold them close, stay with them through\nThere's nothing they did to deserve what's true\nIt's what was done, not what they are\nYou guide them through it, from where you are\n\nFirst step is simple, but it matters\nSave it all before it shatters\nScreenshots kept, nothing lost\nBefore it disappears or's crossed\nThen you block, then you report\nEvery platform has its port\nIf it's threats or something worse\nYou bring in help, you don't rehearse\nPolice or school, you don't delay\nYou build the record, you make it stay\n\nBecause silence makes it blur\nAnd clarity is what you prefer\n\nSo hold them close through what they face\nLet them know it's not their place\nNot their fault, not who they are\nJust something happening too far\nHold them close, stay with them through\nThere's nothing they did to deserve what's true\nIt's what was done, not what they are\nYou guide them through it, from where you are\n\nNo shame in how they feel inside\nNo need for anything to hide\nThe weight belongs where it began\nNot in the child, but in the hand\nAnd healing rarely moves in line\nSome days fall back, some feel fine\nBut you keep separating\nTheir worth from what they're facing\n\nAnd if it's heavy on you too\nYou're allowed support as well\nTo stay steady for them\nYou don't have to do it all alone\n\nIf it was them causing harm\nDon't rush straight to alarm\nStart with why, not just the act\nLook for what is coming back\nWhat they've seen, what they've known\nWhat's been happening at home\nClear expectations, firm but fair\nWith follow-through and care\nAnd if it stays the same again\nYou don't ignore what that then means\nYou look deeper, not away\nTo what's driving how they play\n\nSo hold them close through what they face\nLet them know it's not their place\nNot their fault, not who they are\nJust something happening too far\nHold them close, stay with them through\nThere's nothing they did to deserve what's true\nIt's what was done, not what they are\nYou guide them through it, from where you are\n\nMm…\nIt follows home… but so do you",
+  },
+  familyQuietly: {
+    src: 'https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/Site%20Music/EXAMPLE%20SONGS/Family%20Anchor%20Examples/Quietly%20Noticed.mp3',
+    title: "Quietly Noticed",
+    subtitle: 'Parents & Guardians · Family Anchor',
+    lyrics: "Mm…\nSometimes they don't say it\n\nIt's not just a moment, not just a day\nNot something that simply fades away\nWhen it's repeated, when it's planned\nWhen one holds more than the other can\n\nIt's not every fall-out, not every fight\nBut patterns that settle over time\nAnd if it's there, it won't resolve\nWithout someone getting involved\n\nThey won't always tell you\nNot in words\nSo look a little closer\nAt what's changed, not what's said\nThere's a story in the silence\nIn the spaces left instead\n\nTrust the feeling\nIf something's not right\nYou don't need proof\nTo take a closer look\n\nThey stop wanting places they used to enjoy\nMornings get harder, small aches deploy\nHeadaches that fade when the weekend comes\nBut return again when the week has begun\n\nThings go missing, things come back worn\nNo clear reason, just brushed off, withdrawn\nAnd slowly you notice they pull away\nFrom the friends and the games they used to play\n\nLess connection\nMore retreat\n\nSo look a little closer\nAt what's changed, not what's said\nThere's a story in the silence\nIn the spaces left instead\n\nTrust the feeling\nIf something's not right\nYou don't need proof\nTo take a closer look\n\nIt doesn't come all at once\nIt builds in quiet ways\nA shift in who they are\nAcross a run of days\n\nFocus slips where it held before\nMarks fall back, they're unsure\nSomething's there beneath the surface line\nNot always easy to define\n\nNone of this stands alone\nBut together it starts to show\nSomething asking to be seen\nSomething sitting in between\n\nYou'll feel it… before you hear it\n\nSo look a little closer\nAt what's changed, not what's said\nThere's a story in the silence\nIn the spaces left instead\n\nTrust the feeling\nYou know the signs\nWhen something shifts\nIt's worth your time\n\nMm…\nSometimes they don't say it\nBut they show you",
+  },
 }
 
 const EMOTIONAL_DESCRIPTIONS = {
@@ -109,7 +145,7 @@ function PackagesPageInner() {
                 </div>
               </div>
               <div className="text-right">
-                <div className="font-serif text-3xl text-navy font-bold">{packagePrice('growing')}</div>
+                <div className="font-serif text-3xl text-navy font-bold">{format(packagePrice('growing'))}</div>
                 <div className="text-green-600 text-xs font-semibold">Both age groups included</div>
                 <div className="text-navy/40 text-xs">one-time payment</div>
               </div>
@@ -254,7 +290,7 @@ function PackagesPageInner() {
           <div className="px-6 pb-6">
             {purchasesEnabled ? (
               <button onClick={() => openPurchaseModal('growing', 'Growing Minds', packagePrice('growing'))} className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors">
-                Buy Growing Minds - {packagePrice('growing')}
+                Buy Growing Minds - {format(packagePrice('growing'))}
               </button>
             ) : (
               <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
@@ -279,7 +315,7 @@ function PackagesPageInner() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-serif text-3xl text-navy font-bold">{packagePrice(pkg.id)}</div>
+                    <div className="font-serif text-3xl text-navy font-bold">{format(packagePrice(pkg.id))}</div>
                     <div className="text-navy/40 text-xs">one-time payment</div>
                   </div>
                 </div>
@@ -387,6 +423,100 @@ function PackagesPageInner() {
                     </div>
                   </div>
                 )}
+                {/* ── Nest Breaking Music Section ── */}
+                {pkg.id === 'nest' && (
+                  <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#0d2748] p-4 sm:p-5 relative overflow-hidden">
+                    <div className="relative z-10">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">🎵</span>
+                          <h3 className="text-white font-semibold text-base">Original Songs Built Into Every Lesson</h3>
+                        </div>
+                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-semibold sm:ml-auto" style={{background:'rgba(37,99,235,0.15)',border:'1px solid rgba(37,99,235,0.3)',color:'#60a5fa'}}>🏠 Nest Breaking · Ages 18+</span>
+                      </div>
+                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
+                        Nest Breaking includes <strong className="text-white/80">original songs written and produced in-house by HomeSafeEducation</strong>. Each song reinforces key safety messages for young adults navigating independence for the first time — from social situations to personal safety and speaking up when something isn&apos;t right.
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm">🏠</span>
+                            <span className="text-white/70 font-medium text-xs">Nest Breaking · Nights Out Safety</span>
+                          </div>
+                          <AudioPlayer
+                            src={EXAMPLE_SONGS.nestGlass.src}
+                            title={EXAMPLE_SONGS.nestGlass.title}
+                            subtitle={EXAMPLE_SONGS.nestGlass.subtitle}
+                            lyrics={EXAMPLE_SONGS.nestGlass.lyrics}
+                            variant="lesson"
+                            accentColor="#2563EB"
+                          />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm">🏠</span>
+                            <span className="text-white/70 font-medium text-xs">Nest Breaking · Speaking Up</span>
+                          </div>
+                          <AudioPlayer
+                            src={EXAMPLE_SONGS.nestSetWords.src}
+                            title={EXAMPLE_SONGS.nestSetWords.title}
+                            subtitle={EXAMPLE_SONGS.nestSetWords.subtitle}
+                            lyrics={EXAMPLE_SONGS.nestSetWords.lyrics}
+                            variant="lesson"
+                            accentColor="#2563EB"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {/* ── Roaming Free Music Section ── */}
+                {pkg.id === 'roaming' && (
+                  <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#1c1208] p-4 sm:p-5 relative overflow-hidden">
+                    <div className="relative z-10">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">🎵</span>
+                          <h3 className="text-white font-semibold text-base">Original Songs Built Into Every Lesson</h3>
+                        </div>
+                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-semibold sm:ml-auto" style={{background:'rgba(234,88,12,0.15)',border:'1px solid rgba(234,88,12,0.3)',color:'#fb923c'}}>🌍 Roaming Free · All Ages</span>
+                      </div>
+                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
+                        Roaming Free includes <strong className="text-white/80">original songs written and produced in-house by HomeSafeEducation</strong>. Each track reinforces key travel safety lessons — from moving confidently through unfamiliar places to recognising and responding to scams and pressure tactics abroad.
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm">🌍</span>
+                            <span className="text-white/70 font-medium text-xs">Roaming Free · Travel Confidence</span>
+                          </div>
+                          <AudioPlayer
+                            src={EXAMPLE_SONGS.roamingMove.src}
+                            title={EXAMPLE_SONGS.roamingMove.title}
+                            subtitle={EXAMPLE_SONGS.roamingMove.subtitle}
+                            lyrics={EXAMPLE_SONGS.roamingMove.lyrics}
+                            variant="lesson"
+                            accentColor="#EA580C"
+                          />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm">🌍</span>
+                            <span className="text-white/70 font-medium text-xs">Roaming Free · Scam Awareness</span>
+                          </div>
+                          <AudioPlayer
+                            src={EXAMPLE_SONGS.roamingTrust.src}
+                            title={EXAMPLE_SONGS.roamingTrust.title}
+                            subtitle={EXAMPLE_SONGS.roamingTrust.subtitle}
+                            lyrics={EXAMPLE_SONGS.roamingTrust.lyrics}
+                            variant="lesson"
+                            accentColor="#EA580C"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 {/* ── Aging Wisdom Music Section ── */}
                 {pkg.id === 'aging' && (
                   <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#1a1a2e] p-4 sm:p-5 relative overflow-hidden">
@@ -443,9 +573,57 @@ function PackagesPageInner() {
                   </div>
                 )}
 
+                {/* ── Family Anchor Music Section ── */}
+                {pkg.id === 'parents' && (
+                  <div className="mb-6 rounded-xl bg-gradient-to-br from-[#0B1F3A] to-[#1a0a1f] p-4 sm:p-5 relative overflow-hidden">
+                    <div className="relative z-10">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">🎵</span>
+                          <h3 className="text-white font-semibold text-base">Original Songs Built Into Every Lesson</h3>
+                        </div>
+                        <span className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-semibold sm:ml-auto" style={{background:'rgba(162,28,175,0.15)',border:'1px solid rgba(162,28,175,0.3)',color:'#e879f9'}}>⚓ Family Anchor · Parents &amp; Guardians</span>
+                      </div>
+                      <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
+                        Family Anchor includes <strong className="text-white/80">original songs written and produced in-house by HomeSafeEducation</strong>. Each track is written for parents and guardians — helping you recognise the signs that something isn&apos;t right, understand the landscape your children are navigating, and find the words to talk about it.
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm">⚓</span>
+                            <span className="text-white/70 font-medium text-xs">Family Anchor · Cyberbullying</span>
+                          </div>
+                          <AudioPlayer
+                            src={EXAMPLE_SONGS.familyGuidance.src}
+                            title={EXAMPLE_SONGS.familyGuidance.title}
+                            subtitle={EXAMPLE_SONGS.familyGuidance.subtitle}
+                            lyrics={EXAMPLE_SONGS.familyGuidance.lyrics}
+                            variant="lesson"
+                            accentColor="#a21caf"
+                          />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm">⚓</span>
+                            <span className="text-white/70 font-medium text-xs">Family Anchor · Spotting the Signs</span>
+                          </div>
+                          <AudioPlayer
+                            src={EXAMPLE_SONGS.familyQuietly.src}
+                            title={EXAMPLE_SONGS.familyQuietly.title}
+                            subtitle={EXAMPLE_SONGS.familyQuietly.subtitle}
+                            lyrics={EXAMPLE_SONGS.familyQuietly.lyrics}
+                            variant="lesson"
+                            accentColor="#a21caf"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {purchasesEnabled ? (
                   <button onClick={() => openPurchaseModal(pkg.id, pkg.name, packagePrice(pkg.id))} className="w-full font-semibold rounded-xl px-6 py-3 text-center text-white transition-colors" style={{ background: gradient.accent }}>
-                    Buy {pkg.name} - {packagePrice(pkg.id)}
+                    Buy {pkg.name} - {format(packagePrice(pkg.id))}
                   </button>
                 ) : (
                   <div className="w-full bg-gray-100 rounded-xl px-6 py-3 text-center"><span className="text-navy/40 font-medium text-sm">🔒 Purchases opening soon</span></div>
@@ -467,7 +645,7 @@ function PackagesPageInner() {
                 <p className="text-white/60 text-sm">Pick any 5 packages - keep them for yourself, gift them to loved ones, or mix both. Your choice.</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
-                <div className="font-serif text-3xl text-white font-bold mb-1">{packagePrice('bundle')}</div>
+                <div className="font-serif text-3xl text-white font-bold mb-1">{format(packagePrice('bundle'))}</div>
                 <div className="text-teal text-xs font-semibold">Can save up to {format(bundleSavings)}</div>
                 <div className="text-white/40 text-xs">one-time payment</div>
               </div>
@@ -487,7 +665,7 @@ function PackagesPageInner() {
             </div>
             {purchasesEnabled ? (
               <button onClick={() => openPurchaseModal('bundle', 'Family Safety Bundle', packagePrice('bundle'))} className="w-full bg-teal hover:bg-teal/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors">
-                Buy Family Safety Bundle - {packagePrice('bundle')}
+                Buy Family Safety Bundle - {format(packagePrice('bundle'))}
               </button>
             ) : (
               <div className="w-full bg-white/10 rounded-xl px-6 py-3 text-center"><span className="text-white/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
@@ -506,7 +684,7 @@ function PackagesPageInner() {
                 <p className="text-navy/60 text-sm">7 packages to assign however you choose - keep them or gift them. You're not limited to one of each.</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
-                <div className="font-serif text-3xl text-navy font-bold mb-1">{packagePrice('complete')}</div>
+                <div className="font-serif text-3xl text-navy font-bold mb-1">{format(packagePrice('complete'))}</div>
                 <div className="text-teal text-xs font-semibold">Can save up to {format(completeSavings)}</div>
                 <div className="text-navy/40 text-xs">one-time payment</div>
               </div>
@@ -526,7 +704,7 @@ function PackagesPageInner() {
             </div>
             {purchasesEnabled ? (
               <button onClick={() => openPurchaseModal('complete', 'Complete Library', packagePrice('complete'))} className="w-full bg-navy hover:bg-navy/90 text-white font-semibold rounded-xl px-6 py-3 text-center transition-colors">
-                Buy Complete Library - {packagePrice('complete')}
+                Buy Complete Library - {format(packagePrice('complete'))}
               </button>
             ) : (
               <div className="w-full bg-navy/10 rounded-xl px-6 py-3 text-center"><span className="text-navy/50 font-medium text-sm">🔒 Purchases opening soon</span></div>
