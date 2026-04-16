@@ -1,28 +1,21 @@
 import { NextResponse } from 'next/server'
-import { createClient } from '@/utils/supabase/middleware'
 
-export async function middleware(request) {
-  const { supabase, supabaseResponse } = createClient(request)
-
-  // IMPORTANT: use getUser() (matches dashboard/course server pages).
-  // getUser() sends cookies to Supabase for validation — works even when
-  // chunked session cookies cannot be reassembled locally by @supabase/ssr.
-  // getSession() parses cookies locally and fails with chunked cookies in older versions.
-  const { data: { user } } = await supabase.auth.getUser()
-
-  // Protect routes
-  const protectedPaths = ['/dashboard', '/account', '/library', '/course', '/lesson']
-  const isProtected = protectedPaths.some(p => request.nextUrl.pathname.startsWith(p))
-
-  if (isProtected && !user) {
-    const loginUrl = new URL('/login', request.url)
-    loginUrl.searchParams.set('redirect', request.nextUrl.pathname)
-    return NextResponse.redirect(loginUrl)
-  }
-
-  return supabaseResponse
+// PASSTHROUGH MIDDLEWARE — intentionally does NOT call Supabase.
+//
+// Why: @supabase/ssr at the Edge runtime (where Next.js middleware runs)
+// has a bug where calling getUser() can rotate / wipe session cookies when
+// the library's internal token refresh doesn't round-trip cleanly. That
+// causes users to get logged out on navigation.
+//
+// Pages protect themselves: /dashboard, /course/[id], /lesson/[...], /account,
+// /library all call supabase.auth.getUser() server-side and redirect to /login
+// if there's no user. Middleware auth checking is redundant, so we skip it.
+export function middleware(request) {
+  return NextResponse.next()
 }
 
+// Matcher kept narrow — middleware only runs where it's needed, which is
+// effectively nowhere now. We leave a harmless matcher so the file is valid.
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|api/stripe-webhook).*)'],
+  matcher: ['/__noop__'],
 }
