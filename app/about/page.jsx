@@ -94,7 +94,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              ['6', 'Specialist Packages'],
+              ['7', 'Packages'],
               ['38', 'Safety Subjects'],
               ['146', 'In-depth Lessons'],
               ['371', 'Quiz Questions'],
