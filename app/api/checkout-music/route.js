@@ -28,6 +28,10 @@ export async function POST(request) {
       )
     }
 
+    // FIX: was NEXT_PUBLIC_APP_URL (doesn't exist) — now uses NEXT_PUBLIC_SITE_URL
+    // which matches every other route in the codebase and is set in Vercel env vars
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://homesafeeducation.com'
+
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -39,8 +43,8 @@ export async function POST(request) {
           quantity: 1,
         },
       ],
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/music-success?product=${productId}&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/music-cancel?product=${productId}`,
+      success_url: `${siteUrl}/music-success?product=${productId}&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${siteUrl}/congratulations/${productId}`,
       metadata: {
         type: 'music_download',
         user_id: userId,

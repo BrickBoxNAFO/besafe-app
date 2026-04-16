@@ -10,6 +10,11 @@ import { getMusicPrice, countryToRegion } from '@/lib/pricing'
    Congratulations Page
    - Course complete (mid-package): simple celebration, link to next course
    - Package complete (last course): full celebration with certificate + music upsell
+
+   MOBILE-FIRST: Certificate confirmation AND music upsell are immediately
+   visible without scrolling. The user sees "Congratulations + Certificate on
+   its way" at the top, then the music offer right below — no content is
+   hidden below the fold.
    ──────────────────────────────────────────── */
 
 // Map package IDs to music product info
@@ -73,18 +78,16 @@ const MUSIC_PRODUCTS = {
 }
 
 // Last course ID for each package/sub-package — triggers certificate + music upsell.
-// The value is the music product ID for the upsell (or null to show certificate-only).
 const LAST_COURSE_IN_PACKAGE = {
-  'c35':  'growing-early',    // last Early Years course
-  'c39':  'growing-junior',   // last Junior course
-  'c38':  'street',           // last Street Smart course
-  'c9':   'nest',             // last Nest Breaking course
-  'c15':  'roaming',          // last Roaming Free course
-  'c20':  'aging',            // last Aging Wisdom course
-  'c25':  'parents',          // last Family Anchor course
+  'c35':  'growing-early',
+  'c39':  'growing-junior',
+  'c38':  'street',
+  'c9':   'nest',
+  'c15':  'roaming',
+  'c20':  'aging',
+  'c25':  'parents',
 }
 
-// Resolve which music product a course belongs to — only for the last course in each package
 function getMusicProduct(course) {
   if (!course) return null
   const musicKey = LAST_COURSE_IN_PACKAGE[course.id]
@@ -92,7 +95,6 @@ function getMusicProduct(course) {
   return MUSIC_PRODUCTS[musicKey] || null
 }
 
-// Find the next course in this package/sub-package after the current one
 function getNextCourse(course) {
   if (!course) return null
   const samePkgCourses = COURSES.filter(c => {
@@ -113,6 +115,7 @@ export default function CongratulationsPage() {
   const [showConfetti, setShowConfetti] = useState(true)
   const [region, setRegion] = useState('US')
   const [verified, setVerified] = useState(false)
+  const [checkoutError, setCheckoutError] = useState(null)
 
   const course = COURSES.find(c => c.id === params.courseId)
   const pkg = course ? PACKAGES.find(p => p.id === course.pkg) : null
@@ -131,7 +134,6 @@ export default function CongratulationsPage() {
       if (!u) { router.push('/login'); return }
       setUser(u)
 
-      // Verify the user actually completed all lessons in this course
       if (course) {
         const { data: progress } = await supabase
           .from('progress')
@@ -145,9 +147,8 @@ export default function CongratulationsPage() {
       setVerified(true)
     }
     checkAccess()
-    // Stop confetti after 5 seconds
     const t = setTimeout(() => setShowConfetti(false), 5000)
-    // Detect region from cookie or browser locale fallback
+    // Detect region
     const cookie = document.cookie.split(';').find(c => c.trim().startsWith('pricing_region='))
     if (cookie) {
       const val = cookie.split('=')[1]?.trim()
@@ -167,8 +168,6 @@ export default function CongratulationsPage() {
     return () => clearTimeout(t)
   }, [])
 
-  const [checkoutError, setCheckoutError] = useState(null)
-
   const handleBuyMusic = async () => {
     if (!user || !musicProduct) return
     setLoading(true)
@@ -183,7 +182,7 @@ export default function CongratulationsPage() {
           productId: musicProductId,
           productName: musicProduct.name + ' — Complete Song Collection',
           region,
-                     ...(window.numok ? window.numok.getStripeMetadata() : {}),
+          ...(window.numok ? window.numok.getStripeMetadata() : {}),
         }),
       })
       const data = await res.json()
@@ -222,12 +221,15 @@ export default function CongratulationsPage() {
   }
 
   /* ──────────────────────────────────────────────────────────────
-     PACKAGE COMPLETE — full celebration with certificate + music
+     PACKAGE COMPLETE — certificate + music upsell
+     MOBILE-FIRST: Everything important visible without scrolling.
+     Top section = Congratulations + certificate confirmation (compact).
+     Immediately below = music upsell with prominent purchase button.
      ────────────────────────────────────────────────────────────── */
   if (isPackageComplete) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
-        {/* Confetti animation */}
+        {/* Confetti */}
         {showConfetti && (
           <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden" aria-hidden="true">
             {Array.from({ length: 60 }).map((_, i) => (
@@ -249,90 +251,80 @@ export default function CongratulationsPage() {
           </div>
         )}
 
-        <div className="max-w-3xl mx-auto px-6 py-16">
-          {/* Trophy / celebration header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-28 h-28 rounded-full mb-6 shadow-lg" style={{ background: `linear-gradient(135deg, ${courseColor}, ${courseColor}CC)` }}>
-              <span className="text-6xl">🏆</span>
+        <div className="max-w-2xl mx-auto px-4 pt-8 pb-12 md:px-6 md:pt-12 md:pb-16">
+
+          {/* ── COMPACT HEADER: Trophy + Congratulations + Certificate ── */}
+          <div className="text-center mb-6 md:mb-8">
+            <div className="inline-flex items-center justify-center w-20 h-20 md:w-28 md:h-28 rounded-full mb-4 shadow-lg" style={{ background: `linear-gradient(135deg, ${courseColor}, ${courseColor}CC)` }}>
+              <span className="text-4xl md:text-6xl">🏆</span>
             </div>
 
-            <h1 className="font-serif text-4xl md:text-5xl text-navy mb-4">
+            <h1 className="font-serif text-3xl md:text-5xl text-navy mb-2">
               Congratulations!
             </h1>
-            <p className="text-xl text-navy/60 mb-2">
-              You have completed every course in <strong className="text-navy">{packageLabel}</strong>
+            <p className="text-lg md:text-xl text-navy/60 mb-3">
+              You completed every course in <strong className="text-navy">{packageLabel}</strong>
             </p>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white" style={{ background: courseColor }}>
-              <span>{course.emoji || pkg?.emoji}</span>
-              <span>{packageLabel}</span>
+
+            {/* Certificate confirmation — inline, not a separate card */}
+            <div className="inline-flex items-center gap-2 bg-teal/10 text-teal rounded-full px-5 py-2.5 text-sm font-medium">
+              <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Your certificate is on its way to your email
             </div>
           </div>
 
-          {/* Certificate card */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden mb-8">
-            <div className="h-1.5" style={{ background: `linear-gradient(to right, ${courseColor}, ${courseColor}80)` }} />
-            <div className="p-8 text-center">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-teal/10 mb-4">
-                <svg className="w-7 h-7 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h2 className="font-serif text-2xl text-navy mb-2">Your Certificate Is On Its Way</h2>
-              <p className="text-navy/50 max-w-md mx-auto">
-                A personalised certificate of completion will be delivered to your email shortly.
-              </p>
-            </div>
-          </div>
-
-          {/* Music upsell — only for packages with music */}
+          {/* ── MUSIC UPSELL — immediately visible, no scrolling needed ── */}
           {musicProduct && (
-            <div className="relative bg-white rounded-2xl border border-gray-100 shadow-lg overflow-hidden mb-8">
-              {/* Accent top bar */}
-              <div className="h-2" style={{ background: `linear-gradient(to right, ${musicProduct.color}, ${courseColor})` }} />
+            <div className="relative bg-white rounded-2xl border border-gray-100 shadow-lg overflow-hidden mb-6">
+              {/* Accent bar */}
+              <div className="h-1.5" style={{ background: `linear-gradient(to right, ${musicProduct.color}, ${courseColor})` }} />
 
-              {/* Badge */}
-              <div className="absolute top-5 right-5">
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">
-                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                  EXCLUSIVE OFFER
-                </span>
-              </div>
-
-              <div className="p-8 md:p-10">
-                {/* Music icon */}
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl shadow-md" style={{ background: `linear-gradient(135deg, ${musicProduct.color}20, ${musicProduct.color}40)` }}>
+              <div className="p-5 md:p-8">
+                {/* Header row */}
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center text-2xl md:text-3xl flex-shrink-0" style={{ background: `linear-gradient(135deg, ${musicProduct.color}20, ${musicProduct.color}40)` }}>
                     🎵
                   </div>
-                  <div>
-                    <h2 className="font-serif text-2xl text-navy">Take the Songs With You</h2>
-                    <p className="text-navy/50 text-sm">Download the songs from the course to play on any device.</p>
+                  <div className="flex-1 min-w-0">
+                    <h2 className="font-serif text-xl md:text-2xl text-navy leading-tight">
+                      Take the Songs With You
+                    </h2>
+                    <p className="text-navy/50 text-sm mt-0.5">
+                      Keep them on your devices forever
+                    </p>
                   </div>
+                  {/* Badge */}
+                  <span className="hidden sm:inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 flex-shrink-0">
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    EXCLUSIVE
+                  </span>
                 </div>
 
-                {/* Description */}
-                <p className="text-navy/70 text-lg leading-relaxed mb-6">
+                {/* Description — shorter on mobile */}
+                <p className="text-navy/70 text-[15px] leading-relaxed mb-4 md:mb-5">
                   {musicProduct.desc}
                 </p>
 
-                {/* What you get */}
-                <div className="bg-slate-50 rounded-xl p-5 mb-8">
-                  <p className="text-navy/60 text-[15px] leading-relaxed">
-                    <strong className="text-navy">All {musicProduct.songs} songs from the course</strong> as MP3 files you can download and play on any device — phone, tablet, computer, or in the car. Yours to keep forever.
+                {/* What you get — compact */}
+                <div className="bg-slate-50 rounded-xl p-4 mb-5">
+                  <p className="text-navy/70 text-sm leading-relaxed">
+                    <strong className="text-navy">All {musicProduct.songs} songs</strong> as MP3 files — play on any device, anywhere. Yours to keep forever.
                   </p>
                 </div>
 
-                {/* Price and CTA */}
+                {/* Price + CTA */}
                 <div className="text-center">
-                  <div className="mb-4">
-                    <span className="text-4xl font-bold text-navy">{musicPriceDisplay}</span>
+                  <div className="mb-3">
+                    <span className="text-3xl md:text-4xl font-bold text-navy">{musicPriceDisplay}</span>
                     <span className="text-navy/40 text-sm ml-2">/ one-time</span>
                   </div>
 
                   <button
                     onClick={handleBuyMusic}
                     disabled={loading}
-                    className="inline-flex items-center gap-3 px-10 py-4 rounded-xl text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
                     style={{ background: `linear-gradient(135deg, ${musicProduct.color}, ${musicProduct.color}DD)` }}
                   >
                     {loading ? (
@@ -346,12 +338,12 @@ export default function CongratulationsPage() {
                   </button>
 
                   {checkoutError && (
-                    <div className="mt-4 bg-red-50 border border-red-100 rounded-xl px-4 py-3">
+                    <div className="mt-3 bg-red-50 border border-red-100 rounded-xl px-4 py-3">
                       <p className="text-red-600 text-sm">{checkoutError}</p>
                     </div>
                   )}
 
-                  <p className="text-navy/30 text-xs mt-4 flex items-center justify-center gap-1">
+                  <p className="text-navy/30 text-xs mt-3 flex items-center justify-center gap-1">
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                     Secure checkout via Stripe
                   </p>
@@ -360,7 +352,7 @@ export default function CongratulationsPage() {
             </div>
           )}
 
-          {/* Continue buttons */}
+          {/* Navigation buttons */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/library" className="btn-ghost text-center">
               My Courses
@@ -379,8 +371,8 @@ export default function CongratulationsPage() {
      ────────────────────────────────────────────────────────────── */
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
-      <div className="max-w-2xl mx-auto px-6 py-16">
-        <div className="text-center mb-10">
+      <div className="max-w-2xl mx-auto px-4 py-10 md:px-6 md:py-16">
+        <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-5" style={{ background: `linear-gradient(135deg, ${courseColor}20, ${courseColor}40)` }}>
             <span className="text-4xl">🎉</span>
           </div>

@@ -169,18 +169,19 @@ export default function LessonPage() {
   const totalLessons = course?.lessons?.length || 0
   const nextLessonIdx = lessonIndex + 1 < totalLessons ? lessonIndex + 1 : null
 
-  // Course images for Growing Minds
+  // Course images for Growing Minds — served from Supabase Storage bucket "Images"
+  const imgBase = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/Images`
   const courseImageMap = {
-    'c26': '/images/courses/early-road-safety.jpg',
-    'c27': '/images/courses/early-anti-bullying.jpg',
-    'c28': '/images/courses/early-online-safety.jpg',
-    'c29': '/images/courses/early-stranger-danger.jpg',
-    'c30': '/images/courses/early-body-safety.jpg',
-    'c1': '/images/courses/junior-road-safety.jpg',
-    'c2': '/images/courses/junior-anti-bullying.jpg',
-    'c3': '/images/courses/junior-online-safety.jpg',
-    'c4': '/images/courses/junior-stranger-danger.jpg',
-    'c5': '/images/courses/junior-body-safety.jpg',
+    'c26': `${imgBase}/early-road-safety.jpg`,
+    'c27': `${imgBase}/early-anti-bullying.jpg`,
+    'c28': `${imgBase}/early-online-safety.jpg`,
+    'c29': `${imgBase}/early-stranger-danger.jpg`,
+    'c30': `${imgBase}/early-body-safety.jpg`,
+    'c1': `${imgBase}/junior-road-safety.jpg`,
+    'c2': `${imgBase}/junior-anti-bullying.jpg`,
+    'c3': `${imgBase}/junior-online-safety.jpg`,
+    'c4': `${imgBase}/junior-stranger-danger.jpg`,
+    'c5': `${imgBase}/junior-body-safety.jpg`,
   }
   const courseImage = course ? courseImageMap[course.id] : null
   const isGrowingEarly = course?.subPkg === 'growing-early'
