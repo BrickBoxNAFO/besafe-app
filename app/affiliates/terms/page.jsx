@@ -14,11 +14,10 @@ export default function AffiliateTermsPage() {
         <p className="font-semibold text-navy mb-1">The short version</p>
         <p className="text-navy/70 text-sm leading-relaxed">
           You earn a flat 20% commission on every qualifying sale you refer. We
-          track purchases through your unique referral link for 30 days. Sales
-          clear the refund window after 7 days, get approved after 14, and are
-          paid out between the 1st and 3rd of each month with a $25 minimum
-          payout. Refunded sales are clawed back automatically and shown in
-          your dashboard.
+          track purchases through your unique referral link for 30 days. Once
+          a customer purchases, sales clear the refund window after 7 days,
+          get approved after 14 days, and are paid out between the 1st and 3rd
+          of each month with a $25 minimum payout.
         </p>
       </div>
 
@@ -96,9 +95,6 @@ export default function AffiliateTermsPage() {
             <li>
               <strong>Refunds are never hidden.</strong> If one of your conversions is refunded or charged back, the sale is marked <em>Refunded</em> in your dashboard with the timestamp, so you always know why your balance changed.
             </li>
-            <li>
-              <strong>No silent terminations.</strong> If we ever suspend your account, you will see the reason in your dashboard.
-            </li>
           </ul>
         </div>
 
@@ -115,7 +111,13 @@ export default function AffiliateTermsPage() {
           <h2 className="font-semibold text-navy text-xl mb-3">6. Eligibility</h2>
           <ul className="list-disc pl-5 mt-2 space-y-2 text-sm">
             <li>You must be 18 or older. Stripe requires this for any account that receives funds.</li>
-            <li>You must maintain a valid payout method (email address we can pay, or an active Stripe Connect account).</li>
+            <li>
+              <strong>We only pay through Stripe.</strong> All commissions are
+              paid through Stripe. You&apos;ll need a free Stripe or Stripe
+              Connect account on the email address registered to your
+              affiliate profile to receive payouts. Other payment methods are
+              not supported.
+            </li>
             <li>You must comply with the laws of your country, including any requirement to disclose affiliate relationships to your audience.</li>
             <li>You are responsible for any income tax owed on commissions you earn.</li>
           </ul>
@@ -137,7 +139,7 @@ export default function AffiliateTermsPage() {
               <strong>Misrepresentation.</strong> Do not claim to be us, imply official endorsement beyond the affiliate relationship, or imply affiliation with schools, governments, or safeguarding bodies.
             </li>
             <li>
-              <strong>Spam.</strong> No unsolicited bulk email, forum spam, or posting in channels where affiliate links are prohibited.
+              <strong>Share thoughtfully.</strong> Please don&apos;t mass-email strangers, and don&apos;t drop your link in places where the community or platform has said affiliate links aren&apos;t welcome. Genuine recommendations, reviews, tutorials, social posts, and conversations with people who would actually be interested are all fine.
             </li>
             <li>
               <strong>Cookie stuffing, iframes, pop-unders, or forced clicks.</strong> Any technical trick that drops a cookie without genuine user intent.
