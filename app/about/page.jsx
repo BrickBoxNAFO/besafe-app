@@ -37,10 +37,10 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              ['5', 'Specialist Packages'],
-              ['25', 'Safety Subjects'],
-              ['250', 'In-depth Lessons'],
-              ['1,250', 'Quiz Questions'],
+              ['7', 'Specialist Packages'],
+              ['38', 'Safety Subjects'],
+              ['146', 'In-depth Lessons'],
+              ['371', 'Quiz Questions'],
             ].map(([n, l]) => (
               <div key={l} className="text-center bg-white rounded-2xl p-6 border border-gray-100">
                 <div className="font-serif text-4xl text-navy mb-1">{n}</div>

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { PACKAGES, COURSES } from '@/lib/data'
 import NewsletterBanner from '@/components/NewsletterBanner'
 import AudioPlayer from '@/components/AudioPlayer'
-import { usePricing } from '@/components/PricingProvider'
+import { usePricing, PricingProvider } from '@/components/PricingProvider'
 import PurchaseModal from '@/components/PurchaseModal'
 
 const EXAMPLE_SONGS = {
@@ -64,7 +64,7 @@ const PKG_GRADIENTS = {
   parents: { gradFrom: '#fdf4ff', gradTo: '#fae8ff', borderClr: '#e9b4fb', accent: '#a21caf', accentBg: 'rgba(162,28,175,0.12)', tagClr: '#86198f' }
 }
 
-export default function PackagesPage() {
+function PackagesPageInner() {
   const { packagePrice, format, bundleWas, bundleSavings, completeWas, completeSavings, regionCode } = usePricing()
   const [expanded, setExpanded] = useState({})
   const [purchasesEnabled, setPurchasesEnabled] = useState(false)
@@ -585,5 +585,13 @@ export default function PackagesPage() {
         />
       )}
     </div>
+  )
+}
+
+export default function PackagesPage() {
+  return (
+    <PricingProvider>
+      <PackagesPageInner />
+    </PricingProvider>
   )
 }
