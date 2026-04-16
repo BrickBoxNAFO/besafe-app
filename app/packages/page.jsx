@@ -218,7 +218,7 @@ export default function PackagesPage() {
                             {c.lessons.map((lesson, li) => (
                               <div key={li} className="text-xs text-navy/50 flex items-center gap-1.5">
                                 <span className="w-1 h-1 rounded-full bg-green-400 flex-shrink-0" />
-                                {lesson}
+                                {typeof lesson === 'string' ? lesson : (lesson?.title || `Lesson ${li + 1}`)}
                               </div>
                             ))}
                           </div>
@@ -354,7 +354,7 @@ export default function PackagesPage() {
                           {c.lessons.map((lesson, li) => (
                             <div key={li} className="text-xs text-navy/50 flex items-center gap-1.5">
                               <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: gradient.accent }} />
-                              {lesson}
+                              {typeof lesson === 'string' ? lesson : (lesson?.title || `Lesson ${li + 1}`)}
                             </div>
                           ))}
                         </div>
