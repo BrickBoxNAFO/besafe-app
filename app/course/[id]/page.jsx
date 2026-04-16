@@ -17,14 +17,15 @@ export default async function CoursePage({ params }) {
 
   if (!user) redirect(`/login?redirect=/course/${params.id}`)
 
-  const { data: purchase } = await supabase
+  const { data: purchaseRows } = await supabase
     .from('purchases')
-    .select('id')
+    .select('package_id')
     .eq('user_id', user.id)
-    .eq('package_id', course.pkg)
-    .maybeSingle()
 
-  if (!purchase) redirect(`/packages#${course.pkg}`)
+  const ownedIds = new Set((purchaseRows || []).map(r => r.package_id))
+  const hasAccess = ownedIds.has(course.pkg) || ownedIds.has('bundle') || ownedIds.has('complete')
+
+  if (!hasAccess) redirect(`/packages#${course.pkg}`)
 
   const { data: progressRows } = await supabase
     .from('progress')

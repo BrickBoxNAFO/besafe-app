@@ -10,23 +10,19 @@ export default function FamilyDashboardClient({
   seatLimit,
   packages,
   courses,
-  memberProgress,
+  seatProgress,
 }) {
-  const [isAssigning, setIsAssigning] = useState(false)
   const [selectedSeat, setSelectedSeat] = useState(null)
   const [inviteForm, setInviteForm] = useState({ email: '', packageId: '' })
 
   const usedSeats = seats.length
   const emptySeats = Math.max(0, seatLimit - usedSeats)
 
-  // Calculate stats
+  // Aggregate stats across active members
   const activeMembers = seats.filter(s => s.member_user_id).length
-  const courseCompletedByMember = {}
-  Object.entries(memberProgress).forEach(([memberId, courses]) => {
-    courseCompletedByMember[memberId] = courses.length
-  })
-  const avgProgress = activeMembers > 0
-    ? Math.round(Object.values(courseCompletedByMember).reduce((a, b) => a + b, 0) / activeMembers)
+  const progressValues = Object.values(seatProgress || {})
+  const avgPct = progressValues.length > 0
+    ? Math.round(progressValues.reduce((a, p) => a + (p.pct || 0), 0) / progressValues.length)
     : 0
 
   const handleAssignToMe = async (seatId, packageId) => {
@@ -112,8 +108,8 @@ export default function FamilyDashboardClient({
           <div className="text-sm text-navy/60">Active Members</div>
         </div>
         <div className="bg-white rounded-2xl border border-gray-100 p-5 text-center">
-          <div className="font-serif text-3xl text-navy mb-1">{avgProgress}</div>
-          <div className="text-sm text-navy/60">Avg. Courses Started</div>
+          <div className="font-serif text-3xl text-navy mb-1">{avgPct}%</div>
+          <div className="text-sm text-navy/60">Avg. Progress</div>
         </div>
       </div>
 
@@ -128,7 +124,7 @@ export default function FamilyDashboardClient({
               key={seat.id}
               seat={seat}
               packages={packages}
-              memberProgress={memberProgress}
+              progress={seatProgress?.[seat.id]}
               onResendInvite={handleResendInvite}
             />
           ))}
@@ -167,7 +163,7 @@ export default function FamilyDashboardClient({
   )
 }
 
-function SeatCard({ seat, packages, memberProgress, onResendInvite }) {
+function SeatCard({ seat, packages, progress, onResendInvite }) {
   const pkg = packages.find(p => p.id === seat.package_id)
 
   if (seat.invite_email && !seat.member_user_id) {
@@ -194,8 +190,11 @@ function SeatCard({ seat, packages, memberProgress, onResendInvite }) {
 
   if (!seat.member_user_id) return null
 
-  const memberCourses = memberProgress[seat.member_user_id] || []
-  const progressPct = Math.round((memberCourses.length / 5) * 100)
+  const pct = Math.min(100, Math.max(0, progress?.pct || 0))
+  const passedLessons = progress?.passedLessons || 0
+  const totalLessons = progress?.totalLessons || 0
+  const completedCourses = progress?.completedCourses || 0
+  const totalCourses = progress?.totalCourses || 0
 
   return (
     <div className="bg-gradient-to-br from-white to-slate rounded-xl border-2 border-navy/10 p-6 flex flex-col">
@@ -210,18 +209,21 @@ function SeatCard({ seat, packages, memberProgress, onResendInvite }) {
       <div className="mb-4">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm font-medium text-navy">Progress</span>
-          <span className="text-sm font-semibold text-teal">{progressPct}%</span>
+          <span className="text-sm font-semibold text-teal">{pct}%</span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
           <div
             className="bg-teal rounded-full h-2 transition-all"
-            style={{ width: `${progressPct}%` }}
+            style={{ width: `${pct}%` }}
           />
         </div>
       </div>
 
-      <p className="text-sm text-navy/60 mb-4">
-        {memberCourses.length} of 5 courses started
+      <p className="text-sm text-navy/60 mb-1">
+        {completedCourses} of {totalCourses} {totalCourses === 1 ? 'course' : 'courses'} completed
+      </p>
+      <p className="text-xs text-navy/40 mb-4">
+        {passedLessons} of {totalLessons} lessons passed
       </p>
 
       <Link

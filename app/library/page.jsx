@@ -3,16 +3,32 @@ import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 import { PACKAGES, COURSES } from '@/lib/data'
 
+export const dynamic = 'force-dynamic'
+
 export default async function LibraryPage() {
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
   const { data: { user } } = await supabase.auth.getUser()
 
   let purchases = []
+  let progressByCourse = {} // course_id -> Set of passed lesson indices
   if (user) {
-    const { data } = await supabase.from('purchases').select('package_id').eq('user_id', user.id)
-    purchases = data?.map(p => p.package_id) || []
+    const { data: purchaseData } = await supabase
+      .from('purchases').select('package_id').eq('user_id', user.id)
+    purchases = purchaseData?.map(p => p.package_id) || []
+
+    const { data: progressData } = await supabase
+      .from('progress')
+      .select('course_id, lesson_index, passed')
+      .eq('user_id', user.id)
+
+    ;(progressData || []).forEach(r => {
+      if (!progressByCourse[r.course_id]) progressByCourse[r.course_id] = new Set()
+      if (r.passed) progressByCourse[r.course_id].add(r.lesson_index)
+    })
   }
+
+  const hasBundleLike = purchases.includes('bundle') || purchases.includes('complete')
 
   const earlyYearsCourses = COURSES.filter(c => c.subPkg === 'growing-early')
   const juniorCourses     = COURSES.filter(c => c.subPkg === 'growing-junior')
@@ -23,7 +39,7 @@ export default async function LibraryPage() {
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
           <div className="chip bg-teal/15 text-teal border border-teal/25 mb-4">Course Library</div>
           <h1 className="font-serif text-5xl text-white mb-4">All Subjects</h1>
-          <p className="text-white/60 text-lg">Browse every subject across our Safety Packages — 250 lessons in total.</p>
+          <p className="text-white/60 text-lg">Browse every subject across our Safety Packages.</p>
         </div>
       </div>
 
@@ -31,14 +47,13 @@ export default async function LibraryPage() {
         <div className="max-w-6xl mx-auto px-6">
 
           {PACKAGES.map(pkg => {
-            const owned = purchases.includes(pkg.id)
+            const owned = hasBundleLike || purchases.includes(pkg.id)
             const pkgCourses = COURSES.filter(c => c.pkg === pkg.id)
 
             /* ── Growing Minds: show Early Years + Junior as two sections ── */
             if (pkg.id === 'growing') {
               return (
                 <div key={pkg.id} className="mb-14">
-                  {/* Package header */}
                   <div className="flex items-center gap-3 mb-5">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ background: pkg.pale }}>
                       {pkg.emoji}
@@ -53,7 +68,6 @@ export default async function LibraryPage() {
                     {owned && <span className="chip bg-teal/10 text-teal border border-teal/20 ml-2">Owned</span>}
                   </div>
 
-                  {/* Early Years sub-section */}
                   <div className="mb-7">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-base">🌱</span>
@@ -67,15 +81,13 @@ export default async function LibraryPage() {
                     </div>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {earlyYearsCourses.map(c => (
-                        <CourseCard key={c.id} c={c} pkgColor="#16A34A" pkgId={pkg.id} owned={owned} />
+                        <CourseCard key={c.id} c={c} pkgColor="#16A34A" pkgId={pkg.id} owned={owned} progressByCourse={progressByCourse} />
                       ))}
                     </div>
                   </div>
 
-                  {/* Divider */}
                   <div className="border-t border-gray-200 mb-7" />
 
-                  {/* Junior sub-section */}
                   <div>
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-base">🌿</span>
@@ -84,7 +96,7 @@ export default async function LibraryPage() {
                     </div>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {juniorCourses.map(c => (
-                        <CourseCard key={c.id} c={c} pkgColor="#15803d" pkgId={pkg.id} owned={owned} />
+                        <CourseCard key={c.id} c={c} pkgColor="#15803d" pkgId={pkg.id} owned={owned} progressByCourse={progressByCourse} />
                       ))}
                     </div>
                   </div>
@@ -107,7 +119,7 @@ export default async function LibraryPage() {
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {pkgCourses.map(c => (
-                    <CourseCard key={c.id} c={c} pkgColor={pkg.color} pkgId={pkg.id} owned={owned} />
+                    <CourseCard key={c.id} c={c} pkgColor={pkg.color} pkgId={pkg.id} owned={owned} progressByCourse={progressByCourse} />
                   ))}
                 </div>
               </div>
@@ -119,25 +131,53 @@ export default async function LibraryPage() {
   )
 }
 
-function CourseCard({ c, pkgColor, pkgId, owned }) {
+function CourseCard({ c, pkgColor, pkgId, owned, progressByCourse }) {
+  const totalLessons = c.lessons?.length || 0
+  const passedSet = progressByCourse?.[c.id]
+  const passedLessons = passedSet ? Math.min(passedSet.size, totalLessons) : 0
+  const pct = totalLessons > 0 ? Math.min(100, Math.round((passedLessons / totalLessons) * 100)) : 0
+  const done = pct === 100 && totalLessons > 0
+  const started = passedLessons > 0
+
   return (
-    <div className={`bg-white rounded-xl p-5 border ${owned ? 'border-gray-100 hover:border-teal/30 transition-colors' : 'border-gray-100 opacity-70'}`}>
-      <div className="flex items-start justify-between mb-3">
+    <div className={`bg-white rounded-xl p-5 border ${owned ? (done ? 'border-teal/40' : 'border-gray-100 hover:border-teal/30 transition-colors') : 'border-gray-100 opacity-70'} flex flex-col`}>
+      <div className="flex items-start justify-between mb-2">
         <h3 className="font-semibold text-navy text-sm leading-snug flex-1">{c.title}</h3>
         {!owned && <span className="text-navy/30 text-lg ml-2">🔒</span>}
+        {owned && done && <span className="text-teal text-sm ml-2" aria-label="Completed">✓</span>}
       </div>
-      <div className="text-xs text-navy/40 mb-4">📖 {c.lessons.length} Lessons · ✅ {c.lessons.length * 5} quiz questions</div>
+      <div className="text-xs text-navy/40 mb-3">📖 {totalLessons} Lessons · ✅ {totalLessons * 5} quiz questions</div>
+
+      {owned && (
+        <div className="mb-3">
+          <div className="flex justify-between items-center mb-1">
+            <span className="text-[11px] font-medium text-navy/60">
+              {done ? 'Completed' : started ? 'In progress' : 'Not started'}
+            </span>
+            <span className="text-[11px] font-semibold" style={{ color: done ? '#0EA5A0' : pkgColor }}>
+              {passedLessons}/{totalLessons} · {pct}%
+            </span>
+          </div>
+          <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+            <div
+              className="h-1.5 rounded-full transition-all"
+              style={{ width: `${pct}%`, background: done ? '#0EA5A0' : pkgColor }}
+            />
+          </div>
+        </div>
+      )}
+
       {owned ? (
         <Link
           href={`/course/${c.id}`}
-          className="text-xs font-semibold px-3 py-1.5 rounded-lg text-white transition-opacity hover:opacity-80"
-          style={{ background: pkgColor }}>
-          Start Subject →
+          className="mt-auto text-xs font-semibold px-3 py-1.5 rounded-lg text-white transition-opacity hover:opacity-80 self-start"
+          style={{ background: done ? '#0EA5A0' : pkgColor }}>
+          {done ? 'Review Subject' : started ? 'Continue →' : 'Start Subject →'}
         </Link>
       ) : (
         <Link
           href={`/packages#${pkgId}`}
-          className="text-xs font-semibold px-3 py-1.5 rounded-lg border text-navy/50 border-navy/20 hover:bg-navy/5 transition-colors">
+          className="mt-auto text-xs font-semibold px-3 py-1.5 rounded-lg border text-navy/50 border-navy/20 hover:bg-navy/5 transition-colors self-start">
           Unlock Package →
         </Link>
       )}

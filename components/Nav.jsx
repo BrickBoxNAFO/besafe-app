@@ -95,7 +95,15 @@ export default function Nav({ initialLoggedIn = false }) {
           <div className="hidden md:flex items-center gap-3">
             {user ? (
               <>
-                {hasCourses && <Link href="/library" className="text-sm font-medium text-navy/70 hover:text-navy transition-colors">My Course</Link>}
+                {hasCourses && (
+                  <Link
+                    href="/library"
+                    className="text-sm font-semibold py-2 px-4 rounded-lg text-white transition-opacity hover:opacity-90"
+                    style={{ background: '#E8703A' }}
+                  >
+                    My Courses
+                  </Link>
+                )}
                 <Link href={dashboardHref} className="btn-primary text-sm py-2 px-4">My Dashboard</Link>
                 <button onClick={handleSignOut} className="text-sm font-medium text-navy/40 hover:text-navy ml-1">Sign out</button>
               </>
@@ -118,7 +126,16 @@ export default function Nav({ initialLoggedIn = false }) {
               {user ? (
                 <>
                   <div className="flex gap-3">
-                    {hasCourses && <Link href="/library" className="btn-ghost text-sm py-2 flex-1 text-center" onClick={() => setMobileOpen(false)}>My Course</Link>}
+                    {hasCourses && (
+                      <Link
+                        href="/library"
+                        className="text-sm font-semibold py-2 flex-1 text-center rounded-lg text-white transition-opacity hover:opacity-90"
+                        style={{ background: '#E8703A' }}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        My Courses
+                      </Link>
+                    )}
                     <Link href={dashboardHref} className="btn-primary text-sm py-2 flex-1 text-center" onClick={() => setMobileOpen(false)}>My Dashboard</Link>
                   </div>
                   <button onClick={() => { handleSignOut(); setMobileOpen(false) }} className="text-sm text-navy/40 py-2 px-2 w-full text-center">Sign out</button>
