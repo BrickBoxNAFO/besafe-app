@@ -200,6 +200,8 @@ export default function LessonPage() {
   const [submitted, setSubmitted] = useState(false)
   const [saving, setSaving] = useState(false)
   const [existingProgress, setExistingProgress] = useState(null)
+  const [saveError, setSaveError] = useState(null)
+  const [justPassedCourse, setJustPassedCourse] = useState(false)
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -252,9 +254,40 @@ export default function LessonPage() {
     if (!allAnswered) return
     setSubmitted(true)
     setSaving(true)
-    const { data: { user } } = await supabase.auth.getUser()
-    if (user) {
-      await supabase.from('progress').upsert({
+    setSaveError(null)
+
+    // ─── Auth: try getUser(), fall back to getSession() ───────────────
+    // On mobile Safari with strict cookie settings getUser() occasionally
+    // returns null even when a valid session exists. getSession() reads
+    // from the client and is more forgiving.
+    let user = null
+    try {
+      const { data: { user: u } } = await supabase.auth.getUser()
+      user = u
+    } catch (err) {
+      console.error('getUser failed, falling back to getSession:', err)
+    }
+    if (!user) {
+      try {
+        const { data: { session } } = await supabase.auth.getSession()
+        user = session?.user || null
+      } catch (err) {
+        console.error('getSession also failed:', err)
+      }
+    }
+
+    if (!user) {
+      // We genuinely could not identify the user. Tell them so they know
+      // their progress was NOT saved and they need to log in again.
+      setSaveError('We could not verify your session. Your progress was not saved. Please log in again and retry this lesson.')
+      setSaving(false)
+      setPhase('result')
+      return
+    }
+
+    // ─── Save lesson progress ─────────────────────────────────────────
+    try {
+      const { error: upsertError } = await supabase.from('progress').upsert({
         user_id: user.id,
         course_id: params.courseId,
         lesson_index: lessonIndex,
@@ -263,81 +296,101 @@ export default function LessonPage() {
         completed_at: new Date().toISOString(),
       }, { onConflict: 'user_id,course_id,lesson_index' })
 
-      // ─── Check if the entire course is now complete ───────────────────
-      if (score >= passThreshold && course) {
-        try {
-          const { data: allProgress } = await supabase
-            .from('progress')
-            .select('lesson_index, passed')
-            .eq('user_id', user.id)
-            .eq('course_id', params.courseId)
+      if (upsertError) {
+        console.error('Progress upsert error:', upsertError)
+        setSaveError('Your progress could not be saved. Please check your connection and retry.')
+        setSaving(false)
+        setPhase('result')
+        return
+      }
+    } catch (err) {
+      console.error('Progress upsert threw:', err)
+      setSaveError('Your progress could not be saved. Please check your connection and retry.')
+      setSaving(false)
+      setPhase('result')
+      return
+    }
 
-          const passedLessons = new Set(
-            (allProgress || []).filter(r => r.passed).map(r => r.lesson_index)
-          )
-          // Include the current lesson we just passed
-          passedLessons.add(lessonIndex)
+    // ─── Check if the entire course is now complete ───────────────────
+    if (score >= passThreshold && course) {
+      try {
+        const { data: allProgress } = await supabase
+          .from('progress')
+          .select('lesson_index, passed')
+          .eq('user_id', user.id)
+          .eq('course_id', params.courseId)
 
-          if (passedLessons.size >= totalLessons) {
-            // All lessons in THIS course passed. Only issue a certificate
-            // when (a) this is the designated "last course" of its package
-            // AND (b) every other course in the same package/sub-package is
-            // also complete. This guarantees exactly one certificate per
-            // package — not one per course.
-            if (LAST_COURSE_IDS.has(params.courseId)) {
-              const siblingCourses = COURSES.filter(c => {
-                if (course.subPkg) return c.subPkg === course.subPkg
-                return c.pkg === course.pkg
-              })
-              const otherCourseIds = siblingCourses
-                .map(c => c.id)
-                .filter(id => id !== params.courseId)
+        const passedLessons = new Set(
+          (allProgress || []).filter(r => r.passed).map(r => r.lesson_index)
+        )
+        // Include the current lesson we just passed
+        passedLessons.add(lessonIndex)
 
-              let packageComplete = true
-              if (otherCourseIds.length > 0) {
-                const { data: pkgProgress } = await supabase
-                  .from('progress')
-                  .select('course_id, lesson_index, passed')
-                  .eq('user_id', user.id)
-                  .in('course_id', otherCourseIds)
+        if (passedLessons.size >= totalLessons) {
+          // Every lesson in THIS course is now passed.
+          setJustPassedCourse(true)
 
-                // For each sibling course, confirm every lesson is passed
-                for (const sibling of siblingCourses) {
-                  if (sibling.id === params.courseId) continue
-                  const total = sibling.lessons?.length || 0
-                  if (total === 0) continue
-                  const passedForSibling = new Set(
-                    (pkgProgress || [])
-                      .filter(r => r.course_id === sibling.id && r.passed)
-                      .map(r => r.lesson_index)
-                  )
-                  if (passedForSibling.size < total) {
-                    packageComplete = false
-                    break
-                  }
+          // Only issue a certificate when (a) this is the designated
+          // "last course" of its package AND (b) every other course in
+          // the same package/sub-package is also complete. This
+          // guarantees exactly one certificate per package — not one
+          // per course.
+          if (LAST_COURSE_IDS.has(params.courseId)) {
+            const siblingCourses = COURSES.filter(c => {
+              if (course.subPkg) return c.subPkg === course.subPkg
+              return c.pkg === course.pkg
+            })
+            const otherCourseIds = siblingCourses
+              .map(c => c.id)
+              .filter(id => id !== params.courseId)
+
+            let packageComplete = true
+            if (otherCourseIds.length > 0) {
+              const { data: pkgProgress } = await supabase
+                .from('progress')
+                .select('course_id, lesson_index, passed')
+                .eq('user_id', user.id)
+                .in('course_id', otherCourseIds)
+
+              // For each sibling course, confirm every lesson is passed
+              for (const sibling of siblingCourses) {
+                if (sibling.id === params.courseId) continue
+                const total = sibling.lessons?.length || 0
+                if (total === 0) continue
+                const passedForSibling = new Set(
+                  (pkgProgress || [])
+                    .filter(r => r.course_id === sibling.id && r.passed)
+                    .map(r => r.lesson_index)
+                )
+                if (passedForSibling.size < total) {
+                  packageComplete = false
+                  break
                 }
               }
+            }
 
-              if (packageComplete) {
-                const pkgName = pkg?.name || course.title || 'Course'
-                fetch('/api/generate-certificate', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({
-                    userId: user.id,
-                    courseId: params.courseId,
-                    packageId: course.pkg || '',
-                    packageName: pkgName,
-                  }),
-                }).catch(err => console.error('Certificate generation failed:', err))
-              }
+            if (packageComplete) {
+              const pkgName = pkg?.name || course.title || 'Course'
+              fetch('/api/generate-certificate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  userId: user.id,
+                  courseId: params.courseId,
+                  packageId: course.pkg || '',
+                  packageName: pkgName,
+                }),
+              }).catch(err => console.error('Certificate generation failed:', err))
             }
           }
-        } catch (err) {
-          console.error('Course completion check failed:', err)
         }
+      } catch (err) {
+        console.error('Course completion check failed:', err)
+        // Completion-check failure should NOT block the user from seeing
+        // their score or navigating forward. Swallow and carry on.
       }
     }
+
     setSaving(false)
     setPhase('result')
   }
@@ -615,10 +668,28 @@ export default function LessonPage() {
               </p>
               <p className="text-navy/40 text-sm">
                 {passed
-                  ? 'Great work! Your progress has been saved.'
+                  ? (saveError ? 'Great work on the quiz!' : 'Great work! Your progress has been saved.')
                   : 'You need ' + passThreshold + ' or more to pass. Review the lesson and try again.'}
               </p>
             </div>
+
+            {/* Save error banner — surfaces any auth/network failure so mobile
+                users know their progress wasn't recorded. */}
+            {saveError && (
+              <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 flex gap-3">
+                <span className="text-xl mt-0.5" aria-hidden="true">{'\u26A0\uFE0F'}</span>
+                <div className="text-sm text-amber-900 leading-relaxed">
+                  <p className="font-bold mb-1">Progress not saved</p>
+                  <p>{saveError}</p>
+                  <button
+                    onClick={() => { setPhase('quiz'); setSubmitted(false); setSaveError(null) }}
+                    className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-amber-900 underline hover:no-underline"
+                  >
+                    Retry save
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Answer review */}
             <div className="space-y-4 mb-8">
@@ -706,9 +777,19 @@ export default function LessonPage() {
                   Next Lesson: {typeof course.lessons[nextLessonIdx] === 'string' ? course.lessons[nextLessonIdx] : course.lessons[nextLessonIdx]?.title}
                 </Link>
               )}
-              {passed && nextLessonIdx === null && (
+              {/* Last lesson passed: route to /congratulations/[courseId].
+                  That page shows the music-purchase popup for the package's
+                  final course, or a "next course" CTA for mid-package. */}
+              {passed && nextLessonIdx === null && justPassedCourse && !saveError && (
+                <Link href={'/congratulations/' + course.id} className="btn-primary text-center">
+                  {LAST_COURSE_IDS.has(course.id) ? 'Celebrate & Get Your Songs \u2192' : 'Course Complete \u2192'}
+                </Link>
+              )}
+              {/* Fallback if we couldn't verify course completion but the
+                  user still passed the final lesson. Keeps the old behaviour. */}
+              {passed && nextLessonIdx === null && !justPassedCourse && (
                 <Link href={'/course/' + course.id} className="btn-primary text-center">
-                  Course Complete!
+                  Back to Course
                 </Link>
               )}
               <Link href={'/course/' + course.id} className="btn-ghost text-center">

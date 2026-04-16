@@ -27,6 +27,30 @@ export default async function CoursePage({ params }) {
 
   if (!hasAccess) redirect(`/packages#${course.pkg}`)
 
+  // ── Sequential course lock ─────────────────────────────────────────
+  // Find the preceding course in the same (sub-)package. Users must
+  // complete every lesson of that course before this one unlocks.
+  // Mirrors the unlocking logic in /app/library/page.jsx.
+  const chain = COURSES.filter(c => {
+    if (course.subPkg) return c.subPkg === course.subPkg
+    return c.pkg === course.pkg
+  })
+  const positionInChain = chain.findIndex(c => c.id === course.id)
+  if (positionInChain > 0) {
+    const prevCourse = chain[positionInChain - 1]
+    const { data: prevProgress } = await supabase
+      .from('progress')
+      .select('lesson_index, passed')
+      .eq('user_id', user.id)
+      .eq('course_id', prevCourse.id)
+    const prevPassedCount = (prevProgress || []).filter(r => r.passed).length
+    if (prevPassedCount < (prevCourse.lessons?.length || 0)) {
+      // Previous course not complete — redirect to library with the
+      // package expanded so the user can see which subject is next.
+      redirect(`/library#${course.pkg}`)
+    }
+  }
+
   const { data: progressRows } = await supabase
     .from('progress')
     .select('lesson_index, passed, score')
