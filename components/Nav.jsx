@@ -6,55 +6,33 @@ import { createClient } from '@/utils/supabase/client'
 
 const BUNDLE_ID = 'bundle'
 
-export default function Nav() {
-  const [user, setUser] = useState(null)
-  const [dashboardHref, setDashboardHref] = useState('/dashboard')
-  const [hasCourses, setHasCourses] = useState(false)
+export default function Nav({ initialUser = null, initialPurchases = [] }) {
+  const [user, setUser] = useState(initialUser)
+  const [purchases, setPurchases] = useState(initialPurchases)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
   const supabase = createClient()
 
-  // Fetch auth state from server endpoint — reliable even when client-side
-  // session parsing fails (e.g. chunked cookies in older @supabase/ssr).
-  const refreshAuthState = async () => {
-    try {
-      const res = await fetch('/api/me', { cache: 'no-store' })
-      const data = await res.json()
-      if (data?.user) {
-        setUser(data.user)
-        const ids = data.purchases || []
-        setHasCourses(ids.length > 0)
-        setDashboardHref((ids.includes(BUNDLE_ID) || ids.includes('complete')) ? '/family' : '/dashboard')
-      } else {
-        setUser(null)
-        setHasCourses(false)
-        setDashboardHref('/dashboard')
-      }
-    } catch (e) {
-      // network/other error — don't crash the Nav
-    }
-  }
+  // Keep state synced when layout re-renders with fresh server props
+  useEffect(() => { setUser(initialUser) }, [initialUser?.id])
+  useEffect(() => { setPurchases(initialPurchases) }, [initialPurchases?.join(',')])
 
+  // Listen for client-side auth events (sign-out button) to update immediately
   useEffect(() => {
-    // Primary: fetch auth state from reliable server endpoint on mount + route change
-    refreshAuthState()
-
-    // Secondary: also listen to client auth events (sign-in on /login, sign-out button)
-    // to refresh immediately rather than waiting for next route change.
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
-      refreshAuthState()
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') {
+        setUser(null)
+        setPurchases([])
+      } else if (event === 'SIGNED_IN') {
+        // Force a server re-render so layout re-fetches user via getUser()
+        router.refresh()
+      }
     })
     return () => subscription.unsubscribe()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  // Re-check on every route change so Nav stays in sync after navigation.
-  useEffect(() => {
-    refreshAuthState()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -62,10 +40,15 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const hasCourses = (purchases || []).length > 0
+  const dashboardHref = ((purchases || []).includes(BUNDLE_ID) || (purchases || []).includes('complete')) ? '/family' : '/dashboard'
+
   const handleSignOut = async () => {
     await supabase.auth.signOut()
     setUser(null)
-    router.push('/')
+    setPurchases([])
+    // Full reload to clear server-side session cookies as well
+    window.location.href = '/'
   }
 
   const links = [

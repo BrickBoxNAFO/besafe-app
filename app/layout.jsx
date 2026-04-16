@@ -1,4 +1,6 @@
 import './globals.css'
+import { cookies } from 'next/headers'
+import { createClient } from '@/utils/supabase/server'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { PricingProvider } from '@/components/PricingProvider'
@@ -15,12 +17,35 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({ children }) {
+// Force dynamic rendering so auth state is always fresh on every request
+export const dynamic = 'force-dynamic'
+
+export default async function RootLayout({ children }) {
+  // Server-render the user — uses the same getUser() call the dashboard uses,
+  // so if the dashboard sees you, so will the Nav.
+  let initialUser = null
+  let initialPurchases = []
+  try {
+    const cookieStore = await cookies()
+    const supabase = createClient(cookieStore)
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) {
+      initialUser = { id: user.id, email: user.email }
+      const { data } = await supabase
+        .from('purchases')
+        .select('package_id')
+        .eq('user_id', user.id)
+      initialPurchases = (data || []).map(p => p.package_id)
+    }
+  } catch (e) {
+    // fall through — Nav will still render, just as logged-out
+  }
+
   return (
     <html lang="en">
       <body>
         <PricingProvider>
-          <Nav />
+          <Nav initialUser={initialUser} initialPurchases={initialPurchases} />
           <main>{children}</main>
           <Footer />
         </PricingProvider>
