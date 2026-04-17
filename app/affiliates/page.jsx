@@ -23,6 +23,7 @@ export const metadata = {
 
 export default function AffiliatesPage() {
   return (
+    <>
     <main className="min-h-screen bg-slate-50">
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#122a4d] to-[#0B1F3A] text-white">
@@ -377,5 +378,27 @@ export default function AffiliatesPage() {
         </div>
       </section>
     </main>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org/",
+          "@type": "JobPosting",
+          "title": "Commission-Based Sales Representative - Family Safety Education (Remote)",
+          "description": "<p><strong>HomeSafeEducation</strong> is seeking motivated, self-directed sales representatives to promote our family safety and life-skills online courses through our affiliate programme.</p><p><strong>What You Will Do:</strong></p><ul><li>Promote HomeSafeEducation course packages ($34.99-$219.99) through your own channels and networks</li><li>Share your unique affiliate referral link via social media, content marketing, email campaigns, or direct outreach</li><li>Earn 20% commission on every completed sale attributed to your link</li><li>Track performance through our affiliate dashboard</li></ul><p><strong>Compensation:</strong> 100% commission-based. You earn 20% of every sale - $7 to $44 per conversion depending on the course package purchased. There is no cap on earnings. This is a 1099/independent contractor opportunity with no base salary.</p><p>Apply at: <a href='https://homesafeeducation.com/affiliates'>https://homesafeeducation.com/affiliates</a></p>",
+          "identifier": { "@type": "PropertyValue", "name": "HomeSafeEducation", "value": "HSE-AFFILIATE-2026" },
+          "datePosted": "2026-04-17",
+          "validThrough": "2026-10-17",
+          "employmentType": "CONTRACTOR",
+          "hiringOrganization": { "@type": "Organization", "name": "HomeSafeEducation", "sameAs": "https://homesafeeducation.com", "logo": "https://homesafeeducation.com/logo.png" },
+          "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressCountry": "US" } },
+          "jobLocationType": "TELECOMMUTE",
+          "applicantLocationRequirements": { "@type": "Country", "name": "US" },
+          "baseSalary": { "@type": "MonetaryAmount", "currency": "USD", "value": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 44, "unitText": "UNIT" } },
+          "directApply": true
+        })
+      }}
+    />
+    </>
   )
 }
