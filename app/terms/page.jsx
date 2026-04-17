@@ -26,6 +26,18 @@ export default function TermsPage() {
             <p>{s.p}</p>
           </div>
         ))}
+
+        <div className="mt-4 rounded-xl border border-teal/30 bg-teal/5 p-6">
+          <h2 className="font-semibold text-navy text-lg mb-2">Affiliate Programme Terms</h2>
+          <p>
+            If you are a HomeSafeEducation affiliate partner, your participation in the affiliate programme is governed by a separate set of terms and conditions covering commission rates, payout schedules, pricing changes, attribution, and your obligations as a promoter.
+          </p>
+          <p className="mt-3">
+            <a href="/affiliates/terms" className="text-teal font-semibold underline hover:text-teal/80">
+              View the Affiliate Terms &amp; Conditions &rarr;
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   )

@@ -14,10 +14,11 @@ export default function AffiliateTermsPage() {
         <p className="font-semibold text-navy mb-1">The short version</p>
         <p className="text-navy/70 text-sm leading-relaxed">
           You earn a flat 20% commission on every qualifying sale you refer. We
-          track purchases through your unique referral link for 30 days. Once
-          a customer purchases, sales clear the refund window after 7 days,
-          get approved after 14 days, and are paid out between the 1st and 3rd
-          of each month with a $25 minimum payout.
+          track purchases through your unique referral link for 30 days. Sales
+          clear the refund window after 7 days, get approved after 14, and are
+          paid out between the 1st and 3rd of each month with a $25 minimum
+          payout. Refunded sales are clawed back automatically and shown in
+          your dashboard.
         </p>
       </div>
 
@@ -38,7 +39,7 @@ export default function AffiliateTermsPage() {
               <strong>Anyone, anywhere in the world counts.</strong> If the customer is willing to buy, and your link sent them, you get paid.
             </li>
             <li>
-              <strong>Commission is calculated on the sale amount</strong> actually paid by the customer, after any coupon or discount is applied and before tax.
+              <strong>Commission is calculated on the sale amount</strong> actually paid by the customer, after any coupon, discount, or promotion is applied and before tax. See section 14 for full details on how pricing changes and promotions affect your commission.
             </li>
           </ul>
         </div>
@@ -95,6 +96,9 @@ export default function AffiliateTermsPage() {
             <li>
               <strong>Refunds are never hidden.</strong> If one of your conversions is refunded or charged back, the sale is marked <em>Refunded</em> in your dashboard with the timestamp, so you always know why your balance changed.
             </li>
+            <li>
+              <strong>No silent terminations.</strong> If we ever suspend your account, you will see the reason in your dashboard.
+            </li>
           </ul>
         </div>
 
@@ -111,13 +115,7 @@ export default function AffiliateTermsPage() {
           <h2 className="font-semibold text-navy text-xl mb-3">6. Eligibility</h2>
           <ul className="list-disc pl-5 mt-2 space-y-2 text-sm">
             <li>You must be 18 or older. Stripe requires this for any account that receives funds.</li>
-            <li>
-              <strong>We only pay through Stripe.</strong> All commissions are
-              paid through Stripe. You&apos;ll need a free Stripe or Stripe
-              Connect account on the email address registered to your
-              affiliate profile to receive payouts. Other payment methods are
-              not supported.
-            </li>
+            <li>You must maintain a valid payout method (email address we can pay, or an active Stripe Connect account).</li>
             <li>You must comply with the laws of your country, including any requirement to disclose affiliate relationships to your audience.</li>
             <li>You are responsible for any income tax owed on commissions you earn.</li>
           </ul>
@@ -139,7 +137,7 @@ export default function AffiliateTermsPage() {
               <strong>Misrepresentation.</strong> Do not claim to be us, imply official endorsement beyond the affiliate relationship, or imply affiliation with schools, governments, or safeguarding bodies.
             </li>
             <li>
-              <strong>Share thoughtfully.</strong> Please don&apos;t mass-email strangers, and don&apos;t drop your link in places where the community or platform has said affiliate links aren&apos;t welcome. Genuine recommendations, reviews, tutorials, social posts, and conversations with people who would actually be interested are all fine.
+              <strong>Spam.</strong> No unsolicited bulk email, forum spam, or posting in channels where affiliate links are prohibited.
             </li>
             <li>
               <strong>Cookie stuffing, iframes, pop-unders, or forced clicks.</strong> Any technical trick that drops a cookie without genuine user intent.
@@ -217,21 +215,45 @@ export default function AffiliateTermsPage() {
         </div>
 
         <div>
-          <h2 className="font-semibold text-navy text-xl mb-3">14. Disclaimers and limitation of liability</h2>
+          <h2 className="font-semibold text-navy text-xl mb-3">14. Product pricing, promotions, and commission calculation</h2>
+          <ul className="list-disc pl-5 mt-2 space-y-2 text-sm">
+            <li>
+              <strong>Pricing may change at any time.</strong> HomeSafeEducation reserves the sole and absolute right to set, change, increase, or decrease the price of any product or package at any time, without prior notice to affiliates.
+            </li>
+            <li>
+              <strong>Promotions, discounts, and coupon codes.</strong> HomeSafeEducation may offer time-limited promotions, seasonal discounts, bundle deals, coupon codes, or any other price adjustments at its sole discretion. These promotions may reduce the sale price of products for a limited or indefinite period.
+            </li>
+            <li>
+              <strong>Commission is always 20% of the actual sale amount.</strong> Your commission is calculated as 20% of the amount actually paid by the customer at the point of sale, after any discount, coupon, or promotion has been applied and before tax. If a product normally sells for $100 but the customer pays $60 due to a promotion, your commission is 20% of $60 ($12), not 20% of $100.
+            </li>
+            <li>
+              <strong>No entitlement to historical pricing.</strong> You are not entitled to commissions based on any previous, advertised, or recommended retail price. Commission is always calculated on what the customer actually paid, regardless of what the product was priced at when you joined the program, when you shared your link, or when the sale was described in any marketing material, welcome guide, or training document.
+            </li>
+            <li>
+              <strong>Marketing materials are illustrative only.</strong> Any pricing examples, earning projections, or commission calculations shown in the Affiliate Welcome Guide, training materials, dashboard, website, or any other HomeSafeEducation document are for illustration purposes only and do not constitute a guarantee of future pricing or earnings. Product prices and available promotions may differ at the time of any actual customer purchase.
+            </li>
+            <li>
+              <strong>The 20% commission rate may also change.</strong> While we are committed to maintaining the 20% rate, HomeSafeEducation reserves the right to change the commission percentage in the future. Any change to the commission rate will be communicated to active affiliates in advance as described in section 13 (Changes to the program). Continuing to use your affiliate link after such a change constitutes acceptance.
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="font-semibold text-navy text-xl mb-3">15. Disclaimers and limitation of liability</h2>
           <p className="text-sm">
-            The affiliate program is provided &quot;as is.&quot; We make no guarantee that you will earn any particular amount, or any amount at all. To the fullest extent permitted by law, HomeSafeEducation is not liable for any indirect, incidental, or consequential damages arising out of your participation in the affiliate program. Our total aggregate liability under these terms is limited to the total commissions paid to you in the twelve months preceding the claim.
+            The affiliate program is provided &quot;as is.&quot; We make no guarantee that you will earn any particular amount, or any amount at all. Product prices, promotions, and commission rates are subject to change as described in section 14. No statement in any welcome guide, training document, email, or marketing material creates a binding promise regarding future pricing or earnings. To the fullest extent permitted by law, HomeSafeEducation is not liable for any indirect, incidental, or consequential damages arising out of your participation in the affiliate program, including but not limited to any loss of anticipated commissions due to pricing changes, promotions, or discontinued products. Our total aggregate liability under these terms is limited to the total commissions paid to you in the twelve months preceding the claim.
           </p>
         </div>
 
         <div>
-          <h2 className="font-semibold text-navy text-xl mb-3">15. Governing law</h2>
+          <h2 className="font-semibold text-navy text-xl mb-3">16. Governing law</h2>
           <p className="text-sm">
             These terms are governed by the laws of England and Wales. Disputes will be resolved in the courts of England and Wales, without prejudice to any mandatory consumer protection laws that apply in your country of residence.
           </p>
         </div>
 
         <div>
-          <h2 className="font-semibold text-navy text-xl mb-3">16. Contact</h2>
+          <h2 className="font-semibold text-navy text-xl mb-3">17. Contact</h2>
           <p className="text-sm">
             Questions about the program, a suspended account, or a specific commission?
           </p>
