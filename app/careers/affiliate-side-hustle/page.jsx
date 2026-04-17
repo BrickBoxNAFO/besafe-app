@@ -121,38 +121,31 @@ export default function AffiliateSideHustle() {
       />
       <div className="min-h-screen bg-slate-50">
         {/* Hero Section */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#122a4d] to-[#0B1F3A] px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#122a4d] to-[#0B1F3A] px-4 py-10 sm:px-6 lg:px-8">
           {/* Decorative blur orbs */}
           <div className="absolute top-10 right-0 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
           <div className="absolute bottom-0 left-20 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
 
           <div className="relative z-10 max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
               <span className="w-2 h-2 bg-teal-400 rounded-full"></span>
               <span className="text-sm font-medium text-white">Flexible Side Hustle</span>
             </div>
 
-            <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
               Earn Extra Income Sharing Family Safety Courses
             </h1>
 
-            <p className="text-xl text-slate-200 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-white mb-6 max-w-2xl mx-auto">
               A simple, flexible side hustle - fully remote, no experience required
             </p>
-
-            <a
-              href="https://numok-production.up.railway.app/register"
-              className="inline-block px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-lg transition-colors duration-200"
-            >
-              Get Started
-            </a>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {/* What Is This Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">What Is This?</h2>
             <div className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm">
               <p className="text-lg text-slate-700 leading-relaxed">
@@ -162,7 +155,7 @@ export default function AffiliateSideHustle() {
           </div>
 
           {/* What Does That Look Like Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">What Does That Look Like?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {features.map((feature, idx) => (
@@ -187,7 +180,7 @@ export default function AffiliateSideHustle() {
           </div>
 
           {/* What Do You Actually Have to Do Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">What Do You Actually Have to Do?</h2>
             <div className="space-y-4">
               {steps.map((step, idx) => (
@@ -212,7 +205,7 @@ export default function AffiliateSideHustle() {
           </div>
 
           {/* Who Is This Good For Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">Who Is This Good For?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {goodFor.map((item, idx) => (
@@ -230,7 +223,7 @@ export default function AffiliateSideHustle() {
           </div>
 
           {/* The Details Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">The Details</h2>
             <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

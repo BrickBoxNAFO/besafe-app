@@ -130,38 +130,31 @@ export default function AffiliateParent() {
       />
       <div className="min-h-screen bg-slate-50">
         {/* Hero Section */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#122a4d] to-[#0B1F3A] px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#122a4d] to-[#0B1F3A] px-4 py-10 sm:px-6 lg:px-8">
           {/* Decorative blur orbs */}
           <div className="absolute top-0 right-20 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
           <div className="absolute bottom-10 left-0 w-80 h-80 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
 
           <div className="relative z-10 max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
               <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
               <span className="text-sm font-medium text-white">For Parents and Caregivers</span>
             </div>
 
-            <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
               Earn Extra Income Sharing Something That Actually Matters
             </h1>
 
-            <p className="text-xl text-slate-200 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-white mb-6 max-w-2xl mx-auto">
               A flexible opportunity for parents - share family safety courses and earn 20% commission
             </p>
-
-            <a
-              href="https://numok-production.up.railway.app/register"
-              className="inline-block px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors duration-200"
-            >
-              Join Now
-            </a>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {/* Why This Is Different Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">Why This Is Different</h2>
             <div className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm">
               <p className="text-lg text-slate-700 leading-relaxed mb-4">
@@ -174,7 +167,7 @@ export default function AffiliateParent() {
           </div>
 
           {/* How It Works Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">How It Works</h2>
             <div className="space-y-4">
               {steps.map((step, idx) => (
@@ -199,7 +192,7 @@ export default function AffiliateParent() {
           </div>
 
           {/* What You Can Earn Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">What You Can Earn</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {earnings.map((item, idx) => (
@@ -220,7 +213,7 @@ export default function AffiliateParent() {
           </div>
 
           {/* Why Parents Love This Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">Why Parents Love This</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {whyParentsLove.map((item, idx) => (
@@ -239,7 +232,7 @@ export default function AffiliateParent() {
           </div>
 
           {/* Who This Is For Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">Who This Is For</h2>
             <div className="bg-gradient-to-br from-orange-50 to-slate-50 rounded-2xl ring-1 ring-orange-200 p-8 shadow-sm">
               <p className="text-lg text-slate-700 leading-relaxed">

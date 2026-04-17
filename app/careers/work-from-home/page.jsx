@@ -151,39 +151,32 @@ export default function WorkFromHome() {
       />
       <div className="min-h-screen bg-slate-50">
         {/* Hero Section */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#122a4d] to-[#0B1F3A] px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#122a4d] to-[#0B1F3A] px-4 py-10 sm:px-6 lg:px-8">
           {/* Decorative blur orbs */}
           <div className="absolute top-0 -right-20 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
           <div className="absolute -bottom-10 left-0 w-80 h-80 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
           <div className="absolute top-1/2 right-1/4 w-72 h-72 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-blob animation-delay-4000"></div>
 
           <div className="relative z-10 max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
               <span className="w-2 h-2 bg-teal-400 rounded-full"></span>
               <span className="text-sm font-medium text-white">Work From Home - No Experience Required</span>
             </div>
 
-            <h1 className="font-serif text-5xl sm:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
               Work From Home - No Experience Needed
             </h1>
 
-            <p className="text-xl text-slate-200 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-white mb-6 max-w-2xl mx-auto">
               Earn 20% commission sharing online family safety courses. Fully remote, flexible hours, free to join.
             </p>
-
-            <a
-              href="https://numok-production.up.railway.app/register"
-              className="inline-block px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-lg transition-colors duration-200"
-            >
-              Get Started Now
-            </a>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {/* The Opportunity Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">The Opportunity</h2>
             <div className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm">
               <p className="text-lg text-slate-700 leading-relaxed mb-4">
@@ -196,7 +189,7 @@ export default function WorkFromHome() {
           </div>
 
           {/* What You Earn Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">What You Earn</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {earnings.map((item, idx) => (
@@ -215,7 +208,7 @@ export default function WorkFromHome() {
           </div>
 
           {/* What You Need Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">What You Need</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {requirements.map((item, idx) => (
@@ -235,7 +228,7 @@ export default function WorkFromHome() {
           </div>
 
           {/* How It Works Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">How It Works</h2>
             <div className="space-y-4">
               {steps.map((step, idx) => (
@@ -260,7 +253,7 @@ export default function WorkFromHome() {
           </div>
 
           {/* Why People Choose This Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-8">Why People Choose This</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {whyPeopleChoose.map((item, idx) => (
@@ -279,7 +272,7 @@ export default function WorkFromHome() {
           </div>
 
           {/* The Details Section */}
-          <div className="mb-20">
+          <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">The Details</h2>
             <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

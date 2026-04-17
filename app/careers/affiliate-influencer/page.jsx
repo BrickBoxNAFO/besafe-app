@@ -91,8 +91,8 @@ const AffiliateCreatorPage = () => {
             background: linear-gradient(135deg, ${colors.navy} 0%, #122a4d 50%, ${colors.navy} 100%);
             position: relative;
             overflow: hidden;
-            padding: 120px 20px;
-            min-height: 100vh;
+            padding: 60px 20px;
+            min-height: auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -204,7 +204,7 @@ const AffiliateCreatorPage = () => {
           }
 
           .section {
-            padding: 120px 20px;
+            padding: 40px 20px;
             max-width: 1200px;
             margin: 0 auto;
           }
@@ -396,7 +396,7 @@ const AffiliateCreatorPage = () => {
 
           .final-cta-section {
             background: linear-gradient(135deg, ${colors.navy} 0%, #122a4d 100%);
-            padding: 80px 20px;
+            padding: 40px 20px;
             text-align: center;
             border-radius: 32px;
             margin: 0 20px;
@@ -486,9 +486,6 @@ const AffiliateCreatorPage = () => {
             <div className="pill-badge">Creator Partnership</div>
             <h1 className="hero-h1">Content Creator Partner - Family Safety Education</h1>
             <p className="hero-subtitle">Earn 20% commission sharing courses your audience actually needs</p>
-            <a href="https://numok-production.up.railway.app/register" className="cta-button">
-              Join the Programme
-            </a>
           </div>
         </section>
 

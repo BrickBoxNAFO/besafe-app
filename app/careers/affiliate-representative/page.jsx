@@ -208,16 +208,16 @@ export default function AffiliateRepresentativePage() {
 
       <main className="bg-slate-50">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#122a4d] to-[#0B1F3A]">
+        <section className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#122a4d] to-[#0B1F3A]">
           <div className="blur-orb-1" />
           <div className="blur-orb-2" />
 
-          <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 py-20 text-center">
-            <div className="mb-8 animate-fadeInUp">
+          <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 py-12 text-center">
+            <div className="mb-4 animate-fadeInUp">
               <span className="pill-badge">Remote - Independent Contractor</span>
             </div>
 
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
               Commission-Based Sales Representative
             </h1>
 
@@ -225,12 +225,12 @@ export default function AffiliateRepresentativePage() {
               Family Safety Education
             </p>
 
-            <p className="text-lg text-slate-300 mb-12 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
+            <p className="text-lg text-white mb-12 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
               HomeSafeEducation
             </p>
 
             {/* Key Details Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                 <p className="text-slate-300 text-sm mb-2">Location</p>
                 <p className="text-white font-semibold text-lg">Remote (Worldwide)</p>
@@ -245,18 +245,11 @@ export default function AffiliateRepresentativePage() {
               </div>
             </div>
 
-            <a
-              href={registerUrl}
-              className="button-primary inline-flex items-center gap-2 bg-gradient-to-r from-[#0EA5A0] to-[#0d8f8b] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-2xl"
-            >
-              Apply Now
-              <ArrowIcon />
-            </a>
           </div>
         </section>
 
         {/* About Section */}
-        <section className="py-20 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
+        <section className="py-10 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="section-title font-serif text-4xl sm:text-5xl font-bold text-[#0B1F3A] mb-8">
@@ -287,7 +280,7 @@ export default function AffiliateRepresentativePage() {
         </section>
 
         {/* Role Overview */}
-        <section className="py-20 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
+        <section className="py-10 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
           <h2 className="section-title font-serif text-4xl sm:text-5xl font-bold text-[#0B1F3A] mb-8">
             Role Overview
           </h2>
@@ -299,7 +292,7 @@ export default function AffiliateRepresentativePage() {
         </section>
 
         {/* What You Will Do */}
-        <section className="py-20 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
+        <section className="py-10 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
           <h2 className="section-title font-serif text-4xl sm:text-5xl font-bold text-[#0B1F3A] mb-12">
             What You Will Do
           </h2>
@@ -351,7 +344,7 @@ export default function AffiliateRepresentativePage() {
         </section>
 
         {/* Ideal Candidate */}
-        <section className="py-20 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
+        <section className="py-10 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
           <h2 className="section-title font-serif text-4xl sm:text-5xl font-bold text-[#0B1F3A] mb-12">
             Ideal Candidate
           </h2>
@@ -376,7 +369,7 @@ export default function AffiliateRepresentativePage() {
         </section>
 
         {/* Compensation Details */}
-        <section className="py-20 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
+        <section className="py-10 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
           <h2 className="section-title font-serif text-4xl sm:text-5xl font-bold text-[#0B1F3A] mb-12">
             Compensation Details
           </h2>
@@ -423,7 +416,7 @@ export default function AffiliateRepresentativePage() {
         </section>
 
         {/* Final CTA */}
-        <section className="py-20 px-6 sm:px-8 lg:px-12 max-w-4xl mx-auto text-center">
+        <section className="py-10 px-6 sm:px-8 lg:px-12 max-w-4xl mx-auto text-center">
           <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#0B1F3A] mb-6">
             Ready to Get Started?
           </h2>
