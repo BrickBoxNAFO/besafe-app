@@ -336,5 +336,5 @@ function IconSVG({ name }) {
     ),
   };
 
-  return icons[name as keyof typeof icons] || icons.bookmark;
+  return icons[name] || icons.bookmark;
 }

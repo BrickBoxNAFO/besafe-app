@@ -408,5 +408,5 @@ function IconSVG({ name }) {
     ),
   };
 
-  return icons[name as keyof typeof icons] || icons.device;
+  return icons[name] || icons.device;
 }
