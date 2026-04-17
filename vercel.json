@@ -3,5 +3,15 @@
   "buildCommand": "next build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
-  "regions": ["lhr1"]
+  "regions": ["lhr1"],
+  "crons": [
+    {
+      "path": "/api/cron/approve-conversions",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/build-payout-batches",
+      "schedule": "0 2 1 * *"
+    }
+  ]
 }
