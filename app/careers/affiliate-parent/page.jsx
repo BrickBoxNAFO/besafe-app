@@ -137,7 +137,7 @@ export default function AffiliateParent() {
 
           <div className="relative z-10 max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
-              <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
+              <span className="w-2 h-2 rounded-full" style={{background: '#E8703A'}}></span>
               <span className="text-sm font-medium text-white">For Parents and Caregivers</span>
             </div>
 
@@ -177,7 +177,7 @@ export default function AffiliateParent() {
                 >
                   <div className="flex items-start gap-6">
                     <div className="flex-shrink-0">
-                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-600">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-full" style={{background: 'linear-gradient(to bottom right, #E8703A, #d65c24)'}}>
                         <span className="font-serif font-bold text-white text-lg">{step.number}</span>
                       </div>
                     </div>
@@ -234,7 +234,7 @@ export default function AffiliateParent() {
           {/* Who This Is For Section */}
           <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">Who This Is For</h2>
-            <div className="bg-gradient-to-br from-orange-50 to-slate-50 rounded-2xl ring-1 ring-orange-400 p-8 shadow-sm">
+            <div className="rounded-2xl p-8 shadow-sm" style={{background: 'linear-gradient(to bottom right, #fff7ed, #f8fafc)', border: '1px solid #E8703A'}}>
               <p className="text-lg text-slate-700 leading-relaxed">
                 Stay-at-home mums and dads, caregivers, homeschooling parents, or anyone in the parenting space who wants a simple, flexible way to earn a little extra. No experience needed - if you can share a link, you can do this.
               </p>
@@ -242,14 +242,15 @@ export default function AffiliateParent() {
           </div>
 
           {/* CTA Section */}
-          <div className="bg-gradient-to-r from-orange-50 to-slate-50 rounded-2xl ring-1 ring-orange-400 p-12 text-center">
+          <div className="rounded-2xl p-12 text-center" style={{background: 'linear-gradient(to right, #fff7ed, #f8fafc)', border: '1px solid #E8703A'}}>
             <h2 className="font-serif text-3xl font-bold text-slate-900 mb-4">Ready to Get Started?</h2>
             <p className="text-lg text-slate-700 mb-8 max-w-2xl mx-auto">
-              Join at <a href="https://homesafeeducation.com/affiliates" className="text-orange-600 font-semibold underline hover:text-orange-800">homesafeeducation.com/affiliates</a> - it takes less than two minutes and it is completely free.
+              Join at <a href="https://homesafeeducation.com/affiliates" className="font-semibold underline" style={{color: '#E8703A'}}>homesafeeducation.com/affiliates</a> - it takes less than two minutes and it is completely free.
             </p>
             <a
               href="https://numok-production.up.railway.app/register"
-              className="inline-block px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors duration-200"
+              className="inline-block px-10 py-5 text-white font-bold text-lg rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              style={{background: 'linear-gradient(135deg, #E8703A, #d65c24)'}}
             >
               Join Now
             </a>
@@ -283,47 +284,47 @@ export default function AffiliateParent() {
 function IconSVG({ name }) {
   const icons = {
     tag: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
       </svg>
     ),
     trending: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     ),
     unlimited: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
     clock: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
     heart: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ),
     box: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
       </svg>
     ),
     phone: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
       </svg>
     ),
     smile: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
     users: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10a3 3 0 11-6 0 3 3 0 016 0zM9 20H4v-2a6 6 0 0112 0v2H9z" />
       </svg>
     ),

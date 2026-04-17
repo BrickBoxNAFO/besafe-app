@@ -128,7 +128,7 @@ export default function AffiliateSideHustle() {
 
           <div className="relative z-10 max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
-              <span className="w-2 h-2 bg-teal-400 rounded-full"></span>
+              <span className="w-2 h-2 rounded-full" style={{background: '#0EA5A0'}}></span>
               <span className="text-sm font-medium text-white">Flexible Side Hustle</span>
             </div>
 
@@ -190,7 +190,7 @@ export default function AffiliateSideHustle() {
                 >
                   <div className="flex items-start gap-6">
                     <div className="flex-shrink-0">
-                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-teal-600">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-full" style={{background: 'linear-gradient(to bottom right, #0EA5A0, #0d8f8b)'}}>
                         <span className="font-serif font-bold text-white text-lg">{step.number}</span>
                       </div>
                     </div>
@@ -247,14 +247,15 @@ export default function AffiliateSideHustle() {
           </div>
 
           {/* CTA Section */}
-          <div className="bg-gradient-to-r from-teal-50 to-slate-50 rounded-2xl ring-1 ring-teal-400 p-12 text-center">
+          <div className="rounded-2xl p-12 text-center" style={{background: 'linear-gradient(to right, #f0fdfa, #f8fafc)', border: '1px solid #0EA5A0'}}>
             <h2 className="font-serif text-3xl font-bold text-slate-900 mb-4">Ready to Get Started?</h2>
             <p className="text-lg text-slate-700 mb-8 max-w-2xl mx-auto">
-              Sign up at <a href="https://homesafeeducation.com/affiliates" className="text-teal-600 font-semibold underline hover:text-teal-800">homesafeeducation.com/affiliates</a> - it is free and takes less than two minutes.
+              Sign up at <a href="https://homesafeeducation.com/affiliates" className="font-semibold underline" style={{color: '#0EA5A0'}}>homesafeeducation.com/affiliates</a> - it is free and takes less than two minutes.
             </p>
             <a
               href="https://numok-production.up.railway.app/register"
-              className="inline-block px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-lg transition-colors duration-200"
+              className="inline-block px-10 py-5 text-white font-bold text-lg rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              style={{background: 'linear-gradient(135deg, #0EA5A0, #0d8f8b)'}}
             >
               Get Started
             </a>
@@ -288,42 +289,42 @@ export default function AffiliateSideHustle() {
 function IconSVG({ name }) {
   const icons = {
     bookmark: (
-      <svg className="w-6 h-6 text-teal-500" fill="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="currentColor" viewBox="0 0 24 24">
         <path d="M5 2h14a1 1 0 011 1v19l-8-4-8 4V3a1 1 0 011-1z" />
       </svg>
     ),
     trending: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     ),
     rocket: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
     credit: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V5a3 3 0 00-3-3H5a3 3 0 00-3 3v11a3 3 0 003 3z" />
       </svg>
     ),
     user: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
       </svg>
     ),
     share: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 11.5H2v7a3 3 0 003 3h14a3 3 0 003-3v-7h-6.684m0 0a6 6 0 10-6.348 0m13.032-3.968a6 6 0 11-12.064 0" />
       </svg>
     ),
     users: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.856-1.487M15 10a3 3 0 11-6 0 3 3 0 016 0zM9 20H4v-2a6 6 0 0112 0v2H9z" />
       </svg>
     ),
     check: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),

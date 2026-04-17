@@ -159,7 +159,7 @@ export default function WorkFromHome() {
 
           <div className="relative z-10 max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4">
-              <span className="w-2 h-2 bg-teal-400 rounded-full"></span>
+              <span className="w-2 h-2 rounded-full" style={{background: '#0EA5A0'}}></span>
               <span className="text-sm font-medium text-white">Work From Home - No Experience Required</span>
             </div>
 
@@ -214,7 +214,7 @@ export default function WorkFromHome() {
               {requirements.map((item, idx) => (
                 <div
                   key={idx}
-                  className="bg-gradient-to-br from-teal-50 to-slate-50 rounded-2xl ring-1 ring-teal-400 p-8 shadow-sm hover:shadow-md transition-shadow duration-200"
+                  className="rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow duration-200" style={{background: 'linear-gradient(to bottom right, #f0fdfa, #f8fafc)', border: '1px solid #0EA5A0'}}
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 mt-1">
@@ -238,7 +238,7 @@ export default function WorkFromHome() {
                 >
                   <div className="flex items-start gap-6">
                     <div className="flex-shrink-0">
-                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-teal-600">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-full" style={{background: 'linear-gradient(to bottom right, #0EA5A0, #0d8f8b)'}}>
                         <span className="font-serif font-bold text-white text-lg">{step.number}</span>
                       </div>
                     </div>
@@ -296,14 +296,15 @@ export default function WorkFromHome() {
           </div>
 
           {/* CTA Section */}
-          <div className="bg-gradient-to-r from-teal-50 to-slate-50 rounded-2xl ring-1 ring-teal-400 p-12 text-center">
+          <div className="rounded-2xl p-12 text-center" style={{background: 'linear-gradient(to right, #f0fdfa, #f8fafc)', border: '1px solid #0EA5A0'}}>
             <h2 className="font-serif text-3xl font-bold text-slate-900 mb-4">Ready to Start Working From Home?</h2>
             <p className="text-lg text-slate-700 mb-8 max-w-2xl mx-auto">
-              Sign up at <a href="https://homesafeeducation.com/affiliates" className="text-teal-600 font-semibold underline hover:text-teal-800">homesafeeducation.com/affiliates</a> - it takes less than two minutes and costs nothing.
+              Sign up at <a href="https://homesafeeducation.com/affiliates" className="font-semibold underline" style={{color: '#0EA5A0'}}>homesafeeducation.com/affiliates</a> - it takes less than two minutes and costs nothing.
             </p>
             <a
               href="https://numok-production.up.railway.app/register"
-              className="inline-block px-10 py-5 bg-[#0B1F3A] hover:bg-[#162d52] text-white font-bold text-lg rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              className="inline-block px-10 py-5 text-white font-bold text-lg rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              style={{background: '#0B1F3A'}}
             >
               Get Started Now
             </a>
@@ -340,62 +341,62 @@ export default function WorkFromHome() {
 function IconSVG({ name }) {
   const icons = {
     percent: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
       </svg>
     ),
     dollar: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
     unlimited: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
     chart: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
     ),
     device: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
       </svg>
     ),
     check: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
     wallet: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
       </svg>
     ),
     package: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
       </svg>
     ),
     clock: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
     heart: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ),
     lightbulb: (
-      <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#0EA5A0'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12a9 9 0 11-18 0 9 9 0 0118 0m-9 5h.01" />
       </svg>
     ),
     briefcase: (
-      <svg className="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" style={{color: '#E8703A'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m0 0h14a2 2 0 012 2v3.09c0 .713-.264 1.39-.729 1.91a23.931 23.931 0 01-9 1.745c-3.142 0-6.147-.655-8.834-1.82A2.016 2.016 0 002 20v-2a2 2 0 012-2h16z" />
       </svg>
     ),
