@@ -206,6 +206,34 @@ export default function AffiliatesPage() {
         </div>
       </section>
 
+      {/* What we offer */}
+      <section className="bg-gradient-to-br from-[#0B1F3A]/[0.03] to-[#0EA5A0]/[0.05]">
+        <div className="max-w-4xl mx-auto px-6 py-16 md:py-20 text-center">
+          <h2 className="font-serif text-3xl md:text-4xl text-[#0B1F3A] mb-6">
+            What you will be sharing
+          </h2>
+          <p className="text-slate-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+            Our courses help families stay safe at every stage of life. From teaching
+            little ones about stranger danger and body safety, to preparing teenagers
+            for the real world, helping young adults head off to uni feeling confident,
+            and showing our elderly loved ones how to spot scams. We cover the stuff
+            that matters but is sometimes hard to talk about. And we do it with love, not fear.
+          </p>
+          <p className="text-slate-500 mb-8">
+            Take a look at our packages to see exactly what products you would be recommending.
+          </p>
+          <Link
+            href="/packages"
+            className="inline-flex items-center gap-2 bg-[#E8703A] hover:bg-[#d4612e] text-white font-semibold text-[15px] px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-[#E8703A]/20"
+          >
+            View Our Packages
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
+      </section>
+
       {/* Value props */}
       <section className="bg-white border-y border-slate-200">
         <div className="max-w-5xl mx-auto px-6 py-16 md:py-20">
