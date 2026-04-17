@@ -344,7 +344,7 @@ export default function WorkFromHome() {
   );
 }
 
-function IconSVG({ name }: { name: string }) {
+function IconSVG({ name }) {
   const icons = {
     percent: (
       <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">

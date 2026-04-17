@@ -292,7 +292,7 @@ export default function AffiliateSideHustle() {
   );
 }
 
-function IconSVG({ name }: { name: string }) {
+function IconSVG({ name }) {
   const icons = {
     bookmark: (
       <svg className="w-6 h-6 text-teal-500" fill="currentColor" viewBox="0 0 24 24">
