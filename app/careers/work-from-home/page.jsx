@@ -1,6 +1,4 @@
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Work From Home - No Experience Needed | HomeSafeEducation',
   description: 'Earn 20% commission sharing family safety courses. Fully remote, flexible hours, completely free to join. No experience required.',
   canonical: '/careers/work-from-home',

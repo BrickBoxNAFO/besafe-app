@@ -1,6 +1,4 @@
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Commission-Based Sales Representative - Remote | HomeSafeEducation',
   description: 'Earn 20% commission promoting family safety and life-skills courses. Fully remote, flexible hours, independent contractor opportunity.',
   canonical: '/careers/affiliate-representative',

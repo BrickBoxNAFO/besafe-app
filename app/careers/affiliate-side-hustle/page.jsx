@@ -1,6 +1,4 @@
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Earn Extra Income Sharing Family Safety Courses | HomeSafeEducation',
   description: 'Join our affiliate programme and earn 20% commission sharing family safety courses. Flexible side hustle, no experience required. Work from anywhere.',
   canonical: '/careers/affiliate-side-hustle',

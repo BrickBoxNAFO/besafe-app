@@ -1,6 +1,4 @@
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Earn Extra Income Sharing Something That Actually Matters | HomeSafeEducation',
   description: 'For parents and caregivers - earn 20% commission sharing family safety courses. A flexible opportunity to earn while sharing something genuinely valuable.',
   canonical: '/careers/affiliate-parent',
