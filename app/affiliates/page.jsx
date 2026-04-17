@@ -278,7 +278,7 @@ export default function AffiliatesPage() {
               n: '1',
               title: 'Sign up',
               body:
-                'Register with your name and email. Anyone 18 or over can apply. You will also need a free Stripe account (takes a few minutes) so we can send your payouts.',
+                'Register with your name and email. Anyone 18 or over can apply. After logging in, you will be guided through a quick payment setup so we can send you your commission.',
             },
             {
               n: '2',
@@ -329,7 +329,7 @@ export default function AffiliatesPage() {
               </li>
               <li className="flex gap-3">
                 <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#0EA5A0]/10 text-[#0EA5A0] flex items-center justify-center text-sm font-bold mt-0.5">&#10003;</span>
-                <span><strong className="text-[#0B1F3A]">A free Stripe account for payouts.</strong> We pay through Stripe, so you will need to sign up with Stripe (it is free) so we can send your commission. Creating it takes a few minutes.</span>
+                <span><strong className="text-[#0B1F3A]">Quick payment setup inside your dashboard.</strong> After registering, you will connect your payment details through a secure setup inside your dashboard so we can send you your commission. It takes a few minutes and you do not need any existing accounts.</span>
               </li>
               <li className="flex gap-3">
                 <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#0EA5A0]/10 text-[#0EA5A0] flex items-center justify-center text-sm font-bold mt-0.5">&#10003;</span>
@@ -348,8 +348,8 @@ export default function AffiliatesPage() {
               Ready to start earning?
             </h2>
             <p className="text-white/70 text-lg max-w-xl mx-auto mb-8">
-              Sign up with your name and email. Connect a free Stripe account for
-              payouts. Start sharing your link and earning 20% on every sale.
+              Sign up with your name and email. Complete the quick payment setup
+              in your dashboard. Start sharing your link and earning 20% on every sale.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
