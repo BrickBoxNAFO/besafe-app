@@ -1,22 +1,50 @@
 'use client'
-import { useState, Suspense } from 'react'
+import { useState, useCallback, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
+import TurnstileWidget from '@/components/TurnstileWidget'
 
 function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState(null)
   const searchParams = useSearchParams()
   const redirect = searchParams.get('redirect') || '/dashboard'
   const supabase = createClient()
 
+  const handleTurnstileVerify = useCallback((token) => setTurnstileToken(token), [])
+  const handleTurnstileExpire = useCallback(() => setTurnstileToken(null), [])
+
   const handleLogin = async (e) => {
     e.preventDefault()
     setError('')
+    if (!turnstileToken) {
+      setError('Please complete the security check.')
+      return
+    }
     setLoading(true)
+
+    // Verify Turnstile token server-side before auth
+    try {
+      const verifyRes = await fetch('/api/turnstile/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ turnstileToken }),
+      })
+      if (!verifyRes.ok) {
+        setError('Security check failed. Please try again.')
+        setLoading(false)
+        return
+      }
+    } catch {
+      setError('Security check failed. Please try again.')
+      setLoading(false)
+      return
+    }
+
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
       setError(error.message)
@@ -75,7 +103,13 @@ function LoginForm() {
                 Forgot password?
               </Link>
             </div>
-            <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3 disabled:opacity-60">
+
+            <TurnstileWidget
+              onVerify={handleTurnstileVerify}
+              onExpire={handleTurnstileExpire}
+            />
+
+            <button type="submit" disabled={loading || !turnstileToken} className="btn-primary w-full justify-center py-3 disabled:opacity-60">
               {loading ? 'Signing in...' : 'Sign In \u2192'}
             </button>
           </form>

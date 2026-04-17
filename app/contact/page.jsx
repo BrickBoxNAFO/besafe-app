@@ -1,28 +1,35 @@
 'use client'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import NewsletterBanner from '@/components/NewsletterBanner'
+import TurnstileWidget from '@/components/TurnstileWidget'
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', orderRef: '', message: '' })
   const [status, setStatus] = useState(null) // null | 'sending' | 'sent' | 'error'
   const [ticketRef, setTicketRef] = useState(null)
+  const [turnstileToken, setTurnstileToken] = useState(null)
+
+  const handleTurnstileVerify = useCallback((token) => setTurnstileToken(token), [])
+  const handleTurnstileExpire = useCallback(() => setTurnstileToken(null), [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!form.email || !form.message) return
+    if (!turnstileToken) return
     setStatus('sending')
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, turnstileToken }),
       })
       const data = await res.json()
       if (data.success) {
         setStatus('sent')
         setTicketRef(data.ticketRef)
         setForm({ name: '', email: '', orderRef: '', message: '' })
+        setTurnstileToken(null)
       } else {
         setStatus('error')
       }
@@ -65,7 +72,7 @@ export default function ContactPage() {
                     Our team typically responds within 1 to 2 business days, Monday to Friday.
                   </p>
                   <button
-                    onClick={() => { setStatus(null); setTicketRef(null) }}
+                    onClick={() => { setStatus(null); setTicketRef(null); setTurnstileToken(null) }}
                     className="btn-ghost mt-6"
                   >
                     Send Another Message
@@ -116,6 +123,11 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  <TurnstileWidget
+                    onVerify={handleTurnstileVerify}
+                    onExpire={handleTurnstileExpire}
+                  />
+
                   {status === 'error' && (
                     <div className="bg-red-50 border border-red-100 rounded-xl px-4 py-3">
                       <p className="text-red-600 text-sm">Something went wrong. You can also email us directly at <a href="mailto:Support@HomeSafeEducation.com" className="underline">Support@HomeSafeEducation.com</a></p>
@@ -124,8 +136,8 @@ export default function ContactPage() {
 
                   <button
                     type="submit"
-                    disabled={status === 'sending'}
-                    className="btn-primary w-full justify-center"
+                    disabled={status === 'sending' || !turnstileToken}
+                    className="btn-primary w-full justify-center disabled:opacity-60"
                   >
                     {status === 'sending' ? 'Sending...' : 'Send Message'}
                   </button>

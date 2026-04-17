@@ -1,9 +1,16 @@
 import { getResend } from '@/lib/resend'
 import { sendNewsletterWelcome } from '@/lib/newsletter'
+import { verifyTurnstile } from '@/lib/turnstile'
 
 export async function POST(req) {
   try {
-    const { email } = await req.json()
+    const { email, turnstileToken } = await req.json()
+
+    // Verify Turnstile token
+    const turnstileResult = await verifyTurnstile(turnstileToken)
+    if (!turnstileResult.success) {
+      return Response.json({ error: 'Security verification failed. Please try again.' }, { status: 403 })
+    }
 
     if (!email || !email.includes('@')) {
       return Response.json({ error: 'Please provide a valid email address.' }, { status: 400 })

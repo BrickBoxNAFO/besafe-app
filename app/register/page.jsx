@@ -1,8 +1,9 @@
 'use client'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
+import TurnstileWidget from '@/components/TurnstileWidget'
 
 export default function RegisterPage() {
   const [name, setName] = useState('')
@@ -12,8 +13,12 @@ export default function RegisterPage() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState(null)
   const router = useRouter()
   const supabase = createClient()
+
+  const handleTurnstileVerify = useCallback((token) => setTurnstileToken(token), [])
+  const handleTurnstileExpire = useCallback(() => setTurnstileToken(null), [])
 
   const handleRegister = async (e) => {
     e.preventDefault()
@@ -21,8 +26,28 @@ export default function RegisterPage() {
 
     if (password !== confirm) { setError('Passwords do not match.'); return }
     if (password.length < 8) { setError('Password must be at least 8 characters.'); return }
+    if (!turnstileToken) { setError('Please complete the security check.'); return }
 
     setLoading(true)
+
+    // Verify Turnstile token server-side before registration
+    try {
+      const verifyRes = await fetch('/api/turnstile/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ turnstileToken }),
+      })
+      if (!verifyRes.ok) {
+        setError('Security check failed. Please try again.')
+        setLoading(false)
+        return
+      }
+    } catch {
+      setError('Security check failed. Please try again.')
+      setLoading(false)
+      return
+    }
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -123,7 +148,13 @@ export default function RegisterPage() {
               {' '}and{' '}
               <Link href="/privacy" className="text-teal hover:underline">Privacy Policy</Link>.
             </p>
-            <button type="submit" disabled={loading} className="btn-primary w-full justify-center py-3 disabled:opacity-60">
+
+            <TurnstileWidget
+              onVerify={handleTurnstileVerify}
+              onExpire={handleTurnstileExpire}
+            />
+
+            <button type="submit" disabled={loading || !turnstileToken} className="btn-primary w-full justify-center py-3 disabled:opacity-60">
               {loading ? 'Creating account...' : 'Create Account →'}
             </button>
           </form>

@@ -1,9 +1,19 @@
 import { NextResponse } from 'next/server'
 import { sendSupportAck } from '@/lib/resend'
+import { verifyTurnstile } from '@/lib/turnstile'
 
 export async function POST(request) {
   try {
-    const { name, email, message, orderRef } = await request.json()
+    const { name, email, message, orderRef, turnstileToken } = await request.json()
+
+    // Verify Turnstile token
+    const turnstileResult = await verifyTurnstile(turnstileToken)
+    if (!turnstileResult.success) {
+      return NextResponse.json(
+        { error: 'Security verification failed. Please try again.' },
+        { status: 403 }
+      )
+    }
 
     if (!email || !message) {
       return NextResponse.json(
