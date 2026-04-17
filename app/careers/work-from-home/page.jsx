@@ -299,11 +299,11 @@ export default function WorkFromHome() {
           <div className="bg-gradient-to-r from-teal-50 to-slate-50 rounded-2xl ring-1 ring-teal-400 p-12 text-center">
             <h2 className="font-serif text-3xl font-bold text-slate-900 mb-4">Ready to Start Working From Home?</h2>
             <p className="text-lg text-slate-700 mb-8 max-w-2xl mx-auto">
-              Sign up at homesafeeducation.com/affiliates - it takes less than two minutes and costs nothing.
+              Sign up at <a href="https://homesafeeducation.com/affiliates" className="text-teal-600 font-semibold underline hover:text-teal-800">homesafeeducation.com/affiliates</a> - it takes less than two minutes and costs nothing.
             </p>
             <a
               href="https://numok-production.up.railway.app/register"
-              className="inline-block px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-lg transition-colors duration-200"
+              className="inline-block px-10 py-5 bg-[#0B1F3A] hover:bg-[#162d52] text-white font-bold text-lg rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
             >
               Get Started Now
             </a>

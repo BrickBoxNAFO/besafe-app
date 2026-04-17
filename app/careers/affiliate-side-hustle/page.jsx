@@ -250,7 +250,7 @@ export default function AffiliateSideHustle() {
           <div className="bg-gradient-to-r from-teal-50 to-slate-50 rounded-2xl ring-1 ring-teal-400 p-12 text-center">
             <h2 className="font-serif text-3xl font-bold text-slate-900 mb-4">Ready to Get Started?</h2>
             <p className="text-lg text-slate-700 mb-8 max-w-2xl mx-auto">
-              Sign up at homesafeeducation.com/affiliates - it is free and takes less than two minutes.
+              Sign up at <a href="https://homesafeeducation.com/affiliates" className="text-teal-600 font-semibold underline hover:text-teal-800">homesafeeducation.com/affiliates</a> - it is free and takes less than two minutes.
             </p>
             <a
               href="https://numok-production.up.railway.app/register"

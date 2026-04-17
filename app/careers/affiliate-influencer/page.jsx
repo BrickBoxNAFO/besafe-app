@@ -619,7 +619,7 @@ const AffiliateCreatorPage = () => {
         <section className="section">
           <div className="final-cta-section">
             <h2>Get Started</h2>
-            <p className="final-cta-description">Join the programme at homesafeeducation.com/affiliates - it takes less than two minutes.</p>
+            <p className="final-cta-description">Join the programme at <a href="https://homesafeeducation.com/affiliates" style={{color: '#0EA5A0', fontWeight: 600, textDecoration: 'underline'}}>homesafeeducation.com/affiliates</a> - it takes less than two minutes.</p>
             <a href="https://numok-production.up.railway.app/register" className="final-cta-button">
               Join the Programme
             </a>

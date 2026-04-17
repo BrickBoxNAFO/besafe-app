@@ -245,7 +245,7 @@ export default function AffiliateParent() {
           <div className="bg-gradient-to-r from-orange-50 to-slate-50 rounded-2xl ring-1 ring-orange-400 p-12 text-center">
             <h2 className="font-serif text-3xl font-bold text-slate-900 mb-4">Ready to Get Started?</h2>
             <p className="text-lg text-slate-700 mb-8 max-w-2xl mx-auto">
-              Join at homesafeeducation.com/affiliates - it takes less than two minutes and it is completely free.
+              Join at <a href="https://homesafeeducation.com/affiliates" className="text-orange-600 font-semibold underline hover:text-orange-800">homesafeeducation.com/affiliates</a> - it takes less than two minutes and it is completely free.
             </p>
             <a
               href="https://numok-production.up.railway.app/register"
