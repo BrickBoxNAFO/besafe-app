@@ -178,7 +178,7 @@ export default function WorkFromHome() {
           {/* The Opportunity Section */}
           <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">The Opportunity</h2>
-            <div className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm">
+            <div className="bg-white rounded-2xl ring-1 ring-slate-300 p-8 shadow">
               <p className="text-lg text-slate-700 leading-relaxed mb-4">
                 HomeSafeEducation is looking for people to help spread the word about our online family safety and life-skills courses. You do not need any experience, qualifications, or special skills.
               </p>
@@ -195,7 +195,7 @@ export default function WorkFromHome() {
               {earnings.map((item, idx) => (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl ring-1 ring-slate-200 p-7 shadow-sm hover:shadow-md transition-shadow duration-200"
+                  className="bg-white rounded-2xl ring-1 ring-slate-300 p-7 shadow hover:shadow-md transition-shadow duration-200"
                 >
                   <div className="mb-4">
                     <IconSVG name={item.icon} />
@@ -214,7 +214,7 @@ export default function WorkFromHome() {
               {requirements.map((item, idx) => (
                 <div
                   key={idx}
-                  className="bg-gradient-to-br from-teal-50 to-slate-50 rounded-2xl ring-1 ring-teal-200 p-8 shadow-sm hover:shadow-md transition-shadow duration-200"
+                  className="bg-gradient-to-br from-teal-50 to-slate-50 rounded-2xl ring-1 ring-teal-400 p-8 shadow-sm hover:shadow-md transition-shadow duration-200"
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 mt-1">
@@ -234,7 +234,7 @@ export default function WorkFromHome() {
               {steps.map((step, idx) => (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm hover:shadow-md transition-shadow duration-200"
+                  className="bg-white rounded-2xl ring-1 ring-slate-300 p-8 shadow hover:shadow-md transition-shadow duration-200"
                 >
                   <div className="flex items-start gap-6">
                     <div className="flex-shrink-0">
@@ -259,7 +259,7 @@ export default function WorkFromHome() {
               {whyPeopleChoose.map((item, idx) => (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl ring-1 ring-slate-200 p-7 shadow-sm hover:shadow-md transition-shadow duration-200"
+                  className="bg-white rounded-2xl ring-1 ring-slate-300 p-7 shadow hover:shadow-md transition-shadow duration-200"
                 >
                   <div className="mb-4">
                     <IconSVG name={item.icon} />
@@ -274,7 +274,7 @@ export default function WorkFromHome() {
           {/* The Details Section */}
           <div className="mb-10">
             <h2 className="font-serif text-4xl font-bold text-slate-900 mb-6">The Details</h2>
-            <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm">
+            <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl ring-1 ring-slate-300 p-8 shadow">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                   <p className="text-sm font-medium text-slate-500 uppercase tracking-wide mb-2">Compensation Model</p>
@@ -296,7 +296,7 @@ export default function WorkFromHome() {
           </div>
 
           {/* CTA Section */}
-          <div className="bg-gradient-to-r from-teal-50 to-slate-50 rounded-2xl ring-1 ring-teal-200 p-12 text-center">
+          <div className="bg-gradient-to-r from-teal-50 to-slate-50 rounded-2xl ring-1 ring-teal-400 p-12 text-center">
             <h2 className="font-serif text-3xl font-bold text-slate-900 mb-4">Ready to Start Working From Home?</h2>
             <p className="text-lg text-slate-700 mb-8 max-w-2xl mx-auto">
               Sign up at homesafeeducation.com/affiliates - it takes less than two minutes and costs nothing.

@@ -221,7 +221,7 @@ export default function AffiliateRepresentativePage() {
               Commission-Based Sales Representative
             </h1>
 
-            <p className="text-xl text-teal-100 mb-3 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+            <p className="text-xl text-white mb-3 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
               Family Safety Education
             </p>
 
@@ -232,15 +232,15 @@ export default function AffiliateRepresentativePage() {
             {/* Key Details Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <p className="text-slate-300 text-sm mb-2">Location</p>
+                <p className="text-white/80 text-sm mb-2">Location</p>
                 <p className="text-white font-semibold text-lg">Remote (Worldwide)</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <p className="text-slate-300 text-sm mb-2">Employment Type</p>
+                <p className="text-white/80 text-sm mb-2">Employment Type</p>
                 <p className="text-white font-semibold text-lg">1099 Contractor</p>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                <p className="text-slate-300 text-sm mb-2">Compensation</p>
+                <p className="text-white/80 text-sm mb-2">Compensation</p>
                 <p className="text-white font-semibold text-lg">20% Commission</p>
               </div>
             </div>
@@ -264,7 +264,7 @@ export default function AffiliateRepresentativePage() {
             </div>
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-[#0EA5A0] to-[#E8703A] rounded-2xl opacity-10 blur-2xl" />
-              <div className="relative bg-white rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm">
+              <div className="relative bg-white rounded-2xl ring-1 ring-slate-300 p-8 shadow">
                 <div className="flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-[#0EA5A0] to-[#0d8f8b] text-white mb-6">
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeWidth="1.5" d="M12 6.253v13m0-13C6.5 6.253 2 10.253 2 15.253s4.5 9 10 9 10-4 10-9-4.5-9-10-9z" />
@@ -284,7 +284,7 @@ export default function AffiliateRepresentativePage() {
           <h2 className="section-title font-serif text-4xl sm:text-5xl font-bold text-[#0B1F3A] mb-8">
             Role Overview
           </h2>
-          <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl ring-1 ring-slate-200 p-8 md:p-12">
+          <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl ring-1 ring-slate-300 p-8 md:p-12">
             <p className="text-lg text-slate-700 leading-relaxed">
               We are seeking motivated, self-directed sales representatives to promote our family safety course packages through our affiliate programme. This is a fully remote, commission-based opportunity, ideal for professionals who excel at consultative selling, digital marketing, or relationship-based outreach.
             </p>
@@ -322,7 +322,7 @@ export default function AffiliateRepresentativePage() {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="card-hover bg-white rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm"
+                className="card-hover bg-white rounded-2xl ring-1 ring-slate-300 p-8 shadow"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
                 <div className="flex items-start gap-4">
@@ -399,7 +399,7 @@ export default function AffiliateRepresentativePage() {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="card-hover bg-white rounded-2xl ring-1 ring-slate-200 p-8 shadow-sm"
+                className="card-hover bg-white rounded-2xl ring-1 ring-slate-300 p-8 shadow"
               >
                 <p className="text-sm font-semibold text-[#0EA5A0] uppercase tracking-wider mb-2">
                   {item.label}

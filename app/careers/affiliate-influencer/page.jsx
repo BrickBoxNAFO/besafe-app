@@ -161,7 +161,7 @@ const AffiliateCreatorPage = () => {
 
           .hero-subtitle {
             font-size: 22px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 1);
             margin-bottom: 50px;
             line-height: 1.5;
             animation: fadeInUp 0.8s ease-out 0.2s both;
@@ -304,8 +304,8 @@ const AffiliateCreatorPage = () => {
             background: white;
             border-radius: 24px;
             padding: 40px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             animation: fadeInUp 0.8s ease-out backwards;
           }
@@ -411,7 +411,7 @@ const AffiliateCreatorPage = () => {
 
           .final-cta-description {
             font-size: 18px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 1);
             margin-bottom: 40px;
             line-height: 1.6;
           }
@@ -439,7 +439,7 @@ const AffiliateCreatorPage = () => {
 
           .final-cta-link {
             font-size: 16px;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 255, 255, 0.9);
             font-weight: 500;
           }
 
