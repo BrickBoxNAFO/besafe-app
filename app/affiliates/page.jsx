@@ -31,35 +31,69 @@ export default function AffiliatesPage() {
           <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-[#E8703A] blur-3xl" />
         </div>
         <div className="relative max-w-5xl mx-auto px-6 py-20 md:py-28">
-          <div className="inline-block bg-teal-500/15 text-[#0EA5A0] border border-[#0EA5A0]/30 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider mb-6">
-            20% Commission Per Sale
-          </div>
-          <h1 className="font-serif text-4xl md:text-6xl font-bold leading-[1.08] mb-6 tracking-tight">
-            Earn 20% on every sale
-            <span className="block italic text-[#0EA5A0] mt-1">you send our way.</span>
-          </h1>
-          <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-2xl mb-10">
-            HomeSafeEducation produces expert-led safety and life-skills courses for
-            every age group: children, teenagers, young adults, travellers, parents,
-            and older adults. Join the affiliate programme and earn 20% of the sale
-            amount on every course package a visitor from your audience buys.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a
-              href={AFFILIATE_REGISTER_URL}
-              className="inline-flex items-center gap-2 bg-[#0EA5A0] hover:bg-[#0d8f8a] text-white font-semibold text-[15px] px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-[#0EA5A0]/20"
-            >
-              Become an Affiliate
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-            <a
-              href={AFFILIATE_LOGIN_URL}
-              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white font-semibold text-[15px] px-7 py-3.5 rounded-xl transition-colors ring-1 ring-white/20"
-            >
-              Affiliate Sign In
-            </a>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12">
+            {/* Left: Hero text */}
+            <div className="flex-1">
+              <div className="inline-block bg-teal-500/15 text-[#0EA5A0] border border-[#0EA5A0]/30 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider mb-6">
+                20% Commission Per Sale
+              </div>
+              <h1 className="font-serif text-4xl md:text-6xl font-bold leading-[1.08] mb-6 tracking-tight">
+                Welcome to the HomeSafeEducation
+                <span className="block italic text-[#0EA5A0] mt-1">Affiliate Programme</span>
+              </h1>
+              <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-2xl mb-10">
+                HomeSafeEducation produces expert-led safety and life-skills courses for
+                every age group: children, teenagers, young adults, travellers, parents,
+                and older adults. Join the affiliate programme and earn 20% of the sale
+                amount on every course package a visitor from your audience buys.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href={AFFILIATE_REGISTER_URL}
+                  className="inline-flex items-center gap-2 bg-[#0EA5A0] hover:bg-[#0d8f8a] text-white font-semibold text-[15px] px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-[#0EA5A0]/20"
+                >
+                  Become an Affiliate
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+                <a
+                  href={AFFILIATE_LOGIN_URL}
+                  className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white font-semibold text-[15px] px-7 py-3.5 rounded-xl transition-colors ring-1 ring-white/20"
+                >
+                  Affiliate Sign In
+                </a>
+              </div>
+            </div>
+
+            {/* Right: It's Simple box */}
+            <div className="mt-10 lg:mt-0 lg:flex-shrink-0">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl ring-1 ring-white/20 p-8 w-full lg:w-72 shadow-xl">
+                <h3 className="text-[#0EA5A0] font-bold text-lg uppercase tracking-wider text-center mb-6">
+                  It&rsquo;s Simple
+                </h3>
+                <div className="space-y-5">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#0EA5A0] text-white font-bold text-lg flex items-center justify-center shadow-lg">1</div>
+                    <div>
+                      <div className="text-white font-semibold text-base leading-snug">Share your link to our site</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#0EA5A0] text-white font-bold text-lg flex items-center justify-center shadow-lg">2</div>
+                    <div>
+                      <div className="text-white font-semibold text-base leading-snug">A customer purchases</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#0EA5A0] text-white font-bold text-lg flex items-center justify-center shadow-lg">3</div>
+                    <div>
+                      <div className="text-white font-semibold text-base leading-snug">You get paid</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
