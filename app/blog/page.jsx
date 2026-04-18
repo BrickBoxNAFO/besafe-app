@@ -34,9 +34,9 @@ export default function BlogPage() {
   const allPosts = getAllPosts();
 
   return (
-    <main className="bg-slate-light min-h-screen">
+    <main className="bg-slate min-h-screen">
       {/* Header */}
-      <section className="bg-gradient-to-br from-navy-dark to-navy-dark/80 text-white py-16 px-4">
+      <section className="bg-gradient-to-br from-[#0B1F3A] to-[#122544] text-white py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl font-bold mb-4 font-serif">Safety Education Blog</h1>
           <p className="text-xl text-slate-200">
@@ -70,7 +70,7 @@ export default function BlogPage() {
                     href={`/blog/${post.slug}`}
                     className="group"
                   >
-                    <h2 className="text-xl font-bold font-serif text-navy-dark mb-3 group-hover:text-teal-accent transition-colors line-clamp-2">
+                    <h2 className="text-xl font-bold font-serif text-[#0B1F3A] mb-3 group-hover:text-[#0EA5A0] transition-colors line-clamp-2">
                       {post.title}
                     </h2>
                   </Link>
@@ -93,7 +93,7 @@ export default function BlogPage() {
                   {/* Read More Link */}
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="text-teal-accent font-semibold text-sm hover:text-teal-accent/80 transition-colors inline-flex items-center gap-2"
+                    className="text-[#0EA5A0] font-semibold text-sm hover:text-[#0EA5A0]/80 transition-colors inline-flex items-center gap-2"
                   >
                     Read Article
                     <span>→</span>
