@@ -49,6 +49,9 @@ export default function PurchaseModal({ packageId, packageName, price, regionCod
       const data = await res.json()
       if (data.url) {
         window.location.href = data.url
+      } else if (res.status === 401 || data.error === 'Unauthorised') {
+        onClose()
+        router.push('/login?redirect=/packages&message=Please sign in to complete your purchase')
       } else {
         setError(data.error || 'Something went wrong. Please try again.')
         setLoading(false)

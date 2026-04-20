@@ -119,8 +119,54 @@ export default function BlogPost({ params }) {
     .filter((p) => p.slug !== post.slug && (p.packageId === pkgId))
     .slice(0, 3);
 
+  // JSON-LD Article schema — gives Google, Bing (ChatGPT search), Perplexity,
+  // and other AI crawlers a structured description of the article so it can
+  // be cited as a source.
+  const BASE_URL =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://homesafeeducation.com';
+  const pageUrl = `${BASE_URL}/blog/${post.slug}`;
+  const isoDate = (() => {
+    const d = post.date ? new Date(post.date) : null;
+    return d && !isNaN(d.getTime()) ? d.toISOString() : new Date().toISOString();
+  })();
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.metaDescription || post.excerpt || '',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+    url: pageUrl,
+    datePublished: isoDate,
+    dateModified: isoDate,
+    inLanguage: 'en',
+    articleSection: post.category || 'Safety education',
+    author: {
+      '@type': 'Organization',
+      name: 'HomeSafe Education',
+      url: BASE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'HomeSafe Education',
+      url: BASE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/logo.png`,
+      },
+    },
+    about: pkg?.name,
+    keywords: [post.category, pkg?.name, 'safety education', 'HomeSafe Education']
+      .filter(Boolean)
+      .join(', '),
+  };
+
   return (
     <main className="min-h-screen bg-slate-50">
+      {/* Structured data for search engines + AI crawlers */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       {/* Top hairline bar matching packages page vibe */}
       <div className="border-b border-slate-200 bg-white">
         <div className="max-w-3xl mx-auto px-5 py-3 text-xs text-slate-500">
