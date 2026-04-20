@@ -43,6 +43,7 @@ export default function TurnstileWidget({ onVerify, onExpire, className = '' }) 
       callback: (token) => onVerify?.(token),
       'expired-callback': () => onExpire?.(),
       theme: 'light',
+      size: 'invisible',
     })
 
     return () => {
