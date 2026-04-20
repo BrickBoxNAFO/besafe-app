@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { stripe, PRICE_IDS } from '@/lib/stripe'
+import { stripe, PRICE_IDS, getStripePriceId } from '@/lib/stripe'
 import { cookies } from 'next/headers'
 import { createClient } from '@/utils/supabase/server'
 
@@ -30,6 +30,7 @@ export async function POST(request) {
   try {
     const {
       packageId,
+      regionCode,
       assignMode,
       recipientEmail,
       recipientName,
@@ -43,7 +44,7 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
     }
 
-    const priceId = PRICE_IDS[packageId]
+    const priceId = regionCode ? getStripePriceId(packageId, regionCode) : PRICE_IDS[packageId]
     if (!priceId) {
       return NextResponse.json({ error: 'Invalid package' }, { status: 400 })
     }
