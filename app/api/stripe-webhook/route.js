@@ -32,7 +32,7 @@ export async function POST(request) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object
-    const { type, user_id, package_id, is_bundle, product_id } = session.metadata || {}
+    const { type, user_id, package_id, is_bundle, product_id, assign_mode, recipient_email, recipient_name } = session.metadata || {}
 
     /* ────────────────────────────────────────────
        MUSIC PURCHASE — metadata.type === 'music_download'
@@ -77,7 +77,7 @@ export async function POST(request) {
     }
 
     /* ────────────────────────────────────────────
-       COURSE PACKAGE PURCHASE — original handler
+       COURSE PACKAGE PURCHASE — handles self / gift / later
        ──────────────────────────────────────────── */
     if (!user_id || !package_id) {
       return NextResponse.json({ error: 'Missing metadata' }, { status: 400 })
@@ -87,6 +87,9 @@ export async function POST(request) {
       ? ['growing', 'nest', 'roaming', 'aging', 'parents']
       : [package_id]
 
+    const mode = assign_mode || 'self'
+
+    // Always record the purchase under the buyer
     for (const pkgId of packageIds) {
       const { error } = await supabase.from('purchases').upsert({
         user_id,
@@ -97,14 +100,93 @@ export async function POST(request) {
     }
 
     const { data: { user } } = await supabase.auth.admin.getUserById(user_id)
-    if (user?.email) {
+
+    if (mode === 'gift' && recipient_email) {
+      /* ── GIFT: create a seat with invite token, send invite email ── */
+      const crypto = await import('crypto')
+      const token = crypto.randomUUID().replace(/-/g, '')
+      const inviteUrl = siteUrl + '/join/' + token
+
+      for (const pkgId of packageIds) {
+        const { error: seatErr } = await supabase.from('seats').insert({
+          owner_user_id: user_id,
+          package_id: pkgId,
+          invite_email: recipient_email.toLowerCase(),
+          invite_token: token,
+          invite_sent_at: new Date().toISOString(),
+          member_name: recipient_name || null,
+        })
+        if (seatErr) console.error('Seat insert error (gift):', seatErr)
+      }
+
+      // Send invite email to the recipient
       const pkg = PACKAGES.find(p => p.id === package_id)
-      await sendPurchaseConfirmation({
-        to: user.email,
-        name: user.user_metadata?.name,
-        packageName: pkg?.name || package_id,
-        isBundle: is_bundle === 'true',
-      }).catch(e => console.error('Email error:', e))
+      const ownerName = user?.user_metadata?.name || 'Someone special'
+      try {
+        const { Resend } = await import('resend')
+        const resend = new Resend(process.env.RESEND_API_KEY)
+        await resend.emails.send({
+          from: process.env.RESEND_FROM_EMAIL || 'hello@homesafeeducation.com',
+          to: recipient_email,
+          subject: ownerName + ' has given you access to ' + (pkg?.name || 'a safety course') + ' — HomeSafeEducation',
+          html: '<div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;padding:32px 24px;"><h1 style="color:#0B1F3A;font-size:26px;margin-bottom:8px;">' + (pkg?.emoji || '') + ' You have been invited!</h1><p style="color:#4B5563;font-size:16px;line-height:1.7;margin-bottom:16px;">Hi' + (recipient_name ? ' ' + recipient_name : '') + ',</p><p style="color:#4B5563;font-size:16px;line-height:1.7;margin-bottom:24px;"><strong>' + ownerName + '</strong> has purchased the <strong>' + (pkg?.name || 'Safety Course') + '</strong> package for you through HomeSafeEducation.</p><div style="background:#F0F4F8;border-radius:12px;padding:20px;margin-bottom:28px;"><p style="color:#0B1F3A;font-size:15px;font-weight:600;margin:0 0 12px 0;">How to get started — 3 simple steps:</p><p style="color:#374151;font-size:14px;margin:0 0 8px 0;"><strong>1.</strong> Click the button below to accept your invitation</p><p style="color:#374151;font-size:14px;margin:0 0 8px 0;"><strong>2.</strong> Create your free account (takes under a minute)</p><p style="color:#374151;font-size:14px;margin:0;"><strong>3.</strong> Your courses unlock immediately</p></div><div style="text-align:center;margin-bottom:28px;"><a href="' + inviteUrl + '" style="display:inline-block;background:#0EA5A0;color:white;padding:16px 36px;border-radius:10px;text-decoration:none;font-weight:700;font-size:16px;">Accept Your Invitation &rarr;</a></div><div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:16px;margin-bottom:24px;"><p style="color:#92400E;font-size:13px;margin:0;line-height:1.6;"><strong>Important:</strong> This invite link is personal to you and can only be used once.</p></div><hr style="border:none;border-top:1px solid #E5E7EB;margin:28px 0;"/><p style="color:#9CA3AF;font-size:12px;margin:0;">HomeSafeEducation &middot; <a href="' + siteUrl + '" style="color:#9CA3AF;">' + siteUrl + '</a></p></div>'
+        })
+      } catch (e) { console.error('Gift invite email error:', e) }
+
+      // Also confirm to the buyer
+      if (user?.email) {
+        await sendPurchaseConfirmation({
+          to: user.email,
+          name: user.user_metadata?.name,
+          packageName: (pkg?.name || package_id) + ' (gifted to ' + recipient_email + ')',
+          isBundle: is_bundle === 'true',
+        }).catch(e => console.error('Email error:', e))
+      }
+      console.log('Gift seat created for ' + recipient_email + ', invite sent')
+
+    } else if (mode === 'later') {
+      /* ── LATER: create a seat with no member, buyer assigns from dashboard ── */
+      for (const pkgId of packageIds) {
+        const { error: seatErr } = await supabase.from('seats').insert({
+          owner_user_id: user_id,
+          package_id: pkgId,
+          member_name: null,
+        })
+        if (seatErr) console.error('Seat insert error (later):', seatErr)
+      }
+
+      if (user?.email) {
+        const pkg = PACKAGES.find(p => p.id === package_id)
+        await sendPurchaseConfirmation({
+          to: user.email,
+          name: user.user_metadata?.name,
+          packageName: (pkg?.name || package_id) + ' (ready to assign)',
+          isBundle: is_bundle === 'true',
+        }).catch(e => console.error('Email error:', e))
+      }
+      console.log('Unassigned seat created for later assignment')
+
+    } else {
+      /* ── SELF (default): create seat with buyer as both owner and member ── */
+      for (const pkgId of packageIds) {
+        const { error: seatErr } = await supabase.from('seats').insert({
+          owner_user_id: user_id,
+          package_id: pkgId,
+          member_user_id: user_id,
+          member_name: user?.user_metadata?.name || null,
+        })
+        if (seatErr) console.error('Seat insert error (self):', seatErr)
+      }
+
+      if (user?.email) {
+        const pkg = PACKAGES.find(p => p.id === package_id)
+        await sendPurchaseConfirmation({
+          to: user.email,
+          name: user.user_metadata?.name,
+          packageName: pkg?.name || package_id,
+          isBundle: is_bundle === 'true',
+        }).catch(e => console.error('Email error:', e))
+      }
     }
   }
 
