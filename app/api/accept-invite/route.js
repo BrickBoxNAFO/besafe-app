@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server'
-import { createServerSupabaseClient, createAdminSupabaseClient } from '@/lib/supabase-server'
+import { cookies } from 'next/headers'
+import { createClient } from '@/utils/supabase/server'
+import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { sendInviteAccepted } from '@/lib/resend'
 
 export async function POST(request) {
   try {
-    const supabase = await createServerSupabaseClient()
+    // Regular client — only used to identify the logged-in user
+    const cookieStore = await cookies()
+    const supabase = createClient(cookieStore)
     const { data: { user } } = await supabase.auth.getUser()
 
     if (!user) {
@@ -17,8 +21,14 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Missing token' }, { status: 400 })
     }
 
-    // Find seat by invite_token
-    const { data: seatRows } = await supabase
+    // Admin client bypasses RLS for seat operations
+    const adminClient = createAdminClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    )
+
+    // Find seat by invite_token (admin — RLS would block this)
+    const { data: seatRows } = await adminClient
       .from('seats')
       .select('*')
       .eq('invite_token', token)
@@ -33,8 +43,8 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invite already accepted' }, { status: 400 })
     }
 
-    // Update seat with member info
-    const { error: updateError } = await supabase
+    // Update seat with member info (admin — RLS would block non-owner writes)
+    const { error: updateError } = await adminClient
       .from('seats')
       .update({
         member_user_id: user.id,
@@ -50,14 +60,14 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Failed to accept invite' }, { status: 500 })
     }
 
-    // Create purchase record for the member
-    const { error: purchaseError } = await supabase
+    // Create purchase record for the member (admin — RLS would block insert)
+    const { error: purchaseError } = await adminClient
       .from('purchases')
-      .insert({
+      .upsert({
         user_id: user.id,
         package_id: seat.package_id,
-        purchased_at: new Date().toISOString(),
-      })
+        stripe_payment_intent: 'invited_' + seat.id,
+      }, { onConflict: 'user_id,package_id' })
 
     if (purchaseError) {
       console.error('Error creating purchase:', purchaseError)
@@ -65,18 +75,19 @@ export async function POST(request) {
     }
 
     // Get owner info for notification email
-    const adminClient = createAdminSupabaseClient()
     const { data: ownerAuth } = await adminClient.auth.admin.getUserById(seat.owner_user_id)
-    const ownerName = ownerAuth?.user_metadata?.name || ownerAuth?.email?.split('@')[0]
+    const ownerName = ownerAuth?.user?.user_metadata?.name || ownerAuth?.user?.email?.split('@')[0]
 
     // Send notification to owner
-    if (ownerAuth?.email) {
+    if (ownerAuth?.user?.email) {
+      const { PACKAGES } = await import('@/lib/data')
+      const pkg = PACKAGES.find(p => p.id === seat.package_id)
       await sendInviteAccepted({
-        to: ownerAuth.email,
+        to: ownerAuth.user.email,
         ownerName: ownerName,
         memberName: user.user_metadata?.name || user.email,
-        packageName: seat.package_id,
-      })
+        packageName: pkg?.name || seat.package_id,
+      }).catch(e => console.error('Invite accepted email error:', e))
     }
 
     return NextResponse.json({

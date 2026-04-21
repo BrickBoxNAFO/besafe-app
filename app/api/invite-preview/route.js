@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createServerSupabaseClient, createAdminSupabaseClient } from '@/lib/supabase-server'
+import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { PACKAGES } from '@/lib/data'
 
 export async function GET(request) {
@@ -11,10 +11,15 @@ export async function GET(request) {
       return NextResponse.json({ error: 'Missing token' }, { status: 400 })
     }
 
-    const supabase = await createServerSupabaseClient()
+    // Use admin client to bypass RLS — unauthenticated visitors need to
+    // preview the invite before they sign up / log in.
+    const adminClient = createAdminClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    )
 
     // Find seat by invite_token
-    const { data: seatRows } = await supabase
+    const { data: seatRows } = await adminClient
       .from('seats')
       .select('*')
       .eq('invite_token', token)
@@ -29,13 +34,12 @@ export async function GET(request) {
     const pkg = PACKAGES.find(p => p.id === seat.package_id)
 
     // Get owner name
-    const adminClient = createAdminSupabaseClient()
     const { data: ownerAuth } = await adminClient.auth.admin.getUserById(seat.owner_user_id)
-    const ownerName = ownerAuth?.user_metadata?.name || ownerAuth?.email?.split('@')[0]
+    const ownerName = ownerAuth?.user?.user_metadata?.name || ownerAuth?.user?.email?.split('@')[0]
 
     return NextResponse.json({
       packageName: pkg?.name || seat.package_id,
-      packageEmoji: pkg?.emoji || '📦',
+      packageEmoji: pkg?.emoji || '',
       ownerName: ownerName,
       inviteEmail: seat.invite_email,
     })
