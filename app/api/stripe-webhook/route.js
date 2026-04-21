@@ -6,13 +6,13 @@ import { PACKAGES } from '@/lib/data'
 
 // Music product metadata for confirmation emails
 const MUSIC_META = {
-  'growing-early': { name: 'Growing Minds: Early Years', emoji: '🌱', songs: 31 },
-  'growing-junior': { name: 'Growing Minds: Junior', emoji: '🌿', songs: 28 },
-  'street': { name: 'Street Smart', emoji: '🥷', songs: 24 },
-  'nest': { name: 'Nest Breaking', emoji: '🦅', songs: 20 },
-  'roaming': { name: 'Roaming Free', emoji: '✈️', songs: 24 },
-  'aging': { name: 'Aging Wisdom', emoji: '💐', songs: 20 },
-  'parents': { name: 'Family Anchor', emoji: '⚓', songs: 24 },
+  'growing-early': { name: 'Growing Minds: Early Years', emoji: '🌱', songs: 37 },
+  'growing-junior': { name: 'Growing Minds: Junior', emoji: '🌿', songs: 35 },
+  'street': { name: 'Street Smart', emoji: '🥷', songs: 30 },
+  'nest': { name: 'Nest Breaking', emoji: '🚀', songs: 17 },
+  'roaming': { name: 'Roaming Free', emoji: '✈️', songs: 20 },
+  'aging': { name: 'Aging Wisdom', emoji: '💐', songs: 25 },
+  'parents': { name: 'Family Anchor', emoji: '❤️', songs: 20 },
 }
 
 export async function POST(request) {
@@ -32,7 +32,7 @@ export async function POST(request) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object
-    const { type, user_id, package_id, is_bundle, product_id, assign_mode, recipient_email, recipient_name } = session.metadata || {}
+    const { type, user_id, package_id, is_bundle, is_complete, product_id, assign_mode, recipient_email, recipient_name } = session.metadata || {}
 
     /* ────────────────────────────────────────────
        MUSIC PURCHASE — metadata.type === 'music_download'
@@ -83,9 +83,15 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Missing metadata' }, { status: 400 })
     }
 
-    const packageIds = is_bundle === 'true'
-      ? ['growing', 'nest', 'roaming', 'aging', 'parents']
-      : [package_id]
+    // Complete Library = all 6 packages; Family Safety Bundle = 5 (no street)
+    const ALL_PACKAGES = ['growing', 'street', 'nest', 'roaming', 'aging', 'parents']
+    const BUNDLE_PACKAGES = ['growing', 'nest', 'roaming', 'aging', 'parents']
+
+    const packageIds = is_bundle !== 'true'
+      ? [package_id]
+      : is_complete === 'true'
+        ? ALL_PACKAGES
+        : BUNDLE_PACKAGES
 
     const mode = assign_mode || 'self'
 

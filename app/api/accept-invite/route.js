@@ -43,6 +43,13 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invite already accepted' }, { status: 400 })
     }
 
+    // Verify the logged-in user's email matches the invite (case-insensitive)
+    if (seat.invite_email && user.email?.toLowerCase() !== seat.invite_email.toLowerCase()) {
+      return NextResponse.json({
+        error: `This invite was sent to ${seat.invite_email}. Please log in with that email address to accept it.`
+      }, { status: 403 })
+    }
+
     // Update seat with member info (admin — RLS would block non-owner writes)
     const { error: updateError } = await adminClient
       .from('seats')

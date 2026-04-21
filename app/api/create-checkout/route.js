@@ -90,7 +90,8 @@ export async function POST(request) {
       metadata: {
         user_id: user.id,
         package_id: packageId,
-        is_bundle: packageId === 'bundle' ? 'true' : 'false',
+        is_bundle: (packageId === 'bundle' || packageId === 'complete') ? 'true' : 'false',
+        is_complete: packageId === 'complete' ? 'true' : 'false',
         assign_mode: mode,
         recipient_email: mode === 'gift' ? (recipientEmail || '') : '',
         recipient_name: mode === 'gift' ? (recipientName || '') : '',

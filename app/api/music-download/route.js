@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
+import { createClient } from '@/utils/supabase/server'
 import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { stripe } from '@/lib/stripe'
 
@@ -34,23 +36,55 @@ export async function GET(request) {
       )
     }
 
-    // If session_id provided, verify the purchase is paid before allowing download
+    // ── Auth check: require either a valid Stripe session OR a DB purchase record ──
+
+    let verified = false
+
+    // Method 1: Stripe session_id (used in confirmation email links)
     if (sessionId) {
       try {
         const session = await stripe.checkout.sessions.retrieve(sessionId)
-        if (session.payment_status !== 'paid') {
-          return NextResponse.json(
-            { error: 'Payment not completed' },
-            { status: 403 }
-          )
+        if (session.payment_status === 'paid') {
+          verified = true
         }
       } catch (error) {
         console.error('Session verification error:', error)
-        return NextResponse.json(
-          { error: 'Could not verify purchase' },
-          { status: 403 }
-        )
       }
+    }
+
+    // Method 2: Logged-in user with a music_purchases record
+    if (!verified) {
+      try {
+        const cookieStore = await cookies()
+        const supabase = createClient(cookieStore)
+        const { data: { user } } = await supabase.auth.getUser()
+
+        if (user) {
+          const adminClient = createAdminClient(
+            process.env.NEXT_PUBLIC_SUPABASE_URL,
+            process.env.SUPABASE_SERVICE_ROLE_KEY
+          )
+          const { data: purchase } = await adminClient
+            .from('music_purchases')
+            .select('id')
+            .eq('user_id', user.id)
+            .eq('product_id', product)
+            .maybeSingle()
+
+          if (purchase) {
+            verified = true
+          }
+        }
+      } catch (error) {
+        console.error('Auth verification error:', error)
+      }
+    }
+
+    if (!verified) {
+      return NextResponse.json(
+        { error: 'Purchase not found. Please log in or use the download link from your confirmation email.' },
+        { status: 403 }
+      )
     }
 
     // Redirect to the R2 download file

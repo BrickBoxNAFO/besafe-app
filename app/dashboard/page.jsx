@@ -26,7 +26,11 @@ export default async function DashboardPage() {
     if (r.passed) progressByCourse[r.course_id].passed++
   })
 
-  const ownedPackages = PACKAGES.filter(p => purchases.includes(p.id))
+  // Bundle/complete purchases unlock all (or most) packages
+  const hasBundleLike = purchases.includes('bundle') || purchases.includes('complete')
+  const ownedPackages = hasBundleLike
+    ? PACKAGES
+    : PACKAGES.filter(p => purchases.includes(p.id))
 
   // FIX: Calculate actual lesson count from course data instead of hardcoded 50
   const totalLessons = ownedPackages.reduce((acc, pkg) => {
