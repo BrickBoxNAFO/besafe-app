@@ -197,12 +197,19 @@ export default async function DashboardPage() {
           </div>
         )}
 
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className={`grid gap-4 ${hasBundleLike ? 'md:grid-cols-4' : 'md:grid-cols-3'}`}>
           <Link href="/library" className="bg-white rounded-2xl border border-gray-100 p-6 hover:border-teal/30 transition-colors group">
             <div className="text-2xl mb-3">📚</div>
             <h3 className="font-semibold text-navy group-hover:text-teal transition-colors">Course Library</h3>
             <p className="text-navy/50 text-sm mt-1">Browse your courses</p>
           </Link>
+          {hasBundleLike && (
+            <Link href="/family" className="bg-white rounded-2xl border border-gray-100 p-6 hover:border-teal/30 transition-colors group">
+              <div className="text-2xl mb-3">👨‍👩‍👧‍👦</div>
+              <h3 className="font-semibold text-navy group-hover:text-teal transition-colors">Family Dashboard</h3>
+              <p className="text-navy/50 text-sm mt-1">Assign seats and invite family</p>
+            </Link>
+          )}
           <Link href="/packages" className="bg-white rounded-2xl border border-gray-100 p-6 hover:border-teal/30 transition-colors group">
             <div className="text-2xl mb-3">📦</div>
             <h3 className="font-semibold text-navy group-hover:text-teal transition-colors">Add a Package</h3>

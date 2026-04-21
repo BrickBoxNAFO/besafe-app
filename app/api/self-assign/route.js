@@ -36,9 +36,17 @@ export async function POST(request) {
       if (!seat) return NextResponse.json({ error: 'Seat not found' }, { status: 404 })
       if (seat.member_user_id) return NextResponse.json({ error: 'Seat is already assigned' }, { status: 400 })
 
+      // If the seat has no package yet (bundle/complete empty seat), the caller
+      // must provide one. The owner picks from the Family Dashboard dropdown.
+      const seatPackageId = seat.package_id || packageId
+      if (!seatPackageId) {
+        return NextResponse.json({ error: 'Please select a package for this seat' }, { status: 400 })
+      }
+
       const { error: updateErr } = await supabase
         .from('seats')
         .update({
+          package_id: seatPackageId,
           member_user_id: user.id,
           member_name: user.user_metadata?.name || user.email,
           accepted_at: new Date().toISOString(),
@@ -56,7 +64,7 @@ export async function POST(request) {
         .from('purchases')
         .upsert({
           user_id: user.id,
-          package_id: seat.package_id,
+          package_id: seatPackageId,
           purchased_at: new Date().toISOString(),
         }, { onConflict: 'user_id,package_id' })
       if (purchaseErr) console.error('Purchase upsert error:', purchaseErr)

@@ -15,8 +15,14 @@ export default function FamilyDashboardClient({
   const [selectedSeat, setSelectedSeat] = useState(null)
   const [inviteForm, setInviteForm] = useState({ email: '', packageId: '' })
 
-  const usedSeats = seats.length
-  const emptySeats = Math.max(0, seatLimit - usedSeats)
+  // Seats with a member or pending invite are "used"; seats with no member
+  // and no invite are "empty" (created by bundle/complete purchase).
+  const filledSeats = seats.filter(s => s.member_user_id || s.invite_email)
+  const emptyDbSeats = seats.filter(s => !s.member_user_id && !s.invite_email)
+  const usedSeats = filledSeats.length
+  // If there are fewer DB-backed empty seats than the remaining limit,
+  // show virtual empty slots for the difference (backwards compat)
+  const emptyVirtualSlots = Math.max(0, seatLimit - seats.length)
 
   // Aggregate stats across active members
   const activeMembers = seats.filter(s => s.member_user_id).length
@@ -26,16 +32,18 @@ export default function FamilyDashboardClient({
     : 0
 
   const handleAssignToMe = async (seatId, packageId) => {
+    if (!packageId) { alert('Please select a package'); return }
     try {
-      const res = await fetch('/api/self-assign', {
+      const res = await fetch('/api/assign-seat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ seatId, packageId }),
+        body: JSON.stringify({ seatId, action: 'self-assign', packageId }),
       })
       if (res.ok) {
         window.location.reload()
       } else {
-        alert('Failed to assign seat')
+        const data = await res.json().catch(() => ({}))
+        alert(data.error || 'Failed to assign seat')
       }
     } catch (err) {
       console.error(err)
@@ -118,8 +126,8 @@ export default function FamilyDashboardClient({
         <h2 className="font-serif text-2xl text-navy mb-6">Your Family Seats</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Filled Seats */}
-          {seats.map(seat => (
+          {/* Filled Seats (have a member or pending invite) */}
+          {filledSeats.map(seat => (
             <SeatCard
               key={seat.id}
               seat={seat}
@@ -129,11 +137,27 @@ export default function FamilyDashboardClient({
             />
           ))}
 
-          {/* Empty Slots */}
-          {Array.from({ length: emptySeats }).map((_, idx) => (
+          {/* Empty DB-backed Seats (from bundle/complete, have a real seatId) */}
+          {emptyDbSeats.map((seat, idx) => (
             <EmptySeatSlot
-              key={`empty-${idx}`}
+              key={seat.id}
+              seatId={seat.id}
               seatIndex={usedSeats + idx}
+              packages={packages}
+              selectedSeat={selectedSeat}
+              setSelectedSeat={setSelectedSeat}
+              inviteForm={inviteForm}
+              setInviteForm={setInviteForm}
+              onAssignToMe={handleAssignToMe}
+              onInviteSubmit={handleInviteSubmit}
+            />
+          ))}
+
+          {/* Virtual Empty Slots (if seat limit > DB rows, backwards compat) */}
+          {Array.from({ length: emptyVirtualSlots }).map((_, idx) => (
+            <EmptySeatSlot
+              key={`virtual-${idx}`}
+              seatIndex={usedSeats + emptyDbSeats.length + idx}
               packages={packages}
               selectedSeat={selectedSeat}
               setSelectedSeat={setSelectedSeat}
@@ -237,6 +261,7 @@ function SeatCard({ seat, packages, progress, onResendInvite }) {
 }
 
 function EmptySeatSlot({
+  seatId,
   seatIndex,
   packages,
   selectedSeat,
@@ -246,7 +271,8 @@ function EmptySeatSlot({
   onAssignToMe,
   onInviteSubmit,
 }) {
-  const isOpen = selectedSeat === seatIndex
+  const slotKey = seatId || seatIndex
+  const isOpen = selectedSeat === slotKey
   const [mode, setMode] = useState(null) // 'self' or 'invite'
 
   return (
@@ -256,7 +282,7 @@ function EmptySeatSlot({
           <p className="text-sm text-navy/60 mb-2">Empty Seat {seatIndex + 1}</p>
           <button
             onClick={() => {
-              setSelectedSeat(seatIndex)
+              setSelectedSeat(slotKey)
               setMode('self')
             }}
             className="px-4 py-2 bg-navy text-white rounded-lg hover:bg-navy/80 transition text-sm font-semibold"
@@ -265,7 +291,7 @@ function EmptySeatSlot({
           </button>
           <button
             onClick={() => {
-              setSelectedSeat(seatIndex)
+              setSelectedSeat(slotKey)
               setMode('invite')
             }}
             className="px-4 py-2 bg-teal text-white rounded-lg hover:bg-teal/80 transition text-sm font-semibold"
@@ -292,7 +318,7 @@ function EmptySeatSlot({
             <button
               onClick={() => {
                 if (inviteForm.packageId) {
-                  onAssignToMe(seatIndex, inviteForm.packageId)
+                  onAssignToMe(seatId || null, inviteForm.packageId)
                 }
               }}
               className="flex-1 px-4 py-2 bg-navy text-white rounded-lg hover:bg-navy/80 text-sm font-semibold"
@@ -312,7 +338,7 @@ function EmptySeatSlot({
           </div>
         </div>
       ) : (
-        <form onSubmit={(e) => onInviteSubmit(e, seatIndex)} className="space-y-4">
+        <form onSubmit={(e) => onInviteSubmit(e, seatId || null)} className="space-y-4">
           <h3 className="font-semibold text-navy">Invite Family Member</h3>
 
           <div>
