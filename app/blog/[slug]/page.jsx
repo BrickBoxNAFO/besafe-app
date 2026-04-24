@@ -262,7 +262,7 @@ export default function BlogPost({ params }) {
               {/* Thin mid-article CTA — compact, brand-coloured, doesn't break reading flow */}
               {bottomHtml && (
                 <Link
-                  href={`/packages#${pkgId}`}
+                  href="/packages"
                   className="not-prose my-8 flex items-center gap-3 md:gap-4 bg-white hover:bg-slate-50 border-l-4 border-[#0EA5A0] ring-1 ring-slate-200 hover:ring-[#0EA5A0] rounded-r-lg rounded-l-sm pl-4 pr-3 py-3 md:pl-5 md:pr-4 md:py-3.5 shadow-sm hover:shadow transition-all group"
                 >
                   <div className="flex-shrink-0 w-9 h-9 rounded-full bg-teal-50 flex items-center justify-center ring-1 ring-teal-100">
@@ -317,7 +317,7 @@ export default function BlogPost({ params }) {
               Take a course yourself &mdash; or give one as a gift to your child, teenager, or elderly parent.
             </p>
             <Link
-              href={`/packages#${pkgId}`}
+              href="/packages"
               className="inline-flex items-center gap-2 bg-[#0EA5A0] hover:bg-[#0d8f8a] text-white font-semibold text-[15px] px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-[#0EA5A0]/20"
             >
               View Our Courses &amp; Packages
