@@ -1,110 +1,66 @@
+// Next.js 14 App Router convention: app/sitemap.js
+//
+// Auto-generates /sitemap.xml at build time + on demand. Lists every
+// crawlable URL so Google, Bing (feeds ChatGPT search), and AI crawlers
+// can discover the full content set in one request.
+
 import { getAllPosts } from '@/lib/posts-all';
 
-export default function sitemap() {
-  const baseUrl = 'https://homesafeeducation.com';
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || 'https://homesafeeducation.com';
+
+// Static routes that should be indexed. Auth-gated routes (dashboard,
+// account, etc.) are intentionally excluded.
+const STATIC_ROUTES = [
+  { path: '',                    priority: 1.0, changeFrequency: 'weekly'  },
+  { path: '/about',              priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/packages',           priority: 0.9, changeFrequency: 'weekly'  },
+  { path: '/contact',            priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/faq',                priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/family',             priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/blog',               priority: 0.9, changeFrequency: 'daily'   },
+  { path: '/safeguarding',       priority: 0.5, changeFrequency: 'yearly'  },
+  { path: '/coppa',              priority: 0.4, changeFrequency: 'yearly'  },
+  { path: '/affiliates',         priority: 0.6, changeFrequency: 'monthly' },
+  { path: '/affiliates/terms',   priority: 0.4, changeFrequency: 'yearly'  },
+  { path: '/privacy',            priority: 0.3, changeFrequency: 'yearly'  },
+  { path: '/terms',              priority: 0.3, changeFrequency: 'yearly'  },
+  { path: '/cookies',            priority: 0.3, changeFrequency: 'yearly'  },
+  { path: '/refunds',            priority: 0.3, changeFrequency: 'yearly'  },
+];
+
+// NOTE: Individual /packages/{slug} routes do not exist — packages are
+// displayed on the single /packages page. Do NOT list them in the sitemap
+// as they would return 404 and waste crawl budget.
+
+export const revalidate = 86400; // regenerate the sitemap once per day
+
+export default async function sitemap() {
+  const urls = [];
+  const today = new Date();
 
   // Static pages
-  const staticPages = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/packages`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/faq`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/cookies`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/refunds`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/safeguarding`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/coppa`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/example`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/login`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/register`,
-      lastModified: new Date('2024-01-01'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-  ];
+  for (const r of STATIC_ROUTES) {
+    urls.push({
+      url: `${BASE}${r.path}`,
+      lastModified: today,
+      changeFrequency: r.changeFrequency,
+      priority: r.priority,
+    });
+  }
 
-  // Blog post URLs
-  const allPosts = getAllPosts();
-  const blogPosts = allPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  }));
+  // Blog posts — 2991 SEO-oriented articles.
+  const posts = getAllPosts();
+  for (const post of posts) {
+    if (!post.slug) continue;
+    const parsed = post.date ? new Date(post.date) : null;
+    const lastModified = parsed && !isNaN(parsed.getTime()) ? parsed : today;
+    urls.push({
+      url: `${BASE}/blog/${post.slug}`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    });
+  }
 
-  return [...staticPages, ...blogPosts];
+  return urls;
 }
