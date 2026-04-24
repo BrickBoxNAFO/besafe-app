@@ -88,20 +88,39 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const post = getPostBySlug(params.slug);
   if (!post) return {};
+
+  const ogImage = post.image || 'https://homesafeeducation.com/og-default.jpg';
+
   return {
     title: post.title + ' | HomeSafeEducation',
     description: post.metaDescription || post.excerpt,
     alternates: { canonical: `/blog/${post.slug}` },
+    robots: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
     openGraph: {
       title: post.title,
       description: post.metaDescription || post.excerpt,
       type: 'article',
       url: `https://homesafeeducation.com/blog/${post.slug}`,
+      images: [
+        {
+          url: ogImage,
+          width: 1280,
+          height: 720,
+          alt: post.imageAlt || post.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.metaDescription || post.excerpt,
+      images: [ogImage],
     },
   };
 }
@@ -158,6 +177,15 @@ export default function BlogPost({ params }) {
     keywords: [post.category, pkg?.name, 'safety education', 'HomeSafe Education']
       .filter(Boolean)
       .join(', '),
+    ...(post.image && {
+      image: {
+        '@type': 'ImageObject',
+        url: post.image,
+        width: 1280,
+        height: 720,
+      },
+      thumbnailUrl: post.image,
+    }),
   };
 
   return (
@@ -199,6 +227,20 @@ export default function BlogPost({ params }) {
           <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-10 border-l-4 border-[#0EA5A0] pl-5 italic">
             {post.excerpt}
           </p>
+        )}
+
+        {/* Hero image — Google Discover requires a prominent, relevant image */}
+        {post.image && (
+          <div className="mb-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+            <img
+              src={post.image}
+              alt={post.imageAlt || post.title}
+              width={1280}
+              height={720}
+              className="w-full h-auto"
+              loading="eager"
+            />
+          </div>
         )}
 
         {/* Body split at the middle paragraph, with a thin in-article CTA inserted between */}
