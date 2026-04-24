@@ -53,8 +53,11 @@ export async function POST(request) {
         stripe_payment_intent: session.payment_intent,
       }, { onConflict: 'user_id,product_id' })
 
-      if (error) console.error('Music purchase DB insert error:', error)
-      else console.log(`Music purchase recorded: user=${user_id} product=${product_id}`)
+      if (error) {
+        console.error('Music purchase DB insert error:', error)
+        return NextResponse.json({ error: 'DB insert failed' }, { status: 500 })
+      }
+      console.log(`Music purchase recorded: user=${user_id} product=${product_id}`)
 
       // Send confirmation email with download link
       const meta = MUSIC_META[product_id]
@@ -100,7 +103,10 @@ export async function POST(request) {
         package_id: package_id,   // 'bundle' or 'complete'
         stripe_payment_intent: session.payment_intent,
       }, { onConflict: 'user_id,package_id' })
-      if (error) console.error('DB insert error:', error)
+      if (error) {
+        console.error('DB insert error:', error)
+        return NextResponse.json({ error: 'DB insert failed' }, { status: 500 })
+      }
 
       for (let i = 0; i < seatCount; i++) {
         const { error: seatErr } = await supabase.from('seats').insert({
@@ -134,7 +140,10 @@ export async function POST(request) {
         package_id: package_id,
         stripe_payment_intent: session.payment_intent,
       }, { onConflict: 'user_id,package_id' })
-      if (error) console.error('DB insert error:', error)
+      if (error) {
+        console.error('DB insert error:', error)
+        return NextResponse.json({ error: 'DB insert failed' }, { status: 500 })
+      }
 
       if (mode === 'gift' && recipient_email) {
         /* ── GIFT: create a seat with invite token, send invite email ── */

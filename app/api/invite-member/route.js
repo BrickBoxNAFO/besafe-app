@@ -6,7 +6,11 @@ import { PACKAGES } from '@/lib/data'
 
 function getResendClient() { return new Resend(process.env.RESEND_API_KEY) }
 const FROM = process.env.RESEND_FROM_EMAIL || 'hello@homesafeeducation.com'
-const SEAT_LIMIT = 5
+
+// Email format validation
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
 
 export async function POST(request) {
   try {
@@ -16,6 +20,7 @@ export async function POST(request) {
 
     const { seatId, inviteEmail, memberName, packageId } = await request.json()
     if (!inviteEmail) return NextResponse.json({ error: 'Email is required' }, { status: 400 })
+    if (!isValidEmail(inviteEmail)) return NextResponse.json({ error: 'Please enter a valid email address' }, { status: 400 })
 
     // Prevent users from inviting themselves
     if (inviteEmail.toLowerCase() === user.email?.toLowerCase()) {
@@ -40,9 +45,11 @@ export async function POST(request) {
       // Bundle / Complete owners can create new seats on demand up to SEAT_LIMIT.
       // Single-package owners can only invite via an existing seat (seatId branch above).
       const { data: existingSeats } = await admin.from('seats').select('id').eq('owner_user_id', user.id)
-      if ((existingSeats || []).length >= SEAT_LIMIT) return NextResponse.json({ error: 'You have reached the maximum of 5 seats' }, { status: 400 })
       const { data: bundlePurchases } = await supabase.from('purchases').select('package_id').eq('user_id', user.id).in('package_id', ['bundle', 'complete'])
       if (!bundlePurchases || bundlePurchases.length === 0) return NextResponse.json({ error: 'To invite on a new seat you need the Family Bundle or Complete Library. If you bought a single package you can invite from that seat on your dashboard.' }, { status: 403 })
+      const hasComplete = bundlePurchases.some(p => p.package_id === 'complete')
+      const seatLimit = hasComplete ? 7 : 5
+      if ((existingSeats || []).length >= seatLimit) return NextResponse.json({ error: `You have reached the maximum of ${seatLimit} seats` }, { status: 400 })
       await admin.from('seats').insert({ owner_user_id: user.id, package_id: packageId, invite_email: inviteEmail, invite_token: token, invite_sent_at: new Date().toISOString(), member_name: memberName || null })
     }
 

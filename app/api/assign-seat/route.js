@@ -5,6 +5,10 @@ import { createClient as createAdminClient } from '@supabase/supabase-js'
 import { PACKAGES } from '@/lib/data'
 import { randomUUID } from 'crypto'
 
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
+
 export async function POST(request) {
   try {
     // Regular client for auth only
@@ -78,6 +82,9 @@ export async function POST(request) {
     if (action === 'invite') {
       if (!email || !packageId) {
         return NextResponse.json({ error: 'Missing email or package' }, { status: 400 })
+      }
+      if (!isValidEmail(email)) {
+        return NextResponse.json({ error: 'Please enter a valid email address' }, { status: 400 })
       }
 
       // Generate invite token
