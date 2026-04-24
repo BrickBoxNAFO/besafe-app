@@ -1,6 +1,5 @@
 import './globals.css'
 import { Suspense } from 'react'
-import { Analytics } from "@vercel/analytics/react";
 import { cookies } from 'next/headers'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
@@ -104,7 +103,7 @@ export default async function RootLayout({ children }) {
           <main>{children}</main>
           <Footer />
         </PricingProvider>
-        <Analytics />`n</body>
+      </body>
     </html>
   )
 }
