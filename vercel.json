@@ -12,6 +12,10 @@
     {
       "path": "/api/cron/build-payout-batches",
       "schedule": "0 2 1 * *"
+    },
+    {
+      "path": "/api/cron/keep-alive",
+      "schedule": "0 6 * * *"
     }
   ]
 }
