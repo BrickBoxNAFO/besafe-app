@@ -110,8 +110,8 @@ export async function generateMetadata({ params }) {
       images: [
         {
           url: ogImage,
-          width: 1280,
-          height: 720,
+          width: 1200,
+          height: 628,
           alt: post.imageAlt || post.title,
         },
       ],
@@ -181,8 +181,8 @@ export default function BlogPost({ params }) {
       image: {
         '@type': 'ImageObject',
         url: post.image,
-        width: 1280,
-        height: 720,
+        width: 1200,
+        height: 628,
       },
       thumbnailUrl: post.image,
     }),
@@ -229,17 +229,41 @@ export default function BlogPost({ params }) {
           </p>
         )}
 
-        {/* Hero image — Google Discover requires a prominent, relevant image */}
+        {/* Hero image — Google Discover requires a prominent, clean photograph */}
         {post.image && (
           <div className="mb-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+            {/* Clean photograph — no text, no logo (Google Discover compliant) */}
             <img
               src={post.image}
               alt={post.imageAlt || post.title}
-              width={1280}
-              height={720}
-              className="w-full h-auto"
+              width={1200}
+              height={628}
+              className="w-full h-auto block"
               loading="eager"
             />
+            {/* Branded text block — logo, title, pull quote (pure HTML, not in image) */}
+            <div className="bg-[#0B1F3A] px-6 py-8 md:px-10 md:py-10 text-center">
+              {/* Logo */}
+              <img
+                src="https://pub-a7d5ba1f078f45fcbfb994964f59ca05.r2.dev/blog-images/homesafe-logo-web.png"
+                alt="HomeSafe Education"
+                width={220}
+                height={18}
+                className="mx-auto mb-5 h-auto"
+                loading="eager"
+                style={{ maxWidth: '220px' }}
+              />
+              {/* Article title */}
+              <h2 className="text-white font-serif text-lg md:text-xl leading-snug font-normal mb-5 max-w-xl mx-auto">
+                {post.title}
+              </h2>
+              {/* Pull quote from excerpt */}
+              {post.excerpt && (
+                <p className="text-slate-400 text-sm md:text-[15px] italic leading-relaxed max-w-lg mx-auto font-serif">
+                  &ldquo;{post.excerpt}&rdquo;
+                </p>
+              )}
+            </div>
           </div>
         )}
 
