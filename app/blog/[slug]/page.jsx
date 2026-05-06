@@ -231,14 +231,14 @@ export default function BlogPost({ params }) {
 
         {/* Hero image */}
         {post.image && (
-          <div className=”mb-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm”>
+          <div className="mb-10 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
             <img
               src={post.image}
               alt={post.imageAlt || post.title}
               width={1200}
               height={628}
-              className=”w-full h-auto”
-              loading=”eager”
+              className="w-full h-auto"
+              loading="eager"
             />
           </div>
         )}
