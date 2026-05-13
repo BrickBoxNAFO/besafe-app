@@ -22,7 +22,7 @@ export const metadata = {
     canonical: '/blog',
   },
   robots: {
-    index: true,
+    index: false,
     follow: true,
     'max-image-preview': 'large',
     'max-snippet': -1,

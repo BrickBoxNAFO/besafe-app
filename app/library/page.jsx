@@ -5,6 +5,15 @@ import { PACKAGES, COURSES } from '@/lib/data'
 
 export const dynamic = 'force-dynamic'
 
+export const metadata = {
+  title: 'My Library | HomeSafe Education',
+  description: 'Access your purchased courses and learning materials.',
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
+
 export default async function LibraryPage() {
   const cookieStore = await cookies()
   const supabase = createClient(cookieStore)
